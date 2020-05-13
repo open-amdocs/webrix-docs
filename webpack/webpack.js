@@ -16,6 +16,7 @@ module.exports = {
     },
     devServer: {
         contentBase: paths.src,
+        historyApiFallback: true,
         compress: true,
         port: 9000
     },

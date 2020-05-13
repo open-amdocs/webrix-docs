@@ -1,14 +1,14 @@
 import React from 'react';
+import Router from './routes/Router';
 // import {Header, Body, Footer, Background} from './components';
 // import './App.scss';
 
-export default class App extends React.PureComponent {
+const App = () => (
+    <div id='app'>
+        <Router>
+            Hello World!!
+        </Router>
+    </div>
+)
 
-    render() {
-        return (
-            <div id='app'>
-                Hello World!!
-            </div>
-        );
-    }
-}
+export default App;

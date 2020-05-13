@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "webrix-docs",
   "version": "1.0.0",
   "author": "Amdocs Corp",
@@ -18,15 +19,16 @@
     "@babel/preset-react": "7.9.4",
     "@mdx-js/loader": "1.6.1",
     "babel-loader": "8.1.0",
-    "css-loader": "^3.5.3",
-    "node-sass": "^4.14.1",
+    "css-loader": "3.5.3",
+    "node-sass": "4.14.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "sass-loader": "^8.0.2",
-    "sass-resources-loader": "^2.0.3",
-    "style-loader": "^1.2.1",
+    "react-router-dom": "5.2.0",
+    "sass-loader": "8.0.2",
+    "sass-resources-loader": "2.0.3",
+    "style-loader": "1.2.1",
     "webpack": "4.43.0",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
