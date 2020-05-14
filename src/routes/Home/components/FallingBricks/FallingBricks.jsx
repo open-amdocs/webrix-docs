@@ -1,25 +1,21 @@
-import React, {useRef, useEffect} from 'react';
-import {createScene} from './scene';
+import React, {useRef, useEffect, useState} from 'react';
+import {Engine} from './scene';
 import './FallingBricks.scss';
 
 const FallingBricks = () => {
     const canvas = useRef();
+    const [loaded, setLoaded] = useState(!!BABYLON);
+
     useEffect(() => {
-        window.addEventListener('load', function() {
-            console.log(canvas.current);
-            const engine = new BABYLON.Engine(canvas.current, true);
-            const scene = createScene(engine);
+        if (loaded) {
+            const engine = new Engine(canvas.current);
+            window.addEventListener('resize',  engine.resize);
+            return () => window.removeEventListener('resize', engine.resize);
+        }
+    }, [loaded]);
 
-            // run the render loop
-            engine.runRenderLoop(function () {
-                scene.render();
-            });
-
-            // the canvas/window resize event handler
-            window.addEventListener('resize', function () {
-                engine.resize();
-            });
-        });
+    useEffect(() => {
+        window.addEventListener('load', () => setLoaded(true));
     }, []);
 
     return <canvas id='scene' ref={canvas}/>;
