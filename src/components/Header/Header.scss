@@ -1,0 +1,24 @@
+#header {
+  background-color: $color-dark-blue;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  opacity: 0.9;
+  position: fixed;
+  left: 0;
+  right: 0;
+  box-shadow: 0 -2px 5px 5px rgba(0, 0, 0, 0.2);
+
+  a {
+    color: white;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+
+  .routes {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+  }
+}
