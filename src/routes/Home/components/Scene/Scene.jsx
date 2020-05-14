@@ -6,11 +6,11 @@ const createScene = (engine, canvas) => {
     scene.clearColor = BABYLON.Color3.Green();
 
     // Camera
-    const camera = new BABYLON.UniversalCamera("Camera", new BABYLON.Vector3(0, 0, -20), scene);
+    const camera = new BABYLON.UniversalCamera("Camera", new BABYLON.Vector3(5, 30, 0), scene);
     camera.attachControl(canvas, true);
     camera.checkCollisions = true;
     camera.applyGravity = true;
-    camera.setTarget(new BABYLON.Vector3(0, 0, 0));
+    camera.setTarget(new BABYLON.Vector3(0, -10, 0));
 
     // Light
     const light = new BABYLON.DirectionalLight("dir02", new BABYLON.Vector3(0.2, -1, 0), scene);
@@ -34,10 +34,10 @@ const createScene = (engine, canvas) => {
     const pipeline = new BABYLON.DefaultRenderingPipeline("default", true, scene, [scene.activeCamera]);
     pipeline.depthOfFieldBlurLevel = BABYLON.DepthOfFieldEffectBlurLevel.Medium;
     pipeline.depthOfFieldEnabled = true;
-    pipeline.depthOfField.focalLength = 100;
-    pipeline.depthOfField.fStop = 7;
-    pipeline.depthOfField.focusDistance = 2250;
-    pipeline.samples = 4; // Antialiasing
+    pipeline.depthOfField.focalLength = 500;
+    pipeline.depthOfField.fStop = 1;
+    pipeline.depthOfField.focusDistance = 20000;
+    pipeline.samples = 2; // Antialiasing
 
     // Playground
     const ground = BABYLON.Mesh.CreateBox("Ground", 1, scene);
@@ -80,22 +80,26 @@ const createScene = (engine, canvas) => {
     border3.material = groundMat;
     ground.receiveShadows = true;
 
-    const materialBrick = new BABYLON.StandardMaterial("brick", scene);
-    materialBrick.diffuseTexture = new BABYLON.Texture("resources/images/brick.jpg", scene);
-    materialBrick.specularColor = new BABYLON.Color3(0, 0, 0);
-    // materialBrick.emissiveColor = new BABYLON.Color3(0.02, 0.1, 0.19);
+    const materials = ['brick', 'brick1', 'brick2', 'brick3', 'brick4'].map(name => {
+        const material = new BABYLON.StandardMaterial("brick", scene);
+        material.diffuseTexture = new BABYLON.Texture(`resources/images/${name}.jpg`, scene);
+        material.specularColor = new BABYLON.Color3(0, 0, 0);
+        material
+        // materialBrick.emissiveColor = new BABYLON.Color3(0.02, 0.1, 0.19);
+        return material;
+    });
 
     // Add bricks every few seconds
     let prev = Date.now();
     const bricks = [];
     scene.onBeforeRenderObservable.add(() => {
-        if (Date.now() - prev > 1000) {
+        if (Date.now() - prev > 500) {
             prev = Date.now();
             const brick = BABYLON.MeshBuilder.CreateBox("brick", {height: 1, width: 5, depth: 2}, scene);
-            brick.position = new BABYLON.Vector3(Math.random() *10 - 5, 12, Math.random() *10 - 5);
+            brick.position = new BABYLON.Vector3(Math.random() *10 - 5, 25, Math.random() *10 - 5);
             brick.rotation.y = Math.PI/(Math.random() * 2);
             brick.rotation.x = Math.PI/(Math.random());
-            brick.material = materialBrick;
+            brick.material = materials[Math.floor(Math.random() * materials.length)];
             shadowGenerator.addShadowCaster(brick);
             brick.physicsImpostor = new BABYLON.PhysicsImpostor(brick, BABYLON.PhysicsImpostor.BoxImpostor, {mass: 20, friction: 0.4, restitution: 0.05}, scene);
             bricks.push(brick);
