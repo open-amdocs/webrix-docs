@@ -16,9 +16,19 @@
     text-transform: capitalize;
   }
 
+  .logo {
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: absolute;
+  }
+
   .routes {
     display: flex;
     justify-content: center;
     flex: 1;
+
+    a {
+      padding: 10px;
+    }
   }
 }

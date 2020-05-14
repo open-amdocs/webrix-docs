@@ -9,7 +9,10 @@ const Home = () => {
             <div className='title'>
                 <h1>WEBRIX</h1>
                 <h2>Powerful building blocks for React-based web applications</h2>
-                <Button>Get Started</Button>
+                <div className='actions'>
+                    <Button>Get Started</Button>
+                    <Button type={Button.Types.SECONDARY}>Documentation</Button>
+                </div>
             </div>
             <FallingBricks/>
         </>

@@ -25,5 +25,15 @@
       text-align: center;
       margin: 0;
     }
+
+    .actions {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+
+      .button + .button {
+        margin-left: 10px;
+      }
+    }
   }
 }
