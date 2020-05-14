@@ -5,9 +5,11 @@ import ROUTES from './Router.routes.js';
 const Router = ({children}) => (
     <BrowserRouter>
         <Switch>
-            {ROUTES.map(({path, component: Comp}) => (
-                <Route path={path}>
-                    <Comp/>
+            {ROUTES.map(({path, name, component: Comp}) => (
+                <Route path={path} key={path}>
+                    <div id={`route-${name}`} className='route-container'>
+                        <Comp/>
+                    </div>
                 </Route>
             ))}
         </Switch>

@@ -4,11 +4,9 @@ import Router from './routes/Router';
 // import './App.scss';
 
 const App = () => (
-    <div id='app'>
-        <Router>
-            Hello World!!
-        </Router>
-    </div>
+    <Router>
+        Hello World!!
+    </Router>
 )
 
 export default App;
