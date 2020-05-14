@@ -1,12 +1,14 @@
 import React from 'react';
 import Router from './routes/Router';
-// import {Header, Body, Footer, Background} from './components';
+import {BrowserRouter} from "react-router-dom";
+import {Header} from './components';
 // import './App.scss';
 
 const App = () => (
-    <Router>
-        Hello World!!
-    </Router>
+    <BrowserRouter>
+        <Header/>
+        <Router/>
+    </BrowserRouter>
 )
 
 export default App;
