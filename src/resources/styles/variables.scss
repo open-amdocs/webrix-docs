@@ -1,5 +1,17 @@
+// Breakpoints
+$breakpoints: (
+    sm: 768px,
+    md: 960px,
+    lg: 1170px,
+    xl: 1570px
+);
+
+// Colors
 $color-white: #fff;
 $color-dark-blue: #1b1b2f;
 $color-blue: #162447;
-$color-light-blue: #1f4068;
+$color-light-blue: #273d76;
 $color-pink: #e43f5a;
+$color-dark-gray: #727892;
+$color-gray: #9094A6;
+$color-light-gray: #D4D5Dc;

@@ -1,5 +1,17 @@
-#route-home #scene {
-  width: 100%;
-  height: 100%;
-  background-color: #223870;
+$overlay-height: 6vh;
+
+#route-home {
+  #scene {
+    width: 100%;
+    height: 100vh + $overlay-height;
+    background-color: #223870;
+  }
+
+  .gradient-overlay {
+    width: 100%;
+    position: absolute;
+    height: $overlay-height;
+    top: 100vh;
+    background-image: linear-gradient(transparent, $color-light-blue);
+  }
 }

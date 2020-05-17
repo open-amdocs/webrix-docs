@@ -18,7 +18,12 @@ const FallingBricks = () => {
         window.addEventListener('load', () => setLoaded(true));
     }, []);
 
-    return <canvas id='scene' ref={canvas}/>;
+    return (
+        <>
+            <canvas id='scene' ref={canvas}/>
+            <div className='gradient-overlay'/>
+        </>
+    );
 }
 
 export default FallingBricks;

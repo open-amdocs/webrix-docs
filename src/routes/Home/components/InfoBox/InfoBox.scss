@@ -1,0 +1,11 @@
+.info-box {
+  color: $color-white;
+  margin: 0 20px;
+
+  h3 {
+    font-size: 2em;
+    text-shadow: 0 0 16px $color-blue, 3px 3px 0 $color-pink;
+    color: $color-white;
+    margin: 0 0 10px;
+  }
+}

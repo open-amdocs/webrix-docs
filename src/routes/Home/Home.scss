@@ -1,11 +1,13 @@
 #route-home {
+  position: relative;
+  background-color: $color-light-blue;
+
   .title {
     position: absolute;
-    top: 300px;
+    top: 50vh;
     left: 50%;
     color: white;
-    text-shadow: 0 0 16px #072c52;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,8 +17,13 @@
       line-height: 1em;
       text-align: center;
       margin: 0;
-      letter-spacing: 23px;
-      margin-right: -23px;
+      letter-spacing: 22px;
+      margin-right: -17px;
+      text-shadow: 0 0 16px $color-blue, 5px 0 0 $color-pink;
+
+      @include media-max('sm') {
+        font-size: 3em;
+      }
     }
 
     h2 {
@@ -24,6 +31,7 @@
       font-size: 1em;
       text-align: center;
       margin: 0;
+      text-shadow: 0 0 16px $color-blue;
     }
 
     .actions {
@@ -34,6 +42,15 @@
       .button + .button {
         margin-left: 10px;
       }
+    }
+  }
+
+  section {
+    display: flex;
+    padding: 30px 0;
+
+    @include media-max('sm') {
+      flex-direction: column;
     }
   }
 }
