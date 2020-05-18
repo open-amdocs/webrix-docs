@@ -7,7 +7,10 @@ import './Footer.scss';
 const Footer = () => (
     <footer id='footer'>
         <div className='logo-container'>
-            <Link to={HOME.path}>WEBRIX</Link>
+            <div className='graphic'/>
+            <Link to={HOME.path}>
+                <img src='resources/images/webrix-logo-text-light.png' alt='Webrix logo' height='30px'/>
+            </Link>
         </div>
         <Container>
             <div className='copyright-notice'>
@@ -31,6 +34,7 @@ const Footer = () => (
                 <h4>COMMUNITY</h4>
                 <ul>
                     <li>GitHub</li>
+                    <li>NPM</li>
                     <li>Contributing</li>
                     <li>Code of Conduct</li>
                 </ul>

@@ -15,6 +15,10 @@
     color: white;
     text-decoration: none;
     text-transform: capitalize;
+
+    img {
+      height: 20px;
+    }
   }
 
   .logo {
@@ -31,5 +35,9 @@
     a {
       padding: 10px;
     }
+  }
+
+  .version {
+    color: $color-white;
   }
 }
