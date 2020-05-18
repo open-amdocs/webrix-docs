@@ -11,6 +11,8 @@ const Header = () => (
         <div className='routes'>
             <Link to={DOCS.path}>{DOCS.name}</Link>
             <Link to={TUTORIAL.path}>{TUTORIAL.name}</Link>
+            <Link to={TUTORIAL.path}>Playground</Link>
+            <Link to={TUTORIAL.path}>Examples</Link>
         </div>
         <div className='version'>v1.0.0</div>
     </header>

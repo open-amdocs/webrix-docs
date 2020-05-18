@@ -25,7 +25,6 @@
       z-index: 1;
       color: $color-white;
       font-weight: bold;
-      text-decoration: none;
       letter-spacing: 2px;
       font-size: 1.4em;
     }
@@ -67,6 +66,10 @@
 
         li {
           margin: 5px 0;
+
+          a {
+            color: $color-white;
+          }
         }
       }
     }
