@@ -23,12 +23,12 @@ export default engine => {
     // Add bricks every few seconds
     let prev = Date.now();
     const bricks = [];
-    BABYLON.SceneLoader.ImportMesh('', 'resources/models/', 'brick.stl', scene, ([brickMesh]) => {
-        brickMesh.setEnabled(false); // Hide the original mesh
+    BABYLON.SceneLoader.ImportMesh('', 'resources/models/', 'bricks.obj', scene, meshes => {
+        meshes.forEach(mesh => mesh.setEnabled(false)); // Hide the original mesh
         scene.onBeforeRenderObservable.add(() => {
             if (Date.now() - prev > BRICK_DROP_INTERVAL) {
                 prev = Date.now();
-                const brick = new Brick(scene, brickMesh);
+                const brick = new Brick(scene, meshes[Math.floor(Math.random() * meshes.length)]);
                 shadows.addShadowCaster(brick);
                 bricks.push(brick);
                 if (bricks.length > MAX_BRICKS) {
