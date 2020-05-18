@@ -1,8 +1,8 @@
 const Material = scene => {
     const material = new BABYLON.StandardMaterial("brick", scene);
-    // material.diffuseTexture = new BABYLON.Texture(`resources/images/${name}.jpg`, scene);
-    material.diffuseColor = new BABYLON.Color3.FromHexString('#e43f5a');
-    material.specularColor = new BABYLON.Color3(0, 0, 0);
+    const color = new BABYLON.Color3.FromHexString(['#e43f5a', '#162447'][Math.floor(Math.random() * 2)])
+    material.diffuseColor = color;
+    material.specularColor = color;
     material.backFaceCulling = false;
     return material;
 };
