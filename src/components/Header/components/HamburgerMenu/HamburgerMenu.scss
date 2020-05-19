@@ -1,8 +1,8 @@
 $hamburger-layer-width: 40px;
 $hamburger-layer-height: 3px;
 $hamburger-layer-spacing: 8px;
-$spin-duration: 0.22s;
-$collapse-duration: 0.1s;
+$spin-duration: 0.25s;
+$collapse-duration: 0.15s;
 
 .hamburger {
   padding: 0;
@@ -13,6 +13,10 @@ $collapse-duration: 0.1s;
   margin: 0;
   outline: none;
 
+  @include media-min('sm') {
+    display: none;
+  }
+
   &.active {
     .hamburger-inner,
     .hamburger-inner::before,
@@ -22,21 +26,20 @@ $collapse-duration: 0.1s;
 
     .hamburger-inner {
       transform: rotate(225deg);
-      transition-delay: 0.12s;
+      transition-delay: $collapse-duration*1.1;
       transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
 
       &::before {
         top: 0;
         opacity: 0;
-        transition: top 0.1s ease-out,
-        opacity 0.1s 0.12s ease-out;
+        transition: top $collapse-duration ease-out, opacity $collapse-duration $collapse-duration*1.1 ease-out;
       }
 
       &::after {
         bottom: 0;
         transform: rotate(-90deg);
-        transition: bottom 0.1s ease-out,
-        transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+        transition: bottom $collapse-duration ease-out,
+        transform $spin-duration $collapse-duration*1.1 cubic-bezier(0.215, 0.61, 0.355, 1);
       }
     }
   }
@@ -52,7 +55,7 @@ $collapse-duration: 0.1s;
     display: block;
     top: 50%;
     margin-top: $hamburger-layer-height / -2;
-    transition-duration: 0.22s;
+    transition-duration: $spin-duration;
     transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
     &,
@@ -67,12 +70,12 @@ $collapse-duration: 0.1s;
 
     &::before {
       top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
-      transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+      transition: top $collapse-duration $spin-duration*1.1 ease-in, opacity $collapse-duration ease-in;
     }
 
     &::after {
       bottom: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
-      transition: bottom 0.1s 0.25s ease-in, transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      transition: bottom $collapse-duration $spin-duration*1.1 ease-in, transform $spin-duration cubic-bezier(0.55, 0.055, 0.675, 0.19);
     }
 
     &::before,

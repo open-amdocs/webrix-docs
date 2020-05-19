@@ -12,17 +12,9 @@
     flex-direction: column;
     align-items: center;
 
-    h1 {
-      font-size: 5em;
-      line-height: 1em;
-      text-align: center;
-      margin: 0;
-      letter-spacing: 22px;
-      margin-right: -17px;
-      text-shadow: 0 0 16px $color-blue, 5px 0 0 $color-pink;
-
+    img {
       @include media-max('sm') {
-        font-size: 3em;
+        width: 300px;
       }
     }
 

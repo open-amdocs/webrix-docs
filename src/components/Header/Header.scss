@@ -26,10 +26,26 @@
     position: absolute;
   }
 
-  .routes {
+  .menu {
     display: flex;
     justify-content: center;
     flex: 1;
+
+    @include media-max('sm') {
+      display: none;
+      border-top: 1px solid rgba($color-white, 0.2);
+      position: absolute;
+      flex-direction: column;
+      background-color: $color-dark-blue;
+      right: 0;
+      left: 0;
+      top: 60px;
+      padding: 10px;
+
+      &.active {
+        display: flex;
+      }
+    }
 
     a {
       padding: 10px;
@@ -38,5 +54,10 @@
 
   .version {
     color: $color-white;
+
+    @include media-max('sm') {
+      margin-left: 145px;
+      margin-right: auto; // Push the hamburger menu to the right
+    }
   }
 }
