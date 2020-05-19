@@ -1,12 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {HOME, DOCS, TUTORIAL} from '../../routes/Router.routes';
+import logo from '../../resources/images/webrix-logo-text-light.png';
 import './Header.scss';
 
 const Header = () => (
     <header id='header'>
         <Link to={HOME.path} className='logo'>
-            <img src='resources/images/webrix-logo-text-light.png' alt='Webrix logo'/>
+            <img src={logo} alt='Webrix logo'/>
         </Link>
         <div className='routes'>
             <Link to={DOCS.path}>{DOCS.name}</Link>

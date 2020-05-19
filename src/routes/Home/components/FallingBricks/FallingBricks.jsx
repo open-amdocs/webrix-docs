@@ -1,16 +1,21 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useRef, useEffect, useState, useCallback} from 'react';
 import {Engine} from './scene';
 import './FallingBricks.scss';
 
 const FallingBricks = () => {
     const canvas = useRef();
+    const engine = useRef();
     const [loaded, setLoaded] = useState(!!BABYLON);
+
+    const handleOnResize = useCallback(() => {
+        engine.current.resize();
+    }, [engine.current]);
 
     useEffect(() => {
         if (loaded) {
-            const engine = new Engine(canvas.current);
-            window.addEventListener('resize',  engine.resize);
-            return () => window.removeEventListener('resize', engine.resize);
+            engine.current = new Engine(canvas.current);
+            window.addEventListener('resize', handleOnResize);
+            return () => window.removeEventListener('resize', handleOnResize);
         }
     }, [loaded]);
 

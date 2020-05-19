@@ -1,5 +1,6 @@
 import {Camera, Ground, Light, Pipeline, Shadows, Brick} from './index';
-import {MAX_BRICKS, BRICK_DROP_INTERVAL} from "../FallingBricks.constants";
+import {MAX_BRICKS, BRICK_DROP_INTERVAL} from '../FallingBricks.constants';
+import models from '../../../../../resources/models/bricks.obj';
 
 const Scene = engine => {
     const scene = new BABYLON.Scene(engine);
@@ -23,7 +24,7 @@ export default engine => {
     // Add bricks every few seconds
     let prev = Date.now();
     const bricks = [];
-    BABYLON.SceneLoader.ImportMesh('', 'resources/models/', 'bricks.obj', scene, meshes => {
+    BABYLON.SceneLoader.ImportMesh('', models, '', scene, meshes => {
         meshes.forEach(mesh => mesh.setEnabled(false)); // Hide the original mesh
         scene.onBeforeRenderObservable.add(() => {
             if (Date.now() - prev > BRICK_DROP_INTERVAL) {

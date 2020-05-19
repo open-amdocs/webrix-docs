@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {HOME} from '../../routes/Router.routes';
 import {Container} from '../';
+import amdocsLogo from '../../resources/images/amdocs-logo-light-small.png';
+import webrixLogo from '../../resources/images/webrix-logo-text-light.png';
 import './Footer.scss';
 
 const Footer = () => (
@@ -9,13 +11,13 @@ const Footer = () => (
         <div className='logo-container'>
             <div className='graphic'/>
             <Link to={HOME.path}>
-                <img src='resources/images/webrix-logo-text-light.png' alt='Webrix logo' height='30px'/>
+                <img src={webrixLogo} alt='Webrix logo' height='30px'/>
             </Link>
         </div>
         <Container>
             <div className='copyright-notice'>
                 <a href='https://amdocs.com'>
-                    <img src='./resources/images/amdocs-logo-light-small.png' alt='Amdocs Corp. Logo'/>
+                    <img src={amdocsLogo} alt='Amdocs Corp. Logo'/>
                 </a>
                 <p>Copyright © 2020 Amdocs Corp.</p>
             </div>

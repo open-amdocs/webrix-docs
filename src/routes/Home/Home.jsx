@@ -3,13 +3,14 @@ import FallingBricks from './components/FallingBricks/FallingBricks';
 import LoremIpsum from './components/LoremIpsum/LoremIpsum';
 import InfoBox from './components/InfoBox/InfoBox';
 import {Button, Container} from '../../components';
+import logo from '../../resources/images/webrix-logo-light.png';
 import './Home.scss';
 
 const Home = () => {
     return (
         <>
             <div className='title'>
-                <img src='./resources/images/webrix-logo-light.png' alt='Webrix logo'/>
+                <img src={logo} alt='Webrix logo'/>
                 <h2>Powerful building blocks for React-based web applications</h2>
                 <div className='actions'>
                     <Button>Get Started</Button>

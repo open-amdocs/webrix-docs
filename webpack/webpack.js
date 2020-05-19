@@ -1,7 +1,5 @@
 const {paths} = require('./webpack.constants');
 const {hasArg} = require('./webpack.utility');
-// const renderer = require('./plugins/MarkdownRenderer');
-// const GenerateHTML = require('./plugins/GenerateHTML');
 
 module.exports = {
     entry: paths.src + '/index.js',
@@ -9,7 +7,11 @@ module.exports = {
     mode: hasArg('production') ? 'production' : 'development',
     output: {
         filename: 'index.min.js',
-        path: paths.src,
+        path: hasArg('production') ? paths.build: paths.src,
+        publicPath: hasArg('production') ? 'build/' : '',
+    },
+    externals: {
+        babylonjs: 'BABYLON',
     },
     optimization: {
         minimize: hasArg('production'),
@@ -54,19 +56,9 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpe?g|gif|obj)$/i,
                 use: [{loader: 'file-loader'}],
             },
-            // {
-            //     test: /\.md$/,
-            //     use: [
-            //         {loader: "html-loader"},
-            //         {loader: "markdown-loader", options: {renderer}}
-            //     ]
-            // }
         ]
     },
-    // plugins: [
-    //     new GenerateHTML(),
-    // ]
 };
