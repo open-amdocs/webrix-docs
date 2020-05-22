@@ -12,7 +12,6 @@ module.exports = {
         chunkFilename: '[name].bundle.js',
         path: hasArg('production') ? paths.build: paths.src,
         publicPath: hasArg('production') ? 'build/' : '',
-        crossOriginLoading: hasArg('production') ? false : 'anonymous',
     },
     optimization: {
         minimize: hasArg('production'),
