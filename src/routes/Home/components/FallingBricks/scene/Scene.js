@@ -1,13 +1,22 @@
+import {Color3} from '@babylonjs/core/Maths/math.color';
+import {Scene as _Scene} from '@babylonjs/core/scene';
+import {SceneLoader} from '@babylonjs/core/Loading/sceneLoader';
+import * as OIMO from 'oimo';
+import {OimoJSPlugin} from '@babylonjs/core/Physics/Plugins/oimoJSPlugin';
 import {Camera, Ground, Light, Pipeline, Shadows, Brick} from './index';
 import {MAX_BRICKS, BRICK_DROP_INTERVAL} from '../FallingBricks.constants';
 import models from '../../../../../resources/models/bricks.obj';
+import '@babylonjs/core/Lights/Shadows/shadowGeneratorSceneComponent';
+import '@babylonjs/core/Physics/physicsEngineComponent';
+import '@babylonjs/core/Meshes/meshBuilder';
+import "@babylonjs/loaders/OBJ/objFileLoader";
 
 const Scene = engine => {
-    const scene = new BABYLON.Scene(engine);
-    scene.clearColor = BABYLON.Color3.Black();
+    const scene = new _Scene(engine);
+    scene.clearColor = Color3.Black();
 
     // Physics
-    scene.enablePhysics(null, new BABYLON.OimoJSPlugin());
+    scene.enablePhysics(null, new OimoJSPlugin(undefined, OIMO));
 
     return scene;
 };
@@ -24,7 +33,7 @@ export default engine => {
     // Add bricks every few seconds
     let prev = Date.now();
     const bricks = [];
-    BABYLON.SceneLoader.ImportMesh('', models, '', scene, meshes => {
+    SceneLoader.ImportMesh('', models, '', scene, meshes => {
         meshes.forEach(mesh => mesh.setEnabled(false)); // Hide the original mesh
         scene.onBeforeRenderObservable.add(() => {
             if (Date.now() - prev > BRICK_DROP_INTERVAL) {
