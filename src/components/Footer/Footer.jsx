@@ -11,13 +11,13 @@ const Footer = () => (
         <div className='logo-container'>
             <div className='graphic'/>
             <Link to={HOME.path}>
-                <img src={webrixLogo} alt='Webrix logo' height='30px'/>
+                <img src={webrixLogo} alt='Webrix logo' height='30px' loading='lazy'/>
             </Link>
         </div>
         <Container>
             <div className='copyright-notice'>
                 <a href='https://amdocs.com'>
-                    <img src={amdocsLogo} alt='Amdocs Corp. Logo'/>
+                    <img src={amdocsLogo} alt='Amdocs Corp. Logo' loading='lazy'/>
                 </a>
                 <p>Copyright © 2020 Amdocs Corp.</p>
             </div>

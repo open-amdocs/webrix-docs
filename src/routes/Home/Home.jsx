@@ -10,7 +10,7 @@ const Home = () => {
     return (
         <>
             <div className='title'>
-                <img src={logo} alt='Webrix logo'/>
+                <img src={logo} alt='Webrix logo' loading='lazy'/>
                 <h2>Powerful building blocks for React-based web applications</h2>
                 <div className='actions'>
                     <Button>Get Started</Button>

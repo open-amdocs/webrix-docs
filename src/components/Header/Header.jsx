@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <header id='header'>
             <Link to={HOME.path} className='logo'>
-                <img src={logo} alt='Webrix logo'/>
+                <img src={logo} alt='Webrix logo' loading='lazy'/>
             </Link>
             <div className={classNames('menu', {active})}>
                 <Link to={DOCS.path}>{DOCS.name}</Link>
