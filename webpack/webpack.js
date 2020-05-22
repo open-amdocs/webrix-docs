@@ -1,20 +1,40 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin');
 const {paths} = require('./webpack.constants');
 const {hasArg} = require('./webpack.utility');
 
 module.exports = {
     entry: paths.src + '/index.js',
-    devtool: hasArg('production') ? false : 'eval-source-map',
+    devtool: hasArg('production') ? false : 'cheap-module-source-map',
     mode: hasArg('production') ? 'production' : 'development',
     output: {
-        filename: 'index.min.js',
+        filename: '[name].[contenthash].js',
+        chunkFilename: '[name].bundle.js',
         path: hasArg('production') ? paths.build: paths.src,
         publicPath: hasArg('production') ? 'build/' : '',
-    },
-    externals: {
-        babylonjs: 'BABYLON',
+        crossOriginLoading: hasArg('production') ? false : 'anonymous',
     },
     optimization: {
         minimize: hasArg('production'),
+        moduleIds: 'hashed',
+        runtimeChunk: 'single',
+        splitChunks: {
+            chunks: 'all',
+            maxSize: 256000,
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: module => {
+                        // Get the name. E.g. node_modules/packageName/not/this/part.js
+                        // or node_modules/packageName
+                        const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+
+                        // npm package names are URL-safe, but some servers don't like @ symbols
+                        return `npm.${packageName.replace('@', '')}`;
+                    },
+                },
+            },
+        },
     },
     devServer: {
         contentBase: paths.src,
@@ -61,4 +81,15 @@ module.exports = {
             },
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: paths.src + '/index.html',
+            scriptLoading: 'defer',
+            filename: hasArg('production') ? '../index.html' : 'index.html',
+            favicon: paths.resources + '/images/favicon.png',
+        }),
+        new DynamicCdnWebpackPlugin({
+            env: hasArg('production') ? 'production' : 'development'
+        }),
+    ]
 };
