@@ -7,9 +7,12 @@ html, body, #app {
   font-size: 16px;
   line-height: 1.5em;
   color: $color-dark-blue;
+  background-color: $color-blue;
 }
 
 #app {
+  display: flex;
+  flex-direction: column;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
 }
