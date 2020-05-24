@@ -1,5 +1,4 @@
 import React, {useRef, useEffect, useCallback} from 'react';
-import Worker from 'worker-loader!./FallingBricks.worker';
 import './FallingBricks.scss';
 
 /**
@@ -8,7 +7,7 @@ import './FallingBricks.scss';
  */
 const FallingBricks = () => {
     const canvas = useRef();
-    const worker = useRef(new Worker());
+    const worker = useRef(new Worker('./FallingBricks.worker', {type: 'module'}));
 
     const handleOnResize = useCallback(() => {
         const {clientWidth, clientHeight} = canvas.current;

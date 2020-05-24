@@ -33,7 +33,7 @@ export default engine => {
     // Add bricks every few seconds
     let prev = Date.now();
     const bricks = [];
-    SceneLoader.ImportMesh('', models, '', scene, meshes => {
+    SceneLoader.ImportMesh('', models.replace(__webpack_public_path__, ''), '', scene, meshes => {
         meshes.forEach(mesh => mesh.setEnabled(false)); // Hide the original mesh
         scene.onBeforeRenderObservable.add(() => {
             if (Date.now() - prev > BRICK_DROP_INTERVAL) {

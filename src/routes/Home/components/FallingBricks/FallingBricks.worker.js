@@ -13,7 +13,7 @@ const resize = ({size: {width, height}}) => {
     engine.resize();
 };
 
-onmessage = function(e) {
+addEventListener('message', e => {
     const handler = {canvas, resize}[e.data.type];
     handler(e.data);
-}
+});

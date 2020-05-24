@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin');
+const WorkerPlugin = require('worker-plugin');
 const {paths} = require('./webpack.constants');
 const {hasArg} = require('./webpack.utility');
 
@@ -44,7 +45,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
         // alias: {
-        //     truchet: paths.src + '/index.js'
+        //     models: paths.resources + '/models/'
         // }
     },
     module: {
@@ -77,7 +78,7 @@ module.exports = {
             {
                 test: /\.(png|jpe?g|gif|obj)$/i,
                 use: [{loader: 'file-loader'}],
-            },
+            }
         ]
     },
     plugins: [
@@ -89,6 +90,9 @@ module.exports = {
         }),
         new DynamicCdnWebpackPlugin({
             env: hasArg('production') ? 'production' : 'development'
+        }),
+        new WorkerPlugin({
+            globalObject: !hasArg('production') ? 'self' : false,
         }),
     ]
 };
