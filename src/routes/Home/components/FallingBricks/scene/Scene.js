@@ -33,7 +33,7 @@ export default engine => {
     // Add bricks every few seconds
     let prev = Date.now();
     const bricks = [];
-    const path = __webpack_public_path__ + models.replace(new RegExp(__webpack_public_path__, 'g'), ''); // When working through a web-worker, the public path get's added twice, so we remove the duplication
+    const path = location.pathname.match(__webpack_public_path__) ? models.replace(__webpack_public_path__, '') : models; // When working through a web-worker, the import path becomes relative to the script's path, not the root, so the public path may get added twice
     SceneLoader.ImportMesh('', path, '', scene, meshes => {
         meshes.forEach(mesh => mesh.setEnabled(false)); // Hide the original mesh
         scene.onBeforeRenderObservable.add(() => {
