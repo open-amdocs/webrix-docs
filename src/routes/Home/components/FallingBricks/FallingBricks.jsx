@@ -2,7 +2,7 @@ import React, {useRef, useEffect, useCallback} from 'react';
 import './FallingBricks.scss';
 
 const oscSupported = canvas => (
-    'OffscreenCanvas' in window && 'transferControlToOffscreen!' in canvas
+    'OffscreenCanvas' in window && 'transferControlToOffscreen' in canvas
 );
 
 /**

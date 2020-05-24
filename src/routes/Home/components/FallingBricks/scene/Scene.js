@@ -33,7 +33,8 @@ export default engine => {
     // Add bricks every few seconds
     let prev = Date.now();
     const bricks = [];
-    SceneLoader.ImportMesh('', models.replace(__webpack_public_path__, ''), '', scene, meshes => {
+    const path = __webpack_public_path__ + models.replace(new RegExp(__webpack_public_path__, 'g'), ''); // When working through a web-worker, the public path get's added twice, so we remove the duplication
+    SceneLoader.ImportMesh('', path, '', scene, meshes => {
         meshes.forEach(mesh => mesh.setEnabled(false)); // Hide the original mesh
         scene.onBeforeRenderObservable.add(() => {
             if (Date.now() - prev > BRICK_DROP_INTERVAL) {
