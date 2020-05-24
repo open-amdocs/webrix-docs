@@ -1,19 +1,30 @@
 import React, {useRef, useEffect, useCallback} from 'react';
-import {Engine} from './scene';
+import Worker from 'worker-loader!./FallingBricks.worker';
 import './FallingBricks.scss';
 
+/**
+ * This component spawns a webworker for rendering the 3D scene in a thread
+ * parallel to the main thread, to avoid blocking it and improve performance.
+ */
 const FallingBricks = () => {
     const canvas = useRef();
-    const engine = useRef();
+    const worker = useRef(new Worker());
 
     const handleOnResize = useCallback(() => {
-        engine.current.resize();
-    }, [engine.current]);
+        const {clientWidth, clientHeight} = canvas.current;
+        worker.current.postMessage({type: 'resize', size: {width: clientWidth, height: clientHeight}});
+    }, [worker.current]);
 
     useEffect(() => {
-        engine.current = new Engine(canvas.current);
+        canvas.current.width = canvas.current.clientWidth;
+        canvas.current.height = canvas.current.clientHeight;
+        const offscreen = canvas.current.transferControlToOffscreen();
+        worker.current.postMessage({type: 'canvas', canvas: offscreen}, [offscreen]);
         window.addEventListener('resize', handleOnResize);
-        return () => window.removeEventListener('resize', handleOnResize);
+        return () => {
+            window.removeEventListener('resize', handleOnResize);
+            worker.current.terminate();
+        }
     }, []);
 
     return (
