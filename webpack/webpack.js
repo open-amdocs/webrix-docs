@@ -12,7 +12,7 @@ module.exports = {
         filename: '[name].[contenthash].js',
         chunkFilename: '[name].bundle.js',
         path: hasArg('production') ? paths.build: paths.src,
-        publicPath: hasArg('production') ? 'build/' : '',
+        publicPath: hasArg('production') ? 'build/' : '/',
     },
     optimization: {
         minimize: hasArg('production'),
