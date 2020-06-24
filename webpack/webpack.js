@@ -76,6 +76,10 @@ module.exports = {
                 ]
             },
             {
+                test: /\.mdx?$/,
+                use: ['babel-loader', '@mdx-js/loader'],
+            },
+            {
                 test: /\.(png|jpe?g|gif|obj)$/i,
                 use: [{loader: 'file-loader'}],
             }
