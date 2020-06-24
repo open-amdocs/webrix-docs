@@ -44,9 +44,10 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
-        // alias: {
-        //     models: paths.resources + '/models/'
-        // }
+        alias: {
+            components: paths.src + '/components/',
+            routes: paths.src + '/routes/',
+        }
     },
     module: {
         rules: [

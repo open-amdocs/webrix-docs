@@ -1,7 +1,6 @@
-import {Container} from '../../../../components';
+import {Container} from 'components';
 import LoremIpsum from '../../../Home/components/LoremIpsum/LoremIpsum';
 import {Route, Switch, useRouteMatch, Redirect} from 'react-router-dom';
-// import Docs from '../../../../../submodules/webrix/src/Movable/readme.md';
 import Docs from './Readme.mdx';
 import './Content.scss';
 

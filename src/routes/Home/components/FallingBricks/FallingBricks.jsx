@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useCallback} from 'react';
-import {Divider} from '../../../../components';
+import {Divider} from 'components';
 import './FallingBricks.scss';
 
 const oscSupported = canvas => (
