@@ -3,7 +3,7 @@ $background-color: #f6fbff;
 #sidebar {
   position: relative;
   background-color: $background-color;
-  border-right: 2px solid #ebf5fd;
+  border-right: 1px solid #d9e6f1;
   margin-right: 20px;
   margin-bottom: -15px;
   margin-top: -15px;
@@ -18,13 +18,60 @@ $background-color: #f6fbff;
     background-color: $background-color;
   }
 
-  ul {
-    width: 150px;
-    text-align: right;
-    list-style: none;
-    margin: 0;
-    padding: 30px;
+  > ul {
+    padding: 30px 0;
     position: sticky;
     top: 60px; // The header's height
+
+    > li {
+      position: relative;
+      margin: 5px 30px;
+
+      &:not(:last-child)::after {
+        content: '';
+        height: 1px;
+        background-image: linear-gradient(90deg, transparent, #d9e6f1 30%);
+        position: absolute;
+        right: -30px;
+        left: -30px;
+        bottom: -15px;
+      }
+
+      .title {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.8em;
+        color: $color-gray;
+        letter-spacing: 2px;
+      }
+
+      > ul {
+        margin: 10px 0 30px 10px;
+
+        li.active {
+          position: relative;
+          color: $color-pink;
+
+          &::after {
+            content: '';
+            position: absolute;
+            right: -30px;
+            width: 3px;
+            height: 100%;
+            background-color: $color-pink;
+          }
+        }
+
+        > li {
+          color: $color-dark-blue;
+          margin: 5px 0;
+          font-size: 0.9em;
+
+          > ul {
+            margin: 0 0 15px 10px;
+          }
+        }
+      }
+    }
   }
 }
