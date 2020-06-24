@@ -1,20 +1,23 @@
 import React from 'react';
-import {string} from 'prop-types';
+import {string, bool} from 'prop-types';
+import classNames from 'classnames';
 import dracula from 'prism-react-renderer/themes/dracula';
+import github from 'prism-react-renderer/themes/github';
 import Highlight, {defaultProps} from 'prism-react-renderer';
+import './Highlighter.scss';
 
-const Highlighter = ({code, language}) => (
-    <Highlight {...defaultProps} theme={dracula} code={code} language={language}>
+const Highlighter = ({code, language, inline}) => (
+    <Highlight {...defaultProps} theme={inline ? github : dracula} code={code} language={language}>
         {({className, style, tokens, getLineProps, getTokenProps}) => (
-            <pre className={className} style={{...style, padding: '20px'}}>
-                    {tokens.map((line, i) => (
-                        <div key={i} {...getLineProps({line, key: i})}>
-                            {line.map((token, key) => (
-                                <span key={key} {...getTokenProps({token, key})} />
-                            ))}
-                        </div>
-                    ))}
-                </pre>
+            <pre className={classNames(className, {inline})} style={{...style}}>
+                {tokens.map((line, i) => (
+                    <div key={i} {...getLineProps({line, key: i})}>
+                        {line.map((token, key) => (
+                            <span key={key} {...getTokenProps({token, key})} />
+                        ))}
+                    </div>
+                ))}
+            </pre>
         )}
     </Highlight>
 );
@@ -22,11 +25,13 @@ const Highlighter = ({code, language}) => (
 Highlighter.propTypes = {
     code: string,
     language: string,
+    inline: bool,
 };
 
 Highlighter.defaultProps = {
     code: '',
     language: 'jsx',
+    inline: false,
 };
 
 export default Highlighter;

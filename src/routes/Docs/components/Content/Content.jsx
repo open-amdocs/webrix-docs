@@ -6,7 +6,7 @@ import LoremIpsum from '../../../Home/components/LoremIpsum/LoremIpsum';
 import Movable from '../../content/components/Movable/readme.mdx';
 import './Content.scss';
 
-const Code = ({children, className, live, render}) => {
+const Code = ({children, className}) => {
     const language = className.replace(/language-/, '')
     return (
         <Highlighter code={children.trim()} language={language}/>
@@ -14,9 +14,9 @@ const Code = ({children, className, live, render}) => {
 }
 
 const components = {
-    h1: props => <h1 style={{color: 'tomato'}} {...props} />,
     pre: props => <React.Fragment {...props}/>,
     code: Code,
+    inlineCode: props => <Highlighter code={props.children.trim()} inline/>
 }
 
 const Installation = () => (
