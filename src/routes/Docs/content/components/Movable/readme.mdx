@@ -16,8 +16,14 @@ Name|Type|Default|Description
 
 <Example file='components/Movable/BasicExample'/>
 
-In this example you can see how, using the `onMove`, we can change the element coordinates based on `dx/dy` and
-the initial position.
+In this example you can see how, using the `onMove`, we can change the element coordinates based on `cx/cy`.
+
+Notice that we are using a function to set the state, instead of passing an object directly.
+This is because the [state may be updated asynchronously](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous),
+so we cannot rely on the state value for calculating the next position.
+
+Using a function will give us the previous state as an argument, and we can use that to accurately calculate the
+next position.
 
 ```jsx
 <Movable onMove={...}/>
