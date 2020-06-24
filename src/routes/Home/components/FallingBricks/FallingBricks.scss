@@ -1,19 +1,24 @@
-$overlay-height: 6vh;
+$overlay-height: 10vh;
+$scene-height: 100vh;
 
 #route-home {
   #scene {
     width: 100%;
-    height: 100vh + $overlay-height;
+    height: $scene-height + $overlay-height;
     background-color: #223870;
     pointer-events: none;
     user-select: none;
   }
 
-  .gradient-overlay {
+  .divider {
     width: 100%;
     position: absolute;
     height: $overlay-height;
-    top: 100vh;
-    background-image: linear-gradient(transparent, $color-light-blue);
+    top: $scene-height;
+    left: 0;
+
+    path {
+      fill: $color-white;
+    }
   }
 }

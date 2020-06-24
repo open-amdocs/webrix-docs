@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {HOME} from '../../routes/Router.routes';
-import {Container} from '../';
+import {Container, Divider} from '../';
 import amdocsLogo from '../../resources/images/amdocs-logo-light-small.png';
 import webrixLogo from '../../resources/images/webrix-logo-text-light.png';
 import './Footer.scss';
@@ -13,6 +13,7 @@ const Footer = () => (
             <Link to={HOME.path}>
                 <img src={webrixLogo} alt='Webrix logo' height='30px' loading='lazy'/>
             </Link>
+            <Divider/>
         </div>
         <Container>
             <div className='copyright-notice'>

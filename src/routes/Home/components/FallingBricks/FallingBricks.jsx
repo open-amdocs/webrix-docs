@@ -1,4 +1,5 @@
 import React, {useRef, useEffect, useCallback} from 'react';
+import {Divider} from '../../../../components';
 import './FallingBricks.scss';
 
 const oscSupported = canvas => (
@@ -44,7 +45,7 @@ const FallingBricks = () => {
     return (
         <>
             <canvas id='scene' ref={canvas}/>
-            <div className='gradient-overlay'/>
+            <Divider/>
         </>
     );
 }

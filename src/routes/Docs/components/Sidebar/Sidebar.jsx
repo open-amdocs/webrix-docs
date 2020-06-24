@@ -5,10 +5,12 @@ import './Sidebar.scss';
 const Sidebar = () => {
     const match = useRouteMatch();
     return (
-        <ul id='sidebar'>
-            <li><Link to={`${match.url}/installation`}>Installation</Link></li>
-            <li><Link to={`${match.url}/movable`}>Movable</Link></li>
-        </ul>
+        <nav id='sidebar'>
+            <ul>
+                <li><Link to={`${match.url}/installation`}>Installation</Link></li>
+                <li><Link to={`${match.url}/movable`}>Movable</Link></li>
+            </ul>
+        </nav>
     );
 };
 

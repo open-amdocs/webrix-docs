@@ -10,6 +10,18 @@
     position: relative;
     overflow: hidden;
 
+    .divider {
+      width: 100%;
+      height: 60px;
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+
+      path {
+        fill: $color-dark-blue;
+      }
+    }
+
     .graphic {
       background-image: url('../../resources/images/webrix-logo-square-light.png');
       background-repeat: no-repeat;
