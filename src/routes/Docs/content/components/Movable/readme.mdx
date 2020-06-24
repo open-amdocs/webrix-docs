@@ -1,6 +1,4 @@
-import {Button} from 'components';
-
-<Button>asdasdasdsadasdasd</Button>
+import {Example} from 'components';
 
 The `<Movable/>` component can be used to create items that can be move around. As opposed to a draggable element,
 the `<Movable/>` component does not require a source/target configuration. All it does it trigger an event when the user
@@ -16,9 +14,12 @@ Name|Type|Default|Description
 
 # Basic Example
 
+<Example file='components/Movable/BasicExample'/>
+
 In this example you can see how, using the `onMove`, we can change the element coordinates based on `dx/dy` and
 the initial position.
-```
+
+```jsx
 <Movable onMove={...}/>
 ```
 
@@ -34,7 +35,7 @@ axis.
 Similarly to the previous example, more complex constraints can be applied, like snapping.
 This can be achieved by applying the following to the coordinates of the element:
 
-```
+```jsx
 const GRID_SIZE = 20;
 Math.round(x / GRID_SIZE) * GRID_SIZE;
 ```

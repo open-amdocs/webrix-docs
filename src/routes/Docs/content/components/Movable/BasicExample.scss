@@ -1,0 +1,13 @@
+.movable-object {
+  user-select: none;
+  background-color: $color-pink;
+  width: 100px;
+  height: 100px;
+  cursor: move;
+  position: relative;
+  color: $color-white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
