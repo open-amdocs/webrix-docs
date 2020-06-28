@@ -1,4 +1,5 @@
 import {Example} from 'components';
+import './style.scss';
 
 The `<Movable/>` component can be used to create items that can be move around. As opposed to a draggable element,
 the `<Movable/>` component does not require a source/target configuration. All it does it trigger an event when the user
@@ -25,23 +26,30 @@ so we cannot rely on the state value for calculating the next position.
 Using a function will give us the previous state as an argument, and we can use that to accurately calculate the
 next position.
 
-```jsx
-<Movable onMove={...}/>
-```
-
 # Constraint Movement
 
+<Example file='components/Movable/ConstraintMovement'/>
+
 The `<Movable/>` component gives you complete control over the positioning of the element by only passing information
-through the event without actually manipulating the element itself. This can be used to apply constraints on the
-element. In this example, we ignore the movement of the mouse on the `x` axis to constraint the element to the `y`
+through the event without actually manipulating the element itself.
+This way you are free to add your own logic and constraints.
+
+In this example, we ignore the movement of the mouse on the `x` axis to constraint the element to the `y`
 axis.
 
 # Snapping
 
+<Example file='components/Movable/Snapping'/>
+
 Similarly to the previous example, more complex constraints can be applied, like snapping.
-This can be achieved by applying the following to the coordinates of the element:
+This can be achieved by applying the following formula to the coordinates of the element:
 
 ```jsx
 const GRID_SIZE = 20;
 Math.round(x / GRID_SIZE) * GRID_SIZE;
 ```
+
+The main difference is that we are no longer updating the state for every event (the user can move
+the mouse without the object moving with it until it snaps to the next grid line).
+Because of that, we need to maintain the initial position of the element, and use `dx/dy`
+instead to get the next position.

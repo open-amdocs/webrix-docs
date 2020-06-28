@@ -27,17 +27,24 @@ const Installation = () => (
     </>
 );
 
+const Article = ({children}) => {
+    const match = useRouteMatch();
+    return (
+        <article id={match.url.replace(/\//g, '-').slice(1)}>
+            {children}
+        </article>
+    );
+}
+
 const Content = () => {
     const match = useRouteMatch();
     return (
         <MDXProvider components={components}>
-            <article>
-                <Switch>
-                    <Redirect from={match.url} to={`${match.url}/installation`} exact/>
-                    <Route path={match.url + '/installation'} component={Installation}/>
-                    <Route path={match.url + '/movable'} component={Movable}/>
-                </Switch>
-            </article>
+            <Switch>
+                <Redirect from={match.url} to={`${match.url}/installation`} exact/>
+                <Route path={match.url + '/installation'} component={() => <Article><Installation/></Article>}/>
+                <Route path={match.url + '/movable'} component={() => <Article><Movable/></Article>}/>
+            </Switch>
         </MDXProvider>
     );
 }
