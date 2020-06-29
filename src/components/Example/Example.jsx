@@ -1,6 +1,8 @@
 import React, {useEffect, useState}  from 'react';
 import Highlighter from '../Highlighter';
 import Sandboxer from './components/Sandboxer/Sandboxer';
+import Controls from './components/Controls/Controls';
+import {FaPen, FaCode, FaCopy, FaUndo} from 'react-icons/fa';
 import './Example.scss';
 
 const Example = ({file}) => {
@@ -17,8 +19,11 @@ const Example = ({file}) => {
 
     return (
         <div className='code-example'>
-            <div className='live-code' id={id}>
-                <Comp/>
+            <div className='live-code'>
+                <div id={id}>
+                    <Comp/>
+                </div>
+                <Controls/>
             </div>
             <Sandboxer code={code} id={id}/>
             <div className='source-code'>
