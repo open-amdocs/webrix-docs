@@ -47,6 +47,7 @@
     "@babylonjs/core": "4.1.0",
     "@babylonjs/loaders": "4.1.0",
     "classnames": "2.2.6",
+    "codesandbox": "2.1.16",
     "oimo": "1.0.9",
     "prism-react-renderer": "1.1.1",
     "react": "16.13.1",
