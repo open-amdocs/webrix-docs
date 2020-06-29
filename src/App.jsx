@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 import {Header, Footer} from 'components';
 
 const App = () => (
-    <BrowserRouter basename='/webrix-docs/'>
+    <BrowserRouter>
         <Header/>
         <Router/>
         <Footer/>
