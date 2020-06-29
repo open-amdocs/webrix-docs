@@ -4,10 +4,9 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "@babel/runtime": "7.10.3",
     "react": "latest",
     "react-dom": "latest",
-    "webrix": "1.0.0-beta.2"
+    "webrix": "1.0.0-beta.3"
   },
   "devDependencies": {
     "parcel-bundler": "^1.6.1"
