@@ -1,13 +1,14 @@
-import React, {useEffect, useState}  from 'react';
+import React, {useEffect, useState, useCallback, memo}  from 'react';
+import cls from 'classnames';
 import Highlighter from '../Highlighter';
-import Sandboxer from './components/Sandboxer/Sandboxer';
 import Controls from './components/Controls/Controls';
-import {FaPen, FaCode, FaCopy, FaUndo} from 'react-icons/fa';
+import Demo from './components/Demo/Demo';
 import './Example.scss';
 
 const Example = ({file}) => {
     const [code, setCode] = useState('');
-    const Comp = React.lazy(() => import(`../../routes/Docs/content/${file}`));
+    const [visible, setVisible] = useState('');
+    const toggle = useCallback(() => setVisible(v => !v), [setVisible]);
     const id = file.replace(/\//g, '-').toLowerCase();
 
     useEffect(() => {
@@ -20,17 +21,14 @@ const Example = ({file}) => {
     return (
         <div className='code-example'>
             <div className='live-code'>
-                <div id={id}>
-                    <Comp/>
-                </div>
-                <Controls/>
+                <Demo id={id} file={file}/>
+                <Controls code={code} id={id} toggle={toggle}/>
             </div>
-            <Sandboxer code={code} id={id}/>
-            <div className='source-code'>
+            <div className={cls('source-code', {visible})}>
                 <Highlighter code={code}/>
             </div>
         </div>
     )
 }
 
-export default Example;
+export default memo(Example);

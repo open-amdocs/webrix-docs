@@ -16,8 +16,15 @@
     @include chess-grid();
   }
   .source-code {
+    display: none;
+
+    &.visible {
+      display: block;
+    }
+
     .prism-code {
       overflow: scroll;
+      max-height: 50vh;
     }
   }
 }

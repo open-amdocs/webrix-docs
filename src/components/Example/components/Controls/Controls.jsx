@@ -1,14 +1,21 @@
-import React from 'react';
+import React, {useCallback, memo} from 'react';
 import {FaCode, FaCopy, FaPen, FaUndo} from 'react-icons/fa';
+import Sandboxer from '../Sandboxer/Sandboxer';
 import './Controls.scss';
 
-const Controls = ({}) => (
-    <div className='controls'>
-        <FaPen/>
-        <FaCode/>
-        <FaCopy/>
-        <FaUndo/>
-    </div>
-);
+const Controls = ({code, id, toggle}) => {
+    const handleOnCodeClick = useCallback(e => {
+        e.preventDefault();
+        toggle();
+    }, [toggle]);
+    return (
+        <div className='controls'>
+            <Sandboxer code={code} id={id}/>
+            <FaCode onClick={handleOnCodeClick}/>
+            <FaCopy/>
+            <FaUndo/>
+        </div>
+    );
+}
 
-export default Controls;
+export default memo(Controls);
