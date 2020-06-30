@@ -6,13 +6,6 @@ the `<Movable/>` component does not require a source/target configuration. All i
 moves it around, passing the mouse position (`x/y`), the difference in the coordinates since the beginning of the event
 (`dx/dy`), and the difference in the coordinates since the last event (`cx/cy`)
 
-
-Name|Type|Default|Description
----|---|---|---
-`onBeginMove`|func|`() => null`|Specifies a callback to be called when the user begins to move the element
-`onMove`|func|`() => null`|Specifies a callback to be continuously called as the user moves the element around. Receives `x/y/dx/dy/cx/cy` as arguments (see description above for more info)
-`onEndMove`|func|`() => null`|Specifies a callback to be called when the user stops moving the element
-
 # Basic Example
 
 <Example file='components/Movable/BasicExample'/>
@@ -53,3 +46,19 @@ The main difference is that we are no longer updating the state for every event 
 the mouse without the object moving with it until it snaps to the next grid line).
 Because of that, we need to maintain the initial position of the element, and use `dx/dy`
 instead to get the next position.
+
+# API
+
+### Importing
+
+```jsx
+import {Movable} from 'webrix';
+import Movable from 'webrix/Movable'; // For better tree shaking
+```
+### Props
+
+Name|Type|Default|Description
+---|---|---|---
+`onBeginMove`|function|`() => null`|Specifies a callback to be called when the user begins to move the element
+`onMove`|function|`() => null`|Specifies a callback to be continuously called as the user moves the element around. Receives `x/y/dx/dy/cx/cy` as arguments (see description above for more info)
+`onEndMove`|function|`() => null`|Specifies a callback to be called when the user stops moving the element

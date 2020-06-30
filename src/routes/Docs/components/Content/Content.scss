@@ -7,4 +7,22 @@
     margin: 3em 0 1em;
     color: $color-pink;
   }
+
+  table {
+    border-spacing: 0 1px;
+    background-color: rgba($color-light-gray, 0.5);
+    border-right: 1px solid rgba($color-light-gray, 0.5);;
+    border-left: 1px solid rgba($color-light-gray, 0.5);;
+
+    th {
+      background-color: lighten($color-light-gray, 14%);
+      font-weight: normal;
+      padding: 10px;
+    }
+
+    td {
+      background-color: $color-white;
+      padding: 5px 15px;
+    }
+  }
 }
