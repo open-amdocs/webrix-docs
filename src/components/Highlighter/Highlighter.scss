@@ -1,5 +1,7 @@
 .prism-code {
   padding: 20px;
+  overflow: scroll;
+  max-height: 50vh;
 
   &.inline {
     display: inline-block;
