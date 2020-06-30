@@ -18,12 +18,6 @@ $collapse-duration: 0.15s;
   }
 
   &.active {
-    .hamburger-inner,
-    .hamburger-inner::before,
-    .hamburger-inner::after {
-      background-color: $color-white;
-    }
-
     .hamburger-inner {
       transform: rotate(225deg);
       transition-delay: $collapse-duration*1.1;
@@ -63,7 +57,7 @@ $collapse-duration: 0.15s;
     &::after {
       width: $hamburger-layer-width;
       height: $hamburger-layer-height;
-      background-color: $color-white;
+      background-color: $color-dark-blue;
       position: absolute;
       transition-property: transform;
     }
