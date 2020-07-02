@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, useRouteMatch} from 'react-router-dom';
+import ROUTES from '../../Docs.routes';
 import './Sidebar.scss';
 
 const Sidebar = () => {
@@ -7,14 +8,18 @@ const Sidebar = () => {
     return (
         <nav id='sidebar'>
             <ul>
+                {ROUTES.map(section => (
+                    <li>
+                        <div className='title'>{section.title}</div>
+                        <ul>
+                            {section.routes.map(page => (
+                                <li><Link to={`${match.url}${section.path}${page.path}`}>{page.title}</Link></li>
+                            ))}
+                        </ul>
+                    </li>
+                ))}
                 <li>
-                    <div className='title'>Introduction</div>
-                    <ul>
-                        <li><Link to={`${match.url}/installation`}>Installation</Link></li>
-                    </ul>
-                </li>
-                <li>
-                    <div className='title'>Components</div>
+                    <div className='title'>Test</div>
                     <ul>
                         <li>
                             <Link to={`${match.url}/movable`}>Collapsible</Link>
@@ -24,19 +29,6 @@ const Sidebar = () => {
                                 <li><Link to={`${match.url}/movable`}>Playground</Link></li>
                             </ul>
                         </li>
-                        <li><Link to={`${match.url}/movable`}>Movable</Link></li>
-                        <li><Link to={`${match.url}/movable`}>Pannable</Link></li>
-                        <li><Link to={`${match.url}/movable`}>Poppable</Link></li>
-                        <li><Link to={`${match.url}/movable`}>Resizable</Link></li>
-                        <li><Link to={`${match.url}/movable`}>Stackable</Link></li>
-                        <li><Link to={`${match.url}/movable`}>Zoomable</Link></li>
-                    </ul>
-                </li>
-                <li>
-                    <div className='title'>Hooks</div>
-                    <ul>
-                        <li><Link to={`${match.url}/installation`}>useBoolean</Link></li>
-                        <li><Link to={`${match.url}/installation`}>useBoolean</Link></li>
                     </ul>
                 </li>
             </ul>

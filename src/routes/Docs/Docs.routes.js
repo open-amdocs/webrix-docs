@@ -1,26 +1,43 @@
 import React from 'react';
-import AsyncRoute from './Route';
-
-export const HOME = {
-    name: 'home',
-    path: '/',
-    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "home" */ './Home/Home')}/>,
-};
-
-export const DOCS = {
-    name: 'docs',
-    path: '/docs',
-    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "docs" */ './Docs/Docs')}/>,
-};
-
-export const TUTORIAL = {
-    name: 'tutorial',
-    path: '/tutorial',
-    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "tutorial" */ './Tutorial/Tutorial')}/>,
-};
+import AsyncPage from './components/AsyncPage/AsyncPage';
 
 export default [
-    DOCS,
-    TUTORIAL,
-    HOME,
+    {
+        title: 'Introduction',
+        path: '/introduction',
+        routes: [
+            {
+                title: 'Installation',
+                path: '/installation',
+            }
+        ]
+    },
+    {
+        title: 'Components',
+        path: '/components',
+        routes: [
+            {
+                title: 'Collapsible',
+                path: '/collapsible',
+            },
+            {
+                title: 'Movable',
+                path: '/movable',
+            },
+            {
+                title: 'Pannable',
+                path: '/pannable',
+            }
+        ]
+    },
+    {
+        title: 'Hooks',
+        path: '/hooks',
+        routes: [
+            {
+                title: 'useBoolean',
+                path: '/useboolean',
+            }
+        ]
+    }
 ];

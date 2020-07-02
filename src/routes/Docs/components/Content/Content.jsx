@@ -2,8 +2,9 @@ import React from 'react';
 import {Highlighter} from 'components';
 import {Route, Switch, useRouteMatch, Redirect} from 'react-router-dom';
 import {MDXProvider} from '@mdx-js/react'
+import AsyncPage from '../AsyncPage/AsyncPage';
 import LoremIpsum from '../../../Home/components/LoremIpsum/LoremIpsum';
-import Movable from '../../content/components/Movable/readme.mdx';
+import ROUTES from '../../Docs.routes';
 import './Content.scss';
 
 const Code = ({children, className}) => {
@@ -36,14 +37,20 @@ const Article = ({children}) => {
     );
 }
 
+ROUTES.map(section => section.routes.map(page => (
+    console.log(`../../content${section.path}${page.path}/readme.mdx`)
+)));
+
+
 const Content = () => {
     const match = useRouteMatch();
     return (
         <MDXProvider components={components}>
             <Switch>
-                <Redirect from={match.url} to={`${match.url}/installation`} exact/>
-                <Route path={match.url + '/installation'} component={() => <Article><Installation/></Article>}/>
-                <Route path={match.url + '/movable'} component={() => <Article><Movable/></Article>}/>
+                <Redirect from={match.url} to={`${match.url}${ROUTES[0].path}${ROUTES[0].routes[0].path}`} exact/>
+                {ROUTES.map(section => section.routes.map(page => (
+                    <Route path={match.url + section.path + page.path} component={() => <AsyncPage file={() => import(`../../content${section.path}${page.path}/readme.mdx`)} title={page.title}/>}/>
+                )))}
             </Switch>
         </MDXProvider>
     );

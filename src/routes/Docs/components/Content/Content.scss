@@ -11,13 +11,18 @@
   table {
     border-spacing: 0 1px;
     background-color: rgba($color-light-gray, 0.5);
-    border-right: 1px solid rgba($color-light-gray, 0.5);;
-    border-left: 1px solid rgba($color-light-gray, 0.5);;
+    border-right: 1px solid rgba($color-light-gray, 0.5);
+    border-left: 1px solid rgba($color-light-gray, 0.5);
+
+    tr:hover td {
+      background-color: lighten($color-light-gray, 14%);
+    }
 
     th {
       background-color: lighten($color-light-gray, 14%);
       font-weight: normal;
       padding: 10px;
+      color: $color-gray;
     }
 
     td {
