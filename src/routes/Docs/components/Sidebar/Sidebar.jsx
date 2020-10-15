@@ -13,7 +13,14 @@ const Sidebar = () => {
                         <div className='title'>{section.title}</div>
                         <ul>
                             {section.routes.map(page => (
-                                <li><Link to={`${match.url}${section.path}${page.path}`}>{page.title}</Link></li>
+                                <li>
+                                    <Link to={`${match.url}${section.path}${page.path}`}>{page.title}</Link>
+                                    <ul>
+                                        <li className='active'><Link to={`${match.url}/movable`}>API</Link></li>
+                                        <li><Link to={`${match.url}/movable`}>Examples</Link></li>
+                                        <li><Link to={`${match.url}/movable`}>Playground</Link></li>
+                                    </ul>
+                                </li>
                             ))}
                         </ul>
                     </li>
