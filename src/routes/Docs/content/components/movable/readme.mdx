@@ -6,7 +6,7 @@ the `<Movable/>` component does not require a source/target configuration. All i
 moves it around, passing the mouse position (`x/y`), the difference in the coordinates since the beginning of the event
 (`dx/dy`), and the difference in the coordinates since the last event (`cx/cy`)
 
-# Basic Example
+## Basic Example
 
 <Example file='components/movable/BasicExample'/>
 
@@ -19,7 +19,7 @@ so we cannot rely on the state value for calculating the next position.
 Using a function will give us the previous state as an argument, and we can use that to accurately calculate the
 next position.
 
-# Constraint Movement
+## Constraint Movement
 
 <Example file='components/movable/ConstraintMovement'/>
 
@@ -30,7 +30,7 @@ This way you are free to add your own logic and constraints.
 In this example, we ignore the movement of the mouse on the `x` axis to constraint the element to the `y`
 axis.
 
-# Snapping
+## Snapping
 
 <Example file='components/movable/Snapping'/>
 
@@ -47,7 +47,7 @@ the mouse without the object moving with it until it snaps to the next grid line
 Because of that, we need to maintain the initial position of the element, and use `dx/dy`
 instead to get the next position.
 
-# API
+## API
 
 ### Importing
 
