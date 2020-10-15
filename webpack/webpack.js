@@ -12,7 +12,7 @@ module.exports = {
         filename: '[name].[contenthash].js',
         chunkFilename: '[name].bundle.js',
         path: hasArg('production') ? paths.build: paths.src,
-        publicPath: hasArg('production') ? 'build/' : '/',
+        publicPath: '/',
     },
     optimization: {
         minimize: hasArg('production'),
@@ -90,7 +90,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: paths.src + '/index.html',
             scriptLoading: 'defer',
-            filename: hasArg('production') ? '../index.html' : 'index.html',
+            filename: 'index.html',
             favicon: paths.resources + '/images/favicon.png',
         }),
         new DynamicCdnWebpackPlugin({
