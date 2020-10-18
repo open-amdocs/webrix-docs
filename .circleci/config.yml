@@ -26,14 +26,14 @@ jobs:
             - run: npm run build
       - persist_to_workspace:
           root: workspace
-          paths: /build
+          paths: build
 
   deploy:
     executor:
       name: node/default
     steps:
       - attach_workspace:
-          at: workspace/build
+          at: workspace
       - checkout
       - node/with-cache:
           steps:
