@@ -14,8 +14,8 @@ const Sandboxer = ({code, id}) => {
 
     return (
         <>
-            <form action="https://codesandbox.io/api/v1/sandboxes/define" method="POST" target="_blank" ref={form}>
-                <input type="hidden" name="parameters" value={getParameters({code, id})}/>
+            <form action='https://codesandbox.io/api/v1/sandboxes/define' method='POST' target='_blank' ref={form}>
+                <input type='hidden' name='parameters' value={getParameters({code, id})}/>
             </form>
             <FaPen onClick={handleOnCLick}/>
         </>

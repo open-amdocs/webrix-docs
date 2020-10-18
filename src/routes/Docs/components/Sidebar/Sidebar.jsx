@@ -8,12 +8,12 @@ const Sidebar = () => {
     return (
         <nav id='sidebar'>
             <ul>
-                {ROUTES.map(section => (
-                    <li>
+                {ROUTES.map((section, i) => (
+                    <li key={i}>
                         <div className='title'>{section.title}</div>
                         <ul>
-                            {section.routes.map(page => (
-                                <li>
+                            {section.routes.map((page, i) => (
+                                <li key={i}>
                                     <Link to={`${match.url}${section.path}${page.path}`}>{page.title}</Link>
                                     <ul>
                                         <li className='active'><Link to={`${match.url}/movable`}>API</Link></li>

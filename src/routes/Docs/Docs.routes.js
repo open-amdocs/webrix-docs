@@ -1,6 +1,3 @@
-import React from 'react';
-import AsyncPage from './components/AsyncPage/AsyncPage';
-
 export default [
     {
         title: 'Introduction',
@@ -9,8 +6,8 @@ export default [
             {
                 title: 'Installation',
                 path: '/installation',
-            }
-        ]
+            },
+        ],
     },
     {
         title: 'Components',
@@ -27,8 +24,8 @@ export default [
             {
                 title: 'Pannable',
                 path: '/pannable',
-            }
-        ]
+            },
+        ],
     },
     {
         title: 'Hooks',
@@ -37,7 +34,7 @@ export default [
             {
                 title: 'useBoolean',
                 path: '/useboolean',
-            }
-        ]
-    }
+            },
+        ],
+    },
 ];

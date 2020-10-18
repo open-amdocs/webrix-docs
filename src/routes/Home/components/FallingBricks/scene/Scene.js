@@ -9,7 +9,7 @@ import models from '../../../../../resources/models/bricks.obj';
 import '@babylonjs/core/Lights/Shadows/shadowGeneratorSceneComponent';
 import '@babylonjs/core/Physics/physicsEngineComponent';
 import '@babylonjs/core/Meshes/meshBuilder';
-import "@babylonjs/loaders/OBJ/objFileLoader";
+import '@babylonjs/loaders/OBJ/objFileLoader';
 
 const Scene = engine => {
     const scene = new _Scene(engine);

@@ -1,5 +1,5 @@
 import React, {useCallback, memo} from 'react';
-import {FaCode, FaCopy, FaPen, FaUndo} from 'react-icons/fa';
+import {FaCode, FaCopy, FaUndo} from 'react-icons/fa';
 import Sandboxer from '../Sandboxer/Sandboxer';
 import './Controls.scss';
 

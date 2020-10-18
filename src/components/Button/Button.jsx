@@ -1,6 +1,6 @@
 import React from 'react';
 import {node, oneOf} from 'prop-types';
-import {Sizes, Types} from "./Button.constants";
+import {Sizes, Types} from './Button.constants';
 import './Button.scss';
 
 const Button = ({children, size, type, ...props}) => (

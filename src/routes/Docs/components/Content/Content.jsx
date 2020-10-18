@@ -17,7 +17,7 @@ const Code = ({children, className}) => {
 const components = {
     pre: props => <React.Fragment {...props}/>,
     code: Code,
-    inlineCode: props => <Highlighter code={props.children.trim()} inline/>
+    inlineCode: props => <Highlighter code={props.children.trim()} inline/>,
 }
 
 const Installation = () => (
@@ -49,7 +49,7 @@ const Content = () => {
             <Switch>
                 <Redirect from={match.url} to={`${match.url}${ROUTES[0].path}${ROUTES[0].routes[0].path}`} exact/>
                 {ROUTES.map(section => section.routes.map(page => (
-                    <Route path={match.url + section.path + page.path} component={() => <AsyncPage file={() => import(`../../content${section.path}${page.path}/readme.mdx`)} title={page.title}/>}/>
+                    <Route key={page.path} path={match.url + section.path + page.path} component={() => <AsyncPage file={() => import(`../../content${section.path}${page.path}/readme.mdx`)} title={page.title}/>}/>
                 )))}
             </Switch>
         </MDXProvider>

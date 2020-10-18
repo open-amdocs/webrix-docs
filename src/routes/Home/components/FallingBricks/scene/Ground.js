@@ -5,7 +5,7 @@ import {PhysicsImpostor} from '@babylonjs/core/Physics/physicsImpostor';
 import {Mesh} from '@babylonjs/core/Meshes/mesh';
 
 const Material = scene => {
-    const material = new StandardMaterial("groundMat", scene);
+    const material = new StandardMaterial('groundMat', scene);
     material.diffuseColor = new Color3.FromHexString('#162447');
     material.emissiveColor = new Color3.FromHexString('#162447');
     material.backFaceCulling = false;
@@ -14,7 +14,7 @@ const Material = scene => {
 
 export default scene => {
     const material = new Material(scene);
-    const ground = Mesh.CreateBox("Ground", 1, scene);
+    const ground = Mesh.CreateBox('Ground', 1, scene);
     ground.scaling = new Vector3(100, 1, 100);
     ground.position.y = -5.0;
     ground.checkCollisions = true;

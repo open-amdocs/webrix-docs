@@ -4,7 +4,7 @@ import '@babylonjs/core/Rendering/depthRendererSceneComponent';
 
 export default scene => {
     // DOF (see https://www.babylonjs-playground.com/#8F5HYV#9)
-    const pipeline = new DefaultRenderingPipeline("default", true, scene, [scene.activeCamera]);
+    const pipeline = new DefaultRenderingPipeline('default', true, scene, [scene.activeCamera]);
     pipeline.depthOfFieldBlurLevel = DepthOfFieldEffectBlurLevel.Medium;
     pipeline.depthOfFieldEnabled = true;
     pipeline.depthOfField.focalLength = 500;

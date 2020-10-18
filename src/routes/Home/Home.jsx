@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import FallingBricks from './components/FallingBricks/FallingBricks';
 import LoremIpsum from './components/LoremIpsum/LoremIpsum';
 import InfoBox from './components/InfoBox/InfoBox';
-import {HOME, DOCS, TUTORIAL} from '../Router.routes';
+import {DOCS} from '../Router.routes';
 import {Button, Container} from 'components';
 import logo from '../../resources/images/webrix-logo-light.png';
 import './Home.scss';
