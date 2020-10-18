@@ -30,6 +30,6 @@ workflows:
   lint-build-deploy:
     jobs:
       - lint
-      - build-and-deploy
+      - build-and-deploy:
           requires:
             - lint
