@@ -21,6 +21,7 @@
     "@babel/preset-react": "7.10.4",
     "@mdx-js/loader": "1.6.6",
     "@mdx-js/react": "1.6.6",
+    "aws-sdk": "2.771.0",
     "babel-loader": "8.1.0",
     "css-loader": "3.6.0",
     "dynamic-cdn-webpack-plugin": "5.0.0",
@@ -29,7 +30,8 @@
     "module-to-cdn": "3.1.5",
     "node-sass": "4.14.1",
     "prop-types": "15.7.2",
-    "raw-loader": "^4.0.1",
+    "proxy-agent": "4.0.0",
+    "raw-loader": "4.0.1",
     "sass-loader": "8.0.2",
     "sass-resources-loader": "2.0.3",
     "style-loader": "1.2.1",
@@ -40,7 +42,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --config webpack/webpack.js --open",
-    "build": "webpack --config webpack/webpack.js --production"
+    "build": "webpack --config webpack/webpack.js --production",
+    "deploy": "node deploy"
   },
   "dependencies": {
     "@babel/runtime": "7.10.4",
