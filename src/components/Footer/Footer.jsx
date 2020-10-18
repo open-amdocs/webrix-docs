@@ -1,28 +1,15 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {FaNpm, FaGithub, FaCodeBranch, FaBug, FaStickyNote} from 'react-icons/fa';
-import {HOME} from '../../routes/Router.routes';
-import {Container, Divider} from '../';
-import amdocsLogo from '../../resources/images/amdocs-logo-light-small.png';
-import webrixLogo from '../../resources/images/webrix-logo-text-light.png';
+import {Container} from '../';
+import Logo from './Components/Logo';
+import Copyright from './Components/Copyright';
 import './Footer.scss';
 
 const Footer = () => (
     <footer id='footer'>
-        <div className='logo-container'>
-            <div className='graphic'/>
-            <Link to={HOME.path}>
-                <img src={webrixLogo} alt='Webrix logo' height='30px' loading='lazy'/>
-            </Link>
-            <Divider/>
-        </div>
+        <Logo/>
         <Container>
-            <div className='copyright-notice'>
-                <a href='https://amdocs.com'>
-                    <img src={amdocsLogo} alt='Amdocs Corp. Logo' loading='lazy'/>
-                </a>
-                <p>Copyright © 2020 Amdocs Corp.</p>
-            </div>
+            <Copyright/>
             <div className='links'>
                 <h4>ELEMENTS</h4>
                 <ul>

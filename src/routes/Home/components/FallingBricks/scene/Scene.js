@@ -1,3 +1,4 @@
+/* global __webpack_public_path__ */
 import {Color3} from '@babylonjs/core/Maths/math.color';
 import {Scene as _Scene} from '@babylonjs/core/scene';
 import {SceneLoader} from '@babylonjs/core/Loading/sceneLoader';
@@ -24,11 +25,11 @@ const Scene = engine => {
 // createScene(...):
 export default engine => {
     const scene = new Scene(engine);
-    const camera = new Camera(scene);
     const light = new Light(scene);
     const shadows = new Shadows(scene, light);
-    const pipeline = new Pipeline(scene);
-    const ground = new Ground(scene);
+    new Camera(scene);
+    new Pipeline(scene);
+    new Ground(scene);
 
     // Add bricks every few seconds
     let prev = Date.now();

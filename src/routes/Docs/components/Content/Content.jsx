@@ -3,7 +3,7 @@ import {Highlighter} from 'components';
 import {Route, Switch, useRouteMatch, Redirect} from 'react-router-dom';
 import {MDXProvider} from '@mdx-js/react'
 import AsyncPage from '../AsyncPage/AsyncPage';
-import LoremIpsum from '../../../Home/components/LoremIpsum/LoremIpsum';
+// import LoremIpsum from '../../../Home/components/LoremIpsum/LoremIpsum';
 import ROUTES from '../../Docs.routes';
 import './Content.scss';
 
@@ -20,26 +20,26 @@ const components = {
     inlineCode: props => <Highlighter code={props.children.trim()} inline/>,
 }
 
-const Installation = () => (
-    <>
-        <p><LoremIpsum words={120}/></p>
-        <p><LoremIpsum words={120}/></p>
-        <p><LoremIpsum words={120}/></p>
-    </>
-);
-
-const Article = ({children}) => {
-    const match = useRouteMatch();
-    return (
-        <article id={match.url.replace(/\//g, '-').slice(1)}>
-            {children}
-        </article>
-    );
-}
-
-ROUTES.map(section => section.routes.map(page => (
-    console.log(`../../content${section.path}${page.path}/readme.mdx`)
-)));
+// const Installation = () => (
+//     <>
+//         <p><LoremIpsum words={120}/></p>
+//         <p><LoremIpsum words={120}/></p>
+//         <p><LoremIpsum words={120}/></p>
+//     </>
+// );
+//
+// const Article = ({children}) => {
+//     const match = useRouteMatch();
+//     return (
+//         <article id={match.url.replace(/\//g, '-').slice(1)}>
+//             {children}
+//         </article>
+//     );
+// }
+//
+// ROUTES.map(section => section.routes.map(page => (
+//     console.log(`../../content${section.path}${page.path}/readme.mdx`)
+// )));
 
 
 const Content = () => {

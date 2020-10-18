@@ -6,7 +6,7 @@ import style from '!raw-loader!./files/style.scss';
 import colors from '!raw-loader!../../../../resources/styles/colors.scss';
 
 // Convert the SCSS variables to a JS object
-const _colors = [...colors.matchAll(/(\$[\w-]+): (#\w+)/g)].reduce((obj, [_, name, value]) => ({...obj, [name]: value}), {});
+const _colors = [...colors.matchAll(/(\$[\w-]+): (#\w+)/g)].reduce((obj, [, name, value]) => ({...obj, [name]: value}), {});
 
 export default ({code, id}) => getParameters({
     files: {
