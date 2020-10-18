@@ -14,9 +14,24 @@ const Code = ({children, className}) => {
     );
 }
 
+const H2 = ({children}) => {
+    const id = children.toLowerCase().replace(/ /g, '-');
+    const ref = node => {
+        const {hash} = window.location;
+        if (hash !== '') {
+            const id = hash.replace('#', '');
+            if (node && node.id === id) node.scrollIntoView();
+        }
+    };
+    return (
+        <h2><a id={id} href={`#${id}`} ref={ref}>{children}</a></h2>
+    )
+}
+
 const components = {
     pre: props => <React.Fragment {...props}/>,
     code: Code,
+    h2: H2,
     inlineCode: props => <Highlighter code={props.children.trim()} inline/>,
 }
 
