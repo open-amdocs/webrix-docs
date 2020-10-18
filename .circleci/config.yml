@@ -15,7 +15,7 @@ jobs:
             - run: npm install
             - run: npm run lint
 
-  build:
+  build-and-deploy:
     executor:
       name: node/default
     steps:
@@ -24,30 +24,12 @@ jobs:
           steps:
             - run: npm install
             - run: npm run build
-      - persist_to_workspace:
-          root: workspace
-          paths: build
-
-  deploy:
-    executor:
-      name: node/default
-    steps:
-      - attach_workspace:
-          at: workspace
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
             - run: npm run deploy
 
-            
-
 workflows:
-  build-and-deploy:
+  lint-build-deploy:
     jobs:
       - lint
-      - build
-      - deploy:
+      - build-and-deploy
           requires:
             - lint
-            - build
