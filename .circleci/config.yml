@@ -32,7 +32,7 @@ jobs:
       name: node/default
     steps:
       - attach_workspace:
-          - at: /build
+          at: /build
       - checkout
       - node/with-cache:
           steps:
