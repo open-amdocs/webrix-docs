@@ -3,30 +3,10 @@ import {Highlighter} from 'components';
 import {Route, Switch, useRouteMatch, Redirect} from 'react-router-dom';
 import {MDXProvider} from '@mdx-js/react'
 import AsyncPage from '../AsyncPage/AsyncPage';
-// import LoremIpsum from '../../../Home/components/LoremIpsum/LoremIpsum';
+import Code from './components/Code/Code';
+import H2 from './components/H2/H2';
 import ROUTES from '../../Docs.routes';
 import './Content.scss';
-
-const Code = ({children, className}) => {
-    const language = className.replace(/language-/, '')
-    return (
-        <Highlighter code={children.trim()} language={language}/>
-    );
-}
-
-const H2 = ({children}) => {
-    const id = children.toLowerCase().replace(/ /g, '-');
-    const ref = node => {
-        const {hash} = window.location;
-        if (hash !== '') {
-            const id = hash.replace('#', '');
-            if (node && node.id === id) node.scrollIntoView();
-        }
-    };
-    return (
-        <h2><a id={id} href={`#${id}`} ref={ref}>{children}</a></h2>
-    )
-}
 
 const components = {
     pre: props => <React.Fragment {...props}/>,
@@ -34,28 +14,6 @@ const components = {
     h2: H2,
     inlineCode: props => <Highlighter code={props.children.trim()} inline/>,
 }
-
-// const Installation = () => (
-//     <>
-//         <p><LoremIpsum words={120}/></p>
-//         <p><LoremIpsum words={120}/></p>
-//         <p><LoremIpsum words={120}/></p>
-//     </>
-// );
-//
-// const Article = ({children}) => {
-//     const match = useRouteMatch();
-//     return (
-//         <article id={match.url.replace(/\//g, '-').slice(1)}>
-//             {children}
-//         </article>
-//     );
-// }
-//
-// ROUTES.map(section => section.routes.map(page => (
-//     console.log(`../../content${section.path}${page.path}/readme.mdx`)
-// )));
-
 
 const Content = () => {
     const match = useRouteMatch();
