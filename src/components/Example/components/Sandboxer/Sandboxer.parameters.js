@@ -3,7 +3,6 @@ import rootpkg from '../../../../../package.json';
 import pkg from './files/package.json';
 import index from '!raw-loader!./files/index.js';
 import html from '!raw-loader!./files/index.html';
-import style from '!raw-loader!./files/style.scss';
 import colors from '!raw-loader!../../../../resources/styles/colors.scss';
 
 // Convert the SCSS variables to a JS object
@@ -12,13 +11,13 @@ const _colors = [...colors.matchAll(/(\$[\w-]+): (#\w+)/g)].reduce((obj, [, name
 // Match the webrix version to the one in root
 pkg.dependencies.webrix = rootpkg.dependencies.webrix;
 
-export default ({code, id}) => getParameters({
+export default ({code, style, id}) => getParameters({
     files: {
         'package.json': {
             content: pkg,
         },
         'index.js': {
-            content: index.replace('{{id}}', id), // Set the example's ID so that the styles are properly applied
+            content: index,
         },
         'index.html': {
             content: html,

@@ -30,4 +30,21 @@
       padding: 5px 15px;
     }
   }
+
+  a {
+    color: $color-pink;
+
+    &:hover {
+      box-shadow: inset 0 -0.1em 0 0px, 0 0.03em 0 0;
+      text-shadow: 0 0.1em 0 white, 1px 0.1em 0 white, -1px 0.1em 0 white, 2px 0.1em 0 white, -2px 0.1em 0 white;
+    }
+  }
+
+  blockquote {
+    border-left: 5px solid $color-gray;
+    margin: 2em 0;
+    padding-left: 1em;
+    color: $color-gray;
+    font-style: italic;
+  }
 }

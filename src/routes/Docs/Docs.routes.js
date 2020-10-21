@@ -14,16 +14,12 @@ export default [
         path: '/components',
         routes: [
             {
-                title: 'Collapsible',
-                path: '/collapsible',
-            },
-            {
                 title: 'Movable',
                 path: '/movable',
             },
             {
-                title: 'Pannable',
-                path: '/pannable',
+                title: 'Stackable',
+                path: '/stackable',
             },
         ],
     },

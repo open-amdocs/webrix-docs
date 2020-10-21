@@ -1,0 +1,95 @@
+import {Example} from 'components';
+import './style.scss';
+
+The `<Stackable/>` can be used to render elements that need to visually appear as if they are "stacked"
+one of top of the other. This is done through the usage of portals and the Context API.
+
+### Motivation
+
+Certain UI elements like dialogs, popovers and menus need to appear on top of their containing element.
+This is usually done with absolute positioning and z-indexing. However, `z-index`s are relative to the parent's [stacking
+context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context),
+so it is possible for a lower z-index to appear above a higher z-index, if the former has a higher stacking context.
+
+#### The Component To End All `z-index` Issues
+
+To solve the above issue, we use portals. Using portals we can send the elements to the body, thus resetting their stacking context.
+However, when we use portals, not only do we reset the stacking context, but we also completely flatten the DOM tree.
+
+This is where `<Stackable/>` comes in: It allows us to reset the stacking context while maintaining
+the stacking context between the *portal'ed* elements.
+
+This is done by communicating the depth between `<Stackable/>` elements through context, and incrementing
+their z-index based on their nesting depth in the React component tree, rather than the actual DOM tree.
+
+## Stacking
+
+You can stack *Stackables* by nesting them.
+A nested `<Stackable/>` receives a higher `z-index` than it's parent.
+The lowest z-index is a constant specified in `BASE_Z_INDEX`, set to 10.
+
+```jsx
+<Stackable> <-- Receives a z-index of BASE_Z_INDEX
+    <Stackable/> <-- Receives a z-index of BASE_Z_INDEX + 1
+</Stackable>
+```
+
+<Example file='components/stackable/Stacking' height={400}/>
+
+## Event Propagation
+
+In React, events are propagated based on the React tree, and not the DOM tree.
+This means that events are propagated through portals (see [Event Bubbling Through Portals](https://reactjs.org/docs/portals.html#event-bubbling-through-portals)).
+
+We leverage this fact in this example to show how click events are propagated through nested
+`Stackable` components, despite the fact that they are siblings in the DOM.
+
+<Example file='components/stackable/EventPropagation' height={400}/>
+
+## Ancestors
+
+In this example, clicking on a `<Stackable/>` will show the list of classes of all of its ancestors
+starting from the furthest to the closest ancestor. Notice that the list of ancestors is displayed
+according to the React component tree, and not the DOM tree.
+
+<Example file='components/stackable/Ancestors' height={400}/>
+
+## API
+
+### Importing
+
+```jsx
+import {Stackable} from 'webrix';
+import Stackable from 'webrix/Stackable'; // For better tree shaking
+```
+
+### Functions
+
+*Stackable.getAncestors()*
+
+The `getAncestors()` function takes a DOM element as an argument, and returns a `string` representing the path
+of to that element based on the React Component tree.
+
+*Syntax*
+
+`path = Stackable.getAncestors(element)`
+
+*Parameters*
+
+`element` - A DOM element representing a `<Stackable/>`.
+
+*Return Value*
+
+A string with the of classnames of all the ancestors of the given `<Stackable/>`,
+up to, but not including, the `<body/>` element.
+
+
+### Props
+
+Name|Type|Default|Description
+---|---|---|---
+`target`|Element|`document.body`|Specifies portal target.
+`descendants`|Function|`() => null`|Specifies a function to be called when the component mounts/updated. Receives the list of descendant DOM elements as an argument.
+`children`|Node|`null`|Specifies the children of the component.
+
+ > NOTE: Any prop other than the props listed above will be injected to the `div` element of the `<Stackable/>`.

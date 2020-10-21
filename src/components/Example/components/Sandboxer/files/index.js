@@ -5,7 +5,7 @@ import './style.scss';
 
 ReactDOM.render(
     <React.StrictMode>
-        <div id='{{id}}'>
+        <div id='example'>
             <Example />
         </div>
     </React.StrictMode>,
