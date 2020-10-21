@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import {useLocation} from 'react-router-dom';
-import './examples.scss';
+import './Examples.scss';
 
 export default () => {
     const {pathname} = useLocation();
