@@ -1,9 +1,10 @@
 import React, {Suspense} from 'react';
+import {Loader} from 'components';
 
 const Route = ({file}) => {
     const Comp = React.lazy(file);
     return (
-        <Suspense fallback={<div>Loading!</div>}>
+        <Suspense fallback={<Loader/>}>
             <Comp/>
         </Suspense>
     )

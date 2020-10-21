@@ -1,5 +1,6 @@
 import React, {Suspense} from 'react';
 import {useLocation} from 'react-router-dom';
+import {Loader} from 'components';
 import './Examples.scss';
 
 export default () => {
@@ -8,7 +9,7 @@ export default () => {
     const Example = React.lazy(() => import(`../Docs/content/${file}`))
     return (
         <div id='example'>
-            <Suspense fallback={<div>Loading!</div>}>
+            <Suspense fallback={<Loader/>}>
                 <Example/>
             </Suspense>
         </div>

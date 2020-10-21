@@ -1,0 +1,33 @@
+$size: 80px;
+
+#webrix-loader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(white, 0.5);
+  z-index: 99;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $size;
+    height: $size;
+    margin-top: -$size/2;
+    margin-left: -$size/2;
+    fill: $color-light-blue;
+    animation: scale .5s infinite ease-in-out alternate;
+  }
+}
+
+@keyframes scale {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.2);
+  }
+}
