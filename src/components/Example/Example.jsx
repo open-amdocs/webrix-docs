@@ -24,7 +24,7 @@ const Example = ({file, height}) => {
         <div className='code-example'>
             <div className='live-code' style={{height}}>
                 <iframe src={`/examples/${file}`} id={id}/>
-                <Controls code={code} style={style} id={id} toggle={toggle}/>
+                <Controls code={code} style={style} toggle={toggle}/>
             </div>
             <div className={cls('source-code', {visible})}>
                 <Highlighter code={code}/>

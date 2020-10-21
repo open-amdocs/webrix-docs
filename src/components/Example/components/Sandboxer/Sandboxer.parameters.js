@@ -11,7 +11,7 @@ const _colors = [...colors.matchAll(/(\$[\w-]+): (#\w+)/g)].reduce((obj, [, name
 // Match the webrix version to the one in root
 pkg.dependencies.webrix = rootpkg.dependencies.webrix;
 
-export default ({code, style, id}) => getParameters({
+export default ({code, style}) => getParameters({
     files: {
         'package.json': {
             content: pkg,
