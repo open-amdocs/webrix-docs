@@ -18,7 +18,7 @@ module.exports = {
         minimize: hasArg('production'),
         moduleIds: 'hashed',
         runtimeChunk: 'single',
-        splitChunks: {
+        splitChunks: hasArg('production') && {
             chunks: 'all',
             maxSize: 256000,
             cacheGroups: {
