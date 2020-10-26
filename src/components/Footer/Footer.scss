@@ -98,6 +98,10 @@
           display: flex;
           align-items: center;
 
+          @include media-max('sm') {
+            justify-content: center;
+          }
+
           a {
             color: $color-white;
           }
