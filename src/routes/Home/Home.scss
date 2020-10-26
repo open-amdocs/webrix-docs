@@ -38,13 +38,4 @@
       }
     }
   }
-
-  section {
-    display: flex;
-    padding: 30px 0;
-
-    @include media-max('sm') {
-      flex-direction: column;
-    }
-  }
 }

@@ -1,0 +1,93 @@
+$icon-size: 180px;
+$icon-overflow: 140px;
+
+.features .feature {
+  margin: 20px;
+  position: relative;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1), 0 1px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 20px;
+  width: 500px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include media-max('sm') {
+    width: auto;
+    height: auto;
+    padding: 20px !important;
+    margin: 10px 0;
+    text-align: justify !important;
+
+    h3 {
+      text-align: center;
+    }
+
+    .icon {
+      display: none !important;
+    }
+  }
+
+  &:nth-child(odd) {
+    margin-left: auto;
+    padding-left: $icon-overflow + 20px;
+
+    .icon {
+      left: $icon-overflow - $icon-size;
+    }
+  }
+
+  &:nth-child(even) {
+    margin-right: auto;
+    padding-right: $icon-overflow + 20px;
+    text-align: right;
+
+    .icon {
+      right: $icon-overflow - $icon-size;
+    }
+  }
+
+  h3 {
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    margin: 0 0 5px;
+  }
+
+  p {
+    color: $color-gray;
+    margin: 5px 0;
+  }
+
+  .icon {
+    background-image: linear-gradient(115deg, #91a9e2, #2c427d);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 7px 10px rgba(#89a2da, 0.5);
+    position: absolute;
+    width: $icon-size;
+    height: $icon-size;
+    top: 50%;
+    margin-top: -$icon-size / 2;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+      fill: #8da4de;
+    }
+
+    span {
+      color: #8da4de;
+      font-size: 6em;
+      font-weight: bold;
+      opacity: 0.5;
+    }
+  }
+}

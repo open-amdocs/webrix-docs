@@ -1,0 +1,8 @@
+section.features {
+  display: flex;
+  flex-direction: column;
+
+  //@include media-max('sm') {
+  //  grid-template-columns: 1fr;
+  //}
+}
