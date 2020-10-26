@@ -1,10 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import FallingBricks from './components/FallingBricks/FallingBricks';
-import {DOCS} from '../Router.routes';
 import {Button, Container} from 'components';
 import logo from '../../resources/images/webrix-logo-light.png';
+import {DOCS} from '../Router.routes';
+import FallingBricks from './components/FallingBricks/FallingBricks';
 import Features from './sections/Features/Features';
+import Components from './sections/Components/Components';
+import Hooks from './sections/Hooks/Hooks';
 import './Home.scss';
 
 const Home = () => {
@@ -19,9 +21,9 @@ const Home = () => {
                 </div>
             </div>
             <FallingBricks/>
-            <Container>
-                <Features/>
-            </Container>
+            <Features/>
+            <Components/>
+            <Hooks/>
         </>
     )
 };

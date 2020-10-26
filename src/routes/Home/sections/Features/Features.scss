@@ -1,8 +1,11 @@
 section.features {
   display: flex;
   flex-direction: column;
+}
 
-  //@include media-max('sm') {
-  //  grid-template-columns: 1fr;
-  //}
+.divider.features {
+  height: 100px;
+  width: 100%;
+  fill: white;
+  background-image: linear-gradient(transparent, $color-lighter-gray);
 }

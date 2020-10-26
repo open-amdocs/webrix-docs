@@ -10,7 +10,7 @@ $scene-height: 100vh;
     user-select: none;
   }
 
-  .divider {
+  .divider.scene {
     width: 100%;
     position: absolute;
     height: $overlay-height;

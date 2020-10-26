@@ -1,0 +1,47 @@
+$icon-size: 60px;
+
+section.components {
+
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    @include media-max('sm') {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  a {
+    background-image: linear-gradient(115deg, #91a9e2, #2c427d);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1), 0 1px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    padding-left: $icon-size;
+
+    svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: $icon-size;
+      height: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: rgba($color-white, 0.1);
+      fill: rgba($color-white, 0.5);
+    }
+  }
+}

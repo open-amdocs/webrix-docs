@@ -45,7 +45,7 @@ const FallingBricks = () => {
     return (
         <>
             <canvas id='scene' ref={canvas}/>
-            <Divider/>
+            <Divider className='scene'/>
         </>
     );
 }
