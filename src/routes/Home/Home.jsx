@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Button, Container} from 'components';
+import {Button} from 'components';
 import logo from '../../resources/images/webrix-logo-light.png';
 import {DOCS} from '../Router.routes';
 import FallingBricks from './components/FallingBricks/FallingBricks';
