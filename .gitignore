@@ -1,6 +1,7 @@
 .idea
 .vscode
 .DS_STORE
+.npmrc
 
 /node_modules
 /build

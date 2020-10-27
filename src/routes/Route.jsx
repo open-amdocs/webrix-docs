@@ -1,8 +1,9 @@
-import React, {Suspense} from 'react';
+import React, {Suspense, memo} from 'react';
 import {Loader} from 'components';
 
 const Route = ({file}) => {
     const Comp = React.lazy(file);
+
     return (
         <Suspense fallback={<Loader/>}>
             <Comp/>
@@ -10,4 +11,4 @@ const Route = ({file}) => {
     )
 }
 
-export default Route;
+export default memo(Route);

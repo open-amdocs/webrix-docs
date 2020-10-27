@@ -1,8 +1,8 @@
-import React, {Suspense} from 'react';
+import React, {Suspense, memo} from 'react';
 import {Loader} from 'components';
 
-const AsyncPage = ({file, title}) => {
-    const Comp = React.lazy(file);
+const AsyncPage = ({path, title}) => {
+    const Comp = React.lazy(() => import(`../../content${path}/readme.mdx`));
     return (
         <article>
             <h1>{title}</h1>
@@ -13,4 +13,4 @@ const AsyncPage = ({file, title}) => {
     );
 };
 
-export default AsyncPage;
+export default memo(AsyncPage);

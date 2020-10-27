@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Highlighter} from 'components';
 import {Route, Switch, useRouteMatch, Redirect} from 'react-router-dom';
 import {MDXProvider} from '@mdx-js/react'
@@ -22,11 +22,16 @@ const Content = () => {
             <Switch>
                 <Redirect from={match.url} to={`${match.url}${ROUTES[0].path}${ROUTES[0].routes[0].path}`} exact/>
                 {ROUTES.map(section => section.routes.map(page => (
-                    <Route key={page.path} path={match.url + section.path + page.path} component={() => <AsyncPage file={() => import(`../../content${section.path}${page.path}/readme.mdx`)} title={page.title}/>}/>
+                    <Route
+                        key={page.path}
+                        path={match.url + section.path + page.path}
+                        title={page.title}>
+                        <AsyncPage path={section.path + page.path} title={page.title}/>
+                    </Route>
                 )))}
             </Switch>
         </MDXProvider>
     );
 }
 
-export default Content;
+export default memo(Content);
