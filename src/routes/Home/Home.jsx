@@ -16,7 +16,7 @@ const Home = () => {
                 <img src={logo} alt='Webrix logo' loading='lazy'/>
                 <h2>Powerful building blocks for React-based web applications</h2>
                 <div className='actions'>
-                    <Button><Link>Get Started</Link></Button>
+                    <Button><Link to='#'>Get Started</Link></Button>
                     <Button type={Button.Types.SECONDARY}><Link to={DOCS.path}>Documentation</Link></Button>
                 </div>
             </div>

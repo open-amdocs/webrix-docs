@@ -1,0 +1,26 @@
+$icon-size: 60px;
+
+#route-home .blue-button {
+  background-image: $gradient-blue;
+  color: white;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1), 0 1px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  padding-left: $icon-size;
+
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $icon-size;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgba($color-white, 0.1);
+    fill: rgba($color-white, 0.5);
+  }
+}

@@ -7,3 +7,5 @@ $color-dark-gray: #727892;
 $color-gray: #9094A6;
 $color-light-gray: #D4D5DC;
 $color-lighter-gray: #EDEEF3;
+
+$gradient-blue: linear-gradient(115deg, lighten($color-light-blue, 40%), $color-light-blue);
