@@ -1,0 +1,20 @@
+.error-page {
+  display: flex;
+  max-width: 750px;
+  align-items: center;
+  margin: 0 auto;
+
+  @include media-max('sm') {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  h1 {
+    line-height: 1.2em;
+  }
+
+  img {
+    width: 450px;
+    max-width: 100%;
+  }
+}
