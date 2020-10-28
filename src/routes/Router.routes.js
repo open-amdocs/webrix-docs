@@ -19,8 +19,15 @@ export const TUTORIAL = {
     component: () => <AsyncRoute file={() => import(/* webpackChunkName: "tutorial" */ './Tutorial/Tutorial')}/>,
 };
 
+export const PLAYGROUND = {
+    name: 'playground',
+    path: '/playground',
+    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "tutorial" */ './Playground/Playground')}/>,
+};
+
 export default [
     DOCS,
     TUTORIAL,
+    PLAYGROUND,
     HOME,
 ];

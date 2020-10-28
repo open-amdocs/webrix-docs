@@ -2,6 +2,8 @@
   flex: 1;
   margin: 25px 10px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   h2 {
     margin: 3em 0 1em;

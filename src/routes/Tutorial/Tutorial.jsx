@@ -1,8 +1,9 @@
 import React from 'react';
+import {UnderConstruction} from 'components';
 
 const Tutorial = () => {
     return (
-        <div>Tutorial</div>
+        <UnderConstruction/>
     )
 };
 

@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
-import {HOME, DOCS, TUTORIAL} from '../../routes/Router.routes';
+import {HOME, DOCS, TUTORIAL, PLAYGROUND} from '../../routes/Router.routes';
 import logo from '../../resources/images/webrix-logo-text-dark.png';
 import HamburgerMenu from './components/HamburgerMenu/HamburgerMenu';
 import './Header.scss';
@@ -19,7 +19,7 @@ const Header = () => {
             <nav className={classNames('menu', {active})}>
                 <Link to={DOCS.path}>{DOCS.name}</Link>
                 <Link to={TUTORIAL.path}>{TUTORIAL.name}</Link>
-                <Link to={TUTORIAL.path}>Playground</Link>
+                <Link to={PLAYGROUND.path}>{PLAYGROUND.name}</Link>
                 <Link to={TUTORIAL.path}>Examples</Link>
             </nav>
             <div className='version'>v1.0.0</div>

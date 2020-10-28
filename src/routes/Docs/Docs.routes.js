@@ -21,6 +21,30 @@ export default [
                 title: 'Stackable',
                 path: '/stackable',
             },
+            {
+                title: 'Pannable',
+                path: '/pannable',
+            },
+            {
+                title: 'Resizable',
+                path: '/resizable',
+            },
+            {
+                title: 'Poppable',
+                path: '/poppable',
+            },
+            {
+                title: 'Zoomable',
+                path: '/zoomable',
+            },
+            {
+                title: 'Scrollable',
+                path: '/scrollable',
+            },
+            {
+                title: 'Collapsible',
+                path: '/collapsible',
+            },
         ],
     },
     {
@@ -28,8 +52,28 @@ export default [
         path: '/hooks',
         routes: [
             {
-                title: 'useBoolean',
-                path: '/useboolean',
+                title: 'useBooleanState()',
+                path: '/usebooleanstate',
+            },
+            {
+                title: 'usePrevious()',
+                path: '/useprevious',
+            },
+            {
+                title: 'useMounted()',
+                path: '/usemounted',
+            },
+            {
+                title: 'useClickOutside()',
+                path: '/useclickoutside',
+            },
+            {
+                title: 'useTimeout()',
+                path: '/usetimeout',
+            },
+            {
+                title: 'useDebounce()',
+                path: '/usedebounce',
             },
         ],
     },
