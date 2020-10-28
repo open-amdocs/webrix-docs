@@ -1,6 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
+import pkg from '../../../package.json';
 import {HOME, DOCS, TUTORIAL, PLAYGROUND} from '../../routes/Router.routes';
 import logo from '../../resources/images/webrix-logo-text-dark.png';
 import HamburgerMenu from './components/HamburgerMenu/HamburgerMenu';
@@ -22,7 +23,7 @@ const Header = () => {
                 <Link to={PLAYGROUND.path}>{PLAYGROUND.name}</Link>
                 <Link to={TUTORIAL.path}>Examples</Link>
             </nav>
-            <div className='version'>v1.0.0</div>
+            <div className='version'>v{pkg.dependencies.webrix}</div>
             <HamburgerMenu active={active} onClick={handleOnClick}/>
         </header>
     );
