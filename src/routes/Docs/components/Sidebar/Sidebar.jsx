@@ -1,46 +1,65 @@
-import React from 'react';
-import {Link, useRouteMatch} from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {Link, useRouteMatch, useLocation} from 'react-router-dom';
+import {slugify} from 'utility';
 import ROUTES from '../../Docs.routes';
+import cls from 'classnames';
 import './Sidebar.scss';
 
-const Sidebar = () => {
+const PageItems = () => {
+    const {pathname, hash} = useLocation();
+    const {path} = useRouteMatch();
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            const text = await import(`!raw-loader!../../content${pathname.replace(path, '')}/readme.mdx`);
+            setItems(text.default.match(/^## ([\w -]+)/gm).map(item => item.replace('## ', '')));
+        })();
+    }, [])
+
+    return (
+        <ul>
+            {items.map(item => (
+                <li key={item} className={cls({active: hash === `#${slugify(item)}`})}><Link to={`#${slugify(item)}`}>{item}</Link></li>
+            ))}
+        </ul>
+    );
+}
+
+const Page = ({url, title}) => {
+    const location = useLocation();
+    const active = location.pathname === url;
+
+    return (
+        <li>
+            <Link className={cls({active})} to={url}>{title}</Link>
+            {active && <PageItems/>}
+        </li>
+    );
+}
+
+const Section = ({title, pages, path}) => {
     const match = useRouteMatch();
     return (
-        <nav id='sidebar'>
+        <li>
+            <div className='title'>{title}</div>
             <ul>
-                {ROUTES.map((section, i) => (
-                    <li key={i}>
-                        <div className='title'>{section.title}</div>
-                        <ul>
-                            {section.routes.map((page, i) => (
-                                <li key={i}>
-                                    <Link to={`${match.url}${section.path}${page.path}`}>{page.title}</Link>
-                                    <ul>
-                                        <li className='active'><Link to={`${match.url}/movable`}>API</Link></li>
-                                        <li><Link to={`${match.url}/movable`}>Examples</Link></li>
-                                        <li><Link to={`${match.url}/movable`}>Playground</Link></li>
-                                    </ul>
-                                </li>
-                            ))}
-                        </ul>
-                    </li>
+                {pages.map((page, i) => (
+                    <Page key={i} url={`${match.url}${path}${page.path}`} title={page.title}/>
                 ))}
-                <li>
-                    <div className='title'>Test</div>
-                    <ul>
-                        <li>
-                            <Link to={`${match.url}/movable`}>Collapsible</Link>
-                            <ul>
-                                <li className='active'><Link to={`${match.url}/movable`}>API</Link></li>
-                                <li><Link to={`${match.url}/movable`}>Examples</Link></li>
-                                <li><Link to={`${match.url}/movable`}>Playground</Link></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
             </ul>
-        </nav>
-    );
-};
+        </li>
+    )
+}
+
+const Sidebar = () => (
+    <nav id='sidebar'>
+        <ul>
+            {ROUTES.map((section, i) => (
+                <Section key={i} title={section.title} pages={section.routes} path={section.path}/>
+            ))}
+        </ul>
+    </nav>
+);
 
 export default Sidebar;

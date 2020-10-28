@@ -23,6 +23,10 @@ $background-color: #f6fbff;
     position: sticky;
     top: 60px; // The header's height
 
+    a {
+      display: block;
+    }
+
     > li {
       position: relative;
       margin: 5px 30px;
@@ -48,7 +52,7 @@ $background-color: #f6fbff;
       > ul {
         margin: 10px 0 30px 10px;
 
-        li.active {
+        li.active, a.active {
           position: relative;
           color: $color-pink;
 
@@ -56,6 +60,7 @@ $background-color: #f6fbff;
             content: '';
             position: absolute;
             right: -30px;
+            top: 0;
             width: 3px;
             height: 100%;
             background-color: $color-pink;
