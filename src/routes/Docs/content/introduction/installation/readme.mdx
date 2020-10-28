@@ -1,3 +1,23 @@
-import {UnderConstruction} from 'components';
+You can use Webrix as an [npm package](https://www.npmjs.com/package/webrix), which you can install with `npm`
+(or `yarn` if you prefer).
 
-<UnderConstruction/>
+```bash
+# With npm
+npm i webrix
+
+# With yarn
+yarn add webrix
+```
+
+You can then import components/hooks like so:
+
+```jsx
+import {Movable} from 'webrix';
+
+// For better tree shaking you can make your imports more specific.
+// This can potentially reduce your final bundle size, but the
+// difference can be negligible since the entire Webrix library
+// is rather small
+import Movable from 'webrix/Movable';
+```
+
