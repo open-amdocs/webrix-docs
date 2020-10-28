@@ -1,9 +1,25 @@
-// This is a nice hack to make the hash link have a bit of padding
-// To account for the floating header. More at https://css-tricks.com/hash-tag-links-padding/
-#route-docs article h2 a::before {
-  display: block;
-  content: " ";
-  margin-top: -80px;
-  height: 80px;
-  visibility: hidden;
+#route-docs article h2 {
+  display: flex;
+  align-items: center;
+  line-height: 1.2em;
+
+  &:hover svg {
+    display: inline;
+    margin-left: 10px;
+    width: 18px;
+  }
+
+  // This is a nice hack to make the hash link have a bit of padding
+  // To account for the floating header. More at https://css-tricks.com/hash-tag-links-padding/
+  a::before {
+    display: block;
+    content: " ";
+    margin-top: -80px;
+    height: 80px;
+    visibility: hidden;
+  }
+
+  svg {
+    display: none;
+  }
 }
