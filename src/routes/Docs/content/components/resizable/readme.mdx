@@ -1,3 +1,100 @@
-import {UnderConstruction} from 'components';
+import {Example} from 'components';
 
-<UnderConstruction/>
+The `<Resizable/>` component can be used to create elements that can be resized by the user.
+A `<Resizable/>` element receives up to 8 resizers, that can be used to resize the element in
+all directions - horizontally, vertically, and diagonally.
+
+## Basic Example
+
+<Example file='components/resizable/BasicExample' height={300}/>
+
+In this example you can see a fully resizable element.
+
+The `onResize` prop can be used to listen to resize changes.
+It passes an object with `width`, `height`, `top` and `left` keys to the handler.
+These corresponding values represent the change (delta) in dimensions/position, rather than
+the actual new dimensions/position.
+
+To get the actual dimensions/position, simply add the deltas to the initial values.
+
+## Min/Max Sizes
+
+<Example file='components/resizable/MinMaxSizes' height={350}/>
+
+The `<Resizable/>` component gives you complete control over the resizing of the element by only passing information
+through the event without actually manipulating the element itself.
+This way you are free to add your own logic and constraints.
+
+In this example the element has min/max width/height, that we apply by simply using `Math.min()` and `Math.max()`
+together to keep the value within a certain range.
+
+> Note that the same can be achieved using CSS `max-width`/`max-height`/`min-width`/`min-height`, as long as
+> only the bottom/right resizers are being used. The above CSS cannot work for top/left resizers, since the
+> top/left positioning should be limited as well, and that can only be achieved programmatically.
+
+## Snapping
+
+<Example file='components/resizable/Snapping' height={300}/>
+
+Similarly to the previous example, more complex constraints can be applied, like snapping.
+This can be achieved by applying the following formula to the coordinates of the element:
+
+```jsx
+const GRID_SIZE = 20;
+Math.round(x / GRID_SIZE) * GRID_SIZE;
+```
+
+Note that we're using the `delta` here instead of the `change`. The former represents the
+delta since the beginning of the resize operation (i.e. mousedown), and the latter
+represents the change since the last event (i.e. mousemove).
+
+We're using the `delta` because the resize operation in this example is not smooth,
+so if we used the `change` nothing would happen because the increments would be too
+small and they would always be rounded down.
+
+Applying this on the `delta` causes the resizable element to be resized in steps of `GRID_SIZE`, as can
+be seen above.
+
+> `Math.round()` rounds number up, so rounding `1.5` gives `2`, while
+> rounding `-1.5` gives `1`. This can cause small glitches when snap-resizing.
+> To avoid that we remove the sign before rounding, and then insert it back,
+> making the rounding consistent regardless of the sign.
+> See the source code for more info.
+
+## Custom Directions
+
+<Example file='components/resizable/CustomDirections' height={300}/>
+
+Instead of using `<Resizable.Resizers.All/>`, you can use any combination of resizers to limit
+the resize operation to certain directions. In this example we use `Right`,`Bottom` and `BottomRight`
+resizers to allow the element to be resized only at those edges/coreners.
+
+## API
+
+### Importing
+
+```jsx
+import {Resizable} from 'webrix';
+import Resizable from 'webrix/Resizable'; // For better tree shaking
+```
+
+### Props
+
+Name|Type|Default|Description
+---|---|---|---
+`children`|node|`null`|Specifies resizers to use. One of `Resizable.Resizers` (see below).
+`onBeginResize`|func|`() => null`|Specifies an event handler to be called when the user begins to resize the element.
+`onResize`|func|`() => null`|Specifies an event handler to be continuously called as the user resizes the element. Receives an object with `top`/`left`/`width`/`height`, representing the deltas.
+`onEndResize`|func|`() => null`|Specifies an event handler to be called when the user stops resizing the element.
+
+### Resizers
+
+* `<Resizable.Resizers.All/>` - All horizontal, vertical and diagonal resizers.
+* `<Resizable.Resizers.Top/>` - Top vertical resizer.
+* `<Resizable.Resizers.Bottom/>` - Bottom vertical resizer.
+* `<Resizable.Resizers.Left/>` - Left horizontal resizer.
+* `<Resizable.Resizers.Right/>` - Right horizontal resizer.
+* `<Resizable.Resizers.TopRight/>` - Top right corner diagonal resizer.
+* `<Resizable.Resizers.TopLeft/>` - Top left corner diagonal resizer.
+* `<Resizable.Resizers.BottomRight/>` - Bottom right corner diagonal resizer.
+* `<Resizable.Resizers.BottomLeft/>` - Bottom left corner diagonal resizer.
