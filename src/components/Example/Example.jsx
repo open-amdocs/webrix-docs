@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback, memo}  from 'react';
+import React, {useEffect, useState, useCallback, useRef, memo}  from 'react';
 import cls from 'classnames';
 import Highlighter from '../Highlighter';
 import Controls from './components/Controls/Controls';
@@ -8,7 +8,9 @@ const Example = ({file, height}) => {
     const [code, setCode] = useState('');
     const [style, setStyle] = useState('');
     const [visible, setVisible] = useState('');
+    const iframe = useRef();
     const toggle = useCallback(() => setVisible(v => !v), [setVisible]);
+    const reset = useCallback(() => iframe.current.contentWindow.location.reload(), [iframe.current]);
     const id = file.replace(/\//g, '-').toLowerCase();
 
     useEffect(() => {
@@ -23,8 +25,8 @@ const Example = ({file, height}) => {
     return (
         <div className='code-example'>
             <div className='live-code' style={{height}}>
-                <iframe src={`/examples/${file}`} id={id}/>
-                <Controls code={code} style={style} toggle={toggle}/>
+                <iframe src={`/examples/${file}`} id={id} ref={iframe}/>
+                <Controls code={code} style={style} toggle={toggle} reset={reset}/>
             </div>
             <div className={cls('source-code', {visible})}>
                 <Highlighter code={code}/>

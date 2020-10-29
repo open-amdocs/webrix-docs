@@ -3,7 +3,7 @@ import {FaCode, FaCopy, FaUndo} from 'react-icons/fa';
 import Sandboxer from '../Sandboxer/Sandboxer';
 import './Controls.scss';
 
-const Controls = ({code, style, toggle}) => {
+const Controls = ({code, style, toggle, reset}) => {
     const handleOnCodeClick = useCallback(e => {
         e.preventDefault();
         toggle();
@@ -13,7 +13,7 @@ const Controls = ({code, style, toggle}) => {
             <Sandboxer code={code} style={style}/>
             <FaCode onClick={handleOnCodeClick}/>
             <FaCopy/>
-            <FaUndo/>
+            <FaUndo onClick={reset}/>
         </div>
     );
 }
