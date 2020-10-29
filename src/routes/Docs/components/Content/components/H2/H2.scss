@@ -11,12 +11,10 @@
 
   // This is a nice hack to make the hash link have a bit of padding
   // To account for the floating header. More at https://css-tricks.com/hash-tag-links-padding/
-  a::before {
-    display: block;
-    content: " ";
+  a {
+    display: inline-block;
     margin-top: -80px;
-    height: 80px;
-    visibility: hidden;
+    padding-top: 80px;
   }
 
   svg {
