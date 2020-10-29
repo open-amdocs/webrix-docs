@@ -48,6 +48,7 @@ module.exports = {
             utility: paths.src + '/utility/',
             components: paths.src + '/components/',
             routes: paths.src + '/routes/',
+            webrix: hasArg('production') ? 'webrix' : paths.webrix,
         }
     },
     module: {
@@ -60,7 +61,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 use: [
                     "style-loader",
                     "css-loader",
