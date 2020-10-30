@@ -13,11 +13,14 @@ const PageItems = () => {
     useEffect(() => {
         (async () => {
             const text = await import(`!raw-loader!../../content${pathname.replace(path, '')}/readme.mdx`);
-            setItems(text.default.match(/^## ([\w -]+)/gm).map(item => item.replace('## ', '')));
+            const match = text.default.match(/^## ([\w -]+)/gm);
+            if (match) {
+                setItems(match.map(item => item.replace('## ', '')));
+            }
         })();
-    }, [])
+    }, []);
 
-    return (
+    return !items.length ? null : (
         <ul>
             {items.map(item => (
                 <li key={item} className={cls({active: hash === `#${slugify(item)}`})}><Link to={`#${slugify(item)}`}>{item}</Link></li>
