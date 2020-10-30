@@ -17,7 +17,7 @@ const Sandboxer = ({code, style}) => {
             <form action='https://codesandbox.io/api/v1/sandboxes/define' method='POST' target='_blank' ref={form}>
                 <input type='hidden' name='parameters' value={getParameters({code, style})}/>
             </form>
-            <FaPen onClick={handleOnCLick}/>
+            <FaPen onClick={handleOnCLick} data-title='Edit on CodeSandbox'/>
         </>
     );
 };

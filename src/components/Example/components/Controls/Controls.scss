@@ -10,7 +10,7 @@
 
   svg {
     fill: $color-gray;
-    margin: 4px 8px;
+    padding: 4px 8px;
     width: 14px;
     height: 14px;
     cursor: pointer;
@@ -23,5 +23,29 @@
 
   form {
     display: none;
+  }
+
+  .tooltip {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: -25px;
+    right: 5px;
+    font-size: 10px;
+    line-height: 12px;
+    background-color: black;
+    color: white;
+    padding: 4px 6px;
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+    white-space: pre;
+    transform: translateY(5px);
+
+    &.visible {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0px);
+    }
   }
 }

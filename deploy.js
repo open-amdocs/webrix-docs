@@ -4,11 +4,11 @@ const fs = require('fs');
 const path = require('path');
 
 const REGION = 'us-east-1'; // code for US East (N. Virginia), see full list here: https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
-const BUCKET = 'webrix-docs';
+const BUCKET = 'webrix.amdocs.com';
 const API = '2006-03-01';
 const FILE_PERMISSION = 'public-read';
 const PROXY = 'http://genproxy.amdocs.com:8080';
-const TIMEOUT = 20000;
+const RETRIES = 20000;
 const DIR = './build';
 
 // Setup
@@ -19,11 +19,9 @@ AWS.config.logger = console;
 const s3 = new AWS.S3({
     apiVersion: API,
     httpOptions: {
-        timeout: TIMEOUT,
-        connectTimeout: TIMEOUT,
         agent: process.argv[2] === 'proxy' ? proxy(PROXY) : undefined,
     },
-    maxRetries: 3
+    maxRetries: RETRIES
 });
 
 fs.readdir(path.resolve(__dirname, DIR), (err, files) => {
