@@ -17,7 +17,7 @@ const Controls = ({code, style, toggle, reset}) => {
             tooltip.current.classList.add('visible');
         }
     }
-    const handleOnMouseLeave = e => {
+    const handleOnMouseLeave = () => {
         tooltip.current.classList.remove('visible');
         active.current = null;
     }
