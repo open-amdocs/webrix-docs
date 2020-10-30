@@ -1,9 +1,10 @@
 $background-color: #f6fbff;
+$border-color: #d9e6f1;
 
 #sidebar {
   position: relative;
   background-color: $background-color;
-  border-right: 1px solid #d9e6f1;
+  border-right: 1px solid $border-color;
   margin-right: 20px;
   margin-bottom: -15px;
   margin-top: -15px;
@@ -24,7 +25,8 @@ $background-color: #f6fbff;
     top: 60px; // The header's height
 
     a {
-      display: block;
+      display: flex;
+      align-items: center;
     }
 
     > li {
@@ -50,7 +52,7 @@ $background-color: #f6fbff;
       }
 
       > ul {
-        margin: 10px 0 30px 10px;
+        margin: 10px 0 30px;
 
         li.active, a.active {
           position: relative;
@@ -65,6 +67,11 @@ $background-color: #f6fbff;
             height: 100%;
             background-color: $color-pink;
           }
+
+          svg {
+            fill: $background-color;
+            background-color: $color-pink;
+          }
         }
 
         > li {
@@ -72,8 +79,20 @@ $background-color: #f6fbff;
           margin: 5px 0;
           font-size: 0.9em;
 
+          svg {
+            fill: $color-gray;
+            margin-right: 8px;
+            padding: 2px;
+            border-radius: 2px;
+          }
+
           > ul {
-            margin: 0 0 15px 10px;
+            margin: 0px 0 15px 8px;
+            color: $color-gray;
+            font-size: 0.9em;
+            line-height: 1.5em;
+            border-left: 3px solid $border-color;
+            padding: 10px 0 0px 7px;
           }
         }
       }

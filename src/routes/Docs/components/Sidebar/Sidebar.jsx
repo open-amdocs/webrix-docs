@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useRouteMatch, useLocation} from 'react-router-dom';
+import {FaCode} from 'react-icons/fa';
 import {slugify} from 'utility';
 import ROUTES from '../../Docs.routes';
 import cls from 'classnames';
@@ -29,13 +30,13 @@ const PageItems = () => {
     );
 }
 
-const Page = ({url, title}) => {
+const Page = ({url, title, icon: Icon}) => {
     const location = useLocation();
     const active = location.pathname === url;
 
     return (
         <li>
-            <Link className={cls({active})} to={url}>{title}</Link>
+            <Link className={cls({active})} to={url}><Icon/>{title}</Link>
             {active && <PageItems/>}
         </li>
     );
@@ -48,7 +49,7 @@ const Section = ({title, pages, path}) => {
             <div className='title'>{title}</div>
             <ul>
                 {pages.map((page, i) => (
-                    <Page key={i} url={`${match.url}${path}${page.path}`} title={page.title}/>
+                    <Page key={i} url={`${match.url}${path}${page.path}`} title={page.title} icon={page.icon || FaCode}/>
                 ))}
             </ul>
         </li>
