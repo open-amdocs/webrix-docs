@@ -1,3 +1,4 @@
+import React from 'react';
 import {Zoomable} from 'webrix';
 import './style.scss';
 
