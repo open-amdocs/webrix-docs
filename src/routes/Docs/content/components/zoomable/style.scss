@@ -1,0 +1,35 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .zoomable {
+    transform-origin: 0 0;
+    background-color: $color-pink;
+    color: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px;
+  }
+
+  .zooming {
+    transform-origin: 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+
+    .controls {
+      display: flex;
+      > svg {
+        padding-left: 5px;
+        padding-bottom: 2px;
+      }
+    }
+  }
+
+}
+
