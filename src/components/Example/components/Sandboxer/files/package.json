@@ -6,6 +6,7 @@
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
+    "prop-types": "latest",
     "webrix": "taken from root package.json"
   },
   "devDependencies": {
