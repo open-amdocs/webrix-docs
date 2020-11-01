@@ -25,7 +25,7 @@ const Controls = ({code, style, toggle, reset}) => {
         <div className='controls' onMouseMove={handleOnMouseMove} onMouseLeave={handleOnMouseLeave}>
             <Sandboxer code={code} style={style}/>
             <FaCode onClick={handleOnCodeClick} data-title='Show Source'/>
-            <FaCopy data-title='Copy Source'/>
+            <FaCopy data-title='Copy Source' onClick={() => navigator.clipboard.writeText(code)}/>
             <FaUndo onClick={reset} data-title='Reset'/>
             <div className='tooltip' ref={tooltip}/>
         </div>
