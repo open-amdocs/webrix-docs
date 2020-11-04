@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import {Movable} from 'webrix';
-import './style.scss';
+import './BasicExample.scss';
 
 export default () => {
     const [{top, left}, setPosition] = useState({top: 0, left: 0});

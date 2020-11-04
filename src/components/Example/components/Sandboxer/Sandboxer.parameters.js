@@ -6,7 +6,7 @@ import html from '!raw-loader!./files/index.html';
 import colors from '!raw-loader!../../../../resources/styles/colors.scss';
 
 // Convert the SCSS variables to a JS object
-const _colors = [...colors.matchAll(/(\$[\w-]+): (#\w+)/g)].reduce((obj, [, name, value]) => ({...obj, [name]: value}), {});
+const _colors = [...colors.matchAll(/\$color-([\w-]+): (#\w+)/g)].reduce((obj, [, name, value]) => ({...obj, [name]: value}), {});
 
 // Match the webrix version to the one in root
 pkg.dependencies.webrix = rootpkg.dependencies.webrix;
@@ -23,10 +23,10 @@ export default ({code, style}) => getParameters({
             content: html,
         },
         'Example.jsx': {
-            content: code,
+            content: code.replace(/\w+.scss/, 'style.scss'),
         },
         'style.scss': {
-            content: style.replace(/\$[\w-]+/g, key => _colors[key]), // Replace every color variable with its value
+            content: style.replace(/\$color-([\w-]+)/g, (_, key) => _colors[key]), // Replace every color variable with its value
         },
     },
 });

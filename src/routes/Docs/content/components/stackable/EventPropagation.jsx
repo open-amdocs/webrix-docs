@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import {Stackable} from 'webrix';
-import './style.scss';
+import './EventPropagation.scss';
 
 const Layer = ({children}) => {
     const [clicks, setClicks] = useState(0);

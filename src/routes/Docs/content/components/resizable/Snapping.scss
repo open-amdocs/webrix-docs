@@ -1,0 +1,14 @@
+#example {
+  .resizable-object {
+    user-select: none;
+    background-color: $color-pink;
+    position: absolute;
+    color: $color-white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}

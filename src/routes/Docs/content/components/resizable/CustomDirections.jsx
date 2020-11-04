@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import {Resizable} from 'webrix';
-import './style.scss';
+import './CustomDirections.scss';
 
 export default () => {
     const SIZE = 200;
