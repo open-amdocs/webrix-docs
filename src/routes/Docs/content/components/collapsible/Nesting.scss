@@ -1,0 +1,41 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .collapsible-item {
+    background-color: white;
+    box-shadow: 0 3px 8px rgba(black, 0.1);
+    max-width: 350px;
+
+    &.expanded > .collapsible-header svg {
+      transform: rotate(90deg);
+    }
+
+    & + .collapsible-item {
+      margin-top: 10px;
+    }
+
+    .collapsible-header {
+      font-weight: bold;
+      font-size: 14px;
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      vertical-align: middle;
+      cursor: pointer;
+
+      svg {
+        width: 12px;
+        height: 12px;
+        margin-right: 10px;
+        transition: all .2s ease-in-out;
+      }
+    }
+
+    .content {
+      font-size: 12px;
+      padding: 5px 15px 15px;
+    }
+  }
+}
