@@ -1,4 +1,4 @@
-import React, {Suspense, memo} from 'react';
+import React, {Suspense, memo, useEffect} from 'react';
 import {FaExternalLinkAlt} from 'react-icons/fa';
 import {Loader} from 'components';
 import './AsyncPage.scss';
@@ -6,6 +6,10 @@ import './AsyncPage.scss';
 const AsyncPage = ({path, title}) => {
     const Comp = React.lazy(() => import(`../../content${path}/readme.mdx`));
     const editURL = `https://github.com/open-amdocs/webrix-docs/blob/master/src/routes/Docs/content${path}/readme.mdx`;
+
+    useEffect(() => {
+        document.title = `Webrix.js - ${title}`;
+    }, []);
 
     return (
         <article>
