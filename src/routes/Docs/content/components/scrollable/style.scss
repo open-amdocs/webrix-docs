@@ -1,0 +1,84 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > div {
+    border: 2px dashed $color-gray;
+    border-radius: 4px;
+  }
+
+  .vertical-scroll {
+    width: 200px;
+    height: 200px;
+  }
+
+  .horizontal-scroll {
+    width: 300px;
+    white-space: nowrap;
+  }
+
+  .scrollbar-minimal-thumb-size {
+    height: 200px;
+    border: none;
+    display: flex;
+
+    .left-scrollable,
+    .right-scrollable {
+      border: 2px dashed $color-gray;
+      border-radius: 4px;
+      width: 200px;
+      height: 200px;
+    }
+    .left-scrollable {
+      margin-right: 10px;
+
+      .very-long-content {
+        height: 2010px;
+        background: repeating-linear-gradient($color-light-gray, $color-light-gray 10px, transparent 10px, transparent 20px);
+      }
+    }
+
+    .right-scrollable {
+      .long-content {
+        height: 790px;
+        background: repeating-linear-gradient($color-light-gray, $color-light-gray 10px, transparent 10px, transparent 20px);
+      }
+    }
+  }
+
+  .resize-detection {
+    width: 200px;
+    height: 200px;
+    resize: both;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .scrollbar-shadow {
+    width: 200px;
+    height: 200px;
+    position: relative;
+
+    .scroll-shadow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+  }
+
+  .custom-scrollbars{
+    width: 200px;
+    height: 200px;
+    .scrollbar .scrollbar-track .scrollbar-thumb .scrollbar-thumb-inner {
+      background-color: transparent;
+    }
+  }
+
+  .scrollbar-inner {
+    padding: 4px 8px;
+  }
+}
+

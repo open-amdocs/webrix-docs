@@ -17,6 +17,7 @@
     "@babel/plugin-proposal-export-default-from": "7.12.1",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@babel/plugin-transform-runtime": "7.12.1",
+    "@babel/plugin-proposal-class-properties": "7.12.1",
     "@babel/preset-env": "7.12.1",
     "@babel/preset-react": "7.12.1",
     "@mdx-js/loader": "1.6.18",
@@ -62,6 +63,6 @@
     "react-dom": "16.14.0",
     "react-icons": "3.11.0",
     "react-router-dom": "5.2.0",
-    "webrix": "1.0.0-beta.7"
+    "webrix": "1.0.0-beta.10"
   }
 }
