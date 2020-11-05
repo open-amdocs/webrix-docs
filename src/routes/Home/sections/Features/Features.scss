@@ -1,6 +1,21 @@
 section.features {
-  display: flex;
-  flex-direction: column;
+
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+
+    @include media-max('md') {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
 .divider.features {

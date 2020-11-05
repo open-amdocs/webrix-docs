@@ -2,12 +2,10 @@ $icon-size: 150px;
 $icon-overflow: 120px;
 
 .features .feature {
-  margin: 20px;
   position: relative;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1), 0 1px 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   padding: 20px;
-  width: 500px;
   height: 160px;
   display: flex;
   flex-direction: column;
@@ -17,7 +15,7 @@ $icon-overflow: 120px;
     width: auto;
     height: auto;
     padding: 20px !important;
-    margin: 10px 0;
+    margin: 0 !important;
     text-align: justify !important;
 
     h3 {
@@ -30,21 +28,21 @@ $icon-overflow: 120px;
   }
 
   &:nth-child(odd) {
-    margin-left: auto;
-    padding-left: $icon-overflow + 20px;
-
-    .icon {
-      left: $icon-overflow - $icon-size;
-    }
-  }
-
-  &:nth-child(even) {
-    margin-right: auto;
+    margin-right: $icon-size - $icon-overflow;
     padding-right: $icon-overflow + 20px;
     text-align: right;
 
     .icon {
       right: $icon-overflow - $icon-size;
+    }
+  }
+
+  &:nth-child(even) {
+    margin-left: $icon-size - $icon-overflow;
+    padding-left: $icon-overflow + 20px;
+
+    .icon {
+      left: $icon-overflow - $icon-size;
     }
   }
 

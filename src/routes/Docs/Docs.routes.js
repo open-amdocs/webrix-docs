@@ -1,4 +1,6 @@
-import {FaDownload, FaArrowsAlt, FaLayerGroup, FaHandPaper, FaArrowsAltV, FaArrowsAltH, FaWindowRestore, FaSearchPlus, FaCompressAlt} from 'react-icons/fa';
+import {FaDownload} from 'react-icons/fa';
+import components from './content/components/components.routes';
+import hooks from './content/hooks/hooks.routes';
 
 export default [
     {
@@ -15,77 +17,11 @@ export default [
     {
         title: 'Components',
         path: '/components',
-        routes: [
-            {
-                title: 'Movable',
-                path: '/movable',
-                icon: FaArrowsAlt,
-            },
-            {
-                title: 'Stackable',
-                path: '/stackable',
-                icon: FaLayerGroup,
-            },
-            {
-                title: 'Pannable',
-                path: '/pannable',
-                icon: FaHandPaper,
-            },
-            {
-                title: 'Resizable',
-                path: '/resizable',
-                icon: FaArrowsAltH,
-            },
-            {
-                title: 'Poppable',
-                path: '/poppable',
-                icon: FaWindowRestore,
-            },
-            {
-                title: 'Zoomable',
-                path: '/zoomable',
-                icon: FaSearchPlus,
-            },
-            {
-                title: 'Scrollable',
-                path: '/scrollable',
-                icon: FaArrowsAltV,
-            },
-            {
-                title: 'Collapsible',
-                path: '/collapsible',
-                icon: FaCompressAlt,
-            },
-        ],
+        routes: components,
     },
     {
         title: 'Hooks',
         path: '/hooks',
-        routes: [
-            {
-                title: 'useBooleanState()',
-                path: '/usebooleanstate',
-            },
-            {
-                title: 'usePrevious()',
-                path: '/useprevious',
-            },
-            {
-                title: 'useMounted()',
-                path: '/usemounted',
-            },
-            {
-                title: 'useClickOutside()',
-                path: '/useclickoutside',
-            },
-            {
-                title: 'useTimeout()',
-                path: '/usetimeout',
-            },
-            {
-                title: 'useDebounce()',
-                path: '/usedebounce',
-            },
-        ],
+        routes: hooks,
     },
 ];

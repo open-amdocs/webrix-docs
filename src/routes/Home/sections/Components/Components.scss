@@ -13,8 +13,12 @@ section.components {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 
-    @include media-max('sm') {
+    @include media-max('md') {
       grid-template-columns: 1fr 1fr;
+    }
+
+    @include media-max('sm') {
+      grid-template-columns: 1fr;
     }
   }
 
