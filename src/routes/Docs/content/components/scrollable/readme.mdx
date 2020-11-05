@@ -1,3 +1,74 @@
-import {UnderConstruction} from 'components';
+import {Example} from 'components';
 
-<UnderConstruction/>
+The `<Scrollable/>` component can be used to apply custom scrollbar styling to a scrollable element.
+It does so by hiding the native scrollbars, and displaying real DOM elements instead.
+The positioning of the scrollbars is determined by the `scrollTop` property on the container.
+
+It's important to note that the `<Scrollable/>` component behaves just like any other div would,
+so in terms of CSS everything else should work as it would have if you were using the native
+
+## Vertical Scroll
+
+<Example file='components/scrollable/VerticalScroll' height={400}/>
+
+In this example you can see the behaviour of a vertical scrollbar
+
+## Horizontal Scroll
+
+<Example file='components/scrollable/HorizontalScroll' height={400}/>
+
+In this example you can see the behaviour of a horizontal scrollbar
+
+## Minimal Thumb Size
+
+<Example file='components/scrollable/MinimalThumbSize' height={400}/>
+
+The thumb size is affected by the content's length - the longer the content is, the smaller
+the thumb is - down to a minimum size of `MIN_THUMB_SIZE` of the container's size.
+
+## Resize Detection
+
+<Example file='components/scrollable/ResizeDetection' height={400}/>
+
+In this example you can see how the scrollbar is getting adjusted to the container in case of resize
+
+## Scrollbar Shadow
+
+<Example file='components/scrollable/ScrollbarShadow' height={400}/>
+
+By adding `Scrollable.Shadow` you can define a shadow that appears once the scrollbar is getting to the top or the bottom of the container.
+
+## Custom Scrollbars
+
+<Example file='components/scrollable/CustomScrollbars' height={400}/>
+
+If you want to have some custom scrollbars, you can do so by providing your own scrollbar component.
+This can be done by passing `<Scrollbar.VerticalScrollbar>` and/or `<Scrollbar.HorizontalScrollbar>`
+as children, and passing your custom scrollbar as a child to them.
+In this example you can see a custom vertical scrollbar, positioned outside of the container.
+
+```jsx
+<Scrollbar>
+    {...}
+    <Scrollbar.VerticalScrollbar>
+        <MyCustomScrollbar/>
+    </Scrollbar.VerticalScrollbar>
+</Scrollbar>
+```
+
+## API
+
+### Importing
+
+```jsx
+import {Scrollable} from 'webrix';
+import Scrollable from 'webrix/Zoomable'; // For better tree shaking
+```
+### Props
+Name|Type|Default|Description
+---|---|---|---
+`children`|node|`null`|Specifies the scrollable content.
+`element`|node|`<div/>`|Specifies the scrollable element.
+`style`|object|`{}`|Specifies a style object to be used for styling the scrollbar. NOTE: This should only be used for values that are computed in runtime using JavaScript. Static values should be applied using CSS.
+`scrollOnDOMChange`|boolean|`true`|Specifies whether the scroll position should update when there's a change in the internal DOM structure. When set to `true`, adding an element above the visible area will update the scroll position so that the previously visible area is still visible.
+`onScroll`|function|`() => null`|Specifies function to be called when a scroll event occurs. Receives an object with the following properties: `top`, `left`, `scrollTop`, `scrollLeft`, `scrollHeight`, `scrollWidth`, `clientWidth`, `clientHeight`,
