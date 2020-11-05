@@ -1,0 +1,32 @@
+#example {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  user-select: none;
+
+  .zoomable {
+    transform-origin: 50% 0;
+    transition: all .2s ease;
+    background-color: $color-pink;
+    color: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+  }
+
+  .controls {
+    display: flex;
+    margin-bottom: 5px;
+    margin-top: 20px;
+
+    svg {
+      margin: 0 2px;
+      height: 25px;
+      width: 25px;
+      cursor: pointer;
+    }
+  }
+}
+

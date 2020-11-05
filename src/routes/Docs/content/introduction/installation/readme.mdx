@@ -1,5 +1,8 @@
-You can use Webrix as an [npm package](https://www.npmjs.com/package/webrix), which you can install with `npm`
-(or `yarn` if you prefer).
+You can use Webrix as an [npm package](https://www.npmjs.com/package/webrix), or as a script tag.
+
+## As an NPM Package
+
+You can install Webrix with `npm` (or `yarn` if you prefer).
 
 ```bash
 # With npm
@@ -7,6 +10,12 @@ npm i webrix
 
 # With yarn
 yarn add webrix
+```
+
+Webrix requires has peer dependencies for `react`, `react-dom` and `prop-types`, so be sure to install them as well:
+
+```bash
+npm i react react-dom prop-types
 ```
 
 You can then import components/hooks like so:
@@ -21,3 +30,24 @@ import {Movable} from 'webrix';
 import Movable from 'webrix/Movable';
 ```
 
+## As a Script Tag
+
+Alternatively you can add a `<script/>` tag to your document's `<head/>` and get Webrix through a CDN:
+
+```html
+<script src="https://unpkg.com/webrix@1.0.0/build/webrix.umd.js" crossorigin></script>
+```
+
+There's also a minified version, recommended for production:
+
+```html
+<script src="https://unpkg.com/webrix@1.0.0/build/webrix.umd.min.js" crossorigin></script>
+```
+
+Webrix does not work without `react`, `react-dom` and `prop-types`, so be sure to include those as well:
+
+```html
+<script src="https://unpkg.com/react@16.14.0/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16.14.0/umd/react-dom.development.js" crossorigin></script>
+<script type="module" src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js" crossorigin></script>
+```

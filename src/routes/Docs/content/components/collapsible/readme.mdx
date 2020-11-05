@@ -1,3 +1,46 @@
-import {UnderConstruction} from 'components';
+import {Example} from 'components';
 
-<UnderConstruction/>
+The `<Collapsible/>` components allows you to collapse/expand an element with arbitrary content height
+and apply a nice transition to it. This is a challenge to achieve with CSS only, since it's impossible
+to transition the `height` property from `0` to `auto` and vice versa.
+
+We overcome this challenge by applying a height value based on the `clientHeight` of the content
+and then setting it to `auto` as soon as the transition is completed so that further changes
+in height are automatically applied. This essentially creates a transition between `0` and `auto`.
+
+This means that a `<Collapsible/>` is able to expand/collapse from a height of `0` to the height
+of its content, regardless of what the content is, and without any complex calculations.
+You can even nest collapsibles!
+
+## Basic Example
+
+<Example file='components/collapsible/BasicExample' height={300}/>
+
+In this example you can see a simple `<Collapsible/>` with a title and some content.
+Clicking on the title toggles the collapsible from expanded to collapsed and vice versa.
+
+## Nesting
+
+<Example file='components/collapsible/Nesting' height={450}/>
+
+In this example you can see a `<Collapsible/>` with nested `<Collapsible/>` items.
+The parent's height is automatically updated when its content height is changing, because
+the `height` is actually set to `auto`.
+
+## API
+
+### Importing
+
+```jsx
+import {Collapsible} from 'webrix';
+import Collapsible from 'webrix/Collapsible'; // For better tree shaking
+```
+
+### Props
+
+Name|Type|Default|Description
+---|---|---|---
+`children`|node|required|Specifies the content to be shown.
+`expanded`|boolean|`false`|Specifies whether the content should be shown or not.
+`onTransitionEnd`|func|`() => null`|Specifies a function to be called when the *height* transition ends, when expanding or collapsing. Receives the event object as an argument.
+`duration`|number|`300`|Specifies the transition duration.

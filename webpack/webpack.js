@@ -1,8 +1,9 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin');
 const WorkerPlugin = require('worker-plugin');
 const {paths} = require('./webpack.constants');
-const {hasArg} = require('./webpack.utility');
+const {hasArg, getFileSize} = require('./webpack.utility');
 
 module.exports = {
     entry: paths.src + '/index.js',
@@ -101,5 +102,8 @@ module.exports = {
         new WorkerPlugin({
             globalObject: !hasArg('production') ? 'self' : false,
         }),
+        new webpack.DefinePlugin({
+            LIBRARY_SIZE: JSON.stringify(getFileSize(paths.node_modules + '/webrix/build/webrix.cjs.min.js')),
+        })
     ]
 };

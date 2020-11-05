@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import {Resizable} from 'webrix';
-import './style.scss';
+import './MinMaxSizes.scss';
 
 const clamp = (min, max, value) => (
     Math.min(max, Math.max(min, value))

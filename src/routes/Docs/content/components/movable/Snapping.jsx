@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useRef} from 'react';
 import {Movable} from 'webrix';
-import './style.scss';
+import './Snapping.scss';
 
 const snap = num => {
     const GRID_SIZE = 20;

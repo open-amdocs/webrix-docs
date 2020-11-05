@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useRef} from 'react';
 import {Resizable} from 'webrix';
-import './style.scss';
+import './Snapping.scss';
 
 // Math.round() rounds number up, so rounding 1.5 gives 2, while
 // rounding -1.5 gives 1. This can cause small glitches when resizing.

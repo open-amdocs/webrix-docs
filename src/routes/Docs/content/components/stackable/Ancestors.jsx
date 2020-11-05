@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useRef} from 'react';
 import {Stackable} from 'webrix';
-import './style.scss';
+import './Ancestors.scss';
 
 export default () => {
     const ref = useRef();

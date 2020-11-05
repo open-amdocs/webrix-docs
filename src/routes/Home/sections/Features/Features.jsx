@@ -25,7 +25,7 @@ const Features = () => (
                         We've faced many challenges, and created different bricks to solve them.</p>
                 </Feature>
                 <Feature title='Small Footprint' icon={<FaShoePrints/>}>
-                    <p>The minified version of the library is only around ~7kb. However, Webrix' is structured
+                    <p>The minified version of the library is only around ~{LIBRARY_SIZE/*global LIBRARY_SIZE*/}kb. However, Webrix' is structured
                         in a way that supports tree-shaking, allowing you to only bundle what you're using.</p>
                 </Feature>
                 <Feature title='Comprehensive' icon={<FaBoxOpen/>}>
