@@ -1,6 +1,6 @@
 import React from 'react';
 import {Scrollable} from 'webrix';
-import './style.scss';
+import './VerticalScroll.scss';
 
 export default () =>  (
     <div className='vertical-scroll'>

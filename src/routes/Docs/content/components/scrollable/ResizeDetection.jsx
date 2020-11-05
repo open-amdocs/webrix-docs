@@ -1,6 +1,6 @@
 import React from 'react';
 import {Scrollable} from 'webrix';
-import './style.scss';
+import './ResizeDetection.scss';
 
 export default () =>  (
     <div className='resize-detection'>

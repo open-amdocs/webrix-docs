@@ -8,16 +8,6 @@
     border-radius: 4px;
   }
 
-  .vertical-scroll {
-    width: 200px;
-    height: 200px;
-  }
-
-  .horizontal-scroll {
-    width: 300px;
-    white-space: nowrap;
-  }
-
   .scrollbar-minimal-thumb-size {
     height: 200px;
     border: none;
@@ -47,38 +37,7 @@
     }
   }
 
-  .resize-detection {
-    width: 200px;
-    height: 200px;
-    resize: both;
-    overflow: hidden;
-    user-select: none;
-  }
-
-  .scrollbar-shadow {
-    width: 200px;
-    height: 200px;
-    position: relative;
-
-    .scroll-shadow {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-    }
-  }
-
-  .custom-scrollbars{
-    width: 200px;
-    height: 200px;
-    .scrollbar .scrollbar-track .scrollbar-thumb .scrollbar-thumb-inner {
-      background-color: transparent;
-    }
-  }
-
   .scrollbar-inner {
     padding: 4px 8px;
   }
 }
-

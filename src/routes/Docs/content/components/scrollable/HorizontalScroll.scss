@@ -1,0 +1,19 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > div {
+    border: 2px dashed $color-gray;
+    border-radius: 4px;
+  }
+
+  .horizontal-scroll {
+    width: 300px;
+    white-space: nowrap;
+  }
+
+  .scrollbar-inner {
+    padding: 4px 8px;
+  }
+}

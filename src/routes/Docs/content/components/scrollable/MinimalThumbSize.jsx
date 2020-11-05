@@ -1,6 +1,6 @@
 import React from 'react';
 import {Scrollable} from 'webrix';
-import './style.scss';
+import './MinimalThumbSize.scss';
 
 export default () =>  (
     <div className='scrollbar-minimal-thumb-size'>
