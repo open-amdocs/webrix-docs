@@ -11,8 +11,6 @@ const CustomVerticalScrollbar = forwardRef(({container}, ref) => {
         track.style.top = '-6px';
         track.style.height = `${height + 6}px`;
         track.style.right = `${-track.clientWidth - 2}px`;
-        thumb.style.backgroundImage = 'linear-gradient(180deg, #273D76, #E43F5A)';
-        thumb.style.borderRadius = '30px';
         thumb.style.height = `${getThumbSize(height + 6, scrollHeight + 6)}px`;
         thumb.style.top = `${getThumbPosition(height + 6, scrollHeight + 6, scrollTop)}px`;
     }, []);

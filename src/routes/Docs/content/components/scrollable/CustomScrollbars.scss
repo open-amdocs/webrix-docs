@@ -12,8 +12,15 @@
     width: 200px;
     height: 200px;
 
-    .scrollbar .scrollbar-track .scrollbar-thumb .scrollbar-thumb-inner {
-      background-color: transparent;
+    .scrollbar .scrollbar-track .scrollbar-thumb {
+      right: -4px;
+
+      .scrollbar-thumb-inner {
+        background-image: linear-gradient($color-light-blue, $color-pink);
+        border-radius: 4px;
+        width: 10px;
+        opacity: 1;
+      }
     }
   }
 
