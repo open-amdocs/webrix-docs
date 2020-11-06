@@ -16,7 +16,7 @@ const PageItems = () => {
     useEffect(() => {
         (async () => {
             const text = await import(`!raw-loader!../../content${pathname.replace(path, '')}/readme.mdx`);
-            const match = text.default.match(/^## ([\w -]+)/gm);
+            const match = text.default.match(/^## ([^\r\n]+)/gm);
             if (match) {
                 setItems(match.map(item => item.replace('## ', '')));
             }
