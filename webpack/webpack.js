@@ -10,7 +10,7 @@ module.exports = {
     devtool: hasArg('production') ? false : 'cheap-module-source-map',
     mode: hasArg('production') ? 'production' : 'development',
     output: {
-        filename: '[name].[contenthash].js',
+        filename: hasArg('production') ? '[name].[contenthash].js' : '[hash].js',
         chunkFilename: '[name].bundle.js',
         path: hasArg('production') ? paths.build: paths.src,
         publicPath: '/',
@@ -41,7 +41,9 @@ module.exports = {
         contentBase: paths.src,
         historyApiFallback: true,
         compress: true,
-        port: 9000
+        port: 9000,
+        hot: true,
+        inline: true,
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
