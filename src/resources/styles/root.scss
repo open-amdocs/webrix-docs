@@ -12,6 +12,7 @@ html, body, #app {
 #app {
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }

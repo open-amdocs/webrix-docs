@@ -9,6 +9,12 @@ const AsyncPage = ({path, title}) => {
 
     useEffect(() => {
         document.title = `Webrix.js - ${title}`;
+        const {hash} = window.location;
+        // If a hash exists, it indicates an external referral so the H2 will scroll into position
+        // Otherwise, no hash indicates navigation between pages, so we scroll back to top.
+        if (!window.location.hash) {
+            document.getElementById('app').scrollTop = 0;
+        }
     }, []);
 
     return (

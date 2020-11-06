@@ -1,15 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Link, useRouteMatch, useLocation} from 'react-router-dom';
 import {FaCode} from 'react-icons/fa';
 import {slugify} from 'utility';
+import {PageSectionContext} from '../../Docs.context';
 import ROUTES from '../../Docs.routes';
 import cls from 'classnames';
 import './Sidebar.scss';
 
 const PageItems = () => {
-    const {pathname, hash} = useLocation();
+    const {pathname} = useLocation();
     const {path} = useRouteMatch();
     const [items, setItems] = useState([]);
+    const {section} = useContext(PageSectionContext);
 
     useEffect(() => {
         (async () => {
@@ -24,7 +26,7 @@ const PageItems = () => {
     return !items.length ? null : (
         <ul>
             {items.map(item => (
-                <li key={item} className={cls({active: hash === `#${slugify(item)}`})}><Link to={`#${slugify(item)}`}>{item}</Link></li>
+                <li key={item} className={cls({active: section === `#${slugify(item)}`})}><a href={`#${slugify(item)}`}>{item}</a></li>
             ))}
         </ul>
     );
