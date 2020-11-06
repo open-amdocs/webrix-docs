@@ -8,6 +8,10 @@ $border-color: #d9e6f1;
   margin-bottom: -15px;
   margin-top: -15px;
 
+  @include media-max('sm') {
+    display: none;
+  }
+
   &::before {
     content: '';
     position: absolute;

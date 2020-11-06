@@ -5,6 +5,10 @@
   display: flex;
   flex-direction: column;
 
+  @include media-max('sm') {
+    margin: 0;
+  }
+
   h2 {
     margin: 2em 0 0.5em;
     color: $color-pink;
