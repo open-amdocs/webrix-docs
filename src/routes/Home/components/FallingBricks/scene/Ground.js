@@ -15,7 +15,7 @@ const Material = scene => {
 export default scene => {
     const material = new Material(scene);
     const ground = Mesh.CreateBox('Ground', 1, scene);
-    ground.scaling = new Vector3(100, 1, 100);
+    ground.scaling = new Vector3(200, 1, 200);
     ground.position.y = -5.0;
     ground.checkCollisions = true;
     ground.material = material;
