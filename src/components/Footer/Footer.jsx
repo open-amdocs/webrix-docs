@@ -1,24 +1,30 @@
 import React from 'react';
-import {FaNpm, FaGithub, FaCodeBranch, FaBug, FaStickyNote} from 'react-icons/fa';
+import {FaNpm, FaGithub, FaCodeBranch, FaBug, FaStickyNote, FaCode} from 'react-icons/fa';
 import {Container} from '../';
 import Logo from './Components/Logo';
 import Copyright from './Components/Copyright';
+import components from '../../routes/Docs/content/components/components.routes';
+import hooks from '../../routes/Docs/content/hooks/hooks.routes';
 import './Footer.scss';
 
 const Footer = () => (
     <footer id='footer'>
         <Logo/>
         <Container>
-            <Copyright/>
             <div className='links'>
-                <h4>ELEMENTS</h4>
+                <h4>COMPONENTS</h4>
                 <ul>
-                    <li><a href='#'>Movable</a></li>
-                    <li><a href='#'>Stackable</a></li>
-                    <li><a href='#'>Poppable</a></li>
-                    <li><a href='#'>Resizable</a></li>
-                    <li><a href='#'>Pannable</a></li>
-                    <li><a href='#'>Scrollable</a></li>
+                    {components.map(({title, path, icon: Icon}) => (
+                        <li key={title}><Icon/><a href={`/docs/components${path}`}>{title}</a></li>
+                    ))}
+                </ul>
+            </div>
+            <div className='links'>
+                <h4>HOOKS</h4>
+                <ul>
+                    {hooks.map(({title, path}) => (
+                        <li key={title}><FaCode/><a href={`/docs/hooks${path}`}>{title}</a></li>
+                    ))}
                 </ul>
             </div>
             <div className='links'>
@@ -39,6 +45,7 @@ const Footer = () => (
                 </ul>
             </div>
         </Container>
+        <Copyright/>
     </footer>
 );
 
