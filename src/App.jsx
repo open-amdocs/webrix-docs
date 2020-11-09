@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from './routes/Router';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Examples from './routes/Examples/Examples';
+import Frame from './routes/Frame/Frame';
 import {Header, Footer} from 'components';
 
 const Main = () => (
@@ -15,8 +15,8 @@ const Main = () => (
 const App = () => (
     <BrowserRouter>
         <Switch>
-            <Route path='/examples'>
-                <Examples/>
+            <Route path='/frame'>
+                <Frame/>
             </Route>
             <Route path='/'>
                 <Main/>

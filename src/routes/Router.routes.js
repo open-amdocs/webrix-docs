@@ -22,12 +22,19 @@ export const TUTORIAL = {
 export const PLAYGROUND = {
     name: 'playground',
     path: '/playground',
-    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "tutorial" */ './Playground/Playground')}/>,
+    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "playground" */ './Playground/Playground')}/>,
+};
+
+export const EXAMPLES = {
+    name: 'examples',
+    path: '/examples',
+    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "examples" */ './Examples/Examples')}/>,
 };
 
 export default [
     DOCS,
     TUTORIAL,
     PLAYGROUND,
+    EXAMPLES,
     HOME,
 ];

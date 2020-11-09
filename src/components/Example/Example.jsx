@@ -15,7 +15,7 @@ const Example = ({file, height}) => {
     return (
         <div className='code-example'>
             <div className='live-code' style={{height}}>
-                <iframe src={`/examples/${file}`} ref={iframe}/>
+                <iframe src={`/frame/${file}`} ref={iframe}/>
                 <Controls code={js} style={scss} toggle={toggle} reset={reset}/>
             </div>
             <div className={cls('source-code', {visible})}>
