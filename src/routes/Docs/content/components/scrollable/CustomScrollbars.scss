@@ -3,24 +3,21 @@
   align-items: center;
   justify-content: center;
 
-  > div {
+  .scrollbar {
     border: 2px dashed $color-gray;
     border-radius: 4px;
-  }
-
-  .custom-scrollbars {
     width: 200px;
     height: 200px;
+  }
 
-    .scrollbar .scrollbar-track .scrollbar-thumb {
-      right: -4px;
+  .scrollbar .scrollbar-track .scrollbar-thumb {
+    right: -4px;
 
-      .scrollbar-thumb-inner {
-        background-image: linear-gradient($color-light-blue, $color-pink);
-        border-radius: 4px;
-        width: 10px;
-        opacity: 1;
-      }
+    .scrollbar-thumb-inner {
+      background-image: linear-gradient($color-light-blue, $color-pink);
+      border-radius: 4px;
+      width: 10px;
+      opacity: 1;
     }
   }
 

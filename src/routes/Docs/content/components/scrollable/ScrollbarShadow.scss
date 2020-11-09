@@ -3,15 +3,12 @@
   align-items: center;
   justify-content: center;
 
-  > div {
-    border: 2px dashed $color-gray;
-    border-radius: 4px;
-  }
-
   .scrollbar-shadow {
     width: 200px;
     height: 200px;
     position: relative;
+    border: 2px dashed $color-gray;
+    border-radius: 4px;
 
     .scroll-shadow {
       position: absolute;

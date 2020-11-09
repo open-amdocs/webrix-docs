@@ -3,12 +3,9 @@
   align-items: center;
   justify-content: center;
 
-  > div {
+  .scrollbar {
     border: 2px dashed $color-gray;
     border-radius: 4px;
-  }
-
-  .resize-detection {
     width: 200px;
     height: 200px;
     resize: both;

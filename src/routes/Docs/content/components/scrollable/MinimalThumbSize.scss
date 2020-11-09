@@ -3,37 +3,27 @@
   align-items: center;
   justify-content: center;
 
-  > div {
+  .left-scrollable,
+  .right-scrollable {
     border: 2px dashed $color-gray;
     border-radius: 4px;
+    width: 200px;
+    height: 200px;
   }
 
-  .scrollbar-minimal-thumb-size {
-    height: 200px;
-    border: none;
-    display: flex;
+  .left-scrollable {
+    margin-right: 10px;
 
-    .left-scrollable,
-    .right-scrollable {
-      border: 2px dashed $color-gray;
-      border-radius: 4px;
-      width: 200px;
-      height: 200px;
+    .very-long-content {
+      height: 2010px;
+      background: repeating-linear-gradient($color-light-gray, $color-light-gray 10px, transparent 10px, transparent 20px);
     }
-    .left-scrollable {
-      margin-right: 10px;
+  }
 
-      .very-long-content {
-        height: 2010px;
-        background: repeating-linear-gradient($color-light-gray, $color-light-gray 10px, transparent 10px, transparent 20px);
-      }
-    }
-
-    .right-scrollable {
-      .long-content {
-        height: 790px;
-        background: repeating-linear-gradient($color-light-gray, $color-light-gray 10px, transparent 10px, transparent 20px);
-      }
+  .right-scrollable {
+    .long-content {
+      height: 790px;
+      background: repeating-linear-gradient($color-light-gray, $color-light-gray 10px, transparent 10px, transparent 20px);
     }
   }
 

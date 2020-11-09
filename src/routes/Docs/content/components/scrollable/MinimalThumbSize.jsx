@@ -3,7 +3,7 @@ import {Scrollable} from 'webrix';
 import './MinimalThumbSize.scss';
 
 export default () =>  (
-    <div className='scrollbar-minimal-thumb-size'>
+    <>
         <div>
             Small scrollbar
             <div className='left-scrollable'>
@@ -20,5 +20,5 @@ export default () =>  (
                 </Scrollable>
             </div>
         </div>
-    </div>
+    </>
 );

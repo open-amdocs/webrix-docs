@@ -3,12 +3,9 @@
   align-items: center;
   justify-content: center;
 
-  > div {
+  .scrollbar {
     border: 2px dashed $color-gray;
     border-radius: 4px;
-  }
-
-  .horizontal-scroll {
     width: 300px;
     white-space: nowrap;
   }

@@ -2,50 +2,67 @@ import {Example} from 'components';
 
 The `<Scrollable/>` component can be used to apply custom scrollbar styling to a scrollable element.
 It does so by hiding the native scrollbars, and displaying real DOM elements instead.
-The positioning of the scrollbars is determined by the `scrollTop` property on the container.
 
-It's important to note that the `<Scrollable/>` component behaves just like any other div would,
-so in terms of CSS everything else should work as it would have if you were using the native
+The `<Scrollable/>` component therefore behaves just like any native element would,
+because it's nothing but a scrollable div. JS and CSS applied to `<Scrollable/>` works just like
+it would have if you were using the native scrollbars, with the benefit of having real DOM access to the scrollbars.
+
+The positioning of the scrollbars is determined by the `scrollTop`/`scrollLeft` properties of the container.
 
 ## Vertical Scroll
 
-<Example file='components/scrollable/VerticalScroll' height={400}/>
+<Example file='components/scrollable/VerticalScroll' height={300}/>
 
-In this example you can see the behaviour of a vertical scrollbar
+In this example we have a `<Scrollable/>` with content that overflows it vertically.
+Due to that overflow, the element can be scrolled vertically, and a vertical scrollbar appears.
 
 ## Horizontal Scroll
 
-<Example file='components/scrollable/HorizontalScroll' height={400}/>
+<Example file='components/scrollable/HorizontalScroll' height={250}/>
 
-In this example you can see the behaviour of a horizontal scrollbar
+Same as the previous story, only here the content overflows horizontally.
 
 ## Minimal Thumb Size
 
-<Example file='components/scrollable/MinimalThumbSize' height={400}/>
+<Example file='components/scrollable/MinimalThumbSize' height={300}/>
 
 The thumb size is affected by the content's length - the longer the content is, the smaller
 the thumb is - down to a minimum size of `MIN_THUMB_SIZE` of the container's size.
+
+In other words, there's a limit to how small a scrollbar thumb can be. The purpose of that
+limit is to avoid having a thumb too small for the user to click on.
 
 ## Resize Detection
 
 <Example file='components/scrollable/ResizeDetection' height={400}/>
 
-In this example you can see how the scrollbar is getting adjusted to the container in case of resize
+This example shows how the `<Scrollable/>` scrollbars are automatically updated when one of the `<Scrollable/>`
+ancestors is resized (if that resize directly affects the scrollbars).
+
+Internally, `<Scrollable/>` uses the `ResizeObserver` to listen to dimension changes.
 
 ## Scrollbar Shadow
 
-<Example file='components/scrollable/ScrollbarShadow' height={400}/>
+<Example file='components/scrollable/ScrollbarShadow' height={300}/>
 
-By adding `Scrollable.Shadow` you can define a shadow that appears once the scrollbar is getting to the top or the bottom of the container.
+Sometimes you want to indicate to the user that there's more content to see, that is currently
+invisible because it overflows that container. One common way of indicating that is by an inset shadow.
+
+The `<Scrollable.Shadow/>` allows you to easily add that indication, for both vertically and horizontally scrollable elements.
+All you need to do is wrap your `<Scrollable/>` element with `<Scrollable.Shadow/>`, and add `position: relative` to the container.
+
+The `<Scrollable.Shadow/>` will display shadow in the direction in which the content is overflowing.
+The further away you scroll from the beginning/end, the deeper the shadow will become.
 
 ## Custom Scrollbars
 
-<Example file='components/scrollable/CustomScrollbars' height={400}/>
+<Example file='components/scrollable/CustomScrollbars' height={300}/>
 
 If you want to have some custom scrollbars, you can do so by providing your own scrollbar component.
 This can be done by passing `<Scrollbar.VerticalScrollbar>` and/or `<Scrollbar.HorizontalScrollbar>`
 as children, and passing your custom scrollbar as a child to them.
-In this example you can see a custom vertical scrollbar, positioned outside of the container.
+In this example you can see a custom vertical scrollbar, positioned outside of the container, featuring
+a vivid gradient.
 
 ```jsx
 <Scrollbar>
