@@ -21,7 +21,7 @@ const Header = () => {
             </Link>
             <nav className={cls('menu', {active})}>
                 {[DOCS, TUTORIAL, PLAYGROUND, EXAMPLES].map(({name, path}) => (
-                    <Link to={path} className={cls({active: current === name})}>{name}</Link>
+                    <Link key={name} to={path} className={cls({active: current === name})}>{name}</Link>
                 ))}
             </nav>
             <div className='version'>v{pkg.dependencies.webrix}</div>
