@@ -4,7 +4,7 @@ import './UnderConstruction.scss';
 
 export default () => (
     <div className='under-construction'>
-        <img src={src} alt='Under Construction Sign'/>
+        <img src={src} alt='Under Construction Sign' loading='lazy'/>
         This page is still under construction. <br/>
         Come back soon!
     </div>

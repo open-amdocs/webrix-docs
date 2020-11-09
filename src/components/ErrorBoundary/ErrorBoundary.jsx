@@ -18,7 +18,7 @@ export default class ErrorBoundary extends React.Component {
         return !this.state.hasError ? this.props.children : (
             <Container>
                 <div className='error-page'>
-                    <img src={bricks}/>
+                    <img src={bricks} loading='lazy'/>
                     <div className='content'>
                         <h1>Sorry, something went wrong!</h1>
                         <p>We're scratching our heads right now trying to figure out what we did wrong.<br/>

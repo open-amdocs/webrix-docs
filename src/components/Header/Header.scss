@@ -29,6 +29,7 @@
     display: flex;
     justify-content: center;
     flex: 1;
+    height: 100%;
 
     @include media-max('sm') {
       display: none;
@@ -40,6 +41,7 @@
       left: 0;
       top: 60px;
       padding: 10px;
+      height: auto;
 
       &.active {
         display: flex;
@@ -47,11 +49,21 @@
 
       a {
         color: $color-white;
+        padding: 10px 0;
       }
     }
 
     a {
-      padding: 10px;
+      margin: 0 10px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      &.active {
+        border-bottom: 4px solid $color-pink;
+        color: $color-pink;
+        font-weight: bold;
+      }
     }
   }
 
