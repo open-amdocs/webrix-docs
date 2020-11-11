@@ -1,0 +1,27 @@
+#route-examples nav {
+  width: 200px;
+  box-sizing: border-box;
+
+  li {
+    padding: 10px;
+    border-bottom: 1px $color-lighter-gray solid;
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      .tag {
+        font-size: 7px;
+        background-color: $color-lighter-gray;
+        color: $color-gray;
+        display: inline;
+        padding: 2px 4px;
+        border-radius: 2px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        margin: 2px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
