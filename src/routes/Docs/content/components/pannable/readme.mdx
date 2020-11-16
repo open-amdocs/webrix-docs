@@ -1,3 +1,26 @@
-import {UnderConstruction} from 'components';
+import {Example} from 'components';
 
-<UnderConstruction/>
+The `<Pannable/>` Component can be used to make its children components pannable (i.e. capable of being panned)
+and scrollable in case container's size is smaller than size of content.
+
+## Basic Example
+
+<Example file='components/pannable/BasicExample' height={400}/>
+
+In this example you can see a simple circle that can be panned.
+You can use `this.props.viewport` to access the `<Pannable/>` area width/height
+
+## API
+
+### Importing
+
+```jsx
+import {Pannable} from 'webrix';
+import Pannable from 'webrix/Pannable'; // For better tree shaking
+```
+
+### Props
+
+Name|Type|Default|Description
+---|---|---|---
+`children`|node|`null`|Specifies the pannable content

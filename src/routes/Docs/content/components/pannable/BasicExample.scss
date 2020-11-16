@@ -1,0 +1,26 @@
+#example {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .pannable {
+    height: 80vmin;
+    width: 80vmin;
+    background-color: white;
+    box-shadow: 0 0 15px rgba($color-dark-blue, 0.1);
+    border-radius: 5px;
+  }
+
+  .webrix-logo {
+    width: 100vmin;
+    height: 100vmin;
+    background-image: url('../../../../../resources/images/webrix-logo-square-light.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: 20px;
+  }
+}
+
