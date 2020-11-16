@@ -1,0 +1,78 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  .photo-editor {
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(black, 0.2);
+    display: flex;
+    position: relative;
+  }
+
+  .slider {
+    width: 150px;
+    margin: 15px;
+
+    .name {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .track {
+      height: 10px;
+      background-color: $color-light-gray;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+
+      .handle {
+        background-color: $color-pink;
+        width: 16px;
+        height: 16px;
+        border-radius: 16px;
+        position: absolute;
+        cursor: pointer;
+        transform: translate(-3px, -3px);
+      }
+    }
+  }
+
+  .button {
+    text-transform: uppercase;
+    font-size: 14px;
+    background-color: $color-light-gray;
+    margin: 10px 55px;
+  }
+
+  .image-container {
+    overflow: hidden;
+    border-radius: 5px;
+    margin: 15px;
+    width: 550px;
+    height: 400px;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      box-shadow: inset 0 0 5px rgba(black, 0.3);
+    }
+  }
+
+  .attribution {
+    position: absolute;
+    bottom: -22px;
+    font-size: 12px;
+
+    a {
+      color: $color-blue;
+      box-shadow: 0 1px 0 $color-blue;
+    }
+  }
+}
