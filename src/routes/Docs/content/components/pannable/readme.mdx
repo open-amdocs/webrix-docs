@@ -1,14 +1,14 @@
 import {Example} from 'components';
 
-The `<Pannable/>` Component can be used to make its children components pannable (i.e. capable of being panned)
+The `<Pannable/>` Component can be used to make content pannable (i.e. capable of being panned)
 and scrollable in case container's size is smaller than size of content.
 
 ## Basic Example
 
 <Example file='components/pannable/BasicExample' height={400}/>
 
-In this example you can see a simple circle that can be panned.
-You can use `this.props.viewport` to access the `<Pannable/>` area width/height
+In this example `<Pannable/>` is wrapping an image that is larger than the container.
+As a result, the content becomes scrollable, and also pannable (by clicking & dragging the content).
 
 ## API
 
