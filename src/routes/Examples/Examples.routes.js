@@ -14,4 +14,9 @@ export default [
         path: '/examples/PhotoEditor',
         tags: ['movable'],
     },
+    {
+        title: 'Image Crop',
+        path: '/examples/ImageCrop',
+        tags: ['resizable', 'movable'],
+    },
 ]

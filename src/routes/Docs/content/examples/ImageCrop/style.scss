@@ -1,0 +1,137 @@
+$border-size: 2px;
+$circle-size: 10px;
+$circle-offset: ($circle-size + $border-size) / 2;
+
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  .image-crop {
+    width: 640px;
+    height: 480px;
+  }
+
+  .crop {
+    position: absolute;
+    z-index: 2;
+    border: $border-size solid $color-light-gray;
+    box-shadow: 0 0 0 100vmax rgba(black, 0.4);
+
+    .movable {
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+    }
+
+    .circle {
+      width: $circle-size;
+      height: $circle-size;
+      background-color: $color-dark-gray;
+      border-radius: $circle-size;
+      position: absolute;
+      box-shadow: inset 0 0 0 1px white;
+
+      // Below are the circle positions, defined
+      // clockwise starting from the top left corner
+
+      &:nth-child(1) {
+        top: -$circle-offset;
+        left: -$circle-offset;
+      }
+
+      &:nth-child(2) {
+        top: -$circle-offset;
+        left: 50%;
+        margin-left: -$circle-size/2;
+      }
+
+      &:nth-child(3) {
+        top: -$circle-offset;
+        right: -$circle-offset;
+      }
+
+      &:nth-child(4) {
+        top: 50%;
+        margin-top: -$circle-size/2;
+        right: -$circle-offset;
+      }
+
+      &:nth-child(5) {
+        bottom: -$circle-offset;
+        right: -$circle-offset;
+      }
+
+      &:nth-child(6) {
+        bottom: -$circle-offset;
+        left: 50%;
+        margin-left: -$circle-size/2;
+      }
+
+      &:nth-child(7) {
+        bottom: -$circle-offset;
+        left: -$circle-offset;
+      }
+
+      &:nth-child(8) {
+        top: 50%;
+        margin-top: -$circle-size/2;
+        left: -$circle-offset;
+      }
+    }
+
+    .grid-line {
+      background-size: 10px 10px;
+      position: absolute;
+
+      &:nth-child(1),
+      &:nth-child(2) {
+        background-image: repeating-linear-gradient(transparent 0%, transparent 50%, white 50%, white 100%);
+        width: 1px;
+        top: 0;
+        bottom: 0;
+      }
+
+      &:nth-child(1) {
+        left: 33%;
+      }
+
+      &:nth-child(2) {
+        left: 66%;
+      }
+
+      &:nth-child(3),
+      &:nth-child(4) {
+        background-image: repeating-linear-gradient(90deg, transparent 0%, transparent 50%, white 50%, white 100%);
+        height: 1px;
+        left: 0;
+        right: 0;
+      }
+
+      &:nth-child(3) {
+        top: 33%;
+      }
+
+      &:nth-child(4) {
+        top: 66%;
+      }
+    }
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+
+  .attribution {
+    text-align: center;
+    font-size: 12px;
+
+    a {
+      color: $color-blue;
+      box-shadow: 0 1px 0 $color-blue;
+    }
+  }
+}
