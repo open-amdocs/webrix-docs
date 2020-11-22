@@ -30,8 +30,8 @@ const Footer = () => (
             <div className='links'>
                 <h4>TRY IT</h4>
                 <ul>
-                    <li><a href='#'>Playground</a></li>
-                    <li><a href='#'>Examples</a></li>
+                    <li><a href='/playground'>Playground</a></li>
+                    <li><a href='/examples'>Examples</a></li>
                 </ul>
             </div>
             <div className='links'>
