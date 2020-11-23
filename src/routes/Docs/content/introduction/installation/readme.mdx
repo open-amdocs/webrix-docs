@@ -21,13 +21,13 @@ npm i react react-dom prop-types
 You can then import components/hooks like so:
 
 ```jsx
-import {Movable} from 'webrix';
+import {Movable} from 'webrix/components';
 
 // For better tree shaking you can make your imports more specific.
 // This can potentially reduce your final bundle size, but the
 // difference can be negligible since the entire Webrix library
 // is rather small
-import Movable from 'webrix/Movable';
+import Movable from 'webrix/components/Movable';
 ```
 
 ## As a Script Tag
@@ -35,13 +35,13 @@ import Movable from 'webrix/Movable';
 Alternatively you can add a `<script/>` tag to your document's `<head/>` and get Webrix through a CDN:
 
 ```html
-<script src="https://unpkg.com/webrix@1.0.0/build/webrix.umd.js" crossorigin></script>
+<script src="https://unpkg.com/webrix@1.0.0/umd/webrix.umd.js" crossorigin></script>
 ```
 
 There's also a minified version, recommended for production:
 
 ```html
-<script src="https://unpkg.com/webrix@1.0.0/build/webrix.umd.min.js" crossorigin></script>
+<script src="https://unpkg.com/webrix@1.0.0/umd/webrix.umd.min.js" crossorigin></script>
 ```
 
 Webrix does not work without `react`, `react-dom` and `prop-types`, so be sure to include those as well:
@@ -50,4 +50,10 @@ Webrix does not work without `react`, `react-dom` and `prop-types`, so be sure t
 <script src="https://unpkg.com/react@16.14.0/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@16.14.0/umd/react-dom.development.js" crossorigin></script>
 <script type="module" src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js" crossorigin></script>
+```
+
+You can now access everything through the global `Webrix` variable:
+
+```js
+const {Movable} = Webrix.components;
 ```
