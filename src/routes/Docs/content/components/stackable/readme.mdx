@@ -58,8 +58,12 @@ according to the React component tree, and not the DOM tree.
 ### Importing
 
 ```jsx
+// ESM
 import {Stackable} from 'webrix/components';
 import Stackable from 'webrix/components/Stackable'; // For better tree shaking
+
+// UMD
+const {Stackable} = Webrix.components;
 ```
 
 ### Functions
