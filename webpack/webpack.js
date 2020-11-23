@@ -105,7 +105,7 @@ module.exports = {
             globalObject: !hasArg('production') ? 'self' : false,
         }),
         new webpack.DefinePlugin({
-            LIBRARY_SIZE: JSON.stringify(getFileSize(paths.node_modules + '/webrix/build/webrix.cjs.min.js')),
+            LIBRARY_SIZE: JSON.stringify(getFileSize(paths.node_modules + '/webrix/umd/webrix.umd.min.js')),
         })
     ]
 };
