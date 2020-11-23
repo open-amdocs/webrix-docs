@@ -1,0 +1,19 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    width: 200px;
+    padding: 5px;
+  }
+
+  p {
+    margin: 5px 0;
+
+    span {
+      color: $color-pink;
+      font-weight: bold;
+    }
+  }
+}
