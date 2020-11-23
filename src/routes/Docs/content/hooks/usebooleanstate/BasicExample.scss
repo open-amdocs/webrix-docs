@@ -1,0 +1,35 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box {
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    background-color: $color-pink;
+    position: absolute;
+  }
+
+  .controls {
+    display: flex;
+    margin: 115px 0 5px;
+
+    div {
+      padding: 3px 7px;
+      border-radius: 3px;
+      font-size: 12px;
+      cursor: pointer;
+      color: white;
+      background-color: $color-blue;
+      margin: 0 3px;
+      user-select: none;
+    }
+  }
+}

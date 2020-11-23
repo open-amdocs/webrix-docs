@@ -1,3 +1,60 @@
-import {UnderConstruction} from 'components';
+import {Example} from 'components';
 
-<UnderConstruction/>
+Create a boolean value state and functions to manipulate that state.
+
+## Basic Example
+
+<Example file='hooks/usebooleanstate/BasicExample' height={220}/>
+
+In the above example we're using the `useVisibilityState` flavor of the hook to control
+the visibility of the box.
+
+## Syntax
+
+```js
+const {value, setTrue, setFalse, toggle, setValue} = useBooleanState(initial);
+```
+
+You can import other flavors of this hook. The only difference are the names of the returned arguments:
+
+```js
+const {visible, show, hide, toggle, setVisible} = useVisibilityState(initial);
+const {focused, focus, blur, toggle, setFocused} = useFocusabilityState(initial);
+```
+
+### Importing
+
+```jsx
+// ESM
+import {useBooleanState} from 'webrix/hooks';
+import {useVisibilityState} from 'webrix/hooks';
+import {useFocusabilityState} from 'webrix/hooks';
+
+// For better tree shaking:
+import {useBooleanState} from 'webrix/hooks/useBooleanState';
+import {useVisibilityState} from 'webrix/hooks/useBooleanState';
+import {useFocusabilityState} from 'webrix/hooks/useBooleanState';
+
+// UMD
+const {useBooleanState} = Webrix.hooks;
+const {useVisibilityState} = Webrix.hooks;
+const {useFocusabilityState} = Webrix.hooks;
+```
+
+### Parameters
+
+name|type|description
+---|---|---
+`initial`|boolean|The initial state
+
+### Return Value
+
+Returns an `Object` with the following keys:
+
+name|type|description
+---|---|---
+`value`|boolean|The state's value.
+`setTrue`|function|A function for setting `value` to `true`.
+`setFalse`|function|A function for setting `value` to `false`.
+`toggle`|function|A function for setting `value` to the opposite of its current value. 
+`setValue`|function|A function for manually setting the value of `value`.
