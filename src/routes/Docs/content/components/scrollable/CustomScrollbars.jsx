@@ -1,7 +1,7 @@
 import React, {forwardRef, useCallback} from 'react';
-import {Scrollable} from 'webrix';
-import VerticalScrollbar from './components/VerticalScrollbar/VerticalScrollbar';
-import {getThumbPosition, getThumbSize} from './components/VerticalScrollbar/Scrollable.utils';
+import {Scrollable} from 'webrix/components';
+import VerticalScrollbar from 'webrix/components/Scrollable/components/VerticalScrollbar/VerticalScrollbar';
+import {getThumbPosition, getThumbSize} from 'webrix/components/Scrollable/Scrollable.utils';
 import './CustomScrollbars.scss';
 
 const CustomVerticalScrollbar = forwardRef(({container}, ref) => {

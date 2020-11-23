@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Zoomable} from 'webrix';
+import {Zoomable} from 'webrix/components';
 import {FaPlusSquare, FaMinusSquare} from 'react-icons/fa';
 import './Zooming.scss';
 

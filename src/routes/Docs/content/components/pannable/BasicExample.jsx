@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pannable} from 'webrix';
+import {Pannable} from 'webrix/components';
 import './BasicExample.scss';
 
 export default () => (

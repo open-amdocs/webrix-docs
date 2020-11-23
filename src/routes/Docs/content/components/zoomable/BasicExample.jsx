@@ -1,5 +1,5 @@
 import React from 'react';
-import {Zoomable} from 'webrix';
+import {Zoomable} from 'webrix/components';
 import './BasicExample.scss';
 
 export default () =>  (

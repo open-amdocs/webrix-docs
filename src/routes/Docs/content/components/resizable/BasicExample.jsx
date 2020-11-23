@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {Resizable} from 'webrix';
+import {Resizable} from 'webrix/components';
 import './BasicExample.scss';
 
 export default () => {

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Collapsible} from 'webrix';
+import {Collapsible} from 'webrix/components';
 import {FaChevronRight} from 'react-icons/fa';
 import './Nesting.scss';
 

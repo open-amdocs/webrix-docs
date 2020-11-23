@@ -6,7 +6,7 @@ const paths = {
     src: root + '/src',
     build: root + '/build',
     resources: root + '/src/resources',
-    webrix: path.resolve(__dirname, '../../webrix'),
+    webrix: path.resolve(__dirname, '../../webrix/build/'),
     node_modules: root + '/node_modules',
 }
 

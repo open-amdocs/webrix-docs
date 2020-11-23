@@ -1,5 +1,5 @@
 import React from 'react';
-import {Stackable} from 'webrix';
+import {Stackable} from 'webrix/components';
 import './Stacking.scss';
 
 export default () => (

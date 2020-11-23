@@ -1,5 +1,5 @@
 import React, {useState, useCallback, useRef} from 'react';
-import {Stackable} from 'webrix';
+import {Stackable} from 'webrix/components';
 import './Ancestors.scss';
 
 export default () => {

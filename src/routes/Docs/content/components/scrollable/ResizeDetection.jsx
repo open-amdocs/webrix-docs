@@ -1,5 +1,5 @@
 import React from 'react';
-import {Scrollable} from 'webrix';
+import {Scrollable} from 'webrix/components';
 import './ResizeDetection.scss';
 
 export default () =>  (

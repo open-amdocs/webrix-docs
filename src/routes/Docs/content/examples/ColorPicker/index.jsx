@@ -1,5 +1,5 @@
 import React, {useCallback, useState, useEffect, useRef, useMemo} from 'react';
-import {Movable} from 'webrix';
+import {Movable} from 'webrix/components';
 import './style.scss';
 
 const WIDTH = 250;

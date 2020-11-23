@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {Stackable} from 'webrix';
+import {Stackable} from 'webrix/components';
 import './EventPropagation.scss';
 
 const Layer = ({children}) => {

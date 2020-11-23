@@ -1,5 +1,5 @@
 import React, {useState, useCallback, useRef} from 'react';
-import {Resizable} from 'webrix';
+import {Resizable} from 'webrix/components';
 import './Snapping.scss';
 
 // Math.round() rounds number up, so rounding 1.5 gives 2, while

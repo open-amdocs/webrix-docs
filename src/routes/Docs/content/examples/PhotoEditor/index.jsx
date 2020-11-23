@@ -1,5 +1,5 @@
 import React, {useCallback, useState, useRef} from 'react';
-import {Movable} from 'webrix';
+import {Movable} from 'webrix/components';
 import img from './image.jpg';
 import './style.scss';
 

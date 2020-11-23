@@ -1,5 +1,5 @@
 import React, {useState, useCallback, useRef} from 'react';
-import {Movable} from 'webrix';
+import {Movable} from 'webrix/components';
 import './Snapping.scss';
 
 const snap = num => {

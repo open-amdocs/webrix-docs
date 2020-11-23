@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {Movable} from 'webrix';
+import {Movable} from 'webrix/components';
 import './BasicExample.scss';
 
 export default () => {
