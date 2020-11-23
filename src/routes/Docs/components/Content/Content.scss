@@ -54,4 +54,25 @@
     color: $color-gray;
     font-style: italic;
   }
+
+  ol {
+    list-style: none;
+    counter-reset: item-number;
+    padding-left: 30px;
+
+    li {
+      counter-increment: item-number;
+      position: relative;
+
+      &::before {
+        content: counter(item-number) ". ";
+        color: $color-pink;
+        font-weight: bold;
+        position: absolute;
+        left: -10px;
+        top: 0;
+        transform: translateX(-100%);
+      }
+    }
+  }
 }

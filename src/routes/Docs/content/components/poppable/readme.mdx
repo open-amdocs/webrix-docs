@@ -1,3 +1,112 @@
-import {UnderConstruction} from 'components';
+import {Example} from 'components';
 
-<UnderConstruction/>
+The `<Poppable/>` can be used for creating components that are "popping out" of the screen,
+like **tooltips, dropdowns, context menus, popovers, modals** and so on.
+These components can be positioned on the screen based on some reference element.
+
+The `<Poppable/>` is using `<Stackable/>` internally to maintain a dynamic stacking context.
+In addition, the `<Poppable/>` takes a placement configuration (a list of valid placements relative
+to the reference element), and places itself based on that, while maintaining the poppable element
+in the viewport.
+
+## Positioning Pseudo Code
+
+ 1. Filter the array of valid placements, removing those that will cause the target to overflow the container.
+ 1. Sort the resulting array based on the distance from the default placement, from shortest distance to longest distance.
+ 1. Choose the first element in the resulting array if exists.
+ 1. Otherwise choose the default placement (this will only occur if no placement was determined to be valid).
+
+## Basic Example
+
+<Example file='components/poppable/BasicExample' height={400}/>
+
+In this example we have a movable `container` and a movable `reference` (You can drag them around).
+The `<Poppable/>` will attempt to keep the `target` within the `container` and close to the `reference`
+based on the given supported placements.
+
+Note that the default positioning is defined in this example to be at the **bottom right**
+corner of the `reference` element, so when the `<Poppable/>` repositions the target, it
+will attempt to pick a position as close as possible to the default position.
+
+In other words, the default position acts as a "magnet" for the `target`, and the `target`
+is pulled towards the default position as much as possible while being contained in the `container`.
+
+Note that moving the `reference` outside of the `container` will cause the target to disappear.
+
+## Context
+
+<Example file='components/poppable/Context' height={300}/>
+
+Sometimes you need to position additional elements based on the position of the `reference`, the `target` or the `container`.
+For this you need access to their bounding rects after the positioning process has been completed.
+You can do so by using the `Poppable.Context` context provider.
+
+In the above example you see how a triangle can be positioned between the reference and the target using that context.
+
+```jsx
+const MyComponent = () => {
+    {tbr, rbr, cbr} = useContext(Poppable.Context);
+    // Do somethig based on the bounding rects.
+    return (...);
+}
+```
+
+## Mouse Position
+
+<Example file='components/poppable/MousePosition' height={300}/>
+
+In the previous examples we've seen how a `<Poppable/>` can be positioned based on a reference element.
+In this example, the `<Poppable/>` is positioned based on the mouse position instead.
+
+This can be done by passing a `DOMRect` as the `reference` prop, instead of a React ref.
+The `DOMRect` x/y (or left/top) coordinates should be set to the mouse' `clientX` and `clientY` properties, respectively.
+
+In the above example, clicking inside the *Clickable Area* will show the `Target`, placing it
+at the coordinates where the mouse clicked. Clicking outside the *Clickable Area* will hide the `Target`.
+
+## Manual Control
+
+<Example file='components/poppable/ManualControl' height={300}/>
+
+`Poppable.Manual` is a lower-level version of `Poppable` where the state is "lifted up" to the containing
+layer. `Poppable.Manual` does not maintain a state of its own for the placement, and instead expects the containing layer
+to provide that as props. This gives you the capability to fully control the positioning of the
+target if needed.
+
+In the previous examples the reference was movable, and the target was attached to it.
+In this example, we use `Poppable.Manual` to allow the user to move the target as well.
+Moving the target will hide the triangle, since it is now "detached" from the reference.
+Clicking on the tack icon will re-attach the target with the reference.
+
+```jsx
+const MyComponent = () => {
+    const [placement, setPlacement] = useState(); // Don't provide an initial state to allow the popover to use its own defaul state.
+
+    return (
+        <Poppable.Manual placements={...} placement={placement} onPlacement={setPlacement}>
+            <SomeTarget/>
+        </Poppable>
+    );
+}
+```
+
+## API
+
+### Importing
+
+```jsx
+import {Poppable} from 'webrix/components';
+import Poppable from 'webrix/components/Poppable'; // For better tree shaking
+```
+
+### Props
+
+Name|Type|Default|Description
+---|---|---|---
+`container`|React Ref|`{current: document.body}`|Specifies a reference to the container element. Defaults to the document body.
+`reference`|React Ref|`{current: document.body}`|Specifies a reference to a reference element, to be used when calculating the placements.
+`placements`|function|`() => [{top: 0, left: 0}]`|Specifies a function that receives the reference & target (children) bounding rects, and should return an array of objects with `top` and `left` keys, representing the valid placements for the target.
+`placement`|object|`{top: -999, left: -999}`|Specifies the current placement of the `Poppable`, to be updated using the provided `onPlacement`.
+`onPlacement`|function|`() => null`|Specifies a function to be called when a new placement is applied. Receives and object with `top` and `left` as arguments.
+`default`|number|`0`|Specifies an index pointing to an item in the resulting placements array, to be used as the default placement, and also as a "magnet" when choosing another placement.
+`children`|node|`null`|Specifies a function that receives the `top` & `left` coordinates representing a valid positioning of the target.

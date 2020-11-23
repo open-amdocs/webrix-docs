@@ -1,0 +1,68 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .movable-rectangle {
+    position: fixed;
+    user-select: none;
+    // Generated with https://kovart.github.io/dashed-border-generator/
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='black' stroke-width='3' stroke-dasharray='4%2c8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    box-sizing: border-box;
+    cursor: move;
+
+    &::after {
+      content: attr(title);
+      position: absolute;
+      top: -20px;
+      font-size: 13px;
+      left: 0;
+    }
+  }
+}
+
+.poppable-target {
+  background-color: $color-dark-gray;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  user-select: none;
+  overflow: hidden;
+
+  .poppable-triangle {
+    position: fixed;
+    border: 10px solid transparent;
+    border-bottom-color: $color-dark-gray;
+  }
+
+  .movable {
+    width: 100%;
+    height: 100%;
+    cursor: move;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      background-color: #a4abc1;
+      padding: 4px 4px;
+      border-radius: 2px;
+      overflow: visible;
+
+      &.unpinned path {
+        transform: rotate(45deg);
+        transform-origin: center;
+      }
+    }
+  }
+}
