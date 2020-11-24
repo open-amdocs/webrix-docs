@@ -4,6 +4,7 @@
   .iframe-container {
     height: 80vh;
     flex: 1;
+    overflow: hidden;
 
     .prism-code {
       margin: 0;
