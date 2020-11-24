@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useVisibilityState} from 'webrix/hooks';
 import './BasicExample.scss';
 
