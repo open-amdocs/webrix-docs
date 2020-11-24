@@ -84,6 +84,7 @@ $circle-offset: ($circle-size + $border-size) / 2;
     .grid-line {
       background-size: 10px 10px;
       position: absolute;
+      pointer-events: none;
 
       &:nth-child(1),
       &:nth-child(2) {
