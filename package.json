@@ -10,7 +10,7 @@
   },
   "license": "Apache 2.0",
   "bugs": "https://github.com/open-amdocs/webrix-docs/issues",
-  "homepage": "http://webrix.amdocs.com",
+  "homepage": "https://webrix.amdocs.com",
   "devDependencies": {
     "@babel/cli": "7.12.1",
     "@babel/core": "7.12.3",
