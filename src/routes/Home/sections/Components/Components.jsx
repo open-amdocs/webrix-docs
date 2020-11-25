@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container} from 'components';
+import components from 'content/docs/components/components.routes';
 import Button from '../../components/Button/Button';
-import components from '../../../Docs/content/components/components.routes';
 import './Components.scss';
 
 const Features = () => (

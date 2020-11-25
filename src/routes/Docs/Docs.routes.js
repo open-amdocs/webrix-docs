@@ -1,6 +1,6 @@
 import {FaDownload} from 'react-icons/fa';
-import components from './content/components/components.routes';
-import hooks from './content/hooks/hooks.routes';
+import components from 'content/docs/components/components.routes';
+import hooks from 'content/docs/hooks/hooks.routes';
 
 export default [
     {

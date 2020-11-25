@@ -11,20 +11,20 @@ The positioning of the scrollbars is determined by the `scrollTop`/`scrollLeft` 
 
 ## Vertical Scroll
 
-<Example file='components/scrollable/VerticalScroll' height={300}/>
+<Example file='docs/components/scrollable/VerticalScroll' height={300}/>
 
 In this example we have a `<Scrollable/>` with content that overflows it vertically.
 Due to that overflow, the element can be scrolled vertically, and a vertical scrollbar appears.
 
 ## Horizontal Scroll
 
-<Example file='components/scrollable/HorizontalScroll' height={250}/>
+<Example file='docs/components/scrollable/HorizontalScroll' height={250}/>
 
 Same as the previous story, only here the content overflows horizontally.
 
 ## Minimal Thumb Size
 
-<Example file='components/scrollable/MinimalThumbSize' height={300}/>
+<Example file='docs/components/scrollable/MinimalThumbSize' height={300}/>
 
 The thumb size is affected by the content's length - the longer the content is, the smaller
 the thumb is - down to a minimum size of `MIN_THUMB_SIZE` of the container's size.
@@ -34,7 +34,7 @@ limit is to avoid having a thumb too small for the user to click on.
 
 ## Resize Detection
 
-<Example file='components/scrollable/ResizeDetection' height={400}/>
+<Example file='docs/components/scrollable/ResizeDetection' height={400}/>
 
 This example shows how the `<Scrollable/>` scrollbars are automatically updated when one of the `<Scrollable/>`
 ancestors is resized (if that resize directly affects the scrollbars).
@@ -43,7 +43,7 @@ Internally, `<Scrollable/>` uses the `ResizeObserver` to listen to dimension cha
 
 ## Scrollbar Shadow
 
-<Example file='components/scrollable/ScrollbarShadow' height={300}/>
+<Example file='docs/components/scrollable/ScrollbarShadow' height={300}/>
 
 Sometimes you want to indicate to the user that there's more content to see, that is currently
 invisible because it overflows that container. One common way of indicating that is by an inset shadow.
@@ -56,7 +56,7 @@ The further away you scroll from the beginning/end, the deeper the shadow will b
 
 ## Custom Scrollbars
 
-<Example file='components/scrollable/CustomScrollbars' height={300}/>
+<Example file='docs/components/scrollable/CustomScrollbars' height={300}/>
 
 If you want to have some custom scrollbars, you can do so by providing your own scrollbar component.
 This can be done by passing `<Scrollbar.VerticalScrollbar>` and/or `<Scrollbar.HorizontalScrollbar>`

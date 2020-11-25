@@ -48,9 +48,11 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
         alias: {
-            utility: paths.src + '/utility/',
             components: paths.src + '/components/',
+            content: paths.src + '/content/',
+            resources: paths.src + '/resources/',
             routes: paths.src + '/routes/',
+            utility: paths.src + '/utility/',
             webrix: hasArg('production') ? 'webrix' : paths.webrix,
         }
     },

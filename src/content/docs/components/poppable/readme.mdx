@@ -18,7 +18,7 @@ in the viewport.
 
 ## Basic Example
 
-<Example file='components/poppable/BasicExample' height={400}/>
+<Example file='docs/components/poppable/BasicExample' height={400}/>
 
 In this example we have a movable `container` and a movable `reference` (You can drag them around).
 The `<Poppable/>` will attempt to keep the `target` within the `container` and close to the `reference`
@@ -35,7 +35,7 @@ Note that moving the `reference` outside of the `container` will cause the targe
 
 ## Context
 
-<Example file='components/poppable/Context' height={300}/>
+<Example file='docs/components/poppable/Context' height={300}/>
 
 Sometimes you need to position additional elements based on the position of the `reference`, the `target` or the `container`.
 For this you need access to their bounding rects after the positioning process has been completed.
@@ -53,7 +53,7 @@ const MyComponent = () => {
 
 ## Mouse Position
 
-<Example file='components/poppable/MousePosition' height={300}/>
+<Example file='docs/components/poppable/MousePosition' height={300}/>
 
 In the previous examples we've seen how a `<Poppable/>` can be positioned based on a reference element.
 In this example, the `<Poppable/>` is positioned based on the mouse position instead.
@@ -66,7 +66,7 @@ at the coordinates where the mouse clicked. Clicking outside the *Clickable Area
 
 ## Manual Control
 
-<Example file='components/poppable/ManualControl' height={300}/>
+<Example file='docs/components/poppable/ManualControl' height={300}/>
 
 `Poppable.Manual` is a lower-level version of `Poppable` where the state is "lifted up" to the containing
 layer. `Poppable.Manual` does not maintain a state of its own for the placement, and instead expects the containing layer

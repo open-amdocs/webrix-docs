@@ -23,7 +23,7 @@ their z-index based on their nesting depth in the React component tree, rather t
 
 ## Stacking
 
-<Example file='components/stackable/Stacking' height={400}/>
+<Example file='docs/components/stackable/Stacking' height={400}/>
 
 You can stack *Stackables* by nesting them.
 A nested `<Stackable/>` receives a higher `z-index` than it's parent.
@@ -37,7 +37,7 @@ The lowest z-index is a constant specified in `BASE_Z_INDEX`, set to 10.
 
 ## Event Propagation
 
-<Example file='components/stackable/EventPropagation' height={400}/>
+<Example file='docs/components/stackable/EventPropagation' height={400}/>
 
 In React, events are propagated based on the React tree, and not the DOM tree.
 This means that events are propagated through portals (see [Event Bubbling Through Portals](https://reactjs.org/docs/portals.html#event-bubbling-through-portals)).
@@ -47,7 +47,7 @@ We leverage this fact in this example to show how click events are propagated th
 
 ## Ancestors
 
-<Example file='components/stackable/Ancestors' height={400}/>
+<Example file='docs/components/stackable/Ancestors' height={400}/>
 
 In this example, clicking on a `<Stackable/>` will show the list of classes of all of its ancestors
 starting from the furthest to the closest ancestor. Notice that the list of ancestors is displayed

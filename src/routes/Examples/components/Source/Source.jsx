@@ -9,7 +9,7 @@ export default ({ext}) => {
     useEffect(() => {
         (async () => {
             const file = ext === 'scss' ? 'style.scss' : 'index.jsx';
-            const code = await import(`!raw-loader!../../../../routes/Docs/content/examples/${pathname.split('/')[2]}/${file}`);
+            const code = await import(`!raw-loader!content/examples/${pathname.split('/')[2]}/${file}`);
             setCode(code.default.trim());
         })();
     }, [ext]);

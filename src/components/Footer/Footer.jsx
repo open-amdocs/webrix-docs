@@ -1,10 +1,10 @@
 import React from 'react';
 import {FaNpm, FaGithub, FaCodeBranch, FaBug, FaCode} from 'react-icons/fa';
+import components from 'content/docs/components/components.routes';
+import hooks from 'content/docs/hooks/hooks.routes';
 import {Container} from '../';
 import Logo from './Components/Logo';
 import Copyright from './Components/Copyright';
-import components from '../../routes/Docs/content/components/components.routes';
-import hooks from '../../routes/Docs/content/hooks/hooks.routes';
 import './Footer.scss';
 
 const Components = () => (
