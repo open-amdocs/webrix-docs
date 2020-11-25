@@ -9,7 +9,7 @@ const API = '2006-03-01';
 const FILE_PERMISSION = 'public-read';
 const PROXY = 'http://genproxy.amdocs.com:8080';
 const RETRIES = 20000;
-const DIR = './build';
+const DIR = '../build';
 
 // Setup
 AWS.config.update({region: REGION});
