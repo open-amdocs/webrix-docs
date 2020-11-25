@@ -49,7 +49,8 @@
     "dev": "webpack-dev-server --config webpack/webpack.js --open",
     "build": "webpack --config webpack/webpack.js --production",
     "lint": "eslint --ext=js --ext=jsx src/",
-    "deploy": "node deploy"
+    "deploy": "node ./aws/deploy",
+    "invalidate": "node ./aws/invalidate"
   },
   "dependencies": {
     "@babel/runtime": "7.12.1",

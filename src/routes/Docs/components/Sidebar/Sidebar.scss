@@ -26,6 +26,8 @@ $border-color: #d9e6f1;
     padding: 30px 0;
     position: sticky;
     top: 60px; // The header's height
+    overflow: auto;
+    max-height: calc(100vh - 100px);
 
     a {
       display: flex;

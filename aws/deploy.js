@@ -39,7 +39,7 @@ fs.readdir(path.resolve(__dirname, DIR), (err, files) => {
             ContentType: 'text/html',
         };
 
-        s3.upload (params, function (err, data) {
+        s3.upload(params, function (err, data) {
             if (err) {
                 console.log("Error", err);
             } if (data) {
