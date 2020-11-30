@@ -8,12 +8,6 @@ const Reference = forwardRef((_, ref) => (
     <div className='reference' ref={ref}>REFERENCE</div>
 ));
 
-const Popup = props => (
-    <Poppable {...props} className='poppable-target'>
-        TARGET
-    </Poppable>
-)
-
 export default () => {
     const reference = useRef();
     const {vbefore, vcenter, vafter, hbefore, hcenter, hafter} = Poppable.Placements;
@@ -32,7 +26,7 @@ export default () => {
         <>
             <Reference ref={reference}/>
             {['top left','top center','top right','bottom left','bottom center','bottom right','center left','center right'].map((title, i) => (
-                <Poppable {...props} default={i}>{title}</Poppable>
+                <Poppable {...props} default={i} key={i}>{title}</Poppable>
             ))}
         </>
     );

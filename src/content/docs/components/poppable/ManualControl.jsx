@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState, forwardRef, useContext} from 'react';
+import React, {useCallback, useRef, useState, forwardRef} from 'react';
 import {FaThumbtack} from 'react-icons/fa';
 import {Movable, Poppable} from 'webrix/components';
 import './ManualControl.scss';

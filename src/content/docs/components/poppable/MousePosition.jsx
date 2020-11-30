@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Poppable} from 'webrix/components';
 import {useVisibilityState, useClickOutside} from 'webrix/hooks';
 import './MousePosition.scss';
