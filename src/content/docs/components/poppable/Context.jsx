@@ -30,7 +30,7 @@ const MovableRectangle = forwardRef(({width, height, title}, ref) => {
 const Triangle = () => {
     const {tbr} = useContext(Poppable.Context);
     const SIZE = 20;
-    return !isEmpty(tbr) && <div className='poppable-triangle' style={{top: tbr.top - SIZE, left: tbr.left + (tbr.width - SIZE) / 2}}/>;
+    return !isEmpty(tbr) && <div className='triangle' style={{top: tbr.top - SIZE, left: tbr.left + (tbr.width - SIZE) / 2}}/>;
 };
 
 export default () => {

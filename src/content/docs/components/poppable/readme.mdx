@@ -33,6 +33,25 @@ is pulled towards the default position as much as possible while being contained
 
 Note that moving the `reference` outside of the `container` will cause the target to disappear.
 
+## Triangle
+
+<Example file='docs/components/poppable/Triangle' height={300}/>
+
+It's common for popovers to have a triangle pointing to the reference to which it is attached.
+For that end we created a component called `<Poppable.Triangle/>` that automatically positions
+itself based on the placement of the popup.
+
+It's doing so by computing the vertical/horizontal intersection between the two DOMRects and positioning
+itself in the center of that intersection. So you regardless of what placements you provide to `Poppable`,
+the `<Poppable.Triangle/>` will position itself automatically.
+
+To set the color of the triangle, you can use the CSS custom property `--triangle-color`:
+```css
+.poppable-triangle {
+  --triangle-color: blue;
+}
+```
+
 ## Context
 
 <Example file='docs/components/poppable/Context' height={300}/>
@@ -41,7 +60,8 @@ Sometimes you need to position additional elements based on the position of the 
 For this you need access to their bounding rects after the positioning process has been completed.
 You can do so by using the `Poppable.Context` context provider.
 
-In the above example you see how a triangle can be positioned between the reference and the target using that context.
+In the above example you see you can create your own triangle and position it between the
+reference and the target using `Poppable.Context`.
 
 ```jsx
 const MyComponent = () => {
@@ -105,12 +125,28 @@ const {Poppable} = Webrix.components;
 
 ### Props
 
+#### Poppable
+
 Name|Type|Default|Description
 ---|---|---|---
 `container`|React Ref|`{current: document.body}`|Specifies a reference to the container element. Defaults to the document body.
 `reference`|React Ref|`{current: document.body}`|Specifies a reference to a reference element, to be used when calculating the placements.
 `placements`|function|`() => [{top: 0, left: 0}]`|Specifies a function that receives the reference & target (children) bounding rects, and should return an array of objects with `top` and `left` keys, representing the valid placements for the target.
-`placement`|object|`{top: -999, left: -999}`|Specifies the current placement of the `Poppable`, to be updated using the provided `onPlacement`.
-`onPlacement`|function|`() => null`|Specifies a function to be called when a new placement is applied. Receives and object with `top` and `left` as arguments.
 `default`|number|`0`|Specifies an index pointing to an item in the resulting placements array, to be used as the default placement, and also as a "magnet" when choosing another placement.
 `children`|node|`null`|Specifies a function that receives the `top` & `left` coordinates representing a valid positioning of the target.
+`overflow`|function|Default Strategy|Specifies a function that defines the recovery strategy in case of an overflow. Receives `tbr`, `cbr`, `rbr`, `wbr` as arguments, and should return an object with `top`/`left` properties for the target position.
+
+#### Poppable.Manual
+
+The `<Poppable.Manual/>` component supports all the `<Poppable/>` props, and the following props in addition:
+
+Name|Type|Default|Description
+---|---|---|---
+`placement`|object|`{top: -999, left: -999}`|Specifies the current placement of the `Poppable`, to be updated using the provided `onPlacement`.
+`onPlacement`|function|`() => null`|Specifies a function to be called when a new placement is applied. Receives and object with `top` and `left` as arguments.
+
+#### Poppable.Triangle
+
+Name|Type|Default|Description
+---|---|---|---
+`size`|number|`0`|Specifies the triangle's height (i.e. the distance from the triangle's base to the opposing angle)

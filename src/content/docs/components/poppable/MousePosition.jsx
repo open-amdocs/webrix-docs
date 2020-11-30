@@ -3,20 +3,17 @@ import {Poppable} from 'webrix/components';
 import {useVisibilityState, useClickOutside} from 'webrix/hooks';
 import './MousePosition.scss';
 
-const isEmpty = o => JSON.stringify(o) === '{}';
-
-const Triangle = () => {
-    const {tbr} = useContext(Poppable.Context);
-    const SIZE = 20;
-    return !isEmpty(tbr) && <div className='poppable-triangle' style={{top: tbr.top - SIZE, left: tbr.left + (tbr.width - SIZE) / 2}}/>;
-};
+const TRIANGLE_SIZE = 10;
 
 export default () => {
     const {visible, show, hide} = useVisibilityState();
     const handleOnMouseDownCapture = useClickOutside(hide);
     const [reference, setReference] = useState(new DOMRect(0, 0, 0, 0));
     const getPlacements = useCallback((rbr, tbr) => [{
-        top: rbr.bottom + 10,
+        top: rbr.bottom + TRIANGLE_SIZE,
+        left: rbr.left + (rbr.width - tbr.width) / 2,
+    }, {
+        top: rbr.top - tbr.height - TRIANGLE_SIZE,
         left: rbr.left + (rbr.width - tbr.width) / 2,
     }], []);
     const handleOnClick = useCallback(e => {
@@ -31,10 +28,12 @@ export default () => {
                 onMouseDownCapture={handleOnMouseDownCapture}
                 className='dashed-rectangle'
                 title='Clickable Area'/>
-            {visible && <Poppable reference={reference} placements={getPlacements} className='poppable-target'>
-                <Triangle/>
-                Target
-            </Poppable>}
+            {visible && (
+                <Poppable reference={reference} placements={getPlacements} className='poppable-target'>
+                    <Poppable.Triangle size={TRIANGLE_SIZE}/>
+                    Target
+                </Poppable>
+            )}
         </>
     );
 };

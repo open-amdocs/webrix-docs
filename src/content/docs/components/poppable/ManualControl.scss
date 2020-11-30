@@ -33,9 +33,7 @@
   overflow: hidden;
 
   .poppable-triangle {
-    position: fixed;
-    border: 10px solid transparent;
-    border-bottom-color: $color-dark-gray;
+    --triangle-color: #{$color-dark-gray};
   }
 
   .movable {

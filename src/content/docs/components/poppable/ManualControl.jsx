@@ -4,7 +4,6 @@ import {Movable, Poppable} from 'webrix/components';
 import './ManualControl.scss';
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-const isEmpty = o => JSON.stringify(o) === '{}';
 
 const MovableRectangle = forwardRef(({width, height, title}, ref) => {
     const {innerWidth, innerHeight} = window;
@@ -28,12 +27,6 @@ const MovableRectangle = forwardRef(({width, height, title}, ref) => {
     );
 });
 
-const Triangle = () => {
-    const {tbr} = useContext(Poppable.Context);
-    const SIZE = 20;
-    return !isEmpty(tbr) && <div className='poppable-triangle' style={{top: tbr.top - SIZE, left: tbr.left + (tbr.width - SIZE) / 2}}/>;
-};
-
 export default () => {
     const [placement, setPlacement] = useState();
     const [manual, setManual] = useState(null);
@@ -45,7 +38,6 @@ export default () => {
     const handleOnMove = ({dx, dy}) => {
         const {top, left} = initial.current;
         setManual({top: top + dy, left: left + dx});
-
     };
     const getPlacements = useCallback((rbr, tbr) => [{
         top: rbr.bottom + 10,
@@ -60,7 +52,7 @@ export default () => {
                     TARGET
                     <FaThumbtack onClick={() => setManual(null)} className={manual ? 'unpinned' : ''}/>
                 </Movable>
-                {!manual && <Triangle/>}
+                {!manual && <Poppable.Triangle size={10}/>}
             </Poppable.Manual>
         </>
     );
