@@ -9,13 +9,11 @@ export default () => {
     const {visible, show, hide} = useVisibilityState();
     const handleOnMouseDownCapture = useClickOutside(hide);
     const [reference, setReference] = useState(new DOMRect(0, 0, 0, 0));
-    const getPlacements = useCallback((rbr, tbr) => [{
-        top: rbr.bottom + TRIANGLE_SIZE,
-        left: rbr.left + (rbr.width - tbr.width) / 2,
-    }, {
-        top: rbr.top - tbr.height - TRIANGLE_SIZE,
-        left: rbr.left + (rbr.width - tbr.width) / 2,
-    }], []);
+    const {vbefore, vafter, hcenter} = Poppable.Placements;
+    const getPlacements = useCallback((rbr, tbr) => [
+        {...vbefore(rbr, tbr, -TRIANGLE_SIZE), ...hcenter(rbr, tbr)}, // Top center
+        {...vafter(rbr, tbr, TRIANGLE_SIZE), ...hcenter(rbr, tbr)}, // Bottom center
+    ], []);
     const handleOnClick = useCallback(e => {
         show();
         setReference(new DOMRect(e.clientX, e.clientY, 0, 0));

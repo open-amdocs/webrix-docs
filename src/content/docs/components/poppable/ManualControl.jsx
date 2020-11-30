@@ -30,6 +30,7 @@ const MovableRectangle = forwardRef(({width, height, title}, ref) => {
 export default () => {
     const [placement, setPlacement] = useState();
     const [manual, setManual] = useState(null);
+    const {vafter, hcenter} = Poppable.Placements;
     const initial = useRef(manual);
     const reference = useRef();
     const handleOnBeginMove = () => {
@@ -39,10 +40,9 @@ export default () => {
         const {top, left} = initial.current;
         setManual({top: top + dy, left: left + dx});
     };
-    const getPlacements = useCallback((rbr, tbr) => [{
-        top: rbr.bottom + 10,
-        left: rbr.left + (rbr.width - tbr.width) / 2,
-    }], []);
+    const getPlacements = useCallback((rbr, tbr) => [
+        {...vafter(rbr, tbr, 10), ...hcenter(rbr, tbr)}, // Bottom center
+    ], []);
 
     return (
         <>

@@ -9,13 +9,6 @@ In addition, the `<Poppable/>` takes a placement configuration (a list of valid 
 to the reference element), and places itself based on that, while maintaining the poppable element
 in the viewport.
 
-## Positioning Pseudo Code
-
- 1. Filter the array of valid placements, removing those that will cause the target to overflow the container.
- 1. Sort the resulting array based on the distance from the default placement, from shortest distance to longest distance.
- 1. Choose the first element in the resulting array if exists.
- 1. Otherwise choose the default placement (this will only occur if no placement was determined to be valid).
-
 ## Basic Example
 
 <Example file='docs/components/poppable/BasicExample' height={400}/>
@@ -32,6 +25,28 @@ In other words, the default position acts as a "magnet" for the `target`, and th
 is pulled towards the default position as much as possible while being contained in the `container`.
 
 Note that moving the `reference` outside of the `container` will cause the target to disappear.
+
+## Placements
+
+<Example file='docs/components/poppable/Placements' height={400}/>
+
+Although you can provide whatever placements you like, we realize that certain placements are more common
+than others. To that end we provide a set of placement utilities that can be used for easily generating
+the more common placements for your `<Poppable/>`.
+
+These placement utilities can be accessed through `Poppable.Placements`, and include dedicated functions
+per orientation. For example, to position your target vertically above the reference (and horizontally
+centered to it), you can use the following:
+
+```js
+const topcenter = (rbr, tbr) => {
+    const {vbefore, hcenter} = Poppable.Placements;
+    return {
+        ...vbefore(rbr, tbr), // Vertically before (i.e. above)
+        ...hcenter(rbr, tbr) // Horizontally centered
+    };
+};
+```
 
 ## Triangle
 
@@ -98,6 +113,16 @@ In this example, we use `Poppable.Manual` to allow the user to move the target a
 Moving the target will hide the triangle, since it is now "detached" from the reference.
 Clicking on the tack icon will re-attach the target with the reference.
 
+## Positioning Algorithm
+
+Below are the steps in the positioning algorithm, in case you are interested in understanding the inner workings
+of `<Poppable/>`:
+
+ 1. Filter the array of valid placements, removing those that will cause the target to overflow the container.
+ 1. Sort the resulting array based on the distance from the default placement, from shortest distance to longest distance.
+ 1. Choose the first element in the resulting array if exists.
+ 1. Otherwise choose the default placement (this will only occur if no placement was determined to be valid).
+
 ```jsx
 const MyComponent = () => {
     const [placement, setPlacement] = useState(); // Don't provide an initial state to allow the popover to use its own defaul state.
@@ -150,3 +175,23 @@ Name|Type|Default|Description
 Name|Type|Default|Description
 ---|---|---|---
 `size`|number|`0`|Specifies the triangle's height (i.e. the distance from the triangle's base to the opposing angle)
+
+#### Poppable.Placements
+
+`vbefore(rbr, tbr, offset)` - Returns an object with a `top` property whose value corresponds to positioning
+the target vertically before (i.e. to the top of) the reference.
+
+`vafter(rbr, tbr, offset)` - Returns an object with a `top` property whose value corresponds to positioning
+the target vertically after (i.e. to the bottom of) the reference.
+
+`vcenter(rbr, tbr, offset)` - Returns an object with a `top` property whose value corresponds to positioning
+the target vertically centered to the reference.
+
+`hbefore(rbr, tbr, offset)` - Returns an object with a `left` property whose value corresponds to positioning
+the target horizontally before (i.e. to the left of) the reference.
+
+`hafter(rbr, tbr, offset)` - Returns an object with a `left` property whose value corresponds to positioning
+the target horizontally after (i.e. to the right of) the reference.
+
+`hcenter(rbr, tbr, offset)` - Returns an object with a `left` property whose value corresponds to positioning
+the target horizontally centered to the reference.

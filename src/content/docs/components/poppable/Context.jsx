@@ -35,9 +35,10 @@ const Triangle = () => {
 
 export default () => {
     const reference = useRef();
+    const {vafter, hcenter} = Poppable.Placements;
     const getPlacements = useCallback((rbr, tbr) => [{
-        top: rbr.bottom + 10,
-        left: rbr.left + (rbr.width - tbr.width) / 2,
+        ...vafter(rbr, tbr, 10),
+        ...hcenter(rbr, tbr),
     }], []);
 
     return (
