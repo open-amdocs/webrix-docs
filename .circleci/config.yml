@@ -26,6 +26,7 @@ jobs:
             - run: npm rebuild node-sass
             - run: npm run build
             - run: npm run deploy
+            - run: npm run invalidate
 
 workflows:
   lint-build-deploy:
