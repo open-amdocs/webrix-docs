@@ -19,4 +19,9 @@ export default [
         path: '/examples/ImageCrop',
         tags: ['resizable', 'movable'],
     },
+    {
+        title: 'Guided Tour',
+        path: '/examples/GuidedTour',
+        tags: ['poppable'],
+    },
 ]

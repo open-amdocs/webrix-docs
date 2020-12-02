@@ -1,0 +1,91 @@
+$box-size: 110px;
+
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  .boxes {
+    max-width: $box-size * 4 + 80;
+    flex-wrap: wrap;
+    display: flex;
+  }
+
+  .skeleton-box {
+    width: $box-size * 2 + 20;
+    height: $box-size + 20;
+    margin: 10px;
+    background-color: white;
+    box-shadow: inset 0 -2px 2px rgba(0,0,0,0.2), 0 2px 15px rgba(0,0,0,0.2);
+    background-size: $box-size * 2 $box-size;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" style="fill:lightgray"> <rect x="0" y="0" rx="1" ry="1" width="50" height="50"/><rect x="56" y="8" rx="1" ry="1" width="100" height="8"/><rect x="56" y="22" rx="1" ry="1" width="90" height="8"/><rect x="56" y="36" rx="1" ry="1" width="70" height="8"/><rect x="0" y="56" rx="1" ry="1" width="200" height="8"/><rect x="0" y="70" rx="1" ry="1" width="180" height="8"/><rect x="0" y="84" rx="1" ry="1" width="170" height="8"/></svg>');
+  }
+
+  .dimmer {
+    position: fixed;
+    box-shadow: 0 0 0 3px rgba($color-pink, 0.5), 0 0 0 100vmax rgba(black, 0.3);
+  }
+}
+
+.popup {
+  background-color: $color-pink;
+  color: white;
+  max-width: 170px;
+  padding: 10px;
+  font-size: 11px;
+  border-radius: 3px;
+  transition: all .2s ease-in-out;
+
+  h3 {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+    svg {
+      cursor: pointer;
+      background-color: $color-blue;
+      padding: 4px;
+      border-radius: 3px;
+      margin: 0 3px;
+      visibility: hidden;
+      pointer-events: none;
+
+      &.visible {
+        visibility: visible;
+        pointer-events: all;
+      }
+    }
+  }
+
+  .circles {
+    display: flex;
+
+    .circle {
+      width: 6px;
+      height: 6px;
+      border-radius: 5px;
+      background-color: $color-gray;
+      margin: 2px 5px;
+      box-shadow: inset 0 0 2px rgba(black, 0.5);
+
+      &.active {
+        background-color: white;
+        box-shadow: 0 0 0 1px rgba(black, 0.5);;
+      }
+    }
+  }
+
+  .poppable-triangle {
+    --triangle-color: #{$color-pink};
+    transition: all .2s ease-in-out;
+  }
+}
