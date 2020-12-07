@@ -4,7 +4,7 @@ import components from 'content/docs/components/components.routes';
 import Button from '../../components/Button/Button';
 import './Components.scss';
 
-const Features = () => (
+const Components = () => (
     <Container>
         <section className='components'>
             <h2>Components</h2>
@@ -20,4 +20,4 @@ const Features = () => (
     </Container>
 );
 
-export default Features;
+export default Components;

@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../../resources/images/webrix-logo-light.png';
 import FallingBricks from './components/FallingBricks/FallingBricks';
 import Introduction from './sections/Introduction/Introduction';
+import Examples from './sections/Examples/Examples';
 import Features from './sections/Features/Features';
 import Components from './sections/Components/Components';
 import Hooks from './sections/Hooks/Hooks';
@@ -15,6 +16,7 @@ const Home = () => (
         </div>
         <FallingBricks/>
         <Introduction/>
+        <Examples/>
         <Features/>
         <Components/>
         <Hooks/>
