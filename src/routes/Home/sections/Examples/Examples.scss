@@ -1,4 +1,5 @@
 $iframe-zoom: 1/3;
+$transition: all .2s ease-out;
 
 section.examples {
 
@@ -9,7 +10,7 @@ section.examples {
     text-align: center;
   }
 
-  .iframe-container {
+  .example {
     width: 100%;
     padding-top: 70%;
     position: relative;
@@ -17,16 +18,54 @@ section.examples {
     overflow: hidden;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1), 0 1px 5px rgba(0, 0, 0, 0.2);
 
-    iframe {
-      width: (1 / $iframe-zoom) * 100%; // Multiply by the inverse of $iframe-zoom
-      height: (1 / $iframe-zoom) * 100%;
-      transform: scale($iframe-zoom);
+    &:hover {
+      .iframe-container {
+        transform: scale(1.4);
+        filter: blur(2px);
+      }
+      .text {
+        opacity: 1;
+      }
+      .name {
+        transform: translate(-40px, -40px);
+      }
+      .tags {
+        transform: translate(40px, 40px);
+      }
+    }
+
+    .iframe-container {
+      width: 100%;
+      height: 100%;
       position: absolute;
       top: 0;
       left: 0;
-      transform-origin: top left;
-      border: 20px solid white;
+      border: 10px solid white;
       box-sizing: border-box;
+      transition: $transition;
+
+      iframe {
+        width: (1 / $iframe-zoom) * 100%; // Multiply by the inverse of $iframe-zoom
+        height: (1 / $iframe-zoom) * 100%;
+        transform: scale($iframe-zoom);
+        transform-origin: top left;
+        border: none;
+        box-sizing: border-box;
+      }
+    }
+
+    .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      background-color: $color-pink;
+      padding: 5px 10px;
+      color: white;
+      border-radius: 4px;
+      transition: $transition;
+      box-shadow: 0 0 0 400px rgba($color-pink, 0.1), 0 0 15px rgba(black, 0.4);
     }
 
     .name {
@@ -40,6 +79,7 @@ section.examples {
       color: white;
       font-size: 12px;
       box-shadow: 0 0 15px rgba(black, 0.3), 0 0 2px rgba(black, 0.5);
+      transition: $transition;
     }
 
     .tags {
@@ -51,6 +91,7 @@ section.examples {
       box-shadow: 0 0 15px rgba(black, 0.3), 0 0 2px rgba(black, 0.2);
       padding-left: 8px;
       border-top-left-radius: 4px;
+      transition: $transition;
 
       .tag {
         text-transform: uppercase;

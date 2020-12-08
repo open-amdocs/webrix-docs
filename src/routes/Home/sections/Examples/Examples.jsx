@@ -10,8 +10,11 @@ const Examples = () => (
             <h2>Examples</h2>
             <div className='grid'>
                 {examples.map(({path, title, tags}) => (
-                    <div className='iframe-container' key={title}>
-                        <iframe src={`/frame${path}`}/>
+                    <div className='example' key={title}>
+                        <div className='iframe-container'>
+                            <iframe src={`/frame${path}`}/>
+                        </div>
+                        <div className='text'>View Example</div>
                         <div className='name'>{title}</div>
                         <div className='tags'>
                             {tags.map(t => (
