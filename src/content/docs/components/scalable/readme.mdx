@@ -16,8 +16,9 @@ to accurately update the document flow. This is illustrated in the examples belo
 
 <Example file='docs/components/scalable/BasicExample' height={300}/>
 
-In this example you can see how a zoom of `1` will show the content in its actual size, a zoom of `0.5`
-will scale the content down by 50%, and a zoom of `2` will double the content size.
+In this example you can see how a scale of `1` will show the content in its actual size, a scale of `0.5`
+will scale the content down by 50%, and a scale of `2` will double the content size. You can also scale non-uniformly by
+specifying a different scale factor for `scalex` and `scaley`.
 
 ## Document Flow
 
@@ -28,11 +29,11 @@ the document flow. In this example you can see how the text is pushed by the sca
 based on its scaled size, and not its original size.
 
 
-## Zooming Example
+## Scaling Example
 
-<Example file='docs/components/scalable/Zooming' height={300}/>
+<Example file='docs/components/scalable/Scaling' height={300}/>
 
-In this example you can use the plus/minus buttons in order to see how the content is zoomed in/out respectively.
+In this example you can use the plus/minus buttons in order to see how the content is scaled in/out respectively.
 
 ## API
 
@@ -51,5 +52,5 @@ const {Scalable} = Webrix.components;
 
 Name|Type|Default|Description
 ---|---|---|---
-`zoomx`|number|`1`|Specifies the horizontal zoom factor where 1 represents the original size, 0.5 represents half of the size, and so on.
-`zoomy`|number|`1`|Specifies the vertical zoom factor where 1 represents the original size, 0.5 represents half of the size, and so on.
+`scalex`|number|`1`|Specifies the horizontal scale factor where 1 represents the original size, 0.5 represents half of the size, and so on.
+`scaley`|number|`1`|Specifies the vertical scale factor where 1 represents the original size, 0.5 represents half of the size, and so on.

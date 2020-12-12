@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
 import {Scalable} from 'webrix/components';
 import {FaPlusSquare, FaMinusSquare} from 'react-icons/fa';
-import './Zooming.scss';
+import './Scaling.scss';
 
 export default () => {
-    const [zoom, setZoom] = useState(2);
+    const [scale, setScale] = useState(2);
 
     return (
         <React.Fragment>
             <div className='controls'>
-                <FaPlusSquare onClick={() => setZoom(zoom + 0.25)}/>
-                <FaMinusSquare onClick={() => setZoom(Math.max(0, zoom - 0.25))}/>
+                <FaPlusSquare onClick={() => setScale(scale + 0.25)}/>
+                <FaMinusSquare onClick={() => setScale(Math.max(0, scale - 0.25))}/>
             </div>
-            <Scalable zoomx={zoom} zoomy={zoom}>
+            <Scalable scalex={scale} scaley={scale}>
                 <div className='content'>
-                    Scale x{zoom}
+                    Scale x{scale}
                 </div>
             </Scalable>
         </React.Fragment>

@@ -24,13 +24,13 @@ const Slider = ({value, onChange}) => {
 };
 
 export default () => {
-    const [zoom, setZoom] = useState(0.75);
+    const [scale, setScale] = useState(0.75);
 
     return (
         <div className='image-container'>
-            <Slider value={zoom} onChange={setZoom}/>
+            <Slider value={scale} onChange={setScale}/>
             <Pannable>
-                <Scalable zoomx={zoom} zoomy={zoom}>
+                <Scalable scalex={scale} scaley={scale}>
                     <img src={img}/>
                 </Scalable>
             </Pannable>
