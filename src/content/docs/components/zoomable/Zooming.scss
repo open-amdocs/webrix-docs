@@ -4,9 +4,12 @@
   flex-direction: column;
   user-select: none;
 
-  .zoomable {
-    transform-origin: 50% 0;
+  .zoomable,
+  .zoomable-inner {
     transition: all .2s ease;
+  }
+
+  .content {
     background-color: $color-pink;
     color: $color-white;
     display: flex;

@@ -1,14 +1,32 @@
 import {Example} from 'components';
 
-The `<Zoomable/>` component can be used to to create items that can be zoomed in and out programmatically.
-It takes a `zoom` prop, specifying the scale factor for the children.
+The `<Zoomable/>` component can be used to create items that can be scaled in and out.
+Although this can simply be done using CSS transformation, i.e. `transform: scale(...);`,
+it will not affect the normal document flow.
+
+From [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transforms/Using_CSS_transforms):
+
+> By modifying the coordinate space, CSS transforms change the shape and position of the
+> affected content without disrupting the normal document flow.
+
+`<Zoomable/>` takes care of that by scaling the element's actual dimensions based on the scale factor,
+to accurately update the document flow. This is illustrated in the examples below.
 
 ## Basic Example
 
 <Example file='docs/components/zoomable/BasicExample' height={300}/>
 
-In this example you can see how a zoom of `1` will show the content in its actual size, a zoom of `1.5`
-will scale the content by 150%, and a zoom of `2` will double the content size.
+In this example you can see how a zoom of `1` will show the content in its actual size, a zoom of `0.5`
+will scale the content down by 50%, and a zoom of `2` will double the content size.
+
+## Document Flow
+
+<Example file='docs/components/zoomable/DocumentFlow' height={300}/>
+
+As stated before, `<Zoomable/>` scales the real dimensions of the element to accurately update
+the document flow. In this example you can see how the text is pushed by the scaled element,
+based on its scaled size, and not its original size.
+
 
 ## Zooming Example
 
@@ -33,4 +51,5 @@ const {Zoomable} = Webrix.components;
 
 Name|Type|Default|Description
 ---|---|---|---
-`zoom`|number|`1`|Specifies the zoom level on the scale of 1 where 1 is 100%, 0.5 is 50%, etc.
+`zoomx`|number|`1`|Specifies the horizontal zoom factor where 1 represents the original size, 0.5 represents half of the size, and so on.
+`zoomy`|number|`1`|Specifies the vertical zoom factor where 1 represents the original size, 0.5 represents half of the size, and so on.

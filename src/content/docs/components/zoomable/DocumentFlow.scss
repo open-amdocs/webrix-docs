@@ -1,12 +1,22 @@
-$size: 100px;
+$size: 50px;
 
 #example {
   display: flex;
   align-items: center;
   justify-content: center;
 
+  .text {
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    font-size: 10px;
+    box-shadow: 0 0 10px rgba(black, 0.2);
+    border-radius: 4px;
+  }
+
   .zoomable {
-    margin: 10px;
+    float: left;
+    margin: 0 10px 5px 0;
   }
 
   .content {

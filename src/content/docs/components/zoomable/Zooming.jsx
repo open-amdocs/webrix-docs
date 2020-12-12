@@ -12,7 +12,11 @@ export default () => {
                 <FaPlusSquare onClick={() => setZoom(zoom + 0.25)}/>
                 <FaMinusSquare onClick={() => setZoom(Math.max(0, zoom - 0.25))}/>
             </div>
-            <Zoomable zoom={zoom}>Scale x{zoom}</Zoomable>
+            <Zoomable zoomx={zoom} zoomy={zoom}>
+                <div className='content'>
+                    Scale x{zoom}
+                </div>
+            </Zoomable>
         </React.Fragment>
     );
 };
