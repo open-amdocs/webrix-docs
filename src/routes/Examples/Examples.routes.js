@@ -27,6 +27,6 @@ export default [
     {
         title: 'Where\'s Waldo?',
         path: '/examples/WheresWaldo',
-        tags: ['zoomable', 'pannable'],
+        tags: ['scalable', 'pannable'],
     },
 ]

@@ -1,5 +1,5 @@
 import React, {useCallback, useState, useRef} from 'react';
-import {Zoomable, Pannable, Movable} from 'webrix/components';
+import {Scalable, Pannable, Movable} from 'webrix/components';
 import img from './image.jpeg';
 import './style.scss';
 
@@ -17,7 +17,7 @@ const Slider = ({value, onChange}) => {
 
     return (
         <Movable className='slider' ref={movable} onBeginMove={handleOnMove} onMove={handleOnMove}>
-            <div className='value'>x{value.toFixed(2)}</div>
+            <div className='value'>{Math.round(value * 100)}%</div>
             <div className='handle' style={{top: position}}/>
         </Movable>
     );
@@ -30,9 +30,9 @@ export default () => {
         <div className='image-container'>
             <Slider value={zoom} onChange={setZoom}/>
             <Pannable>
-                <Zoomable zoom={zoom}>
+                <Scalable zoomx={zoom} zoomy={zoom}>
                     <img src={img}/>
-                </Zoomable>
+                </Scalable>
             </Pannable>
         </div>
     );

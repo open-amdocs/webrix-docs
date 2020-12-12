@@ -1,6 +1,6 @@
 import {Example} from 'components';
 
-The `<Zoomable/>` component can be used to create items that can be scaled in and out.
+The `<Scalable/>` component can be used to create items that can be scaled in and out.
 Although this can simply be done using CSS transformation, i.e. `transform: scale(...);`,
 it will not affect the normal document flow.
 
@@ -9,28 +9,28 @@ From [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transforms/Using
 > By modifying the coordinate space, CSS transforms change the shape and position of the
 > affected content without disrupting the normal document flow.
 
-`<Zoomable/>` takes care of that by scaling the element's actual dimensions based on the scale factor,
+`<Scalable/>` takes care of that by scaling the element's actual dimensions based on the scale factor,
 to accurately update the document flow. This is illustrated in the examples below.
 
 ## Basic Example
 
-<Example file='docs/components/zoomable/BasicExample' height={300}/>
+<Example file='docs/components/scalable/BasicExample' height={300}/>
 
 In this example you can see how a zoom of `1` will show the content in its actual size, a zoom of `0.5`
 will scale the content down by 50%, and a zoom of `2` will double the content size.
 
 ## Document Flow
 
-<Example file='docs/components/zoomable/DocumentFlow' height={300}/>
+<Example file='docs/components/scalable/DocumentFlow' height={300}/>
 
-As stated before, `<Zoomable/>` scales the real dimensions of the element to accurately update
+As stated before, `<Scalable/>` scales the real dimensions of the element to accurately update
 the document flow. In this example you can see how the text is pushed by the scaled element,
 based on its scaled size, and not its original size.
 
 
 ## Zooming Example
 
-<Example file='docs/components/zoomable/Zooming' height={300}/>
+<Example file='docs/components/scalable/Zooming' height={300}/>
 
 In this example you can use the plus/minus buttons in order to see how the content is zoomed in/out respectively.
 
@@ -40,11 +40,11 @@ In this example you can use the plus/minus buttons in order to see how the conte
 
 ```jsx
 // ESM
-import {Zoomable} from 'webrix/components';
-import Zoomable from 'webrix/components/Zoomable'; // For better tree shaking
+import {Scalable} from 'webrix/components';
+import Scalable from 'webrix/components/Scalable'; // For better tree shaking
 
 // UMD
-const {Zoomable} = Webrix.components;
+const {Scalable} = Webrix.components;
 ```
 
 ### Props

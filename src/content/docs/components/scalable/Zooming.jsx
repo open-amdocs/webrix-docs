@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Zoomable} from 'webrix/components';
+import {Scalable} from 'webrix/components';
 import {FaPlusSquare, FaMinusSquare} from 'react-icons/fa';
 import './Zooming.scss';
 
@@ -12,11 +12,11 @@ export default () => {
                 <FaPlusSquare onClick={() => setZoom(zoom + 0.25)}/>
                 <FaMinusSquare onClick={() => setZoom(Math.max(0, zoom - 0.25))}/>
             </div>
-            <Zoomable zoomx={zoom} zoomy={zoom}>
+            <Scalable zoomx={zoom} zoomy={zoom}>
                 <div className='content'>
                     Scale x{zoom}
                 </div>
-            </Zoomable>
+            </Scalable>
         </React.Fragment>
     );
 };

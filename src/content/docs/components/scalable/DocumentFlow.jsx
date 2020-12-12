@@ -1,10 +1,10 @@
 import React from 'react';
-import {Zoomable} from 'webrix/components';
+import {Scalable} from 'webrix/components';
 import './DocumentFlow.scss';
 
 export default () =>  (
     <div className='text'>
-        <Zoomable zoomx={2} zoomy={2}><div className='content'>Scale x2</div></Zoomable>
+        <Scalable zoomx={2} zoomy={2}><div className='content'>Scale x2</div></Scalable>
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
         totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta
         sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed

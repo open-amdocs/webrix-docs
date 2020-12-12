@@ -12,10 +12,10 @@
     position: relative;
   }
 
-  .zoomable {
+  .scalable {
     pointer-events: none;
 
-    .zoomable-inner {
+    .scalable-inner {
       display: flex;
     }
   }

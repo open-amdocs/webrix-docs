@@ -27,8 +27,8 @@ export default [
         icon: FaWindowRestore,
     },
     {
-        title: 'Zoomable',
-        path: '/zoomable',
+        title: 'Scalable',
+        path: '/scalable',
         icon: FaSearchPlus,
     },
     {
