@@ -4,8 +4,8 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
     "prop-types": "latest",
     "react-icons": "latest",
     "webrix": "taken from root package.json"
