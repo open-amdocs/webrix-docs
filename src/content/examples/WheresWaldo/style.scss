@@ -1,0 +1,61 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  .image-container {
+    width: 80vmin;
+    height: 80vmin;
+    border: 10px solid white;
+    box-shadow: 0 0 15px rgba(black, 0.3);
+    position: relative;
+  }
+
+  .zoomable {
+    pointer-events: none;
+
+    .zoomable-inner {
+      display: flex;
+    }
+  }
+
+  .slider {
+    z-index: 1;
+    margin: 20px;
+    width: 8px;
+    box-shadow: 0 0 10px rgba(black, 0.4);
+    border-radius: 4px;
+    height: 100px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    transform: translateY(-50%);
+
+    .value {
+      font-size: 10px;
+      color: white;
+      position: absolute;
+      top: -30px;
+      background-color: $color-pink;
+      padding: 4px 8px;
+      left: 50%;
+      border-radius: 5px;
+      box-sizing: border-box;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(black, 0.4);
+    }
+
+    .handle {
+      border-radius: 4px;
+      position: absolute;
+      width: 20px;
+      height: 10px;
+      background-color: $color-pink;
+      left: -6px;
+      box-shadow: 0 0 2px rgba(black, 0.5);
+      cursor: pointer;
+    }
+  }
+}

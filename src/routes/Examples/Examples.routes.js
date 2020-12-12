@@ -24,4 +24,9 @@ export default [
         path: '/examples/GuidedTour',
         tags: ['poppable'],
     },
+    {
+        title: 'Where\'s Waldo?',
+        path: '/examples/WheresWaldo',
+        tags: ['zoomable', 'pannable'],
+    },
 ]
