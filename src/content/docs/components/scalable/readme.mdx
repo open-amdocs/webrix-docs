@@ -2,15 +2,16 @@ import {Example} from 'components';
 
 The `<Scalable/>` component can be used to create items that can be scaled in and out.
 Although this can simply be done using CSS transformation, i.e. `transform: scale(...);`,
-it will not affect the normal document flow.
+using CSS transformation by itself does not affect the normal document flow.
 
 From [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transforms/Using_CSS_transforms):
 
 > By modifying the coordinate space, CSS transforms change the shape and position of the
 > affected content without disrupting the normal document flow.
 
-`<Scalable/>` takes care of that by scaling the element's actual dimensions based on the scale factor,
-to accurately update the document flow. This is illustrated in the examples below.
+This means that your scaled element only scales superficially, without changing the element's DOM size or the
+position of its neighboring elements. `<Scalable/>` takes care of that by scaling the element's actual dimensions
+based on the scale factor, to accurately update the document flow. This is illustrated in the examples below.
 
 ## Basic Example
 
@@ -52,5 +53,6 @@ const {Scalable} = Webrix.components;
 
 Name|Type|Default|Description
 ---|---|---|---
+`children`|node|`null`|Specifies the scalable content.
 `scalex`|number|`1`|Specifies the horizontal scale factor where 1 represents the original size, 0.5 represents half of the size, and so on.
 `scaley`|number|`1`|Specifies the vertical scale factor where 1 represents the original size, 0.5 represents half of the size, and so on.
