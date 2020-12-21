@@ -8,6 +8,6 @@ export default ({dir, content, onContentChange}) => (
         {['run', 'jsx', 'scss'].map(c => (
             <a key={c} onClick={() => onContentChange(c)} className={cls({active: content === c})}>{c.toUpperCase()}</a>
         ))}
-        <a target='_blank' rel='noreferrer' href={`https://github.com/open-amdocs/webrix-docs/tree/master/src/routes/Docs/content/examples/${dir}`}>GitHub <FaExternalLinkAlt/></a>
+        <a target='_blank' rel='noreferrer' href={`https://github.com/open-amdocs/webrix-docs/tree/master/src/content/examples/${dir}`}>GitHub <FaExternalLinkAlt/></a>
     </div>
 );

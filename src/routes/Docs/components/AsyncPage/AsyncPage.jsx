@@ -5,7 +5,7 @@ import './AsyncPage.scss';
 
 const AsyncPage = ({path, title}) => {
     const Comp = React.lazy(() => import(`content/docs${path}/readme.mdx`));
-    const editURL = `https://github.com/open-amdocs/webrix-docs/blob/master/src/routes/Docs/content${path}/readme.mdx`;
+    const editURL = `https://github.com/open-amdocs/webrix-docs/blob/master/src/content/docs${path}/readme.mdx`;
 
     useEffect(() => {
         document.title = `Webrix.js - ${title}`;
