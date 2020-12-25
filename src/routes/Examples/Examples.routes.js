@@ -29,4 +29,9 @@ export default [
         path: '/examples/WheresWaldo',
         tags: ['scalable', 'pannable'],
     },
+    {
+        title: 'File Browser',
+        path: '/examples/FileBrowser',
+        tags: ['collapsible'],
+    },
 ]

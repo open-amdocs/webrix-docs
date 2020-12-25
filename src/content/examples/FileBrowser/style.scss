@@ -1,0 +1,77 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .browser {
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 4px;
+
+    .file,
+    .folder > .header {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      cursor: pointer;
+      color: $color-blue;
+      padding: 0 5px;
+    }
+
+    .file:focus,
+    .folder > .header:focus {
+      outline: none;
+      color: white;
+      background-color: lighten($color-light-blue, 30%);
+      border-radius: 3px;
+
+      .fa-folder,
+      .fa-file {
+        fill: white;
+      }
+    }
+
+    .fa-folder,
+    .fa-file {
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+    }
+
+    .file {
+      margin-left: 15px;
+
+      .fa-file {
+        fill: $color-pink;
+      }
+    }
+
+    .folder {
+      &.expanded .fa-angle-right {
+        transform: rotate(90deg);
+      }
+
+      .fa-angle-right {
+        position: absolute;
+        top: 4px;
+        left: -15px;
+        transition: all 0.2s ease;
+        fill: $color-light-blue;
+      }
+
+      .fa-folder {
+        fill: $color-light-blue;
+      }
+
+      .header {
+        position: relative;
+        margin-left: 15px;
+      }
+
+      .files {
+        margin-left: 20px;
+      }
+    }
+  }
+}
