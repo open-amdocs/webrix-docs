@@ -60,8 +60,10 @@ const Folder = ({files: [name, ...files]}) => {
 
 export default () => {
     useEffect(() => {
-        // Focus on the first folder initially
+        // Focus on the first folder initially, without scrolling into view (to prevent it in the home page)
+        const x = window.scrollX, y = window.scrollY;
         document.querySelector('.folder .header').focus();
+        window.scrollTo(x, y);
     }, []);
     return (
         <div className='browser'>
