@@ -22,6 +22,7 @@ jobs:
       - node/install-packages:
           override-ci-command: npm install
       - run: npm run build
+      - run: npm run ssr
       - run: npm run deploy
       - run: npm run invalidate
 
