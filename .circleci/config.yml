@@ -10,22 +10,18 @@ jobs:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm run lint
+      - node/install-packages
+      - run: npm run lint
 
   build-and-deploy:
     executor:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm run build
-            - run: npm run deploy
-            - run: npm run invalidate
+      - node/install-packages
+      - run: npm run build
+      - run: npm run deploy
+      - run: npm run invalidate
 
 workflows:
   lint-build-deploy:
