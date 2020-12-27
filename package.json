@@ -52,7 +52,7 @@
     "lint": "eslint --ext=js --ext=jsx src/",
     "deploy": "node ./aws/deploy",
     "invalidate": "node ./aws/invalidate",
-    "ssr": "node ./ssr"
+    "ssr": "node ./ssr --production"
   },
   "dependencies": {
     "@babel/runtime": "7.12.1",
