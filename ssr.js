@@ -16,6 +16,11 @@ const PATHS = [
         title: 'Documentation - Webrix.js',
         description: 'Detailed documentation, including live, editable examples, for components, tools and hooks within Webrix.js'
     },
+    {
+        path: '/frame/',
+        title: 'Example - Webrix.js',
+        description: 'Live examples iframe runner'
+    },
 ];
 
 const runServer = () => new Promise((resolve, reject) => {
