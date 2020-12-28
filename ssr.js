@@ -3,8 +3,6 @@ const puppeteer = require('puppeteer');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack/webpack');
-const {hasArg} = require('./webpack/webpack.utility');
-const PROXY = 'http://genproxy.amdocs.com:8080';
 const PORT = 9000;
 
 const PATHS = [
@@ -38,9 +36,9 @@ const runServer = () => new Promise((resolve, reject) => {
 });
 
 const ssr = async () => {
-    const template = await fs.readFile('./src/index.html', 'utf8');
+    const template = await fs.readFile('./build/index.html', 'utf8');
     const server = await runServer();
-    const browser = await puppeteer.launch({headless: true, args: [hasArg('proxy') ? `--proxy-server=${PROXY}` : '']});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
 
     for (const {path, description, title} of PATHS) {
@@ -56,4 +54,4 @@ const ssr = async () => {
     await browser.close();
     await server.close();
 };
-ssr().then(console.log);
+ssr();
