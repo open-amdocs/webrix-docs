@@ -22,6 +22,7 @@ jobs:
       - checkout
       - node/install-packages:
           override-ci-command: npm install
+      - puppeteer/install
       - run: npm run build
       - run: npm run ssr
       - run: npm run deploy
