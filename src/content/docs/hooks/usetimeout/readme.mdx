@@ -1,3 +1,53 @@
-import {UnderConstruction} from 'components';
+import {Example} from 'components';
 
-<UnderConstruction/>
+Set a timeout (or an interval) with an easy-to-use syntax, and without worrying about memory cleanup when unmounting.
+
+## Basic Example
+
+<Example file='docs/hooks/usetimeout/BasicExample' height={150}/>
+
+In the above example, we use `setTimeout` with `recurring = true`, to create an interval
+that is executed every `100ms`. Clicking on `Start` or `Stop` will start/stop the interval, incrementing
+the timer value by 1 every time.
+
+## Syntax
+
+```js
+const {start, stop} = useTimeout(callback, delay, recurring);
+```
+
+### Importing
+
+```jsx
+// ESM
+import {useTimeout} from 'webrix/hooks';
+import useTimeout from 'webrix/hooks/useTimeout'; // For better tree shaking
+
+// UMD
+const {useTimeout} = Webrix.hooks;
+```
+
+### Parameters
+
+Name|Type|Default|Description
+---|---|---|---
+`callback`|function|-|The callback to execute
+`delay`|number|`0`|The delay, in milliseconds
+`recurring`|boolean|`false`|If true, the callback will be executed every `delay` milliseconds, similar to `setInterval`, until the component is unmounted, or until `stop` is called.
+
+### Return Value
+
+Returns an `Object` with the following keys:
+
+Name|Type|Description
+---|---|---
+`start`|function|A function that, when called, will start the timeout (or interval)
+`stop`|function|A function that, when called, will stop the timeout (or interval)
+
+**Parameters**
+
+Name|Type|Description
+---|---|---
+`callback`|function|The callback to execute
+`delay`|number|The delay, in milliseconds
+`recurring`|boolean|If true, the callback will be executed every `delay` milliseconds, similar to `setInterval`, until the component is unmounted
