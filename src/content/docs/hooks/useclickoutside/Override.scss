@@ -1,0 +1,32 @@
+#example {
+  > div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+      background-color: $color-pink;
+      margin: 5px;
+    }
+  }
+
+  .log {
+    font-size: 12px;
+    overflow: auto;
+    width: 90px;
+    height: 93px;
+    margin-top: -7px;
+    border-radius: 5px;
+
+    p {margin: 5px 0;}
+  }
+}

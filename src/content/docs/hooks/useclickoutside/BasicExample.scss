@@ -1,0 +1,19 @@
+#example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  > div {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: $color-pink;
+    user-select: none;
+  }
+}
