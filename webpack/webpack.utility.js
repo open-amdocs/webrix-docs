@@ -9,4 +9,8 @@ const hasArg = arg => (
     process.argv.filter(a => a === `--${arg}`).length > 0
 );
 
-module.exports = {hasArg, getFileSize};
+const getDirectories = path => (
+    fs.readdirSync(path, {withFileTypes: true}).filter(d => d.isDirectory()).map(d => d.name)
+);
+
+module.exports = {hasArg, getFileSize, getDirectories};

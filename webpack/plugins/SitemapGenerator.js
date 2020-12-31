@@ -1,5 +1,4 @@
-const {readdirSync} = require('fs');
-const {hasArg} = require('../webpack.utility');
+const {hasArg, getDirectories} = require('../webpack.utility');
 const {paths} = require('../webpack.constants');
 
 const ROUTES = [
@@ -9,10 +8,6 @@ const ROUTES = [
     '/playground',
     '/tutorial',
 ];
-
-const getDirectories = path => (
-    readdirSync(path, {withFileTypes: true}).filter(d => d.isDirectory()).map(d => d.name)
-);
 
 class SitemapGenerator {
     apply(compiler) {
