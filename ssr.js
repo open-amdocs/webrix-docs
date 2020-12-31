@@ -37,7 +37,7 @@ const ssr = async () => {
     const page = await browser.newPage();
 
     for (const path of PATHS) {
-        console.log(`Rendering http://localhost:${PORT}${path} into build/ssr${path}/index.html`);
+        console.log(`Rendering http://localhost:${PORT}${path} into build${path}/index.html`);
         await page.goto(`http://localhost:${PORT}${path}`, {waitUntil: 'networkidle0'});
         const app = await page.$('#app');
         const html = await page.evaluate(app => app.innerHTML, app);

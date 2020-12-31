@@ -9,7 +9,7 @@ const API = '2006-03-01';
 const FILE_PERMISSION = 'public-read';
 const PROXY = 'http://genproxy.amdocs.com:8080';
 const RETRIES = 20000;
-const DIR = '../build';
+const DIR = path.resolve(__dirname, '../build');
 
 // Setup
 AWS.config.update({region: REGION});
@@ -24,27 +24,36 @@ const s3 = new AWS.S3({
     maxRetries: RETRIES
 });
 
-fs.readdir(path.resolve(__dirname, DIR), (err, files) => {
-    files.forEach(file => {
-        const fileStream = fs.createReadStream(path.resolve(__dirname, DIR, file));
-        fileStream.on('error', function(err) {
-            console.log('File Error', err);
-        });
+const traverse = (dir, callback) => {
+    fs.readdirSync(dir, {withFileTypes: true}).forEach(d => {
+        const filePath = path.join(dir, d.name);
+        if (d.isFile()) {
+            callback(filePath);
+        } else if (d.isDirectory()) {
+            traverse(filePath, callback);
+        }
+    });
+};
 
-        const params = {
-            Bucket: BUCKET,
-            Key: file,
-            Body: fileStream,
-            ACL: FILE_PERMISSION,
-            ContentType: 'text/html',
-        };
+traverse(DIR, path => {
+    const fileStream = fs.createReadStream(path);
+    fileStream.on('error', (err) => {
+        console.log('File Error', err);
+    });
 
-        s3.upload(params, function (err, data) {
-            if (err) {
-                console.log("Error", err);
-            } if (data) {
-                console.log("Upload Success", data.Location);
-            }
-        });
+    const params = {
+        Bucket: BUCKET,
+        Key: path.substring(DIR.length + 1), // Change the path so that it starts from DIR
+        Body: fileStream,
+        ACL: FILE_PERMISSION,
+        ContentType: 'text/html',
+    };
+
+    s3.upload(params, (err, data) => {
+        if (err) {
+            console.log("Error", err);
+        } if (data) {
+            console.log("Upload Success", data.Location);
+        }
     });
 });
