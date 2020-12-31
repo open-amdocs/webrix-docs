@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin');
 const WorkerPlugin = require('worker-plugin');
+const SitmapGeneratorPlugin = require('./plugins/SitemapGenerator');
 const {paths} = require('./webpack.constants');
 const {hasArg, getFileSize} = require('./webpack.utility');
 
@@ -108,6 +109,7 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             LIBRARY_SIZE: JSON.stringify(getFileSize(paths.node_modules + '/webrix/umd/webrix.umd.min.js')),
-        })
+        }),
+        new SitmapGeneratorPlugin(),
     ]
 };
