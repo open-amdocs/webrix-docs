@@ -6,16 +6,21 @@
 
   .video-player {
     width: 500px;
+    position: relative;
+    display: flex;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 0 5px white, 0 0 25px rgba(black, 0.3);
   }
   
   .video {
     width: 500px;
-    border-radius: 4px;
   }
   
   .slider {
     width: 100%;
-    transform: translateY(10px);
+    transform: translateY(6px);
+    margin-left: 10px;
   }
   
   .line {
@@ -26,8 +31,8 @@
   }
   
   .handle {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     background-color: $color-pink;
     border-radius: 50%;
     &:hover {
@@ -42,32 +47,21 @@
   }
   
   .controls {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 auto;
-    transform: translateY(-40px);
-    width: 480px;
+    background-color: rgba(white, 0.2);
+    backdrop-filter: blur(10px);
   }
   
-  .btn {
-    margin-right: 5px;
-    margin-top: 1px;
-    transition: border .25s ease-in-out;
-    border-left: 20px solid $color-pink;
-    &:hover {
-      cursor: pointer;
-    }
-  
-    &.play {
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-    }
-  
-    &.pause {
-      border-top: 10px solid $color-pink;
-      border-bottom: 10px solid $color-pink;
-    }
+  .play-button {
+    cursor: pointer;
+    fill: $color-pink;
   }
 }
 

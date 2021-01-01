@@ -89,7 +89,7 @@ module.exports = {
                 use: ['babel-loader', '@mdx-js/loader'],
             },
             {
-                test: /\.(png|jpe?g|gif|obj)$/i,
+                test: /\.(png|jpe?g|gif|obj|mp4)$/i,
                 use: [{loader: 'file-loader'}],
             }
         ]

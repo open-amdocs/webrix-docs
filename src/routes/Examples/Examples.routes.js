@@ -35,8 +35,8 @@ export default [
         tags: ['collapsible'],
     },
     {
-        title: 'Video Playback',
-        path: '/examples/VideoPlayback',
-        tags: ['movable'],
+        title: 'Video Player',
+        path: '/examples/VideoPlayer',
+        tags: ['movable', 'useTimeout'],
     },
 ]
