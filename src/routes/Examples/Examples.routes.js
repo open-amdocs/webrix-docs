@@ -34,4 +34,9 @@ export default [
         path: '/examples/FileBrowser',
         tags: ['collapsible'],
     },
+    {
+        title: 'Video Playback',
+        path: '/examples/VideoPlayback',
+        tags: ['movable'],
+    },
 ]

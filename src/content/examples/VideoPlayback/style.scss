@@ -1,0 +1,74 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  .video-player {
+    width: 500px;
+  }
+  
+  .video {
+    width: 500px;
+    border-radius: 4px;
+  }
+  
+  .slider {
+    width: 100%;
+    transform: translateY(10px);
+  }
+  
+  .line {
+    height: 2px;
+    width: 100%;
+    background-color: $color-dark-blue;
+    box-shadow: 0 0 1px $color-dark-blue;
+  }
+  
+  .handle {
+    width: 20px;
+    height: 20px;
+    background-color: $color-pink;
+    border-radius: 50%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  .fill {
+    background-color: $color-pink;
+    height: 2px;
+    transform: translateY(2px);
+  }
+  
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    transform: translateY(-40px);
+    width: 480px;
+  }
+  
+  .btn {
+    margin-right: 5px;
+    margin-top: 1px;
+    transition: border .25s ease-in-out;
+    border-left: 20px solid $color-pink;
+    &:hover {
+      cursor: pointer;
+    }
+  
+    &.play {
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+    }
+  
+    &.pause {
+      border-top: 10px solid $color-pink;
+      border-bottom: 10px solid $color-pink;
+    }
+  }
+}
+
+
