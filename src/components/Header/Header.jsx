@@ -11,9 +11,8 @@ const Header = () => {
     const {pathname} = useLocation();
     const current = pathname.split('/')[1];
     const [active, setActive] = useState(false);
-    const handleOnClick = useCallback(() => {
-        setActive(!active);
-    }, [setActive, active]);
+    const toggle = useCallback(() => setActive(a => !a), [setActive]);
+    const deactivate = useCallback(() => setActive(false), [setActive]);
     return (
         <header id='header'>
             <Link to={HOME.path} className='logo'>
@@ -21,11 +20,11 @@ const Header = () => {
             </Link>
             <nav className={cls('menu', {active})}>
                 {[DOCS, TUTORIAL, PLAYGROUND, EXAMPLES].map(({name, path}) => (
-                    <Link key={name} to={path} className={cls({active: current === name})}>{name}</Link>
+                    <Link key={name} to={path} className={cls({active: current === name})} onClick={deactivate}>{name}</Link>
                 ))}
             </nav>
             <div className='version'>v{pkg.dependencies.webrix}</div>
-            <HamburgerMenu active={active} onClick={handleOnClick}/>
+            <HamburgerMenu active={active} onClick={toggle}/>
         </header>
     );
 }
