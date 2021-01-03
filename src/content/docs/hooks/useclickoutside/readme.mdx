@@ -103,11 +103,18 @@ const handleOnMouseDownCapture = useClickOutside(callback);
 
 ```jsx
 // ESM
-import {useClickOutside, ClickOutside, ClickOutsideOverride} from 'webrix/hooks';
-import {useClickOutside, ClickOutside, ClickOutsideOverride} from 'webrix/hooks/useClickOutside'; // For better tree shaking
+import {useClickOutside} from 'webrix/hooks';
+import {ClickOutside} from 'webrix/hooks';
+import {ClickOutsideOverride} from 'webrix/hooks';
+
+import {useClickOutside} from 'webrix/hooks/useClickOutside'; // For better tree shaking
+import {ClickOutside} from 'webrix/hooks/useClickOutside'; // For better tree shaking
+import {ClickOutsideOverride} from 'webrix/hooks/useClickOutside'; // For better tree shaking
 
 // UMD
-const {useClickOutside, ClickOutside, ClickOutsideOverride} = Webrix.hooks;
+const {useClickOutside} = Webrix.hooks;
+const {ClickOutside} = Webrix.hooks;
+const {ClickOutsideOverride} = Webrix.hooks;
 ```
 
 ### Parameters
