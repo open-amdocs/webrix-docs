@@ -26,12 +26,12 @@ their z-index based on their nesting depth in the React component tree, rather t
 <Example file='docs/components/stackable/Stacking' height={400}/>
 
 You can stack *Stackables* by nesting them.
-A nested `<Stackable/>` receives a higher `z-index` than it's parent.
-The lowest z-index is a constant specified in `BASE_Z_INDEX`, set to 10.
+A nested `<Stackable/>` receives a higher `z-index` than its parent.
+The lowest z-index is defined by the `zIndex` prop, which is set to `10` by default.
 
 ```jsx
-<Stackable> <-- Receives a z-index of BASE_Z_INDEX
-    <Stackable/> <-- Receives a z-index of BASE_Z_INDEX + 1
+<Stackable zIndex={5}> <-- Receives a z-index of 5
+    <Stackable/> <-- Receives a z-index of 6
 </Stackable>
 ```
 
@@ -50,8 +50,14 @@ We leverage this fact in this example to show how click events are propagated th
 <Example file='docs/components/stackable/Ancestors' height={400}/>
 
 In this example, clicking on a `<Stackable/>` will show the list of classes of all of its ancestors
-starting from the furthest to the closest ancestor. Notice that the list of ancestors is displayed
-according to the React component tree, and not the DOM tree.
+starting from the furthest to the closest ancestor. This list is accessible via the `Stackable.getAncestors()`
+function, or via the `data-ancestors` attribute on the `<Stackable/>` DOM element.
+
+For the list to be accurately populated, you must pass a `ReactRef` to the parent element as the
+`parent` prop.
+
+> Notice that the list of ancestors is displayed
+> according to the React component tree, and not the DOM tree.
 
 ## API
 
@@ -91,8 +97,9 @@ up to, but not including, the `<body/>` element.
 
 Name|Type|Default|Description
 ---|---|---|---
+`zIndex`|number|`10`|Specifies the `z-index` for the given `Stackable`. Nested `Stackables` will receive a `z-index` that is 1 higher than this.
 `target`|Element|`document.body`|Specifies portal target.
-`descendants`|Function|`() => null`|Specifies a function to be called when the component mounts/updated. Receives the list of descendant DOM elements as an argument.
+`parent`|React Ref|`{}`|Specifies a reference to the parent component. This optional, and is only used for generating the `data-ancestors` attribute.
 `children`|Node|`null`|Specifies the children of the component.
 
  > NOTE: Any prop other than the props listed above will be injected to the `div` element of the `<Stackable/>`.
