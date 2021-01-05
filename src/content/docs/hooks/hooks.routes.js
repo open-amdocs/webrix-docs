@@ -23,4 +23,12 @@ export default [
         title: 'useDebounce()',
         path: '/usedebounce',
     },
+    {
+        title: 'useThrottle()',
+        path: '/usethrottle',
+    },
+    {
+        title: 'useObject()',
+        path: '/useobject',
+    },
 ];
