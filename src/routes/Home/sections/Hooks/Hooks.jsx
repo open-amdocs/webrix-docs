@@ -1,20 +1,19 @@
 import React from 'react';
 import {Container} from 'components';
 import {FaCode} from 'react-icons/fa';
+import hooks from 'content/docs/hooks/hooks.routes';
 import Button from '../../components/Button/Button';
 import './Hooks.scss';
-
-const HOOKS = ['useBooleanState', 'usePrevious', 'useMounted', 'useDebounce', 'useTimeout', 'useClickOutside', 'useConditionalCallback', 'useObject'];
 
 const Features = () => (
     <Container>
         <section className='hooks'>
             <h2>Hooks</h2>
             <div className='grid'>
-                {HOOKS.map(hook => (
-                    <Button key={hook} href={`/docs/hooks/${hook.toLowerCase()}`}>
+                {hooks.map(({title, path}) => (
+                    <Button key={path} href={`/docs/hooks${path}`}>
                         <FaCode/>
-                        {hook}()
+                        {title}
                     </Button>
                 ))}
             </div>
