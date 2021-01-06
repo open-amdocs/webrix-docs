@@ -27,7 +27,7 @@ export default [
     {
         title: 'Where\'s Waldo?',
         path: '/examples/WheresWaldo',
-        tags: ['scalable', 'pannable'],
+        tags: ['scalable', 'pannable', 'movable'],
     },
     {
         title: 'File Browser',

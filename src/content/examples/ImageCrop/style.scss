@@ -32,6 +32,7 @@ $circle-offset: ($circle-size + $border-size) / 2;
       border-radius: $circle-size;
       position: absolute;
       box-shadow: inset 0 0 0 1px white;
+      pointer-events: none;
 
       // Below are the circle positions, defined
       // clockwise starting from the top left corner
