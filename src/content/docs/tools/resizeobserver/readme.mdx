@@ -1,3 +1,31 @@
-import {UnderConstruction} from 'components';
+import {Example} from 'components';
 
-<UnderConstruction/>
+The `<ResizeObserver/>` can be used to listen to size changes in the given child component.
+This component uses the browser's `ResizeObserver` internally, and cleans up the memory when necessary.
+
+## Basic Example
+
+<Example file='docs/tools/resizeobserver/BasicExample' height={250}/>
+
+Drag the bottom-right corner in the example above to resize the container and see how the
+values are updated accordingly.
+
+## API
+
+### Importing
+
+```jsx
+// ESM
+import {ResizeObserver} from 'webrix/tools';
+import ResizeObserver from 'webrix/tools/ResizeObserver'; // For better tree shaking
+
+// UMD
+const {ResizeObserver} = Webrix.tools;
+```
+
+### Props
+
+Name|Type|Default|Description
+---|---|---|---
+`children`|node|`null`|Specifies a single child to observe for size changes.
+`onResize`|function|`() => null`|Specifies an event handler to be called when the given child changes its size. The handler will receive an object with the keys `width` and `height`.
