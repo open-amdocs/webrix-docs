@@ -1,3 +1,49 @@
-import {UnderConstruction} from 'components';
+Return a memoized object that only changes if one or more of its values have changed.
 
-<UnderConstruction/>
+One of the main use cases for this hook is when passing an object value through context - as
+long as the object's values are the same, the memoized object will be returned, and the
+consumers will not be redundantly updated.
+
+## Basic Example
+
+In this example we create a memoized object to be used as the value of some context provider:
+Even though the object we pass is always "recreated" and therefore has a different reference,
+the returned `value` will have the same reference since the object's values have not changed.
+
+```jsx
+const MyComponent = () => {
+    const value = useObject({foo: 'bar'});
+    return (
+        <MyContext.Provider value={value}>
+            ...
+        </MyContext.Provider>
+    );
+}
+```
+
+## Syntax
+
+```js
+const obj = useObject(object);
+```
+
+### Importing
+
+```jsx
+// ESM
+import {useObject} from 'webrix/hooks';
+import useObject from 'webrix/hooks/useObject'; // For better tree shaking
+
+// UMD
+const {useObject} = Webrix.hooks;
+```
+
+### Parameters
+
+name|type|description
+---|---|---
+`object`|object|The object to memoize
+
+### Return Value
+
+Returns a memoized object
