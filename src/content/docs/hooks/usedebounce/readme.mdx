@@ -1,3 +1,44 @@
 import {UnderConstruction} from 'components';
 
-<UnderConstruction/>
+Call a function only once in a given period of time, and delay the execution based on
+a given delay after the last invocation. This hook will perform the necessary memory
+cleanup automatically.
+
+> See [Debouncing vs. Throttling Explained](https://css-tricks.com/debouncing-throttling-explained-examples/)
+> for the difference between debounce & throttle
+
+## Basic Example
+
+```js
+const debounced = useDebounce(console.log, 500);
+debounced(1); // Schedules 1 to be logged 500 milliseconds from now
+debounced(2); // Cancels the previously scheduled execution, and schedules 2 to be logged 500 milliseconds from now.
+```
+
+## Syntax
+
+```js
+const debouncedCallback = useDebounce(callback, wait);
+```
+
+### Importing
+
+```jsx
+// ESM
+import {useDebounce} from 'webrix/hooks';
+import useDebounce from 'webrix/hooks/useDebounce'; // For better tree shaking
+
+// UMD
+const {useDebounce} = Webrix.hooks;
+```
+
+### Parameters
+
+name|type|description
+---|---|---
+`callback`|function|Specifies the function to be debounced.
+`wait`|function|Specifies the delay in milliseconds.
+
+### Return Value
+
+Returns a `Function`.
