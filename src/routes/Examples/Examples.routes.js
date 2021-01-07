@@ -14,29 +14,29 @@ export default [
         path: '/examples/PhotoEditor',
         tags: ['movable'],
     },
-    {
-        title: 'Image Crop',
-        path: '/examples/ImageCrop',
-        tags: ['resizable', 'movable'],
-    },
-    {
-        title: 'Guided Tour',
-        path: '/examples/GuidedTour',
-        tags: ['poppable'],
-    },
-    {
-        title: 'Where\'s Waldo?',
-        path: '/examples/WheresWaldo',
-        tags: ['scalable', 'pannable', 'movable'],
-    },
+    // {
+    //     title: 'Image Crop',
+    //     path: '/examples/ImageCrop',
+    //     tags: ['resizable', 'movable'],
+    // },
+    // {
+    //     title: 'Guided Tour',
+    //     path: '/examples/GuidedTour',
+    //     tags: ['poppable'],
+    // },
+    // {
+    //     title: 'Where\'s Waldo?',
+    //     path: '/examples/WheresWaldo',
+    //     tags: ['scalable', 'pannable', 'movable'],
+    // },
     {
         title: 'File Browser',
         path: '/examples/FileBrowser',
         tags: ['collapsible'],
     },
-    {
-        title: 'Video Player',
-        path: '/examples/VideoPlayer',
-        tags: ['movable', 'useTimeout'],
-    },
+    // {
+    //     title: 'Video Player',
+    //     path: '/examples/VideoPlayer',
+    //     tags: ['movable', 'useTimeout'],
+    // },
 ]

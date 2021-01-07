@@ -11,9 +11,7 @@ const Examples = () => (
             <div className='grid'>
                 {examples.map(({path, title, tags}) => (
                     <div className='example' key={title}>
-                        <div className='iframe-container'>
-                            <iframe src={`/frame${path}`}/>
-                        </div>
+                        <div className='preview' style={{backgroundImage: `url(${require(`../../../../content${path}/preview.gif`).default})`}}/>
                         <div className='text'>View Example</div>
                         <div className='name'>{title}</div>
                         <div className='tags'>
