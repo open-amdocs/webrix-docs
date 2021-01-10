@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - persist_to_workspace:
-          root: /
+          root: ~/
           paths:
             - /
 
@@ -25,7 +25,7 @@ jobs:
       - node/install-packages:
           override-ci-command: npm install
       - persist_to_workspace:
-          root: /
+          root: ~/
           paths:
             - /
 
@@ -45,7 +45,7 @@ jobs:
           at: /
       - run: npm run build
       - persist_to_workspace:
-          root: /
+          root: ~/
           paths:
             - /
 
@@ -61,7 +61,7 @@ jobs:
       - puppeteer/install
       - run: npm run ssr
       - persist_to_workspace:
-          root: /
+          root: ~/
           paths:
             - /
 
