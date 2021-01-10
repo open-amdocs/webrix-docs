@@ -42,15 +42,6 @@ section.examples {
       left: 0;
       transition: $transition;
       object-fit: cover;
-
-      iframe {
-        width: (1 / $iframe-zoom) * 100%; // Multiply by the inverse of $iframe-zoom
-        height: (1 / $iframe-zoom) * 100%;
-        transform: scale($iframe-zoom);
-        transform-origin: top left;
-        border: none;
-        box-sizing: border-box;
-      }
     }
 
     .text {
@@ -80,7 +71,7 @@ section.examples {
       font-size: 12px;
       box-shadow: 0 0 15px rgba(black, 0.3), 0 0 2px rgba(black, 0.5);
       transition: $transition;
-      transform: translate(-40px, -40px);
+      transform: translate(-50px, -50px);
     }
 
     .tags {
