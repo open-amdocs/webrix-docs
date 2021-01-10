@@ -6,35 +6,85 @@ orbs:
 
 jobs:
 
+  checkout:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run: rm -rf .git # get rid of that big excess folder
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
   lint:
     executor:
       name: node/default
     steps:
-      - checkout
-      - node/install-packages:
-          override-ci-command: npm install
+      - attach_workspace:
+          at: .
+      - node/install-packages
       - run: npm run lint
 
-  build-and-deploy:
+  build:
     executor:
       name: node/default
     steps:
-      - checkout
-      - node/install-packages:
-          override-ci-command: npm install
+      - attach_workspace:
+          at: .
+      - node/install-packages
+      - run: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./build # Only persist the build files, since persisting large folders (like node_modules) results in long persisting/attaching times
+
+  ssr:
+    executor:
+      name: node/default
+    steps:
+      - attach_workspace:
+          at: .
+      - node/install-packages
       - run: |
           sudo apt-get update
           sudo apt-get install -y libgbm1
       - puppeteer/install
-      - run: npm run build
       - run: npm run ssr
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./build
+
+  deploy:
+    executor:
+      name: node/default
+    steps:
+      - attach_workspace:
+          at: .
+      - node/install-packages
       - run: npm run deploy
       - run: npm run invalidate
 
 workflows:
-  lint-build-deploy:
+  all-jobs:
     jobs:
-      - lint
-      - build-and-deploy:
+      - checkout
+      - lint:
+          requires:
+            - checkout
+      - build:
           requires:
             - lint
+      - ssr:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
+      - deploy:
+          filters:
+            branches:
+              only: master
+          requires:
+            - ssr
