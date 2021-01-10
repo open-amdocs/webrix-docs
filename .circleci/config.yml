@@ -17,19 +17,6 @@ jobs:
           paths:
             - .
 
-  install:
-    executor:
-      name: node/default
-    steps:
-      - attach_workspace:
-          at: .
-      - node/install-packages:
-          override-ci-command: npm install
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./package-lock.json
-
   lint:
     executor:
       name: node/default
@@ -83,12 +70,9 @@ workflows:
   all-jobs:
     jobs:
       - checkout
-      - install:
-          requires:
-            - checkout
       - lint:
           requires:
-            - install
+            - checkout
       - build:
           requires:
             - lint
