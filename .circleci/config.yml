@@ -6,35 +6,84 @@ orbs:
 
 jobs:
 
+  checkout:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: /
+          paths:
+            - /
+
+  install:
+    executor:
+      name: node/default
+    steps:
+      - attach_workspace:
+          at: /
+      - node/install-packages:
+          override-ci-command: npm install
+      - persist_to_workspace:
+          root: /
+          paths:
+            - /
+
   lint:
     executor:
       name: node/default
     steps:
-      - checkout
-      - node/install-packages:
-          override-ci-command: npm install
+      - attach_workspace:
+          at: /
       - run: npm run lint
 
-  build-and-deploy:
+  build:
     executor:
       name: node/default
     steps:
-      - checkout
-      - node/install-packages:
-          override-ci-command: npm install
+      - attach_workspace:
+          at: /
+      - run: npm run build
+      - persist_to_workspace:
+          root: /
+          paths:
+            - /
+
+  ssr:
+    executor:
+      name: node/default
+    steps:
+      - attach_workspace:
+          at: /
       - run: |
           sudo apt-get update
           sudo apt-get install -y libgbm1
       - puppeteer/install
-      - run: npm run build
       - run: npm run ssr
+      - persist_to_workspace:
+          root: /
+          paths:
+            - /
+
+  deploy:
+    executor:
+      name: node/default
+    steps:
+      - attach_workspace:
+          at: /
       - run: npm run deploy
       - run: npm run invalidate
 
 workflows:
-  lint-build-deploy:
+  all-jobs:
     jobs:
-      - lint
-      - build-and-deploy:
+      - checkout
+      - install:
+          requires:
+            - checkout
+      - lint:
+          requires:
+            - install
+      - build:
           requires:
             - lint
