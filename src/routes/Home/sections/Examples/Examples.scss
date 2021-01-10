@@ -40,9 +40,8 @@ section.examples {
       position: absolute;
       top: 0;
       left: 0;
-      background-size: cover;
-      box-sizing: border-box;
       transition: $transition;
+      object-fit: cover;
 
       iframe {
         width: (1 / $iframe-zoom) * 100%; // Multiply by the inverse of $iframe-zoom
@@ -119,11 +118,11 @@ section.examples {
 
   .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
 
     @include media-max('md') {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
 
     @include media-max('sm') {
