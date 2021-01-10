@@ -37,7 +37,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - ./build
+            - ./build # Only persist the build files, since persisting large folders (like node_modules) results in long persisting/attaching times
 
   ssr:
     executor:
