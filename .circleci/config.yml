@@ -28,7 +28,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - .
+            - ./package-lock.json
 
   lint:
     executor:
@@ -36,6 +36,8 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - node/install-packages:
+          override-ci-command: npm install
       - run: npm run lint
 
   build:
@@ -44,11 +46,13 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - node/install-packages:
+          override-ci-command: npm install
       - run: npm run build
       - persist_to_workspace:
           root: .
           paths:
-            - .
+            - ./build
 
   ssr:
     executor:
@@ -56,6 +60,8 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - node/install-packages:
+          override-ci-command: npm install
       - run: |
           sudo apt-get update
           sudo apt-get install -y libgbm1
@@ -64,7 +70,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - .
+            - ./build
 
   deploy:
     executor:
@@ -72,6 +78,8 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - node/install-packages:
+          override-ci-command: npm install
       - run: npm run deploy
       - run: npm run invalidate
 
