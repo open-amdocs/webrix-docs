@@ -11,6 +11,7 @@ jobs:
       name: node/default
     steps:
       - checkout
+      - run: rm -rf .git # get rid of that big excess folder
       - persist_to_workspace:
           root: .
           paths:
@@ -87,3 +88,15 @@ workflows:
       - build:
           requires:
             - lint
+      - ssr:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
+      - deploy:
+          filters:
+            branches:
+              only: master
+          requires:
+            - ssr
