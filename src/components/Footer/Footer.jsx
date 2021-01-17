@@ -33,7 +33,7 @@ const CDN = () => (
     <div className='links'>
         <h4>CDN</h4>
         <ul>
-            <li><a href='https://unpkg.com/browse/webrix@1.0.0/'>UNPKG</a></li>
+            <li><a href='https://unpkg.com/browse/webrix@latest/'>UNPKG</a></li>
             <li><a href='https://www.skypack.dev/view/webrix/'>Skypack</a></li>
             <li><a href='https://www.jsdelivr.com/package/npm/webrix'>JSDELIVR</a></li>
         </ul>
