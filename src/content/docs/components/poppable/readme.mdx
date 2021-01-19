@@ -11,20 +11,30 @@ in the viewport.
 
 ## Basic Example
 
-<Example file='docs/components/poppable/BasicExample' height={400}/>
+<Example file='docs/components/poppable/BasicExample' height={300}/>
 
-In this example we have a movable `container` and a movable `reference` (You can drag them around).
-The `<Poppable/>` will attempt to keep the `target` within the `container` and close to the `reference`
+In this example we have a movable `reference` (You can drag it around).
+The `<Poppable/>` will attempt to keep the `target` within the `window` and close to the `reference`
 based on the given supported placements.
 
-Note that the default positioning is defined in this example to be at the **bottom right**
-corner of the `reference` element, so when the `<Poppable/>` repositions the target, it
+Note that the default positioning is defined in this example to be at the **bottom**
+of the `reference` element, so when the `<Poppable/>` repositions the target, it
 will attempt to pick a position as close as possible to the default position.
 
 In other words, the default position acts as a "magnet" for the `target`, and the `target`
-is pulled towards the default position as much as possible while being contained in the `container`.
+is pulled towards the default position as much as possible while being contained in the `window`.
 
-Note that moving the `reference` outside of the `container` will cause the target to disappear.
+Note that moving the `reference` outside of the `window` will cause the target to disappear.
+
+## Container
+
+<Example file='docs/components/poppable/Container' height={400}/>
+
+In this example we have a movable `container` and a movable `reference`.
+Specifying a container can be useful if the `reference` is a descendant of an element that
+prevents overflow (for example, using `overflow: hidden` or `overflow: scroll`),
+and you want the target to hide when the `reference` is outside it.
+In such a case, the `container` should be a reference to the element that prevents overflow.
 
 ## Placements
 

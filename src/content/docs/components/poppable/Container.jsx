@@ -1,10 +1,10 @@
 import React, {useRef, forwardRef, useState, useCallback} from 'react';
 import {Poppable, Movable} from 'webrix/components';
-import './BasicExample.scss';
+import './Container.scss';
 
 const MovableRectangle = forwardRef(({width, height, title}, ref) => {
     const {innerWidth, innerHeight} = window;
-    const [{top, left}, setPosition] = useState({top: (innerHeight - height * 2) / 2, left: (innerWidth - width) / 2});
+    const [{top, left}, setPosition] = useState({top: (innerHeight - height) / 2, left: (innerWidth - width) / 2});
 
     const handleOnMove = useCallback(({cx, cy}) => {
         setPosition(({top, left}) => ({
@@ -26,6 +26,7 @@ const MovableRectangle = forwardRef(({width, height, title}, ref) => {
 
 export default () => {
     const reference = useRef();
+    const container = useRef();
     const getPlacements = rbr => {
         return [
             {top: 100, left: 0},
@@ -42,7 +43,8 @@ export default () => {
     return (
         <>
             <MovableRectangle title='Reference' height={100} width={100} ref={reference}/>
-            <Poppable reference={reference} placements={getPlacements} className='poppable-target'>
+            <MovableRectangle ref={container} width={300} height={300} title='Container'/>
+            <Poppable reference={reference} container={container} placements={getPlacements} className='poppable-target'>
                 Target
             </Poppable>
         </>
