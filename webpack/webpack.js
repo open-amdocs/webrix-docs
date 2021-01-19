@@ -1,26 +1,24 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin');
-const WorkerPlugin = require('worker-plugin');
 const SitmapGeneratorPlugin = require('./plugins/SitemapGenerator');
 const {paths} = require('./webpack.constants');
-const {hasArg, getFileSize} = require('./webpack.utility');
+const {getFileSize} = require('./webpack.utility');
 
-module.exports = {
+module.exports = env => ({
     entry: paths.src + '/index.js',
-    devtool: hasArg('production') ? false : 'cheap-module-source-map',
-    mode: hasArg('production') ? 'production' : 'development',
+    devtool: env.production ? false : 'cheap-module-source-map',
+    mode: env.production ? 'production' : 'development',
     output: {
-        filename: hasArg('production') ? '[name].[contenthash].js' : '[hash].js',
+        filename: '[name].js',
         chunkFilename: '[name].bundle.js',
-        path: hasArg('production') ? paths.build: paths.src,
+        path: env.production ? paths.build: paths.src,
         publicPath: '/',
     },
     optimization: {
-        minimize: hasArg('production'),
-        moduleIds: 'hashed',
+        minimize: env.production,
+        moduleIds: 'deterministic',
         runtimeChunk: 'single',
-        splitChunks: hasArg('production') && {
+        splitChunks: env.production && {
             chunks: 'all',
             maxSize: 256000,
             cacheGroups: {
@@ -54,7 +52,8 @@ module.exports = {
             resources: paths.src + '/resources/',
             routes: paths.src + '/routes/',
             utility: paths.src + '/utility/',
-            webrix: hasArg('production') ? 'webrix' : paths.webrix,
+            react: paths.node_modules + '/react/',
+            webrix: env.production ? paths.node_modules + '/webrix/' : paths.webrix,
         }
     },
     module: {
@@ -101,15 +100,9 @@ module.exports = {
             filename: 'index.html',
             favicon: paths.resources + '/images/favicon.png',
         }),
-        new DynamicCdnWebpackPlugin({
-            env: hasArg('production') ? 'production' : 'development'
-        }),
-        new WorkerPlugin({
-            globalObject: !hasArg('production') ? 'self' : false,
-        }),
         new webpack.DefinePlugin({
             LIBRARY_SIZE: JSON.stringify(getFileSize(paths.node_modules + '/webrix/umd/webrix.umd.min.js')),
         }),
         new SitmapGeneratorPlugin(),
     ]
-};
+});
