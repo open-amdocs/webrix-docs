@@ -43,5 +43,5 @@ export default [
         title: 'Collage Maker',
         path: '/examples/CollageMaker',
         tags: ['movable'],
-    }
+    },
 ]
