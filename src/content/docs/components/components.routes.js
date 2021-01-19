@@ -7,9 +7,24 @@ export default [
         icon: FaArrowsAlt,
     },
     {
+        title: 'Scalable',
+        path: '/scalable',
+        icon: FaSearchPlus,
+    },
+    {
+        title: 'Collapsible',
+        path: '/collapsible',
+        icon: FaCompressAlt,
+    },
+    {
         title: 'Stackable',
         path: '/stackable',
         icon: FaLayerGroup,
+    },
+    {
+        title: 'Scrollable',
+        path: '/scrollable',
+        icon: FaArrowsAltV,
     },
     {
         title: 'Pannable',
@@ -25,20 +40,5 @@ export default [
         title: 'Poppable',
         path: '/poppable',
         icon: FaWindowRestore,
-    },
-    {
-        title: 'Scalable',
-        path: '/scalable',
-        icon: FaSearchPlus,
-    },
-    {
-        title: 'Scrollable',
-        path: '/scrollable',
-        icon: FaArrowsAltV,
-    },
-    {
-        title: 'Collapsible',
-        path: '/collapsible',
-        icon: FaCompressAlt,
     },
 ];
