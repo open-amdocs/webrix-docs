@@ -39,4 +39,9 @@ export default [
         path: '/examples/VideoPlayer',
         tags: ['movable', 'useTimeout'],
     },
+    {
+        title: 'Collage Maker',
+        path: '/examples/CollageMaker',
+        tags: ['movable'],
+    }
 ]

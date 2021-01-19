@@ -1,0 +1,38 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  .collage-maker {
+    width: 80vmin;
+    height: 80vmin;
+    max-width: 600px;
+    max-height: 600px;
+    display: flex;
+    border: 5px solid white;
+    box-shadow: 0 0 25px rgba(black, 0.2), 0 0 5px rgba(black, 0.2);
+  }
+
+  .collage {
+    display: flex;
+  }
+
+  .image {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .resizer {
+    flex-shrink: 0;
+
+    &.row {
+      width: 5px;
+      cursor: ew-resize;
+    }
+    &.column {
+      height: 5px;
+      cursor: ns-resize;
+    }
+  }
+}
