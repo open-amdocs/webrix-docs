@@ -1,6 +1,6 @@
 import React, {useRef, useEffect, useCallback} from 'react';
 import {Divider} from 'components';
-import Worker from "worker-loader!./FallingBricks.worker.js";
+import Worker from 'worker-loader!./FallingBricks.worker.js';
 import './FallingBricks.scss';
 
 const oscSupported = canvas => (
