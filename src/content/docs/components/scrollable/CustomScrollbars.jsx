@@ -1,21 +1,20 @@
 import React, {forwardRef, useCallback} from 'react';
 import {Scrollable} from 'webrix/components';
-import VerticalScrollbar from 'webrix/components/Scrollable/components/VerticalScrollbar/VerticalScrollbar';
-import {getThumbPosition, getThumbSize} from 'webrix/components/Scrollable/Scrollable.utils';
 import './CustomScrollbars.scss';
 
 const CustomVerticalScrollbar = forwardRef(({container}, ref) => {
     const handleOnUpdate = useCallback((track, thumb, container) => {
-        const {scrollHeight, scrollTop} = container;
+        const BORDER_SIZE = 2;
+        const {scrollHeight, clientHeight, scrollTop} = container;
         const {height} = container.getBoundingClientRect();
-        track.style.top = '-6px';
-        track.style.height = `${height + 6}px`;
-        track.style.right = `${-track.clientWidth - 2}px`;
-        thumb.style.height = `${getThumbSize(height + 6, scrollHeight + 6)}px`;
-        thumb.style.top = `${getThumbPosition(height + 6, scrollHeight + 6, scrollTop)}px`;
+        const trackLength = height + BORDER_SIZE * 2;
+        track.style.top = `-${BORDER_SIZE}px`;
+        track.style.height = `${trackLength}px`;
+        thumb.style.height = `${Scrollable.getThumbLength(trackLength, clientHeight, scrollHeight)}px`;
+        thumb.style.top = `${Scrollable.getThumbPosition(trackLength, clientHeight, scrollHeight, scrollTop)}px`;
     }, []);
     return (
-        <VerticalScrollbar  onUpdate={handleOnUpdate} container={container} ref={ref}/>
+        <Scrollable.VerticalScrollbar.Default onUpdate={handleOnUpdate} container={container} ref={ref}/>
     )
 });
 

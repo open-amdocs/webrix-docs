@@ -5,7 +5,7 @@ export const useCode = path => {
 
     useEffect(() => {
         (async () => {
-            const text = await import(`!raw-loader!content/${path}`);
+            const text = await import(`!raw-loader!content/${path}.jsx`);
             const style = await import(`!raw-loader!content/${path}.scss`);
             setCode({
                 js: text.default.trim(),

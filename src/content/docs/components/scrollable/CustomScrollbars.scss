@@ -10,8 +10,12 @@
     height: 200px;
   }
 
-  .scrollbar .scrollbar-track .scrollbar-thumb {
-    right: -4px;
+  .scrollbar .scrollbar-track {
+    right: -14px;
+
+    .scrollbar-thumb {
+      padding: 0;
+    }
 
     .scrollbar-thumb-inner {
       background-image: linear-gradient($color-light-blue, $color-pink);

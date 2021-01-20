@@ -1,5 +1,6 @@
 import React, {useRef, useEffect, useCallback} from 'react';
 import {Divider} from 'components';
+import Worker from 'worker-loader!./FallingBricks.worker.js';
 import './FallingBricks.scss';
 
 const oscSupported = canvas => (
@@ -13,7 +14,7 @@ const oscSupported = canvas => (
 const FallingBricks = () => {
     const canvas = useRef();
     const engine = useRef();
-    const worker = useRef(new Worker('./FallingBricks.worker', {type: 'module'}));
+    const worker = useRef(new Worker());
 
     const handleOnResize = useCallback(() => {
         if (oscSupported(canvas.current)) {
