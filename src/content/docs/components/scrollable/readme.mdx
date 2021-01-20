@@ -61,8 +61,12 @@ The further away you scroll from the beginning/end, the deeper the shadow will b
 If you want to have some custom scrollbars, you can do so by providing your own scrollbar component.
 This can be done by passing `<Scrollbar.VerticalScrollbar>` and/or `<Scrollbar.HorizontalScrollbar>`
 as children, and passing your custom scrollbar as a child to them.
-In this example you can see a custom vertical scrollbar, positioned outside of the container, featuring
+
+In this example you can see a custom vertical scrollbar, positioned outside the container, featuring
 a vivid gradient.
+
+To simplify the implementation, we are using the default scrollbar `<Scrollbar.VerticalScrollbar.Default>`
+as our base scrollbar.
 
 ```jsx
 <Scrollbar>
