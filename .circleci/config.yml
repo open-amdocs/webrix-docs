@@ -77,9 +77,6 @@ workflows:
           requires:
             - lint
       - ssr:
-          filters:
-            branches:
-              only: master
           requires:
             - build
       - deploy:
