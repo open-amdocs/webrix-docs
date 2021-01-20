@@ -1,4 +1,4 @@
-import {FaWrench} from 'react-icons/all';
+import {FaWrench} from 'react-icons/fa';
 
 export default [
     {

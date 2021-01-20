@@ -63,7 +63,7 @@
     "prism-react-renderer": "1.1.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-icons": "3.11.0",
+    "react-icons": "4.1.0",
     "react-router-dom": "5.2.0",
     "webrix": "1.0.5"
   }
