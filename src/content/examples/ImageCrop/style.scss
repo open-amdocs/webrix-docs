@@ -9,8 +9,10 @@ $circle-offset: ($circle-size + $border-size) / 2;
   user-select: none;
 
   .image-crop {
-    width: 640px;
-    height: 480px;
+    max-width: 640px;
+    max-height: 480px;
+    width: 80vmin;
+    height: 70vmin;
   }
 
   .crop {
@@ -18,6 +20,7 @@ $circle-offset: ($circle-size + $border-size) / 2;
     z-index: 2;
     border: $border-size solid $color-light-gray;
     box-shadow: 0 0 0 100vmax rgba(black, 0.4);
+    box-sizing: border-box;
 
     .movable {
       width: 100%;
