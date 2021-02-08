@@ -13,16 +13,16 @@
   a {
     color: $color-dark-blue;
     text-transform: capitalize;
-
-    img {
-      height: 20px;
-    }
   }
 
   .logo {
     font-weight: bold;
-    letter-spacing: 2px;
+    font-size: 0;
     position: absolute;
+
+    img {
+      width: 140px;
+    }
   }
 
   .menu {
@@ -33,24 +33,6 @@
 
     @include media-max('sm') {
       display: none;
-      border-top: 1px solid rgba($color-white, 0.2);
-      position: absolute;
-      flex-direction: column;
-      background-color: $color-dark-blue;
-      right: 0;
-      left: 0;
-      top: 60px;
-      padding: 10px;
-      height: auto;
-
-      &.active {
-        display: flex;
-      }
-
-      a {
-        color: $color-white;
-        padding: 10px 0;
-      }
     }
 
     a {
@@ -71,6 +53,7 @@
     color: $color-dark-blue;
 
     @include media-max('sm') {
+      font-size: 12px;
       margin-left: 145px;
       margin-right: auto; // Push the hamburger menu to the right
     }

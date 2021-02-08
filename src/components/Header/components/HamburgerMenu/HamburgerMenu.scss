@@ -1,81 +1,48 @@
-$hamburger-layer-width: 40px;
-$hamburger-layer-height: 3px;
-$hamburger-layer-spacing: 8px;
-$spin-duration: 0.25s;
-$collapse-duration: 0.15s;
+#header nav.mobile-menu {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+  background-color: white;
+  z-index: 10;
+  padding: 0 20px 20px;
+  overflow: auto;
+  box-shadow: inset 0 2px 8px rgba(black, 0.2);
 
-.hamburger {
-  padding: 0;
-  display: inline-block;
-  cursor: pointer;
-  background-color: transparent;
-  border: 0;
-  margin: 0;
-  outline: none;
-
-  @include media-min('sm') {
-    display: none;
-  }
-
-  &.active {
-    .hamburger-inner {
-      transform: rotate(225deg);
-      transition-delay: $collapse-duration*1.1;
-      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-
-      &::before {
-        top: 0;
-        opacity: 0;
-        transition: top $collapse-duration ease-out, opacity $collapse-duration $collapse-duration*1.1 ease-out;
-      }
-
-      &::after {
-        bottom: 0;
-        transform: rotate(-90deg);
-        transition: bottom $collapse-duration ease-out,
-        transform $spin-duration $collapse-duration*1.1 cubic-bezier(0.215, 0.61, 0.355, 1);
-      }
-    }
-  }
-
-  .hamburger-box {
-    width: $hamburger-layer-width;
-    height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2;
-    display: inline-block;
-    position: relative;
-  }
-
-  .hamburger-inner {
+  &.visible {
     display: block;
-    top: 50%;
-    margin-top: $hamburger-layer-height / -2;
-    transition-duration: $spin-duration;
-    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
 
-    &,
-    &::before,
-    &::after {
-      width: $hamburger-layer-width;
-      height: $hamburger-layer-height;
-      background-color: $color-dark-blue;
-      position: absolute;
-      transition-property: transform;
+  h2 {
+    margin: 1.2em 0 0.5em;
+
+    &:first-child {
+      margin-top: 10px;
     }
 
-    &::before {
-      top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
-      transition: top $collapse-duration $spin-duration*1.1 ease-in, opacity $collapse-duration ease-in;
+    a {
+      color: $color-pink;
     }
+  }
 
-    &::after {
-      bottom: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
-      transition: bottom $collapse-duration $spin-duration*1.1 ease-in, transform $spin-duration cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    }
+  h3 {
+    margin: 1.2em 0 0.5em;
+  }
 
-    &::before,
-    &::after {
-      content: "";
-      display: block;
+  ul {
+    margin-left: 10px;
+
+    li {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+
+      svg {
+        fill: $color-gray;
+        margin-right: 10px;
+      }
     }
   }
 }
