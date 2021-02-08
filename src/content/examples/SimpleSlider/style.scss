@@ -3,11 +3,13 @@
   align-items: center;
   justify-content: center;
   user-select: none;
+  flex-direction: column;
 
   .slider {
     width: 300px;
     display: flex;
     align-items: center;
+    margin: 40px 0 5px 0;
 
     .min, .max {
       font-size: 12px;

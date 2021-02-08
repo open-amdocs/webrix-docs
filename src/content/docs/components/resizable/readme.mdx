@@ -1,8 +1,12 @@
 import {Example} from 'components';
 
 The `<Resizable/>` component can be used to create elements that can be resized by the user.
-A `<Resizable/>` element receives up to 8 resizers, that can be used to resize the element in
+A `<Resizable/>` element can receive up to 8 resizers, which can be used to resize the element in
 all directions - horizontally, vertically, and diagonally.
+
+Additionally, constraints can be applied to control the way an element is resized.
+The `<Resizable/>` component comes with a set of pre-defined constraints that you can use,
+and you can also create your own.
 
 ## Basic Example
 
@@ -10,12 +14,9 @@ all directions - horizontally, vertically, and diagonally.
 
 In this example you can see a fully resizable element.
 
-The `onResize` prop can be used to listen to resize changes.
-It passes an object with `width`, `height`, `top` and `left` keys to the handler.
-These corresponding values represent the change (delta) in dimensions/position, rather than
-the actual new dimensions/position.
+## Constraints
 
-To get the actual dimensions/position, simply add the deltas to the initial values.
+
 
 ## Min/Max Sizes
 
@@ -68,6 +69,34 @@ be seen above.
 Instead of using `<Resizable.Resizers.All/>`, you can use any combination of resizers to limit
 the resize operation to certain directions. In this example we use `Right`,`Bottom` and `BottomRight`
 resizers to allow the element to be resized only at those edges/coreners.
+
+## Boundaries
+
+<Example file='docs/components/resizable/Contained' height={300}/>
+
+## Ratio
+
+<Example file='docs/components/resizable/Ratio' height={300}/>
+
+## Mixing Constraints
+
+## Custom Constraints
+
+## Custom Handlers
+
+Up to this point we've been using the `Resizable.useResize()` hook.
+The hook returns an object with `onBeginResize`, `onResize` and `onEndResize` handlers,
+which should be injected to the `<Resizable/>`.
+
+However, you can create your own handlers, if you need a special behavior that is not covered
+by that hook (and its accompanying set of constraints).
+
+The `onResize` prop can be used to listen to resize changes.
+It passes an object with `width`, `height`, `top` and `left` keys to the handler.
+These corresponding values represent the change (delta) in dimensions/position, rather than
+the actual new dimensions/position.
+
+To get the actual dimensions/position, simply add the deltas to the initial values.
 
 ## API
 

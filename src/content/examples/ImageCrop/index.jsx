@@ -2,21 +2,6 @@ import React, {useCallback, useState, useRef, useEffect} from 'react';
 import {Resizable, Movable} from 'webrix/components';
 import './style.scss';
 
-const clamp = (rect, min, max, delta) => {
-    const width = Math.max(Math.min(rect.width, delta.left !== 0 ? rect.left + rect.width - max.left : max.right - rect.left), min.width);
-    const height = Math.max(Math.min(rect.height, delta.top !== 0 ? rect.top + rect.height - max.top : max.bottom - rect.top), min.height);
-    const left = Math.min(Math.max(rect.left, max.left), max.right - width);
-    const top = Math.min(Math.max(rect.top, max.top), max.bottom - height);
-    return {width, height, top, left};
-};
-
-const add = (rect, delta) => ({
-    top: rect.top + delta.top,
-    left: rect.left + delta.left,
-    width: rect.width + delta.width,
-    height: rect.height + delta.height,
-});
-
 const Grid = () => (
     <div className='grid'>
         {[...new Array(4)].map((_, i) => (
@@ -36,45 +21,29 @@ const Circles = () => (
 const Crop = ({image}) => {
     const [position, setPosition] = useState({});
     const crop = useRef();
-    const max = useRef({});
-    const initial = useRef({});
+    const movable = useRef();
+    const {contain: mContain} = Movable.Constraints;
+    const {min, contain: rContain} = Resizable.Constraints;
 
-    const handleOnBeginResize = useCallback(a => {
-        initial.current = crop.current.getBoundingClientRect()
-    }, []);
-
-    const handleOnResize = useCallback(({delta}) => {
-        setPosition(clamp(
-            add(initial.current, delta),
-            {width: 0, height: 0},
-            max.current,
-            delta,
-        ));
-    }, [setPosition]);
-
-    const handleOnMove = useCallback(({cx, cy}) => {
-        setPosition(p => {
-            const delta = new DOMRect(cx, cy, p.width, p.height);
-            return clamp({...p, left: p.left + cx, top: p.top + cy}, {width: p.width, height: p.height}, max.current, delta)
-        });
-    }, [setPosition]);
+    const onMove = useCallback(({top, left}) => {
+        setPosition(p => ({...p, top, left}));
+    }, [setPosition])
 
     useEffect(() => {
+        // Set the crop to the image size initially
         const {width, height, top, left} = image.current.getBoundingClientRect();
         setPosition({width, height, top, left});
-        max.current = new DOMRect(left, top, width, height);
     }, []);
 
     return (
         <div className='crop' style={position} ref={crop}>
-            <Movable className='movable' onMove={handleOnMove}/>
-            <Resizable onResize={handleOnResize} onBeginResize={handleOnBeginResize}>
+            <Movable {...Movable.useMove({position, onMove, constraints: [mContain(movable, image)]})} className='movable' ref={movable}/>
+            <Resizable {...Resizable.useResize({ref: crop, onResize: setPosition, constraints: [rContain(image), min(50, 50)]})}>
                 <Resizable.Resizer.All/>
             </Resizable>
             <Circles/>
             <Grid/>
         </div>
-
     );
 };
 

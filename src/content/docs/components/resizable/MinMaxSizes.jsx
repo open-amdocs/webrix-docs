@@ -1,28 +1,16 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useRef} from 'react';
 import {Resizable} from 'webrix/components';
 import './MinMaxSizes.scss';
 
-const clamp = (min, max, value) => (
-    Math.min(max, Math.max(min, value))
-);
-
 export default () => {
-    const MIN = 100, MAX = 200;
-    const INITIAL = {top: (window.innerHeight - MIN) / 2, left: (window.innerWidth - MIN) / 2, width: MIN, height: MIN};
-    const [position, setPosition] = useState(INITIAL);
-
-    const handleOnResize = useCallback(({change}) => {
-        setPosition(({top, left, width, height}) => ({
-            top: clamp(top - (MAX - height), top + (height - MIN), top + change.top),
-            left: clamp(left - (MAX - width), left + (width - MIN), left + change.left),
-            width: clamp(MIN, MAX, width + change.width),
-            height: clamp(MIN, MAX, height + change.height),
-        }));
-    }, [setPosition]);
+    const resizable = useRef();
+    const [position, setPosition] = useState({});
+    const {min, max} = Resizable.Constraints;
+    const props = Resizable.useResize({ref: resizable, onResize: setPosition, constraints: [min(100, 100), max(200, 200)]});
 
     return (
-        <div className='resizable-object' style={position}>
-            <Resizable onResize={handleOnResize}>
+        <div className='resizable-object' style={position} ref={resizable}>
+            <Resizable {...props}>
                 <Resizable.Resizer.All/>
             </Resizable>
             Resize Me!

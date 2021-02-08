@@ -1,19 +1,19 @@
 import React, {useState, useRef} from 'react';
 import {Resizable} from 'webrix/components';
-import './Snapping.scss';
+import './Ratio.scss';
 
 export default () => {
     const [position, setPosition] = useState({});
     const resizable = useRef();
-    const {snap} = Resizable.Constraints;
-    const props = Resizable.useResize({ref: resizable, onResize: setPosition, constraints: [snap(50, 50, 0.3)]});
+    const {ratio} = Resizable.Constraints;
+    const props = Resizable.useResize({ref: resizable, onResize: setPosition, constraints: [ratio(4/3)]});
 
     return (
         <div className='resizable-object' style={position} ref={resizable}>
             <Resizable {...props}>
                 <Resizable.Resizer.All/>
             </Resizable>
-            Resize Me!
+            I Maintain a 4:3 ratio
         </div>
     );
-};
+}

@@ -5,8 +5,8 @@
 
   .resizable-object {
     background-color: $color-pink;
-    width: 200px;
-    height: 200px;
+    width: 133px;
+    height: 100px;
     position: absolute;
     color: $color-white;
     padding: 10px;
@@ -15,16 +15,5 @@
     justify-content: center;
     text-align: center;
     box-sizing: border-box;
-
-    .arrow {
-      position: absolute;
-      border-width: 10px;
-      border-color: transparent;
-      border-left-color: $color-blue;
-      border-style: solid;
-      transform: rotate(45deg);
-      bottom: -5px;
-      right: -5px;
-    }
   }
 }
