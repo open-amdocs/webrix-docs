@@ -11,7 +11,7 @@ export default () => {
     }, [setPosition]);
 
     return (
-        <Movable className='movable-object' style={{top, left}} onMove={handleOnMove}>
+        <Movable style={{top, left}} onMove={handleOnMove}>
             I Move Vertically
         </Movable>
     );

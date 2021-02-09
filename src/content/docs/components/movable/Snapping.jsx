@@ -22,7 +22,7 @@ export default () => {
     }, [setPosition, initial.current]);
 
     return (
-        <Movable className='movable-object' style={{top, left}} onBeginMove={handleOnBeginMove} onMove={handleOnMove}>
+        <Movable style={{top, left}} onBeginMove={handleOnBeginMove} onMove={handleOnMove}>
             I snap to a 20x20 grid
         </Movable>
     );

@@ -34,12 +34,11 @@ const Crop = () => {
 
     const handleOnMove = useCallback(({cx, cy}) => {
         setPosition(p => ({...p, left: p.left + cx, top: p.top + cy}));
-        // setValue(() => Math.round((clamp(0, width - 5, x - left) / width) * MAX));
     }, [setPosition]);
 
     return (
         <div className='crop' style={position}>
-            <Movable className='movable' onMove={handleOnMove}/>
+            <Movable className='handler' onMove={handleOnMove}/>
             <Resizable onResize={handleOnResize}>
                 <Resizable.Resizer.All/>
             </Resizable>

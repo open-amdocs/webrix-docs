@@ -18,7 +18,7 @@ const MovableRectangle = forwardRef(({width, height, title}, ref) => {
 
     return (
         <Movable
-            className='movable-rectangle'
+            className='reference'
             title={title}
             style={{top, left, width, height}}
             onBeginMove={handleOnMove}
@@ -48,7 +48,7 @@ export default () => {
         <>
             <MovableRectangle title='Reference' height={100} width={100} ref={reference}/>
             <Poppable.Manual reference={reference} placements={getPlacements} className='poppable-target' placement={manual || placement} onPlacement={setPlacement}>
-                <Movable className='movable' onBeginMove={handleOnBeginMove} onMove={handleOnMove}>
+                <Movable onBeginMove={handleOnBeginMove} onMove={handleOnMove}>
                     TARGET
                     <FaThumbtack onClick={() => setManual(null)} className={manual ? 'unpinned' : ''}/>
                 </Movable>

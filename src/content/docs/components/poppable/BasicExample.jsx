@@ -15,7 +15,7 @@ const MovableRectangle = forwardRef(({width, height, title}, ref) => {
 
     return (
         <Movable
-            className={`movable ${title.toLowerCase()}`}
+            className={title.toLowerCase()}
             title={title}
             style={{top, left}}
             onBeginMove={handleOnMove}

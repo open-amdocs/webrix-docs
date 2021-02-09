@@ -18,8 +18,9 @@ $circle-offset: ($circle-size + $border-size) / 2;
     z-index: 2;
     border: $border-size solid $color-light-gray;
     box-shadow: 0 0 0 100vmax rgba(black, 0.4);
+    cursor: grab;
 
-    .movable {
+    .handler {
       width: 100%;
       height: 100%;
       cursor: grab;
