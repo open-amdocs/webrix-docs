@@ -3,16 +3,16 @@ import {Movable} from 'webrix/components';
 import './Contained.scss';
 
 export default () => {
-    const [position, onMove] = useState({top: 0, left: 0});
+    const [position, onMove] = useState({});
     const movable = useRef();
     const container = useRef();
     const {contain} = Movable.Constraints;
-    const props = Movable.useMove({position, onMove, constraints: [contain(movable, container)]});
+    const props = Movable.useMove({ref: movable, onMove, constraints: [contain(container)]});
 
     return (
         <>
             <div className='container' ref={container}/>
-            <Movable {...props} className='movable-object' style={position} ref={movable}>
+            <Movable {...props} style={position}>
                 Move Me!
             </Movable>
         </>

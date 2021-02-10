@@ -3,11 +3,11 @@ import {Movable} from 'webrix/components';
 import './BasicExample.scss';
 
 export default () => {
-    const movable = useRef();
+    const ref = useRef();
     const [position, onMove] = useState({});
 
     return (
-        <Movable {...Movable.useMove({ref: movable, onMove})} style={position} ref={movable}>
+        <Movable {...Movable.useMove({ref, onMove})} style={position}>
             Move Me!
         </Movable>
     );
