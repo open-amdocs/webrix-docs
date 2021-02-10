@@ -10,9 +10,9 @@ const contain = (min, max) => (e, shared) => {
 const useMove = ({ref, onMove, constraints = []}) => {
     const shared = useRef({});
     return {
-        onBeginMove: () => {
+        onBeginMove: ({x}) => {
             shared.current.initial = ref.current.getBoundingClientRect();
-            shared.current.next = {left: shared.current.initial.left};
+            shared.current.next = {left: x - shared.current.initial.left};
             onMove({left: shared.current.next.left});
         },
         onMove: ({x}) => {
