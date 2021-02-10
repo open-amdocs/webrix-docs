@@ -1,0 +1,82 @@
+$hamburger-layer-width: 30px;
+$hamburger-layer-height: 3px;
+$hamburger-layer-spacing: 6px;
+$spin-duration: 0.25s;
+$collapse-duration: 0.15s;
+
+.hamburger {
+  padding: 0;
+  display: inline-block;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  outline: none;
+  font-size: 0;
+
+  @include media-min('sm') {
+    display: none;
+  }
+
+  &.active {
+    .hamburger-inner {
+      transform: rotate(225deg);
+      transition-delay: $collapse-duration*1.1;
+      transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+      &::before {
+        top: 0;
+        opacity: 0;
+        transition: top $collapse-duration ease-out, opacity $collapse-duration $collapse-duration*1.1 ease-out;
+      }
+
+      &::after {
+        bottom: 0;
+        transform: rotate(-90deg);
+        transition: bottom $collapse-duration ease-out,
+        transform $spin-duration $collapse-duration*1.1 cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+    }
+  }
+
+  .hamburger-box {
+    width: $hamburger-layer-width;
+    height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2;
+    display: inline-block;
+    position: relative;
+  }
+
+  .hamburger-inner {
+    display: block;
+    top: 50%;
+    margin-top: $hamburger-layer-height / -2;
+    transition-duration: $spin-duration;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+    &,
+    &::before,
+    &::after {
+      width: $hamburger-layer-width;
+      height: $hamburger-layer-height;
+      background-color: $color-dark-blue;
+      position: absolute;
+      transition-property: transform;
+    }
+
+    &::before {
+      top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+      transition: top $collapse-duration $spin-duration*1.1 ease-in, opacity $collapse-duration ease-in;
+    }
+
+    &::after {
+      bottom: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+      transition: bottom $collapse-duration $spin-duration*1.1 ease-in, transform $spin-duration cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+    }
+  }
+}

@@ -8,7 +8,7 @@ export default () => {
     const props = Movable.useMove({position, onMove, constraints: [snap(60, 60, 0.3)]});
 
     return (
-        <Movable {...props} className='movable-object' style={position}>
+        <Movable {...props} style={position}>
             I snap to a 20x20 grid
         </Movable>
     );

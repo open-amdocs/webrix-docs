@@ -7,7 +7,7 @@ export default () => {
     const [position, onMove] = useState({});
 
     return (
-        <Movable {...Movable.useMove({ref: movable, onMove})} style={position} className='movable-object' ref={movable}>
+        <Movable {...Movable.useMove({ref: movable, onMove})} style={position} ref={movable}>
             Move Me!
         </Movable>
     );
