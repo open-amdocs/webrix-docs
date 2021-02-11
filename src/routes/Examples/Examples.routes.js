@@ -44,4 +44,9 @@ export default [
         path: '/examples/CollageMaker',
         tags: ['movable'],
     },
+    {
+        title: 'Nested Menu',
+        path: '/examples/NestedMenu',
+        tags: ['poppable'],
+    },
 ]

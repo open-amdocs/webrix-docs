@@ -1,0 +1,60 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.menu {
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 150px;
+  transition: all 0.25s ease-in-out;
+
+  .menu-item {
+    font-size: 14px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    color: #22212E;
+    justify-content: space-between;
+    svg {
+      padding-left: 5px;
+    }
+    span {
+      padding-left: 10px;
+    }
+    .triangle {
+      border: 7px solid transparent;
+      border-left-color: #22212E;
+      cursor: pointer;
+    }
+
+    &.color-green {
+      color: $color-green;
+    }
+
+    &.color-salmon {
+      color: $color-salmon;
+    }
+
+    &.color-pink {
+      color: $color-pink;
+    }
+
+    &:hover {
+      background-color: aliceblue;
+    }
+  }
+
+  .menu-item-divider {
+    height: 1px;
+    background-color: rgba(144, 148, 166, 0.4);
+  }
+}
