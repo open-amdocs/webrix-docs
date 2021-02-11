@@ -15,7 +15,7 @@ const menuItems = [[{name: 'Edit', icon: FaEdit, showSubmenu: true},
                    {name: 'Restore', icon: FaTrashRestore, color: 'salmon'},
                    {name: 'Delete all', icon: FaTrashAlt, color: 'pink'}],
                    [{name: 'Rename project'}, {name: 'Mark as seen'}, {name: 'Email notification'}, {name: 'Purchase', showSubmenu: true}],
-                   [{name: 'First item', showSubmenu: true}, {name: 'Second item'}, {name: 'Last item'},]
+                   [{name: 'First item', showSubmenu: true}, {name: 'Second item'}, {name: 'Last item'}],
 ];
 
 const MenuItem = forwardRef(({text, Icon, showTriangle, toggle, color}, ref) => (
@@ -43,8 +43,8 @@ const SubMenu = ({counter = 0}) => {
                 <SubMenu counter={counter + 1}/>
             </Poppable>
             }
-            {menuItems[counter].map(({name, icon, showSubmenu, color}) =>
-                <MenuItem Icon={icon} text={name} toggle={showSubmenu && toggle} ref={showSubmenu && subMenuRef}
+            {menuItems[counter].map(({name, icon, showSubmenu, color}, index) =>
+                <MenuItem key={index} Icon={icon} text={name} toggle={showSubmenu && toggle} ref={showSubmenu && subMenuRef}
                           showTriangle={showSubmenu && counter < 2} color={color}/>)}
         </div>
 
