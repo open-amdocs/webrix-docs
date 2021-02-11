@@ -2,38 +2,17 @@ import React, {useCallback, useState, useRef, useEffect} from 'react';
 import {Movable} from 'webrix/components';
 import './style.scss';
 
-const contain = (min, max) => (e, shared) => {
-    console.log(Math.min(Math.max(shared.next.left, min), max));
-    shared.next.left = Math.min(Math.max(shared.next.left, min), max)
-};
-
-const useMove = ({ref, onMove, constraints = []}) => {
-    const shared = useRef({});
-    return {
-        onBeginMove: ({x}) => {
-            shared.current.initial = ref.current.getBoundingClientRect();
-            shared.current.next = {left: x - shared.current.initial.left};
-            onMove({left: shared.current.next.left});
-        },
-        onMove: ({x}) => {
-            shared.current.next.left = Math.round(x - shared.current.initial.left);
-            constraints.forEach(c => c({x}, shared.current));
-            onMove({left: shared.current.next.left});
-        }
-    }
-};
-
 const Slider = ({value, onChange, min, max, step = 1}) => {
     const [width, setWidth] = useState(0);
     const track = useRef({});
     const padding = 10;
     const position = ((value - min) / (max - min) * width) + padding;
-    // const {contain} = Movable.Constraints;
+    const {padding: pad} = Movable.Constraints;
     const handleOnMove = useCallback(({left}) => {
         const normalized = ((left - padding) / width) * (max - min) + min;
         onChange(Math.round(normalized / step) * step);
     }, [onChange, width]);
-    const props = useMove({ref: track, onMove: handleOnMove, constraints: [contain(10, width + 10)]});
+    const props = Movable.useMoveArea({ref: track, onMove: handleOnMove, constraints: [pad(0, 10, 0, 10)]});
 
     useEffect(() => {
         setWidth(track.current.offsetWidth - padding * 2);
