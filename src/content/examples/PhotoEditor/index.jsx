@@ -1,59 +1,51 @@
-import React, {useCallback, useState, useRef} from 'react';
+import React, {useCallback, useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
 import img from './image.jpg';
 import './style.scss';
 
-const DEFAULTS = [
-    ['blur', '0px'],
-    ['brightness', '100%'],
-    ['contrast', '100%'],
-    ['grayscale', '0%'],
-    ['invert', '0%'],
-    ['saturate', '100%'],
-    ['hue-rotate', '0deg'],
-    ['sepia', '0%'],
+const CONTROLS = [
+    {name: 'blur', initial: 0, max: 20, suffix: 'px'},
+    {name: 'brightness', initial: 100, max: 200, suffix: '%'},
+    {name: 'contrast', initial: 100, max: 200, suffix: '%'},
+    {name: 'grayscale', initial: 0, max: 100, suffix: '%'},
+    {name: 'invert', initial: 0, max: 100, suffix: '%'},
+    {name: 'saturate', initial: 100, max: 200, suffix: '%'},
+    {name: 'hue-rotate', initial: 0, max: 360, suffix: 'deg'},
+    {name: 'sepia', initial: 0, max: 100, suffix: '%'},
 ];
 
-const clamp = (min, max, value) => Math.min(Math.max(value, min), max);
+const INITIAL = CONTROLS.map(({initial}) => initial);
 
-const Slider = ({value, onChange, index, suffix, max}) => {
-    const width = 150;
+const Slider = memo(({value, onChange, index}) => {
+    const {max, name} = CONTROLS[index];
+    const width = 150, pad = 8;
     const movable = useRef();
-    const name = value[index][0];
-    const left = (parseInt(value[index][1].replace(suffix, '')) / max) * width;
-
-    const handleOnMove = useCallback(({x}) => {
-        const {left} = movable.current.getBoundingClientRect();
-        onChange(value => {
-            const next = (clamp(0, width - 5, x - left) / width) * max;
-            const copy = [...value];
-            copy[index] = [name, `${next}${suffix}`];
-            return copy;
-        });
+    const left = (value / max) * (width - pad * 2) + pad;
+    const {padding} = Movable.Constraints;
+    const onMove = useCallback(({left}) => {
+        const next = ((left - pad) / (width - pad * 2)) * max;
+        onChange(next, index);
     }, [onChange]);
-
+    const props = Movable.useMoveArea({ref: movable, onMove, constraints: [padding(0, pad, 0, pad)]});
     return (
         <div className='slider'>
             <div className='name'>{name}</div>
-            <Movable className='track' ref={movable} onBeginMove={handleOnMove} onMove={handleOnMove}>
+            <Movable className='track' {...props}>
                 <div className='handle' style={{left}}/>
             </Movable>
         </div>
     );
-};
+});
 
 const Controls = ({filters, onChange, onReset}) => {
-
+    const handleOnChange = useCallback((value, index) => {
+        onChange(current => current.map((v, i) => i === index ? value : v));
+    }, [onChange]);
     return (
         <div className='controls'>
-            <Slider value={filters} index={0} max={20} suffix='px' onChange={onChange}/>
-            <Slider value={filters} index={1} max={200} suffix='%' onChange={onChange}/>
-            <Slider value={filters} index={2} max={200} suffix='%' onChange={onChange}/>
-            <Slider value={filters} index={3} max={100} suffix='%' onChange={onChange}/>
-            <Slider value={filters} index={4} max={100} suffix='%' onChange={onChange}/>
-            <Slider value={filters} index={5} max={200} suffix='%' onChange={onChange}/>
-            <Slider value={filters} index={6} max={360} suffix='deg' onChange={onChange}/>
-            <Slider value={filters} index={7} max={100} suffix='%' onChange={onChange}/>
+            {CONTROLS.map((_, i) => (
+                <Slider value={filters[i]} index={i} onChange={handleOnChange}/>
+            ))}
             <div className='button' onClick={onReset}>Reset</div>
         </div>
     );
@@ -64,15 +56,15 @@ const Image = ({filters}) => (
         <div
             className='image'
             style={{
-                filter: filters.map(([name, value]) => `${name}(${value})`).join(' '),
+                filter: filters.map((value, i) => `${CONTROLS[i].name}(${value}${CONTROLS[i].suffix})`).join(' '),
                 backgroundImage: `url(${img})`,
             }}/>
     </div>
 )
 
 export default () => {
-    const [filters, setFilters] = useState(DEFAULTS);
-    const handleOnReset = useCallback(() => setFilters(DEFAULTS), [setFilters]);
+    const [filters, setFilters] = useState(INITIAL);
+    const handleOnReset = useCallback(() => setFilters(INITIAL), [setFilters]);
     return (
         <div className='photo-editor'>
             <Image filters={filters}/>
