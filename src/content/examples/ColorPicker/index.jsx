@@ -13,8 +13,6 @@ const rgbToHex = (r, g, b) => (
     '#' + componentToHex(r) + componentToHex(g) + componentToHex(b)
 );
 
-const clamp = (min, max, value) => Math.min(Math.max(value, min), max);
-
 const GradientCanvas = ({ctx, height, gradients}) => {
 
     useEffect(() => {
@@ -36,16 +34,16 @@ const GradientCanvas = ({ctx, height, gradients}) => {
 const HueSelector = ({onChange}) => {
     const movable = useRef();
     const ctx = useRef();
-    const [left, setLeft] = useState(0);
-
-    const handleOnMove = useCallback(({x}) => {
-        const {left} = movable.current.getBoundingClientRect();
-        onChange(ctx.current.getImageData(x - left, 0, 1, 1).data.slice(0, 3));
-        setLeft(clamp(0, 240, x - left));
+    const [left, setLeft] = useState(4);
+    const onMove = useCallback(({left}) => {
+        onChange(ctx.current.getImageData(left, 0, 1, 1).data.slice(0, 3));
+        setLeft(left);
     }, [setLeft, onChange]);
+    const {padding} = Movable.Constraints;
+    const props = Movable.useMoveArea({ref: movable, onMove, constraints: [padding(0, 4, 0, 4)]});
 
     return (
-        <Movable className='hue-selector' onBeginMove={handleOnMove} onMove={handleOnMove} ref={movable}>
+        <Movable className='hue-selector' {...props}>
             <div className='pointer' style={{left}}/>
             <GradientCanvas ctx={ctx} height={8} gradients={useMemo(() => [
                 [
@@ -61,19 +59,19 @@ const ShadeSelector = ({onChange, hue}) => {
     const movable = useRef();
     const ctx = useRef();
     const hex = rgbToHex(...hue);
-    const [{top, left}, setPosition] = useState({top: 0, left: 0});
+    const [{top, left}, setPosition] = useState({top: 3, left: 3});
+    const {padding} = Movable.Constraints;
+    const onMove = useCallback(({top, left}) => {
+        onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3));
+        setPosition({top, left});
+    }, [setPosition, onChange]);
+    const props = Movable.useMoveArea({ref: movable, onMove, constraints: [padding(4, 4, 4, 4)]});
 
-    const handleOnMove = useCallback(({x, y}) => {
-        const {top, left, width} = movable.current.getBoundingClientRect();
-        onChange(ctx.current.getImageData(x - left, y - top, 1, 1).data.slice(0, 3));
-        setPosition({
-            top: clamp(0, width - 7, y - top),
-            left: clamp(0, width - 7, x - left),
-        });
-    }, [setPosition]);
+    // Update the shade when the hue changes
+    useEffect(() => onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3)), [hue])
 
     return (
-        <Movable className='shade-selector' onBeginMove={handleOnMove} onMove={handleOnMove} ref={movable}>
+        <Movable className='shade-selector' {...props}>
             <div className='pointer' style={{top, left}}/>
             <GradientCanvas ctx={ctx} height={250} gradients={useMemo(() => [
                 [[0, 0, WIDTH, 0], [[hex, 0], [hex, 1]]],
