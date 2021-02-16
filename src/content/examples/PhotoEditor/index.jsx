@@ -1,6 +1,5 @@
 import React, {useCallback, useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
-import img from './image.jpg';
 import './style.scss';
 
 const CONTROLS = [
@@ -44,12 +43,12 @@ const Controls = ({filters, onChange, onReset}) => {
     return (
         <div className='controls'>
             {CONTROLS.map((_, i) => (
-                <Slider value={filters[i]} index={i} onChange={handleOnChange}/>
+                <Slider value={filters[i]} index={i} key={i} onChange={handleOnChange}/>
             ))}
             <div className='button' onClick={onReset}>Reset</div>
         </div>
     );
-}
+};
 
 const Image = ({filters}) => (
     <div className='image-container'>
@@ -57,10 +56,9 @@ const Image = ({filters}) => (
             className='image'
             style={{
                 filter: filters.map((value, i) => `${CONTROLS[i].name}(${value}${CONTROLS[i].suffix})`).join(' '),
-                backgroundImage: `url(${img})`,
             }}/>
     </div>
-)
+);
 
 export default () => {
     const [filters, setFilters] = useState(INITIAL);

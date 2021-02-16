@@ -5,18 +5,16 @@ import './style.scss';
 
 const MIN = 0.5, MAX = 1.5;
 
-const clamp = (min, max, value) => Math.min(Math.max(value, min), max);
-
 const Slider = ({value, onChange}) => {
     const movable = useRef();
     const position = `${(value - MIN) / (MAX - MIN) * 90}%`; // 90 so the handle doesn't go beyond the track
-    const handleOnMove = useCallback(({y}) => {
-        const {height, top} = movable.current.getBoundingClientRect();
-        onChange(() => MIN + (clamp(0, height, y - top) / height) * (MAX - MIN));
+    const onMove = useCallback(({top}) => {
+        onChange(() => MIN + (top / 100) * (MAX - MIN));
     }, [onChange]);
+    const props = Movable.useMoveArea({ref: movable, onMove});
 
     return (
-        <Movable className='slider' ref={movable} onBeginMove={handleOnMove} onMove={handleOnMove}>
+        <Movable className='slider' {...props}>
             <div className='value'>{Math.round(value * 100)}%</div>
             <div className='handle' style={{top: position}}/>
         </Movable>

@@ -1,6 +1,6 @@
 $border-size: 2px;
 $circle-size: 10px;
-$circle-offset: ($circle-size + $border-size) / 2;
+$circle-offset: ($circle-size - $border-size) / 2;
 
 #example {
   display: flex;
@@ -18,10 +18,8 @@ $circle-offset: ($circle-size + $border-size) / 2;
   .crop {
     position: absolute;
     z-index: 2;
-    border: $border-size solid $color-light-gray;
-    box-shadow: 0 0 0 100vmax rgba(black, 0.4);
+    box-shadow: 0 0 0 100vmax rgba(black, 0.4), inset 0 0 0 2px $color-light-gray;
     cursor: grab;
-    box-sizing: border-box;
 
     .handler {
       width: 100%;

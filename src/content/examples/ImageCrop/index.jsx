@@ -37,7 +37,7 @@ const Crop = ({image}) => {
 
     return (
         <div className='crop' style={position} ref={crop}>
-            <Movable {...Movable.useMove({position, onMove, constraints: [mContain(movable, image)]})} className='handler' ref={movable}/>
+            <Movable {...Movable.useMove({ref: movable, onMove, constraints: [mContain(image)]})} className='handler' ref={movable}/>
             <Resizable {...Resizable.useResize({ref: crop, onResize: setPosition, constraints: [rContain(image), min(50, 50)]})}>
                 <Resizable.Resizer.All/>
             </Resizable>
