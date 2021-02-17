@@ -1,0 +1,51 @@
+.menu {
+  background-color: $color-white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+
+  .menu-item {
+    font-size: 14px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    background-color: $color-white;
+    color: $color-dark-blue;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0 8px;
+
+    svg {
+      margin-right: 8px;
+
+      &.caret {
+        margin-right: 0;
+        margin-left: auto;
+      }
+    }
+
+    &.color-green {
+      color: $color-green;
+    }
+
+    &.color-salmon {
+      color: $color-salmon;
+    }
+
+    &.color-pink {
+      color: $color-pink;
+    }
+
+    &:hover, &.active {
+      background-color: aliceblue;
+    }
+  }
+
+  .menu-item-divider {
+    height: 1px;
+    background-color: $color-lighter-gray;
+  }
+}
