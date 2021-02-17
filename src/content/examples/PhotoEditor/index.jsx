@@ -1,5 +1,6 @@
 import React, {useCallback, useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
+import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
 const CONTROLS = [
@@ -17,14 +18,15 @@ const INITIAL = CONTROLS.map(({initial}) => initial);
 
 const Slider = memo(({value, onChange, index}) => {
     const {max, name} = CONTROLS[index];
-    const width = 150, pad = 8;
+    const pad = 8;
     const movable = useRef();
+    const {width} = useDimensions(movable);
     const left = (value / max) * (width - pad * 2) + pad;
     const {padding} = Movable.Constraints;
     const onMove = useCallback(({left}) => {
         const next = ((left - pad) / (width - pad * 2)) * max;
         onChange(next, index);
-    }, [onChange]);
+    }, [onChange, width]);
     const props = Movable.useMoveArea({ref: movable, onMove, constraints: [padding(0, pad, 0, pad)]});
     return (
         <div className='slider'>
