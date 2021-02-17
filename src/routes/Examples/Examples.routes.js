@@ -44,4 +44,9 @@ export default [
         path: '/examples/CollageMaker',
         tags: ['movable'],
     },
+    {
+        title: 'Menu',
+        path: '/examples/Menu',
+        tags: ['poppable', 'useVisibilityState', 'useClickOutside'],
+    },
 ]
