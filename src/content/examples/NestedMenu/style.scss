@@ -8,32 +8,30 @@
 .menu {
   background-color: $color-white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  padding: 10px;
+  padding: 5px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 150px;
 
   .menu-item {
     font-size: 14px;
-    height: 33px;
+    height: 34px;
     display: flex;
     align-items: center;
     background-color: $color-white;
     color: $color-dark-blue;
-    justify-content: space-between;
+    border-radius: 4px;
     cursor: pointer;
+    padding: 0 8px;
 
     svg {
-      padding-left: 5px;
-    }
-    span {
-      padding-left: 10px;
-    }
-    .triangle {
-      border: 7px solid transparent;
-      border-left-color: $color-dark-blue;
+      margin-right: 8px;
+
+      &.caret {
+        margin-right: 0;
+        margin-left: auto;
+      }
     }
 
     &.color-green {
@@ -48,13 +46,13 @@
       color: $color-pink;
     }
 
-    &:hover {
+    &:hover, &.active {
       background-color: aliceblue;
     }
   }
 
   .menu-item-divider {
     height: 1px;
-    background-color: rgba($color-gray, 0.4);
+    background-color: $color-lighter-gray;
   }
 }

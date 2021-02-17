@@ -1,25 +1,23 @@
-import React, {useRef, useCallback} from 'react';
-import classNames from 'classnames';
+import React, {useRef} from 'react';
+import cls from 'classnames';
 import {useVisibilityState, useClickOutside} from 'webrix/hooks';
 import {Poppable} from 'webrix/components';
-import {FaCut, FaCopy, FaEdit, FaFileImport, FaSave, FaTrashAlt, FaTrashRestore} from 'react-icons/fa';
+import {FaCut, FaCopy, FaEdit, FaFileImport, FaSave, FaTrashAlt, FaTrashRestore, FaCaretRight} from 'react-icons/fa';
 import './style.scss';
 
-const MenuItem = ({title, Icon, children, color}) => {
+const MenuItem = ({title, icon: Icon, children, color = 'black'}) => {
     const {visible, show, hide} = useVisibilityState();
-    const handleOnMouseDownCapture = useClickOutside(useCallback(hide, []));
+    const handleOnMouseDownCapture = useClickOutside(hide);
     const child = children && React.Children.only(children);
-    const menuItemRef = useRef();
+    const ref = useRef();
 
     return (
-        <div className={classNames('menu-item', color ? `color-${color}` : '')} onMouseDownCapture={handleOnMouseDownCapture}
-             onClick={show} ref={menuItemRef}>
-            <div className='content'>
-                {Icon && <Icon/>}
-                <span>{title}</span>
-            </div>
-            {child && <div className='triangle'/>}
-            {visible && child && React.cloneElement(child, {reference: menuItemRef})}
+        <div className={cls('menu-item', `color-${color}`, {active: visible})} onMouseDownCapture={handleOnMouseDownCapture}
+             onClick={show} ref={ref}>
+            {Icon && <Icon/>}
+            {title}
+            {child && <FaCaretRight className='caret'/>}
+            {visible && child && React.cloneElement(child, {reference: ref})}
         </div>
     );
 }
@@ -27,10 +25,10 @@ const MenuItem = ({title, Icon, children, color}) => {
 const Divider = () => <div className='menu-item-divider'/>;
 
 const Menu = ({children, reference}) => {
-    const {vcenter, hafter} = Poppable.Placements;
+    const {vafter, hafter} = Poppable.Placements;
 
     return (
-        <Poppable placements={(rbr, tbr) => [{...hafter(rbr, tbr, 11), ...vcenter(rbr, tbr, 50)}]} reference={reference}>
+        <Poppable placements={(rbr, tbr) => [{...hafter(rbr, tbr), ...vafter(rbr, tbr, -34)}]} reference={reference}>
             <div className='menu'>
                 {children}
             </div>
@@ -39,31 +37,28 @@ const Menu = ({children, reference}) => {
 }
 export default () => (
     <Menu reference={new DOMRect((window.innerWidth - 170) / 2 ,(window.innerHeight - 200) / 2, 0 , 0)}>
-        <MenuItem title='Edit' Icon={FaEdit}>
+        <MenuItem title='Edit' icon={FaEdit}>
             <Menu>
-                <MenuItem title='Rename project'/>
-                <MenuItem title='Mark as seen'/>
-                <MenuItem title='Email notification'/>
+                <MenuItem title='Rename Project'/>
+                <MenuItem title='Mark As Seen'/>
+                <MenuItem title='Email Notification'/>
                 <Divider/>
                 <MenuItem title='Purchase'>
                     <Menu>
-                        <MenuItem title='First item'/>
-                        <MenuItem title='Second item'/>
-                        <MenuItem title='Last item'/>
+                        <MenuItem title='First Item'/>
+                        <MenuItem title='Second Item'/>
+                        <MenuItem title='Last Item'/>
                     </Menu>
                 </MenuItem>
             </Menu>
         </MenuItem>
-        <MenuItem title='Copy' Icon={FaCopy}/>
-        <MenuItem title='Cut' Icon={FaCut}/>
-        <MenuItem title='Import tasks' Icon={FaFileImport}/>
+        <MenuItem title='Copy' icon={FaCopy}/>
+        <MenuItem title='Cut' icon={FaCut}/>
+        <MenuItem title='Import tasks' icon={FaFileImport}/>
         <Divider/>
-        <MenuItem title='Save as' Icon={FaSave} color='green'/>
+        <MenuItem title='Save as' icon={FaSave} color='green'/>
         <Divider/>
-        <MenuItem title='Restore' Icon={FaTrashRestore} color='salmon'/>
-        <MenuItem title='Delete all' Icon={FaTrashAlt} color='pink'/>
+        <MenuItem title='Restore' icon={FaTrashRestore} color='salmon'/>
+        <MenuItem title='Delete All' icon={FaTrashAlt} color='pink'/>
     </Menu>
-)
-
-
-
+);
