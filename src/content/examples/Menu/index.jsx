@@ -36,7 +36,7 @@ const Menu = ({children, reference}) => {
     );
 }
 export default () => (
-    <Menu reference={new DOMRect((window.innerWidth - 170) / 2 ,(window.innerHeight - 200) / 2, 0 , 0)}>
+    <Menu reference={new DOMRect((window.innerWidth - 160) / 2 ,(window.innerHeight - 250) / 2, 0 , 0)}>
         <MenuItem title='Edit' icon={FaEdit}>
             <Menu>
                 <MenuItem title='Rename Project'/>
