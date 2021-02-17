@@ -56,7 +56,7 @@ export default () => (
         </MenuItem>
         <MenuItem title='Copy' Icon={FaCopy}/>
         <MenuItem title='Cut' Icon={FaCut}/>
-        <MenuItem title='Import tasks' icon={FaFileImport}/>
+        <MenuItem title='Import tasks' Icon={FaFileImport}/>
         <Divider/>
         <MenuItem title='Save as' Icon={FaSave} color='green'/>
         <Divider/>
