@@ -14,7 +14,6 @@
   flex-direction: column;
   justify-content: space-between;
   width: 150px;
-  transition: all 0.25s ease-in-out;
 
   .menu-item {
     font-size: 14px;
@@ -22,7 +21,7 @@
     display: flex;
     align-items: center;
     background-color: $color-white;
-    color: #22212E;
+    color: $color-dark-blue;
     justify-content: space-between;
     svg {
       padding-left: 5px;
@@ -32,7 +31,7 @@
     }
     .triangle {
       border: 7px solid transparent;
-      border-left-color: #22212E;
+      border-left-color: $color-dark-blue;
       cursor: pointer;
     }
 
