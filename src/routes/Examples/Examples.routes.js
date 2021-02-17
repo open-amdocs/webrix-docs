@@ -47,6 +47,6 @@ export default [
     {
         title: 'Nested Menu',
         path: '/examples/NestedMenu',
-        tags: ['poppable'],
+        tags: ['poppable', 'useVisibilityState', 'useClickOutside'],
     },
 ]
