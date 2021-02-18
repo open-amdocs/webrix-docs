@@ -2,6 +2,7 @@ const AWS = require('aws-sdk');
 const proxy = require('proxy-agent');
 const fs = require('fs');
 const path = require('path');
+const mime = require('mime-types');
 
 const REGION = 'us-east-1'; // code for US East (N. Virginia), see full list here: https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
 const BUCKET = 'webrix.amdocs.com';
@@ -35,18 +36,18 @@ const traverse = (dir, callback) => {
     });
 };
 
-traverse(DIR, path => {
-    const fileStream = fs.createReadStream(path);
+traverse(DIR, filepath => {
+    const fileStream = fs.createReadStream(filepath);
     fileStream.on('error', (err) => {
         console.log('File Error', err);
     });
 
     const params = {
         Bucket: BUCKET,
-        Key: path.substring(DIR.length + 1), // Change the path so that it starts from DIR
+        Key: filepath.substring(DIR.length + 1), // Change the path so that it starts from DIR
         Body: fileStream,
         ACL: FILE_PERMISSION,
-        ContentType: 'text/html',
+        ContentType: mime.lookup(path.extname(filepath)) || 'application/octet-stream',
     };
 
     s3.upload(params, (err, data) => {
