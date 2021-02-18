@@ -1,4 +1,4 @@
-import {UnderConstruction} from 'components';
+import {Example} from 'components';
 
 Call a function only once in a given period of time, and delay the execution based on
 a given delay after the last invocation. This hook will perform the necessary memory
@@ -8,6 +8,17 @@ cleanup automatically.
 > for the difference between debounce & throttle
 
 ## Basic Example
+
+<Example file='docs/hooks/usedebounce/BasicExample' height={150}/>
+
+In this example we use `useDebounce()` for monitoring user typing. We use a delay time of `500ms`,
+so as long as the time between keystrokes is less than that, it will show a `Typing...` message.
+If the user stops for more than `500ms`, the message will change to `Idle`.
+
+This can be used for implementing things like "autosave" on text inputs, but instead of overloading the server
+with requests per keystroke, we can make requests only when the user stops typing.
+
+Here's a basic code example:
 
 ```js
 const debounced = useDebounce(console.log, 500);
