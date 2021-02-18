@@ -47,6 +47,6 @@ export default [
     {
         title: 'Menu',
         path: '/examples/Menu',
-        tags: ['poppable', 'useVisibilityState', 'useClickOutside'],
+        tags: ['poppable', 'useVisibilityState', 'useClickOutside', 'useDimensions'],
     },
 ]
