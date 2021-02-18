@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, useLocation} from 'react-router-dom';
+import {FaGithub} from 'react-icons/fa';
 import cls from 'classnames';
 import pkg from '../../../package.json';
 import {HOME, DOCS, TUTORIAL, PLAYGROUND, EXAMPLES} from '../../routes/Router.routes';
@@ -20,7 +21,8 @@ const Header = () => {
                     <Link key={name} to={path} className={cls({active: current === name})}>{name}</Link>
                 ))}
             </nav>
-            <div className='version'>v{pkg.dependencies.webrix}</div>
+            <a href='https://github.com/open-amdocs/webrix/releases' className='version'>v{pkg.dependencies.webrix}</a>
+            <a href='https://github.com/open-amdocs/webrix/' className='github-link'><FaGithub/></a>
             <HamburgerMenu/>
         </header>
     );
