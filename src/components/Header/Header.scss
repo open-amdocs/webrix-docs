@@ -10,11 +10,6 @@
   right: 0;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 2px 10px rgba(0, 0, 0, 0.1);
 
-  a {
-    color: $color-dark-blue;
-    text-transform: capitalize;
-  }
-
   .logo {
     font-weight: bold;
     font-size: 0;
@@ -40,6 +35,9 @@
       height: 100%;
       display: flex;
       align-items: center;
+      font-size: 14px;
+      color: $color-dark-blue;
+      text-transform: capitalize;
 
       &.active {
         border-bottom: 4px solid $color-pink;
@@ -49,8 +47,28 @@
     }
   }
 
+  .github-link {
+    margin-left: 10px;
+    display: flex;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    @include media-max('sm') {
+      margin-right: 10px;
+
+      svg {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+
   .version {
     color: $color-dark-blue;
+    font-size: 14px;
 
     @include media-max('sm') {
       font-size: 12px;
