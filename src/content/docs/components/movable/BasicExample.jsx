@@ -5,9 +5,10 @@ import './BasicExample.scss';
 export default () => {
     const ref = useRef();
     const [position, onMove] = useState({});
+    const props = Movable.useMove({ref, onMove});
 
     return (
-        <Movable {...Movable.useMove({ref, onMove})} style={position}>
+        <Movable {...props} style={position}>
             Move Me!
         </Movable>
     );

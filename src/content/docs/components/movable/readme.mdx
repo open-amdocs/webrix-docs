@@ -1,24 +1,21 @@
 import {Example} from 'components';
 
-The `<Movable/>` component can be used to create items that can be moved around. As opposed to a draggable element,
-the `<Movable/>` component does not require a source/target configuration. All it does is trigger an event when the user
-moves it around, passing the mouse position (`x/y`), the difference in the coordinates since the beginning of the event
-(`dx/dy`), and the difference in the coordinates since the last event (`cx/cy`)
+The `<Movable/>` component can be used to create movable elements. As opposed to a draggable element,
+the `<Movable/>` component does not require a source/target configuration. Instead, it supports 3 custom
+events (`onBeginMove`, `onMove`, `onEndMove`) through which you can control the movement.
+The `<Movable/>` also comes with a set of hooks for reduced boilerplate and easy constraint application.
 
 ## Basic Example
 
 <Example file='docs/components/movable/BasicExample' height={200}/>
 
-In this example you can see how, using the `onMove`, we can change the element coordinates based on `cx/cy`.
+In this example we are using the `Movable.useMove()` hook to control the movement.
+The `onMove` callback is called when the element moves, passing an object with `top/left`
+as an argument.
 
-Notice that we are using a function to set the state, instead of passing an object directly.
-This is because the [state may be updated asynchronously](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous),
-so we cannot rely on the state value for calculating the next position.
+## Constraints
 
-Using a function will give us the previous state as an argument, and we can use that to accurately calculate the
-next position.
-
-## Constraint Movement
+### Constraint Axis
 
 <Example file='docs/components/movable/ConstraintMovement' height={200}/>
 
@@ -27,28 +24,67 @@ through the event without actually manipulating the element itself.
 This way you are free to add your own logic and constraints.
 
 In this example, we ignore the movement of the mouse on the `x` axis to constraint the element to the `y`
-axis.
+axis. We do that by only applying the `top` value of the position.
 
-## Snapping
+### Snapping
 
 <Example file='docs/components/movable/Snapping' height={200}/>
 
-Similarly to the previous example, more complex constraints can be applied, like snapping.
-This can be achieved by applying the following formula to the coordinates of the element:
+Similarly to the previous example, more complex constraints can be applied using the provided
+constraints in `Movable.Constraints`.
 
-```jsx
-const GRID_SIZE = 20;
-Math.round(x / GRID_SIZE) * GRID_SIZE;
-```
+In this example above we're using the `Movable.Constraints.snap(...)` constraint to make the movable
+element snap to a 20px by 20px grid.
 
-The main difference is that we are no longer updating the state for every event (the user can move
-the mouse without the object moving with it until it snaps to the next grid line).
-Because of that, we need to maintain the initial position of the element, and use `dx/dy`
-instead to get the next position.
+<Example file='docs/components/movable/SnappingAdvanced' height={300}/>
 
-## Contained
+In this example you can see how to apply different gird sizes and different snap strengths.
+
+### Contain
 
 <Example file='docs/components/movable/Contained' height={300}/>
+
+In this example we're using the `Movable.Constraints.contain(...)` constraint, to limit the movement
+of the element within the boundaries of the given container.
+
+### Custom Constraints
+
+Coming soon!
+
+## Movable Area
+
+<Example file='docs/components/movable/MovableArea' height={300}/>
+
+Until now we've been using the `Movable.useMove()` hook to move the element by clicking on it
+and dragging it. However, in certain cases you don't want to click on the element, but rather on
+the point you wish the element to move to (for example, in sliders).
+
+For that you can use the `Movable.useMoveArea()` hook, as seen in the example above.
+
+## Manual Event Handling
+
+<Example file='docs/components/movable/Manual' height={200}/>
+
+If you need some custom behavior that you cannot get using the `Movable` hooks, you can write your
+own event handlers. When a user moves a `<Movable/>` element, the custom events (`onBeginMove`, `onMove`, `onEndMove`)
+are triggered, passing the mouse position (`x/y`), the difference in the coordinates since the beginning of the event
+(`dx/dy`), and the difference in the coordinates since the last event (`cx/cy`) as arguments.
+
+In this example we are using the change in coordinates (`cx/cy`) for updating the `position` state.
+
+Notice that we are using a function to set the state, instead of passing an object directly.
+This is because the [state may be updated asynchronously](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous),
+so we cannot rely on the state value for calculating the next position.
+
+Using a function will give us the previous state as an argument, and we can use that to accurately calculate the
+next position.
+
+<Example file='docs/components/movable/ManualAdvanced' height={200}/>
+
+You can avoid the issue explained above, and get a more user-friendly movement
+by using the deltas (`dx/dy`) or the mouse position (`x/y`).
+However, using them requires maintaining the initial position of the element as soon as the movement begins.
+This can be done through the `onBeginMove` event, as can be seen in the above example.
 
 ## API
 
@@ -62,6 +98,7 @@ import Movable from 'webrix/components/Movable'; // For better tree shaking
 // UMD
 const {Movable} = Webrix.components;
 ```
+
 ### Props
 
 Name|Type|Default|Description
@@ -69,3 +106,32 @@ Name|Type|Default|Description
 `onBeginMove`|function|`() => null`|Specifies a callback to be called when the user begins to move the element
 `onMove`|function|`() => null`|Specifies a callback to be continuously called as the user moves the element around. Receives `x/y/dx/dy/cx/cy` as arguments (see description above for more info)
 `onEndMove`|function|`() => null`|Specifies a callback to be called when the user stops moving the element
+
+### Hooks
+
+#### `Movable.useMove({ref, onMove, constraints = []})`
+
+Generate the set of props to be injected to a Movable component, applying the given constraints.
+
+#### `Movable.useMoveArea({ref, onMove, constraints = []})`
+
+Generate the set of props to be injected to a Movable component, applying the given constraints.
+This is similar to useMove(), only here the ref is used as a movement 'pad', and the movement
+is usually applied to another element.
+
+### Constraints
+
+#### `Movable.Constraints.snap(horizontal, vertical, strength = 1)`
+
+Snap the movement to a grid specified by the given `horizontal` & `vertical` sizes
+of the grid steps, optionally specifying the snapping strength in `strength`, as a number between `0` and `1`.
+
+#### `Movable.Constraints.contain(container)`
+
+Limit the movement to the bounding rect of the given container.
+
+#### `Movable.Constraints.padding(top, right, bottom, left)`
+
+Apply padding to the movement boundaries.
+This can either be the bounds specified by the `contain()` constraint,
+or, if using the `useMoveArea()` hook, the bounding rect of the given ref.
