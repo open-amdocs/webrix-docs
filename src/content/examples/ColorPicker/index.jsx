@@ -35,12 +35,16 @@ const HueSelector = ({onChange}) => {
     const movable = useRef();
     const ctx = useRef();
     const [left, setLeft] = useState(4);
-    const onMove = useCallback(({left}) => {
-        onChange(ctx.current.getImageData(left, 0, 1, 1).data.slice(0, 3));
-        setLeft(left);
-    }, [setLeft, onChange]);
     const {padding} = Movable.Constraints;
-    const props = Movable.useMoveArea({ref: movable, onMove, constraints: [padding(0, 4, 0, 4)]});
+
+    const props = Movable.useMoveArea({
+        ref: movable,
+        constraints: [padding(0, 4, 0, 4)],
+        onMove: useCallback(({left}) => {
+            onChange(ctx.current.getImageData(left, 0, 1, 1).data.slice(0, 3));
+            setLeft(left);
+        }, [setLeft, onChange]),
+    });
 
     return (
         <Movable className='hue-selector' {...props}>
@@ -61,11 +65,15 @@ const ShadeSelector = ({onChange, hue}) => {
     const hex = rgbToHex(...hue);
     const [{top, left}, setPosition] = useState({top: 3, left: 3});
     const {padding} = Movable.Constraints;
-    const onMove = useCallback(({top, left}) => {
-        onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3));
-        setPosition({top, left});
-    }, [setPosition, onChange]);
-    const props = Movable.useMoveArea({ref: movable, onMove, constraints: [padding(4, 4, 4, 4)]});
+
+    const props = Movable.useMoveArea({
+        ref: movable,
+        constraints: [padding(4, 4, 4, 4)],
+        onMove: useCallback(({top, left}) => {
+            onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3));
+            setPosition({top, left});
+        }, [setPosition, onChange]),
+    });
 
     // Update the shade when the hue changes
     useEffect(() => onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3)), [hue])

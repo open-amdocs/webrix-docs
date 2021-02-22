@@ -22,12 +22,16 @@ const Slider = memo(({value, onChange, index}) => {
     const movable = useRef();
     const {width} = useDimensions(movable);
     const left = (value / max) * (width - pad * 2) + pad;
-    const {padding} = Movable.Constraints;
-    const onMove = useCallback(({left}) => {
-        const next = ((left - pad) / (width - pad * 2)) * max;
-        onChange(next, index);
-    }, [onChange, width]);
-    const props = Movable.useMoveArea({ref: movable, onMove, constraints: [padding(0, pad, 0, pad)]});
+
+    const props = Movable.useMoveArea({
+        ref: movable,
+        constraints: [Movable.Constraints.padding(0, pad, 0, pad)],
+        onMove: useCallback(({left}) => {
+            const next = ((left - pad) / (width - pad * 2)) * max;
+            onChange(next, index);
+        }, [onChange, width]),
+    });
+
     return (
         <div className='slider'>
             <div className='name'>{name}</div>

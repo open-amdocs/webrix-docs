@@ -3,21 +3,30 @@ import {Movable} from 'webrix/components';
 import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
+// Map the given value based on the given in/out limits
 const map = (v, imin, imax, omin, omax) => (v - imin) / (imax - imin) * (omax - omin) + omin;
+
+// Enforce number precision based on the given number of decimal places
 const precision = (n, p) => Math.round(n * Math.pow(10, p)) / Math.pow(10, p);
+
+// Round the given number to the given interval
 const interval = (n, i) => Math.round(n / i) * i;
 
 const Slider = memo(({value, onChange, min, max, step = 1}) => {
     const track = useRef({});
     const {width} = useDimensions(track);
-    const padding = 10;
+    const padding = 10; // Half the size of the handle, to limit the handle movement from going beyond the track
     const position = map(value, min, max, padding, width - padding);
     const {padding: pad} = Movable.Constraints;
-    const handleOnMove = useCallback(({left}) => {
-        const normalized = map(left, padding, width - padding, min, max);
-        onChange(precision(interval(normalized, step), 2));
-    }, [onChange, width, min, max]);
-    const props = Movable.useMoveArea({ref: track, onMove: handleOnMove, constraints: [pad(0, 10, 0, 10)]});
+
+    const props = Movable.useMoveArea({
+        ref: track,
+        constraints: [pad(0, padding, 0, padding)],
+        onMove: useCallback(({left}) => {
+            const normalized = map(left, padding, width - padding, min, max);
+            onChange(precision(interval(normalized, step), 2));
+        }, [onChange, width, min, max])
+    });
 
     return (
         <div className='slider'>
