@@ -5,11 +5,11 @@
 
   .resizable-object {
     background-color: $color-pink;
-    width: 133px;
-    height: 100px;
+    width: 120px;
+    height: 90px;
     position: absolute;
     color: $color-white;
-    overflow: hidden;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;

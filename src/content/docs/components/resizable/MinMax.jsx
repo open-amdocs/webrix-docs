@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {Resizable} from 'webrix/components';
-import './MinMaxSizes.scss';
+import './MinMax.scss';
 
 export default () => {
     const resizable = useRef();

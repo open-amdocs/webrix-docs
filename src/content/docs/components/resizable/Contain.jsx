@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {Resizable} from 'webrix/components';
-import './Contained.scss';
+import './Contain.scss';
 
 export default () => {
     const [position, setPosition] = useState({});

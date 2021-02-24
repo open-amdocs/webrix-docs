@@ -1,11 +1,21 @@
 import React, {useState, useRef} from 'react';
 import {Resizable} from 'webrix/components';
-import './BasicExample.scss';
+import './MinMax.scss';
 
 export default () => {
-    const [position, setPosition] = useState({});
     const resizable = useRef();
-    const props = Resizable.useResize({ref: resizable, onResize: setPosition});
+    const [position, setPosition] = useState({});
+    const {min, max, ratio, snap} = Resizable.Constraints;
+    const props = Resizable.useResize({
+        ref: resizable,
+        onResize: setPosition,
+        constraints: [
+            min(120, 90),
+            max(240, 180),
+            ratio(4/3),
+            snap(120, 90, 0.3),
+        ]
+    });
 
     return (
         <div className='resizable-object' style={position} ref={resizable}>

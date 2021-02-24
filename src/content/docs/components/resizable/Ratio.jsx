@@ -3,10 +3,10 @@ import {Resizable} from 'webrix/components';
 import './Ratio.scss';
 
 export default () => {
-    const [position, setPosition] = useState({});
+    const [position, onResize] = useState({});
     const resizable = useRef();
     const {ratio} = Resizable.Constraints;
-    const props = Resizable.useResize({ref: resizable, onResize: setPosition, constraints: [ratio(4/3)]});
+    const props = Resizable.useResize({ref: resizable, onResize, constraints: [ratio(4/3)]});
 
     return (
         <div className='resizable-object' style={position} ref={resizable}>
