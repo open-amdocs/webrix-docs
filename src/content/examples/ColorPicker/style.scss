@@ -65,6 +65,7 @@ $spacing: 15px;
       height: 28px;
       border: 1px solid rgba(black, 0.1);
       border-radius: 6px;
+      user-select: all;
 
       &::before {
         content: attr(title);
