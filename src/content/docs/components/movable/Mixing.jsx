@@ -10,7 +10,7 @@ export default () => {
     const props = Movable.useMove({
         ref: movable,
         onMove,
-        constraints: [snap(1, 25), contain(container)]
+        constraints: [snap(1, 25), contain(container)],
     });
 
     return (

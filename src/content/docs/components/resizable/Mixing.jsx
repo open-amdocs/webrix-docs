@@ -14,7 +14,7 @@ export default () => {
             max(240, 180),
             ratio(4/3),
             snap(120, 90, 0.3),
-        ]
+        ],
     });
 
     return (
