@@ -1,0 +1,39 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .grid {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient($color-gray 1%, transparent 1%, transparent 99%, $color-gray 99%),
+      linear-gradient(90deg, $color-gray 1%, transparent 1%, transparent 99%, $color-gray 99%);
+    background-size: 50px 50px;
+  }
+
+  .movable {
+    user-select: none;
+    background-color: $color-light-gray;
+    width: 100px;
+    height: 100px;
+    cursor: move;
+    position: absolute;
+    color: $color-blue;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+
+    &.snapped {
+      background-color: $color-pink;
+      color: $color-white;
+    }
+  }
+}
