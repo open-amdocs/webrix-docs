@@ -5,6 +5,7 @@ import {MDXProvider} from '@mdx-js/react'
 import AsyncPage from '../AsyncPage/AsyncPage';
 import Code from './components/Code/Code';
 import H2 from './components/H2/H2';
+import H3 from './components/H3/H3';
 import ROUTES from '../../Docs.routes';
 import './Content.scss';
 
@@ -12,6 +13,7 @@ const components = {
     pre: props => <React.Fragment {...props}/>,
     code: Code,
     h2: H2,
+    h3: H3,
     inlineCode: props => <Highlighter code={props.children.trim()} inline/>,
 }
 

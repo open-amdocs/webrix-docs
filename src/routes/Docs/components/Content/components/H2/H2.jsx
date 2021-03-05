@@ -31,6 +31,6 @@ export default ({children}) => {
     }, []);
 
     return (
-        <h2 ref={ref}><a id={id} href={`#${id}`}>{children}</a><FaLink/></h2>
-    )
+        <h2 ref={ref} id={id}><a href={`#${id}`}><FaLink/>{children}</a></h2>
+    );
 }

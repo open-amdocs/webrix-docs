@@ -1,17 +1,12 @@
 #route-docs article {
   flex: 1;
-  margin: 25px 0 25px 30px;
+  padding: 25px 0 25px 30px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 
   @include media-max('sm') {
-    margin: 0;
-  }
-
-  h2 {
-    margin: 2em 0 0.5em;
-    color: $color-pink;
+    padding: 0;
   }
 
   table {
@@ -53,6 +48,26 @@
     padding-left: 1em;
     color: $color-gray;
     font-style: italic;
+  }
+
+  ul {
+    padding-left: 30px;
+
+    li {
+      position: relative;
+      margin: 5px 0;
+
+      &::before {
+        content: "";
+        background-color: $color-pink;
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        position: absolute;
+        left: -19px;
+        top: 8px;
+      }
+    }
   }
 
   ol {
