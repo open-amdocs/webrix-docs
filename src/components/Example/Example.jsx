@@ -1,4 +1,5 @@
-import React, {useState, useCallback, useRef, useEffect, memo}  from 'react';
+import React, {useCallback, useRef, useEffect, memo}  from 'react';
+import {useVisibilityState} from 'webrix/hooks';
 import cls from 'classnames';
 import Highlighter from '../Highlighter';
 import Controls from './components/Controls/Controls';
@@ -7,9 +8,8 @@ import './Example.scss';
 
 const Example = ({file, height}) => {
     const {js, scss} = useCode(file);
-    const [visible, setVisible] = useState('');
+    const {visible, toggle} = useVisibilityState();
     const iframe = useRef();
-    const toggle = useCallback(() => setVisible(v => !v), [setVisible]);
     const reset = useCallback(() => iframe.current.contentWindow.location.reload(), [iframe.current]);
 
     useEffect(() => {
@@ -30,6 +30,7 @@ const Example = ({file, height}) => {
     return (
         <div className='code-example'>
             <div className='live-code' style={{height}}>
+                <div className='shadow'/>
                 <iframe ref={iframe}/>
                 <Controls code={js} style={scss} toggle={toggle} reset={reset}/>
             </div>

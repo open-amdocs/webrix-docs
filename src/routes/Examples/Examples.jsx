@@ -19,6 +19,7 @@ const Examples = () => {
         <>
             <Sidebar/>
             <div className='iframe-container'>
+                <div className='shadow'/>
                 <Controls dir={dir} content={content} onContentChange={setContent}/>
                 {content !== 'run' && <Source ext={content}/>}
                 {content === 'run' && <iframe src={`/frame/examples/${dir}/index`}/>}
