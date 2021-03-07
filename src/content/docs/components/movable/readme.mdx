@@ -21,7 +21,7 @@ as an argument.
 
 ### Constraint Axis
 
-<Example file='docs/components/movable/ConstraintMovement' height={200}/>
+<Example file='docs/components/movable/ConstraintAxis' height={200}/>
 
 The `<Movable/>` component gives you complete control over the positioning of the element by only passing information
 through the event without actually manipulating the element itself.
@@ -64,8 +64,7 @@ that the constraints make sense when applied together.
 <Example file='docs/components/movable/CustomConstraints' height={300}/>
 
 You can create your own custom constraints using the `Movable.createConstraint()` function.
-This function takes an object with the Movable's events (i.e. `onBeginMove`, `onMove` and `onEndMove`),
-and you can execute your logic in each event and even pass data between them.
+This function takes an object with the Movable's events (i.e. `onBeginMove`, `onMove` and `onEndMove`).
 
 In this example, we create a custom constraint called `snapClass`, that adds the given CSS class to the element when it
 is snapped to the given grid.
@@ -74,8 +73,12 @@ Each Movable event receives 3 arguments:
 
 * The original event object.
 * The set of arguments that were passed to the hook (in the example we extract `ref` from it).
-* An object with the data shared between events (in the example we extract `next` from it,
-  which contains the next top/left coordinates).
+* An object with the data shared between events/constraints.
+
+You can pass data between events by mutating the 3rd argument, which is an object that is shared between all
+the events, and across constraints. This argument also contains a `next` key, where you should store
+the next Movable coordinates (in the above example we extract `next` from it to determine whether it will
+be on the grid after all constraints are applied).
 
 ## Movable Area
 

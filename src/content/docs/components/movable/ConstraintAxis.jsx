@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {Movable} from 'webrix/components';
-import './ConstraintMovement.scss';
+import './ConstraintAxis.scss';
 
 export default () => {
     const [position, onMove] = useState({});
