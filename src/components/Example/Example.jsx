@@ -1,4 +1,5 @@
-import React, {useState, useCallback, useRef, memo}  from 'react';
+import React, {useCallback, useRef, useEffect, memo}  from 'react';
+import {useVisibilityState} from 'webrix/hooks';
 import cls from 'classnames';
 import Highlighter from '../Highlighter';
 import Controls from './components/Controls/Controls';
@@ -7,15 +8,30 @@ import './Example.scss';
 
 const Example = ({file, height}) => {
     const {js, scss} = useCode(file);
-    const [visible, setVisible] = useState('');
+    const {visible, toggle} = useVisibilityState();
     const iframe = useRef();
-    const toggle = useCallback(() => setVisible(v => !v), [setVisible]);
-    const reset = useCallback(() => iframe.current.contentWindow.location.reload(), [iframe.current])
+    const reset = useCallback(() => iframe.current.contentWindow.location.reload(), [iframe.current]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && !iframe.current.src) {
+                iframe.current.src = `/frame/${file}`;
+                observer.disconnect();
+            }
+        }, {
+            rootMargin: '-60px 0px 0px 0px',
+            root: document.getElementById('app'),
+            threshold: 0,
+        });
+        observer.observe(iframe.current);
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <div className='code-example'>
             <div className='live-code' style={{height}}>
-                <iframe src={`/frame/${file}`} ref={iframe}/>
+                <div className='shadow'/>
+                <iframe ref={iframe}/>
                 <Controls code={js} style={scss} toggle={toggle} reset={reset}/>
             </div>
             <div className={cls('source-code', {visible})}>
