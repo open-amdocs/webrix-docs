@@ -16,7 +16,7 @@ const snapClass = (h, v, cls) => Movable.createConstraint({
         if (left % h === 0 || top % v === 0) {
             ref.current.classList.add(cls);
         }
-    }
+    },
 });
 
 export default () => {

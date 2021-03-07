@@ -16,7 +16,7 @@ const snapClass = (h, v, cls) => Resizable.createConstraint({
         if (width % h === 0 || height % v === 0) {
             ref.current.classList.add(cls);
         }
-    }
+    },
 });
 
 export default () => {
@@ -26,7 +26,7 @@ export default () => {
     const props = Resizable.useResize({
         ref: resizable,
         onResize: setPosition,
-        constraints: [snap(50, 50, 0.3), snapClass(50, 50, 'snapped')]
+        constraints: [snap(50, 50, 0.3), snapClass(50, 50, 'snapped')],
     });
 
     return (
