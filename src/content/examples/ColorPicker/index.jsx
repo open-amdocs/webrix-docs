@@ -26,7 +26,7 @@ const GradientCanvas = ({ctx, height, gradients}) => {
             ctx.current.fillStyle = grd;
             ctx.current.fillRect(0, 0, WIDTH, height);
         });
-    }, [gradients]);
+    }, [gradients, ctx, height]);
 
     return (
         <canvas ref={node => {ctx.current = node?.getContext('2d')}} width={WIDTH} height={height}/>
@@ -70,7 +70,7 @@ const ShadeSelector = ({onChange, hue}) => {
             top: clamp(0, width - 7, y - top),
             left: clamp(0, width - 7, x - left),
         });
-    }, [setPosition]);
+    }, [setPosition, onChange]);
 
     return (
         <Movable className='shade-selector' onBeginMove={handleOnMove} onMove={handleOnMove} ref={movable}>

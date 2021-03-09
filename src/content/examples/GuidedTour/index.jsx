@@ -7,11 +7,13 @@ import './style.scss';
 const TRIANGLE_SIZE = 10, BOXES = 4;
 
 const Popup = ({children, reference}) => {
-    const {vbefore, vafter, hcenter} = Poppable.Placements;
-    const placements = useCallback((rbr, tbr) => [
-        {...vbefore(rbr, tbr, -TRIANGLE_SIZE), ...hcenter(rbr, tbr)}, // Top
-        {...vafter(rbr, tbr, TRIANGLE_SIZE), ...hcenter(rbr, tbr)}, // Bottom
-    ], []);
+    const placements = useCallback((rbr, tbr) => {
+        const {vbefore, vafter, hcenter} = Poppable.Placements;
+        return [
+            {...vbefore(rbr, tbr, -TRIANGLE_SIZE), ...hcenter(rbr, tbr)}, // Top
+            {...vafter(rbr, tbr, TRIANGLE_SIZE), ...hcenter(rbr, tbr)}, // Bottom
+        ];
+    }, []);
     return (
         <Poppable className='popup' placements={placements} reference={reference}>
             {children}
@@ -32,7 +34,7 @@ const Dimmer = ({target}) => {
         ref.current.style.left = `${left}px`;
         ref.current.style.width = `${width}px`;
         ref.current.style.height = `${height}px`;
-    }, [target.current])
+    }, [target])
     return (
         <div className='dimmer' ref={ref}/>
     );

@@ -30,7 +30,7 @@ const Slider = ({value, onChange, index, suffix, max}) => {
             copy[index] = [name, `${next}${suffix}`];
             return copy;
         });
-    }, [onChange]);
+    }, [onChange, index, max, name, suffix]);
 
     return (
         <div className='slider'>

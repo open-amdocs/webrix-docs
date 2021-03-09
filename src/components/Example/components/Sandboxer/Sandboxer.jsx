@@ -10,7 +10,7 @@ const Sandboxer = ({code, style}) => {
     const form = useRef();
     const handleOnCLick = useCallback(() => {
         form.current.submit()
-    }, [form.current]);
+    }, []);
 
     return (
         <>

@@ -10,7 +10,7 @@ const Example = ({file, height}) => {
     const {js, scss} = useCode(file);
     const {visible, toggle} = useVisibilityState();
     const iframe = useRef();
-    const reset = useCallback(() => iframe.current.contentWindow.location.reload(), [iframe.current]);
+    const reset = useCallback(() => iframe.current.contentWindow.location.reload(), []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(entries => {
@@ -25,7 +25,7 @@ const Example = ({file, height}) => {
         });
         observer.observe(iframe.current);
         return () => observer.disconnect();
-    }, []);
+    }, [file]);
 
     return (
         <div className='code-example'>

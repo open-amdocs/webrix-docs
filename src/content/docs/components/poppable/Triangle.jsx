@@ -17,13 +17,15 @@ const Popup = props => (
 
 export default () => {
     const reference = useRef();
-    const {vbefore, vafter, vcenter, hbefore, hafter, hcenter} = Poppable.Placements;
-    const getPlacements = useCallback((rbr, tbr) => [
-        {...vbefore(rbr, tbr, -TRIANGLE_SIZE), ...hcenter(rbr, tbr)}, // Top
-        {...vafter(rbr, tbr, TRIANGLE_SIZE), ...hcenter(rbr, tbr)}, // Bottom
-        {...vcenter(rbr, tbr), ...hbefore(rbr, tbr, -TRIANGLE_SIZE)}, // Left
-        {...vcenter(rbr, tbr), ...hafter(rbr, tbr, TRIANGLE_SIZE)}, // Right
-    ], []);
+    const getPlacements = useCallback((rbr, tbr) => {
+        const {vbefore, vafter, vcenter, hbefore, hafter, hcenter} = Poppable.Placements;
+        return [
+            {...vbefore(rbr, tbr, -TRIANGLE_SIZE), ...hcenter(rbr, tbr)}, // Top
+            {...vafter(rbr, tbr, TRIANGLE_SIZE), ...hcenter(rbr, tbr)}, // Bottom
+            {...vcenter(rbr, tbr), ...hbefore(rbr, tbr, -TRIANGLE_SIZE)}, // Left
+            {...vcenter(rbr, tbr), ...hafter(rbr, tbr, TRIANGLE_SIZE)}, // Right
+        ];
+    }, []);
     return (
         <>
             <Reference ref={reference}/>

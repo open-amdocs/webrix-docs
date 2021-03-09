@@ -23,14 +23,15 @@ const FallingBricks = () => {
         } else {
             engine.current.resize();
         }
-    }, [worker.current]);
+    }, []);
 
     useEffect(() => {
+        const wrk = worker.current;
         if (oscSupported(canvas.current)) {
             canvas.current.width = canvas.current.clientWidth;
             canvas.current.height = canvas.current.clientHeight;
             const offscreen = canvas.current.transferControlToOffscreen();
-            worker.current.postMessage({type: 'canvas', canvas: offscreen}, [offscreen]);
+            wrk.postMessage({type: 'canvas', canvas: offscreen}, [offscreen]);
         } else {
             import('./scene').then(({Engine}) => {
                 engine.current = new Engine(canvas.current);
@@ -39,9 +40,9 @@ const FallingBricks = () => {
         window.addEventListener('resize', handleOnResize);
         return () => {
             window.removeEventListener('resize', handleOnResize);
-            worker.current.terminate();
+            wrk.terminate();
         }
-    }, []);
+    }, [handleOnResize]);
 
     return (
         <>

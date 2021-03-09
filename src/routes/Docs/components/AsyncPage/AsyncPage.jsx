@@ -14,7 +14,7 @@ const AsyncPage = ({path, title}) => {
         if (!window.location.hash) {
             document.getElementById('app').scrollTop = 0;
         }
-    }, []);
+    }, [title]);
 
     return (
         <article>
