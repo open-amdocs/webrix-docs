@@ -12,7 +12,7 @@ export const useCode = path => {
                 scss: style.default.trim(),
             });
         })();
-    }, []);
+    }, [path]);
 
     return code;
 }

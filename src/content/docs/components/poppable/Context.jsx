@@ -14,7 +14,7 @@ const MovableRectangle = forwardRef(({width, height, title}, ref) => {
             top: clamp(top + cy, 0, innerHeight - height),
             left: clamp(left + cx, 0 , innerWidth - width),
         }));
-    }, [setPosition]);
+    }, [setPosition, height, width, innerHeight, innerWidth]);
 
     return (
         <Movable
@@ -35,11 +35,13 @@ const Triangle = () => {
 
 export default () => {
     const reference = useRef();
-    const {vafter, hcenter} = Poppable.Placements;
-    const getPlacements = useCallback((rbr, tbr) => [{
-        ...vafter(rbr, tbr, 10),
-        ...hcenter(rbr, tbr),
-    }], []);
+    const getPlacements = useCallback((rbr, tbr) => {
+        const {vafter, hcenter} = Poppable.Placements;
+        return [{
+            ...vafter(rbr, tbr, 10),
+            ...hcenter(rbr, tbr),
+        }];
+    }, []);
 
     return (
         <>

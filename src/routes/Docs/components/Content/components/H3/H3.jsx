@@ -19,7 +19,7 @@ export default ({children}) => {
         // Add the id of the "parent" H2 (parent in terms of content, but sibling in terms of DOM).
         const parentId = getPreviousElementByTag(ref.current, 'H2')?.id || '';
         setId((parentId ? parentId + '-' : '') + slugify(children));
-    }, []);
+    }, [children]);
 
     return (
         <h3 ref={ref} id={id}><a href={`#${id}`}><FaLink/>{children}</a></h3>

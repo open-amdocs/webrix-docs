@@ -12,7 +12,7 @@ export default ({ext}) => {
             const code = await import(/* webpackInclude: /\.(jsx|scss)$/ */`!raw-loader!content/examples/${pathname.split('/')[2]}/${file}`);
             setCode(code.default.trim());
         })();
-    }, [ext]);
+    }, [ext, pathname]);
 
     return (
         <Highlighter code={code} language={ext}/>

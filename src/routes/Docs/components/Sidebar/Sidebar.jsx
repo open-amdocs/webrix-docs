@@ -21,7 +21,7 @@ const PageItems = () => {
                 setItems(match.map(item => item.replace('## ', '')));
             }
         })();
-    }, []);
+    }, [path, pathname]);
 
     return !items.length ? null : (
         <ul>

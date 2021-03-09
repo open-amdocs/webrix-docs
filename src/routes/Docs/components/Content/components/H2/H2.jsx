@@ -28,7 +28,8 @@ export default ({children}) => {
             setSection(window.location.hash);
             ref.current.scrollIntoView();
         }
-    }, []);
+        return () => observer.disconnect();
+    }, [id, setSection]);
 
     return (
         <h2 ref={ref} id={id}><a href={`#${id}`}><FaLink/>{children}</a></h2>

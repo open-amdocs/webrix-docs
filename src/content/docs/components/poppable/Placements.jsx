@@ -10,17 +10,19 @@ const Reference = forwardRef((_, ref) => (
 
 export default () => {
     const reference = useRef();
-    const {vbefore, vcenter, vafter, hbefore, hcenter, hafter} = Poppable.Placements;
-    const placements = useCallback((rbr, tbr) => [
-        {...vbefore(rbr, tbr, -GAP), ...hbefore(rbr, tbr, -GAP)}, // Top left
-        {...vbefore(rbr, tbr, -GAP), ...hcenter(rbr, tbr)}, // Top center
-        {...vbefore(rbr, tbr, -GAP), ...hafter(rbr, tbr, GAP)}, // Top right
-        {...vafter(rbr, tbr, GAP), ...hbefore(rbr, tbr, -GAP)}, // Bottom left
-        {...vafter(rbr, tbr, GAP), ...hcenter(rbr, tbr)}, // Bottom center
-        {...vafter(rbr, tbr, GAP), ...hafter(rbr, tbr, GAP)}, // Bottom left
-        {...vcenter(rbr, tbr), ...hbefore(rbr, tbr, -GAP)}, // Center left
-        {...vcenter(rbr, tbr), ...hafter(rbr, tbr, GAP)}, // Center right
-    ], []);
+    const placements = useCallback((rbr, tbr) => {
+        const {vbefore, vcenter, vafter, hbefore, hcenter, hafter} = Poppable.Placements;
+        return [
+            {...vbefore(rbr, tbr, -GAP), ...hbefore(rbr, tbr, -GAP)}, // Top left
+            {...vbefore(rbr, tbr, -GAP), ...hcenter(rbr, tbr)}, // Top center
+            {...vbefore(rbr, tbr, -GAP), ...hafter(rbr, tbr, GAP)}, // Top right
+            {...vafter(rbr, tbr, GAP), ...hbefore(rbr, tbr, -GAP)}, // Bottom left
+            {...vafter(rbr, tbr, GAP), ...hcenter(rbr, tbr)}, // Bottom center
+            {...vafter(rbr, tbr, GAP), ...hafter(rbr, tbr, GAP)}, // Bottom left
+            {...vcenter(rbr, tbr), ...hbefore(rbr, tbr, -GAP)}, // Center left
+            {...vcenter(rbr, tbr), ...hafter(rbr, tbr, GAP)}, // Center right
+        ]
+    }, []);
     const props = {reference, placements, className: 'poppable-target'};
     return (
         <>
