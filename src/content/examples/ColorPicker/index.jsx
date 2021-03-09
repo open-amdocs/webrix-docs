@@ -24,7 +24,7 @@ const GradientCanvas = ({ctx, height, gradients}) => {
             ctx.current.fillStyle = grd;
             ctx.current.fillRect(0, 0, WIDTH, height);
         });
-    }, [gradients]);
+    }, [gradients, ctx, height]);
 
     return (
         <canvas ref={node => {ctx.current = node?.getContext('2d')}} width={WIDTH} height={height}/>
@@ -76,7 +76,7 @@ const ShadeSelector = ({onChange, hue}) => {
     });
 
     // Update the shade when the hue changes
-    useEffect(() => onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3)), [hue])
+    useEffect(() => onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3)), [hue, left, top, onChange])
 
     return (
         <Movable className='shade-selector' {...props}>

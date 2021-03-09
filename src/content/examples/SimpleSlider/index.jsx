@@ -25,7 +25,7 @@ const Slider = memo(({value, onChange, min, max, step = 1}) => {
         onMove: useCallback(({left}) => {
             const normalized = map(left, padding, width - padding, min, max);
             onChange(precision(interval(normalized, step), 2));
-        }, [onChange, width, min, max]),
+        }, [onChange, width, min, max, step]),
     });
 
     return (

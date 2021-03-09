@@ -29,7 +29,7 @@ const Slider = memo(({value, onChange, index}) => {
         onMove: useCallback(({left}) => {
             const next = ((left - pad) / (width - pad * 2)) * max;
             onChange(next, index);
-        }, [onChange, width]),
+        }, [onChange, width, index, max]),
     });
 
     return (

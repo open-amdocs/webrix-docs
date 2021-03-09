@@ -33,7 +33,7 @@ const Crop = ({image}) => {
         // Set the crop to the image size initially
         const {width, height, top, left} = image.current.getBoundingClientRect();
         setPosition({width, height, top, left});
-    }, []);
+    }, [image]);
 
     return (
         <div className='crop' style={position} ref={crop}>

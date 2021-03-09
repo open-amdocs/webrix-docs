@@ -14,7 +14,7 @@ export default () => {
         // dx/dy represent the change in x/y since the the beginning of the drag.
         const {top, left} = initial.current;
         setPosition({top: top + dy, left: left + dx});
-    }, [setPosition, initial.current]);
+    }, [setPosition]);
 
     return (
         <Movable style={{top, left}} onBeginMove={handleOnBeginMove} onMove={handleOnMove}>
