@@ -1,13 +1,15 @@
 import React, {useCallback, useState, useEffect, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
+import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
 const WIDTH = 250;
+const {transform, clamp} = Movable.Transformers;
 
 const componentToHex = c => {
     const hex = c.toString(16);
     return hex.length === 1 ? '0' + hex : hex;
-}
+};
 
 const rgbToHex = (r, g, b) => (
     '#' + componentToHex(r) + componentToHex(g) + componentToHex(b)
@@ -34,16 +36,17 @@ const GradientCanvas = ({ctx, height, gradients}) => {
 const HueSelector = ({onChange}) => {
     const movable = useRef();
     const ctx = useRef();
-    const [left, setLeft] = useState(4);
-    const {padding} = Movable.Constraints;
+    const {width} = useDimensions(movable);
+    const padding = 4;
+    const [left, setLeft] = useState(padding);
 
     const props = Movable.useMoveArea({
         ref: movable,
-        constraints: [padding(0, 4, 0, 4)],
         onMove: useCallback(({left}) => {
-            onChange(ctx.current.getImageData(left, 0, 1, 1).data.slice(0, 3));
-            setLeft(left);
-        }, [setLeft, onChange]),
+            const next = transform(left, clamp(padding, width - padding));
+            onChange(ctx.current.getImageData(next, 0, 1, 1).data.slice(0, 3));
+            setLeft(next);
+        }, [setLeft, onChange, width, padding]),
     });
 
     return (
@@ -62,17 +65,19 @@ const HueSelector = ({onChange}) => {
 const ShadeSelector = ({onChange, hue}) => {
     const movable = useRef();
     const ctx = useRef();
+    const {width, height} = useDimensions(movable);
     const hex = rgbToHex(...hue);
-    const [{top, left}, setPosition] = useState({top: 3, left: 3});
-    const {padding} = Movable.Constraints;
+    const padding = 4;
+    const [{top, left}, setPosition] = useState({top: padding, left: padding});
 
     const props = Movable.useMoveArea({
         ref: movable,
-        constraints: [padding(4, 4, 4, 4)],
         onMove: useCallback(({top, left}) => {
-            onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3));
-            setPosition({top, left});
-        }, [setPosition, onChange]),
+            const _top = transform(top, clamp(padding, height - padding));
+            const _left = transform(left, clamp(padding, width - padding));
+            onChange(ctx.current.getImageData(_left, _top, 1, 1).data.slice(0, 3));
+            setPosition({top: _top, left: _left});
+        }, [setPosition, onChange, width, height]),
     });
 
     // Update the shade when the hue changes

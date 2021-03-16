@@ -10,7 +10,8 @@ const Introduction = () => (
             <section className='introduction'>
                 <h2>What is Webrix?</h2>
                 Webrix is a set of small, single-purpose React components, each aimed at overcoming a specific UI challenge.
-                It's not a component bank, but rather a set of components with which you can build your own component bank, whether it's basic or highly complex.
+                It's not a component bank, but rather a set of building blocks for creating your own unique component bank.
+                Webrix does all the technical heavy lifting, so you can focus on the presentation.
                 <div className='actions'>
                     <Button><Link to='#'>Get Started</Link></Button>
                     <Button type={Button.Types.SECONDARY}><Link to={DOCS.path}>Documentation</Link></Button>

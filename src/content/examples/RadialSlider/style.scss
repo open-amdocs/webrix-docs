@@ -1,0 +1,78 @@
+$width: 250px;
+$height: $width;
+
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .slider {
+    width: $width;
+    height: $height;
+    position: relative;
+    user-select: none;
+
+    .movable {
+      display: flex;
+      cursor: pointer;
+    }
+
+    .radial-filler {
+      overflow: visible;
+      fill: none;
+
+      path {
+        stroke: $color-lighter-gray;
+        stroke-width: 0.5px;
+        transform-origin: center;
+      }
+
+      circle {
+        transform-origin: center;
+        transform: rotate(-90deg);
+      }
+    }
+
+    .min, .max {
+      position: absolute;
+      top: 10px;
+      font-weight: bold;
+      color: $color-gray;
+      font-size: 14px;
+    }
+
+    .min {
+      right: 40px;
+      transform: translateX(100%);
+    }
+
+    .max {
+      left: 40px;
+      transform: translateX(-100%);
+    }
+
+    .handle {
+      $offset: 4px; // Half the difference between the stroke width and the handle width
+      $size: 22px;
+      width: $size;
+      height: $size;
+      background-color: white;
+      position: absolute;
+      border-radius: $size;
+      box-shadow: 0 0 3px rgba(black, 0.2), 0 0 15px rgba(black, 0.2);
+      transform-origin: $size/2 $width/2 - $offset;
+      left: ($width - $size) / 2;
+      top: $offset;
+    }
+
+    .value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 38px;
+      font-weight: bold;
+      color: $color-light-blue;
+    }
+  }
+}

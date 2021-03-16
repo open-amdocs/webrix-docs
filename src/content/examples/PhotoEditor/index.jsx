@@ -3,6 +3,8 @@ import {Movable} from 'webrix/components';
 import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
+const {transform, map, clamp} = Movable.Transformers;
+
 const CONTROLS = [
     {name: 'blur', initial: 0, max: 20, suffix: 'px'},
     {name: 'brightness', initial: 100, max: 200, suffix: '%'},
@@ -21,13 +23,12 @@ const Slider = memo(({value, onChange, index}) => {
     const pad = 8;
     const movable = useRef();
     const {width} = useDimensions(movable);
-    const left = (value / max) * (width - pad * 2) + pad;
+    const left = transform(value, map(0, max, pad, width - pad));
 
     const props = Movable.useMoveArea({
         ref: movable,
-        constraints: [Movable.Constraints.padding(0, pad, 0, pad)],
         onMove: useCallback(({left}) => {
-            const next = ((left - pad) / (width - pad * 2)) * max;
+            const next = transform(left, clamp(pad, width - pad), map(pad, width - pad, 0, max));
             onChange(next, index);
         }, [onChange, width, index, max]),
     });

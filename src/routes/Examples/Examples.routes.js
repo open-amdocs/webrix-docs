@@ -5,6 +5,11 @@ export default [
         tags: ['movable', 'useDimensions'],
     },
     {
+        title: 'Radial Slider',
+        path: '/examples/RadialSlider',
+        tags: ['movable', 'useDimensions'],
+    },
+    {
         title: 'Color Picker',
         path: '/examples/ColorPicker',
         tags: ['movable'],
