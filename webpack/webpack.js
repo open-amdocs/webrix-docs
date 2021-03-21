@@ -104,5 +104,6 @@ module.exports = env => ({
             LIBRARY_SIZE: JSON.stringify(getFileSize(paths.node_modules + '/webrix/umd/webrix.umd.min.js')),
         }),
         new SitmapGeneratorPlugin(),
+        new webpack.ProgressPlugin(),
     ]
 });
