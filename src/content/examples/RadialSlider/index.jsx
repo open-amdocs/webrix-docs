@@ -3,7 +3,7 @@ import {Movable} from 'webrix/components';
 import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
-const {update, trackpad, transform} = Movable.Constraints;
+const {update, trackpad, transform} = Movable.Operations;
 const {map, angle, interval, decimals} = Movable.Transformers;
 
 const Circle = memo(({width, angle, rotate, ...props}) => {

@@ -3,7 +3,7 @@ import {Movable} from 'webrix/components';
 import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
-const {transform, trackpad, update} = Movable.Constraints;
+const {transform, trackpad, update} = Movable.Operations;
 const {map, clamp, interval, decimals} = Movable.Transformers;
 
 const Slider = memo(({value, onChange, min, max, step = 1}) => {

@@ -5,7 +5,7 @@ import './Snapping.scss';
 export default () => {
     const [position, setPosition] = useState({});
     const ref = useRef();
-    const {reposition, update, snap} = Movable.Constraints;
+    const {reposition, update, snap} = Movable.Operations;
     const props = Movable.useMove(useMemo(() => [
         reposition(ref),
         snap(20, 20),

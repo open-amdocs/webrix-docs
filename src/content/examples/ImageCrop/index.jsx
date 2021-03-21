@@ -22,7 +22,7 @@ const Crop = ({image}) => {
     const [position, setPosition] = useState({});
     const crop = useRef();
     const movable = useRef();
-    const {contain: mContain, update, reposition} = Movable.Constraints;
+    const {contain: mContain, update, reposition} = Movable.Operations;
     const {min, contain: rContain} = Resizable.Constraints;
 
     const mProps = Movable.useMove(useMemo(() => [

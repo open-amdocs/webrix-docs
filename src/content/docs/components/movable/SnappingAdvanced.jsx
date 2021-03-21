@@ -13,7 +13,7 @@ const getInitialLeft = index => {
 const SnappingMovable = ({index, horizontal, vertical, strength = 1}) => {
     const [position, setPosition] = useState({left: getInitialLeft(index)});
     const ref = useRef();
-    const {reposition, update, snap} = Movable.Constraints;
+    const {reposition, update, snap} = Movable.Operations;
     const props = Movable.useMove(useMemo(() => [
         reposition(ref),
         snap(horizontal, vertical, strength),

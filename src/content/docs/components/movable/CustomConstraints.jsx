@@ -2,7 +2,7 @@ import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
 import './CustomConstraints.scss';
 
-const snapClass = (ref, h, v, cls) => Movable.createConstraint({
+const snapClass = (ref, h, v, cls) => Movable.Operations.createOperation({
     // The 'dependencies' array is used internally for recreating the
     // props when one or more elements in this array has
     // changed (similar to how React's useCallback() dependencies work)
@@ -22,7 +22,7 @@ const snapClass = (ref, h, v, cls) => Movable.createConstraint({
 export default () => {
     const [position, setPosition] = useState({});
     const ref = useRef();
-    const {reposition, update, snap} = Movable.Constraints;
+    const {reposition, update, snap} = Movable.Operations;
     const props = Movable.useMove(useMemo(() => [
         reposition(ref),
         snap(50, 50, 0.3),

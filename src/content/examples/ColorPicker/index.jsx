@@ -4,7 +4,7 @@ import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
 const WIDTH = 250;
-const {transform, trackpad, update} = Movable.Constraints;
+const {transform, trackpad, update} = Movable.Operations;
 const {clamp} = Movable.Transformers;
 
 const componentToHex = c => {

@@ -6,7 +6,7 @@ export default () => {
     const [position, setPosition] = useState({});
     const movable = useRef();
     const container = useRef();
-    const {reposition, update, snap, contain} = Movable.Constraints;
+    const {reposition, update, snap, contain} = Movable.Operations;
     const props = Movable.useMove(useMemo(() => [
         reposition(movable),
         snap(1, 25),

@@ -5,7 +5,7 @@ import './ConstraintAxis.scss';
 export default () => {
     const [top, setTop] = useState();
     const ref = useRef();
-    const {reposition, update} = Movable.Constraints;
+    const {reposition, update} = Movable.Operations;
     const props = Movable.useMove(useMemo(() => [
         reposition(ref),
         update(({top}) => setTop(top)),
