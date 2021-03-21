@@ -1,68 +1,71 @@
-import React, {useCallback, useState, useRef, memo} from 'react';
+import React, {useMemo, useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
 import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
-const {transform, map, clamp, angle, interval, decimals} = Movable.Transform;
-const {update, trackpad} = Movable.Constraints;
+const {update, trackpad, transform} = Movable.Constraints;
+const {map, angle, interval, decimals} = Movable.Transformers;
 
-const RadialFiller = ({min, max, value, width}) => {
+const Circle = memo(({width, angle, rotate, ...props}) => {
     const r = 50 - width / 2, cx = 50, cy = 50;
     const circumference = 2 * Math.PI * r;
     return (
-        <svg className='radial-filler' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#00bc9b" />
-                    <stop offset="100%" stopColor="#5eaefd" />
-                </linearGradient>
-                <filter id="inset-shadow">
-                    <feFlood floodColor="rgba(0,0,0,0.3)"/>
-                    <feComposite operator="out" in2="SourceGraphic"/>
-                    <feGaussianBlur stdDeviation="1"/>
-                    <feComposite operator="atop" in2="SourceGraphic"/>
-                </filter>
-            </defs>
-            <circle
-                cx={cx} cy={cy} r={r}
-                filter='url(#inset-shadow)'
-                stroke='white'
-                strokeWidth={width}
-                strokeDasharray={`${circumference * ((max - min) / 360)} ${circumference}`}
-                strokeDashoffset={circumference * (-min / 360)}
-                strokeLinecap='round'/>
-            {[...new Array(40)].map((_, i) => (
-                <path key={i} style={{transform: `rotate(${map(0, 40, min, max)(i)}deg)`}} d='M50,3 L50,9'/>
-            ))}
-            <circle
-                cx={cx} cy={cy} r={r}
-                stroke='url(#gradient)'
-                strokeWidth={width}
-                strokeDasharray={`${circumference * ((value - min) / 360)} ${circumference}`}
-                strokeDashoffset={circumference * (-min / 360)}
-                strokeLinecap='round'/>
-        </svg>
+        <circle
+            cx={cx} cy={cy} r={r}
+            style={{transform: `rotate(${rotate - 90}deg)`}}
+            strokeWidth={width}
+            strokeDasharray={`${circumference * (angle / 360)} ${circumference}`}
+            strokeDashoffset={0}
+            strokeLinecap='round' {...props}/>
     );
-};
+});
 
-const RadialSlider = memo(({value, onChange, min, max, step = 1}) => {
+const RadialFiller = memo(({rotate, angle, value, width, lines}) => (
+    <svg className='radial-filler' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#00bc9b" />
+                <stop offset="100%" stopColor="#5eaefd" />
+            </linearGradient>
+            <filter id="inset-shadow">
+                <feFlood floodColor="rgba(0,0,0,0.3)"/>
+                <feComposite operator="out" in2="SourceGraphic"/>
+                <feGaussianBlur stdDeviation="1"/>
+                <feComposite operator="atop" in2="SourceGraphic"/>
+            </filter>
+        </defs>
+        <Circle width={width} rotate={rotate} angle={angle} filter='url(#inset-shadow)' stroke='white'/>
+        <g>
+            {[...new Array(lines)].map((_, i) => (
+                <path key={i} style={{transform: `rotate(${map(0, lines, rotate, angle + rotate)(i)}deg)`}} d='M50,3 L50,9'/>
+            ))}
+        </g>
+        <Circle width={width} rotate={rotate} angle={value} stroke='url(#gradient)'/>
+    </svg>
+));
+
+const RadialSlider = memo(({value, onChange, min, max, rotate, angle: _angle, step = 0.1}) => {
     const track = useRef({});
     const {width, height} = useDimensions(track);
-    const _value = transform(value, map(min, max, 30, 330));
+    const _value = map(min, max, 0, _angle)(value);
 
-    const props = Movable.useNewMove(
+    const props = Movable.useMove(useMemo(() => [
         trackpad(track),
-        update(useCallback(v => (
-            onChange(transform(v, angle(width / 2, height / 2), clamp(30, 330), map(30, 330, min, max), interval(0.1), decimals(1)))
-        ), [onChange, width, height, min, max])),
-    );
+        transform(angle({
+            center: {x: width / 2, y: height / 2},
+            angle: _angle,
+            rotate: rotate,
+            output: {min, max}
+        }), interval(step), decimals(1)),
+        update(onChange),
+    ], [width, height, min, max, onChange]));
 
     return (
         <div className='slider'>
             <div className='min'>{min.toFixed(1)}</div>
             <Movable {...props} className='track' ref={track}>
-                <RadialFiller width={12} min={30} max={330} value={_value}/>
-                <div className='handle' style={{transform: `rotate(${_value}deg)`}}/>
+                <RadialFiller width={12} rotate={rotate} angle={_angle} value={_value} lines={max - min}/>
+                <div className='handle' style={{transform: `rotate(${_value + rotate}deg)`}}/>
                 <div className='value'>{value.toFixed(1)}</div>
             </Movable>
             <div className='max'>{max.toFixed(1)}</div>
@@ -71,8 +74,12 @@ const RadialSlider = memo(({value, onChange, min, max, step = 1}) => {
 });
 
 export default () => {
-    const [value, onChange] = useState(25);
+    const [value1, onChange1] = useState(25);
+    const [value2, onChange2] = useState(25);
     return (
-        <RadialSlider value={value} onChange={onChange} min={0} max={50}/>
+        <>
+            <RadialSlider value={value1} onChange={onChange1} min={0} max={50} rotate={30} angle={300}/>
+            <RadialSlider value={value2} onChange={onChange2} min={0} max={50} rotate={210} angle={300}/>
+        </>
     );
 };

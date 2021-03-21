@@ -4,7 +4,8 @@ import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
 const WIDTH = 250;
-const {transform, clamp} = Movable.Transformers;
+const {transform, trackpad, update} = Movable.Constraints;
+const {clamp} = Movable.Transformers;
 
 const componentToHex = c => {
     const hex = c.toString(16);
@@ -37,25 +38,24 @@ const HueSelector = ({onChange}) => {
     const movable = useRef();
     const ctx = useRef();
     const {width} = useDimensions(movable);
-    const padding = 4;
-    const [left, setLeft] = useState(padding);
+    const [left, setLeft] = useState(0);
 
-    const props = Movable.useMoveArea({
-        ref: movable,
-        onMove: useCallback(({left}) => {
-            const next = transform(left, clamp(padding, width - padding));
+    const props = Movable.useMove(useMemo(() => [
+        trackpad(movable),
+        transform(v => v.left, clamp(0, width - 1)),
+        update(next => {
             onChange(ctx.current.getImageData(next, 0, 1, 1).data.slice(0, 3));
             setLeft(next);
-        }, [setLeft, onChange, width, padding]),
-    });
+        })
+    ], [onChange, setLeft, width]));
 
     return (
-        <Movable className='hue-selector' {...props}>
+        <Movable className='hue-selector' ref={movable} {...props}>
             <div className='pointer' style={{left}}/>
             <GradientCanvas ctx={ctx} height={8} gradients={useMemo(() => [
                 [
                     [0, 0, WIDTH, 0],
-                    [['red', 0], ['#ff0', 0.17], ['lime', 0.33], ['cyan', 0.5], ['blue', 0.66], ['#f0f', 0.83], ['red', 1]],
+                    [['red', 0.01], ['#ff0', 0.166], ['lime', 0.333], ['cyan', 0.5], ['blue', 0.666], ['#f0f', 0.833], ['red', 0.99]],
                 ],
             ], [])}/>
         </Movable>
@@ -67,29 +67,30 @@ const ShadeSelector = ({onChange, hue}) => {
     const ctx = useRef();
     const {width, height} = useDimensions(movable);
     const hex = rgbToHex(...hue);
-    const padding = 4;
-    const [{top, left}, setPosition] = useState({top: padding, left: padding});
+    const [{top, left}, setPosition] = useState({top: 0, left: 0});
 
-    const props = Movable.useMoveArea({
-        ref: movable,
-        onMove: useCallback(({top, left}) => {
-            const _top = transform(top, clamp(padding, height - padding));
-            const _left = transform(left, clamp(padding, width - padding));
-            onChange(ctx.current.getImageData(_left, _top, 1, 1).data.slice(0, 3));
-            setPosition({top: _top, left: _left});
-        }, [setPosition, onChange, width, height]),
-    });
+    const props = Movable.useMove(useMemo(() => [
+        trackpad(movable),
+        transform(({top, left}) => ({
+            top: clamp(0, height)(top),
+            left: clamp(0, width - 1)(left),
+        })),
+        update(({top, left}) => {
+            onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3));
+            setPosition({top, left});
+        })
+    ], [onChange, setPosition, width]));
 
     // Update the shade when the hue changes
     useEffect(() => onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3)), [hue, left, top, onChange])
 
     return (
-        <Movable className='shade-selector' {...props}>
+        <Movable className='shade-selector' ref={movable} {...props}>
             <div className='pointer' style={{top, left}}/>
             <GradientCanvas ctx={ctx} height={250} gradients={useMemo(() => [
                 [[0, 0, WIDTH, 0], [[hex, 0], [hex, 1]]],
-                [[0, 0, WIDTH, 0], [['white', 0], ['transparent', 1]]],
-                [[0, 0, 0, WIDTH], [['transparent', 0], ['black', 1]]],
+                [[0, 0, WIDTH, 0], [['white', 0.01], ['rgba(255, 255, 255, 0)', 0.99]]],
+                [[0, 0, 0, WIDTH], [['rgba(0, 0, 0, 0)', 0.01], ['black', 0.99]]],
             ], [hex])}/>
         </Movable>
     );

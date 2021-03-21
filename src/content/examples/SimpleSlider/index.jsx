@@ -1,29 +1,27 @@
-import React, {useCallback, useState, useRef, memo} from 'react';
+import React, {useMemo, useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
 import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
-const {transform, map, clamp, interval, decimals} = Movable.Transformers;
+const {transform, trackpad, update} = Movable.Constraints;
+const {map, clamp, interval, decimals} = Movable.Transformers;
 
 const Slider = memo(({value, onChange, min, max, step = 1}) => {
     const track = useRef({});
     const {width} = useDimensions(track);
     const padding = 10; // Half the size of the handle, to limit the handle movement from going beyond the track
-    const position = transform(value, map(min, max, padding, width - padding));
+    const position = map(min, max, padding, width - padding)(value);
 
-    const props = Movable.useMoveArea({
-        ref: track,
-        onMove: useCallback(({left}) => {
-            onChange(
-                transform(left, clamp(padding, width - padding), map(padding, width - padding, min, max), interval(step), decimals(2))
-            );
-        }, [onChange, width, min, max, step]),
-    });
+    const props = Movable.useMove(useMemo(() => [
+        trackpad(track),
+        transform(v => v.left, clamp(padding, width - padding), map(padding, width - padding, min, max), interval(step), decimals(2)),
+        update(onChange),
+    ], [width, min, max, padding, onChange]));
 
     return (
         <div className='slider'>
             <div className='min'>{min}</div>
-            <Movable {...props} className='track'>
+            <Movable {...props} className='track' ref={track}>
                 <div className='filler' style={{width: position}}/>
                 <div className='handle' style={{left: position}}/>
                 <div className='tooltip' style={{left: position}}>{value}</div>

@@ -17,6 +17,7 @@ $spacing: 15px;
       height: $width;
       margin: $spacing;
       cursor: pointer;
+      user-select: none;
 
       canvas {
         border-radius: 3px;
@@ -29,6 +30,7 @@ $spacing: 15px;
       height: 8px;
       margin: $spacing;
       cursor: pointer;
+      user-select: none;
 
       .pointer {
         top: 4px;

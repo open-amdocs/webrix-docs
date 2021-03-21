@@ -1,9 +1,10 @@
-import React, {useCallback, useState, useRef, memo} from 'react';
+import React, {useMemo, useCallback, useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
 import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
-const {transform, map, clamp} = Movable.Transformers;
+const {transform, trackpad, update} = Movable.Constraints;
+const {map, clamp} = Movable.Transformers;
 
 const CONTROLS = [
     {name: 'blur', initial: 0, max: 20, suffix: 'px'},
@@ -23,20 +24,18 @@ const Slider = memo(({value, onChange, index}) => {
     const pad = 8;
     const movable = useRef();
     const {width} = useDimensions(movable);
-    const left = transform(value, map(0, max, pad, width - pad));
+    const left = map(0, max, pad, width - pad)(value);
 
-    const props = Movable.useMoveArea({
-        ref: movable,
-        onMove: useCallback(({left}) => {
-            const next = transform(left, clamp(pad, width - pad), map(pad, width - pad, 0, max));
-            onChange(next, index);
-        }, [onChange, width, index, max]),
-    });
+    const props = Movable.useMove(useMemo(() => [
+        trackpad(movable),
+        transform(v => v.left, clamp(pad, width - pad), map(pad, width - pad, 0, max)),
+        update(v => onChange(v, index)),
+    ], [onChange, width, pad, max]));
 
     return (
         <div className='slider'>
             <div className='name'>{name}</div>
-            <Movable className='track' {...props}>
+            <Movable className='track' ref={movable} {...props}>
                 <div className='handle' style={{left}}/>
             </Movable>
         </div>

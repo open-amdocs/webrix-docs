@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useRef, useEffect} from 'react';
+import React, {useMemo, useCallback, useState, useRef, useEffect} from 'react';
 import {Resizable, Movable} from 'webrix/components';
 import './style.scss';
 
@@ -22,12 +22,16 @@ const Crop = ({image}) => {
     const [position, setPosition] = useState({});
     const crop = useRef();
     const movable = useRef();
-    const {contain: mContain} = Movable.Constraints;
+    const {contain: mContain, update, reposition} = Movable.Constraints;
     const {min, contain: rContain} = Resizable.Constraints;
 
-    const onMove = useCallback(({top, left}) => {
-        setPosition(p => ({...p, top, left}));
-    }, [setPosition])
+    const mProps = Movable.useMove(useMemo(() => [
+        reposition(movable),
+        mContain(movable, image),
+        update(({top, left}) => setPosition(p => ({...p, top, left}))),
+    ], [setPosition]));
+
+    const rProps = Resizable.useResize({ref: crop, onResize: setPosition, constraints: [rContain(image), min(50, 50)]});
 
     useEffect(() => {
         // Set the crop to the image size initially
@@ -37,8 +41,8 @@ const Crop = ({image}) => {
 
     return (
         <div className='crop' style={position} ref={crop}>
-            <Movable {...Movable.useMove({ref: movable, onMove, constraints: [mContain(image)]})} className='handler' ref={movable}/>
-            <Resizable {...Resizable.useResize({ref: crop, onResize: setPosition, constraints: [rContain(image), min(50, 50)]})}>
+            <Movable {...mProps} className='handler' ref={movable}/>
+            <Resizable {...rProps}>
                 <Resizable.Resizer.All/>
             </Resizable>
             <Circles/>
