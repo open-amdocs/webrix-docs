@@ -207,7 +207,7 @@ Movable.useMove(useMemo(() => [
 
 #### `Movable.Operations.transform(...transformers)`
 
-Transform the value in `shared.next` by applying the given `transformers`.
+Transform the current coordinates by applying the given `transformers`.
 A transformer is simply a function that takes the current value, and returns a new value based on that.
 You can use one of the built-in transformer in `Movable.Transformers`, or provide your own.
 
@@ -219,7 +219,7 @@ Movable.useMove(useMemo(() => [
 
 #### `Movable.Operations.update(callback)`
 
-Call the function given in `callback`, passing `shared.next` as an argument.
+Call the function given in `callback`, passing the current coordinates as an argument.
 
 ```jsx
 Movable.useMove(useMemo(() => [
