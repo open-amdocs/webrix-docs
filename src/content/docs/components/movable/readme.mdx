@@ -5,40 +5,47 @@ The `<Movable/>` component can be used to create elements that the user can move
 As opposed to a draggable element, the `<Movable/>` component does not require a source/target configuration.
 Instead, it supports 3 custom events (`onBeginMove`, `onMove`, `onEndMove`) through which you can control the movement.
 
-The `<Movable/>` also comes with a set of hooks for reduced boilerplate and easy constraint application.
-Constraints are used for controlling the way an element is moved.
-You can use one of the pre-defined constraints, or create your own.
+The `<Movable/>` also comes with a custom hook for reduced boilerplate and easy constraint application.
+That hook accepts an array of *Operations*, which are used for controlling the way an element is moved.
+`<Movable/>` is packaged with a set of built-in *Operations* that you can use, and you can also create your own.
 
 ## Basic Example
 
 <Example file='docs/components/movable/BasicExample' height={200}/>
 
 In this example we are using the `Movable.useMove()` hook to control the movement.
-The `onMove` callback is called when the element moves, passing an object with `top/left`
-as an argument.
+The `useMove()` hook accepts an array of **operations**, which are processed in the order in which they are provided.
 
-## Constraints
+In this example we use 2 operations: `reposition()` and `update()`.
+In the next section we will further discuss what operations are, and how they can be used.
+
+## Operations
+
+Operations are configuration objects that can be used to control the way an element moves, apply constraints,
+or even execute functions based on events. The `Movable.useMove()` hook accepts an array of operations, and executes them in order.
+An operation can also pass data forwards to the next operation, so that you can mix multiple operations together for achieving more
+complex behaviors.
 
 ### Constraint Axis
 
 <Example file='docs/components/movable/ConstraintAxis' height={200}/>
 
 The `<Movable/>` component gives you complete control over the positioning of the element by only passing information
-through the event without actually manipulating the element itself.
+through the events without actually manipulating the element itself.
 This way you are free to add your own logic and constraints.
 
 In this example, we ignore the movement of the mouse on the `x` axis to constraint the element to the `y`
-axis. We do that by only applying the `top` value of the position.
+axis. We do that by only updating the `top` value of the position in the `update()` operation.
 
 ### Snapping
 
 <Example file='docs/components/movable/Snapping' height={200}/>
 
 Similarly to the previous example, more complex constraints can be applied using the provided
-constraints in `Movable.Constraints`.
+operations in `Movable.Operations`.
 
-In the example above we're using the `Movable.Constraints.snap(horizontal, vertical, strength)`
-constraint to make the movable element snap to a 20px by 20px grid.
+In the example above we're using the `Movable.Operations.snap()`
+operation to make the movable element snap to a `20px` by `20px` grid.
 
 <Example file='docs/components/movable/SnappingAdvanced' height={300}/>
 
@@ -48,47 +55,49 @@ In this example you can see how to apply different gird sizes and different snap
 
 <Example file='docs/components/movable/Contain' height={300}/>
 
-In this example we're using the `Movable.Constraints.contain(container)` constraint, to limit the movement
+In this example we're using the `Movable.Operations.contain()` operation to limit the movement
 of the element within the boundaries of the given container.
 
-### Mixing Constraints
+### Mixing Operations
 
 <Example file='docs/components/movable/Mixing' height={300}/>
 
-In this example we're combining 2 different constraints to achieve a more complex behavior.
-You can mix as many constraints as you need, but for optimal UX you will need to make sure
-that the constraints make sense when applied together.
+In this example we're combining 2 different operations to achieve a more complex behavior.
+You can mix as many operations as you need, but for optimal UX you will need to make sure
+that the operations make sense when applied together.
 
-### Custom Constraints
+For example, using `reposition()` and `trackpad()` together can produce strange results, since it makes no
+sense to use a Movable component as a trackpad, and reposition it at the same time.
+
+### Custom Operations
 
 <Example file='docs/components/movable/CustomConstraints' height={300}/>
 
-You can create your own custom constraints using the `Movable.createConstraint()` function.
-This function takes an object with the Movable's events (i.e. `onBeginMove`, `onMove` and `onEndMove`).
+You can create your own custom operations using the `Movable.Operations.createOperation()` function.
+This function takes an object with one or more of the Movable's events (i.e. `onBeginMove`, `onMove` and `onEndMove`).
 
-In this example, we create a custom constraint called `snapClass`, that adds the given CSS class to the element when it
+In this example, we create a custom operation called `snapClass`, that adds the given CSS class to the element when it
 is snapped to the given grid.
 
-Each Movable event receives 3 arguments:
+Each Movable event receives 2 arguments:
 
 * The original event object.
-* The set of arguments that were passed to the hook (in the example we extract `ref` from it).
-* An object with the data shared between events/constraints.
+* An object with the data shared between events/operations.
 
-You can pass data between events by mutating the 3rd argument, which is an object that is shared between all
-the events, and across constraints. This argument also contains a `next` key, where you should store
-the next Movable coordinates (in the above example we extract `next` from it to determine whether it will
-be on the grid after all constraints are applied).
+You can pass data between events by mutating the 2nd argument, which is an object that is shared between all
+the events, and across operations. This argument also contains a `next` key, where you should store
+the next coordinates (in the above example we extract `next` from it to determine whether it will
+be on the grid after all operations are applied).
 
-## Movable Area
+## Trackpad
 
 <Example file='docs/components/movable/MovableArea' height={300}/>
 
-Until now we've been using the `Movable.useMove()` hook to move the element by clicking on it
+Until now we've been using the `reposition()` operation to move the element by clicking on it
 and dragging it. However, in certain cases you don't want to click on the element, but rather on
 the point you wish the element to move to (for example, in sliders).
 
-For that you can use the `Movable.useMoveArea()` hook, as seen in the example above.
+For that you can use the `Movable.Operations.trackpad()` operation, as seen in the example above.
 Click anywhere inside the dashed box to make the red circle move to that point.
 Click & drag anywhere inside the dashed box to make the red circle follow the cursor.
 
@@ -140,28 +149,104 @@ Name|Type|Default|Description
 
 ### Hooks
 
-#### `Movable.useMove({ref, onMove, constraints = []})`
+#### `Movable.useMove(operations = [])`
 
-Generate the set of props to be injected to a `<Movable/>` component, applying the given constraints.
+Generate the set of props to be injected to a `<Movable/>` component, applying the given operations.
 
-#### `Movable.useMoveArea({ref, onMove, constraints = []})`
+```jsx
+const props = Movable.useMove(operations);
+<Movable {...props}/>
+```
 
-Generate the set of props to be injected to a Movable component, applying the given constraints.
-This is similar to useMove(), only here the ref is used as a movement 'pad', and the movement
-is usually applied to another element.
+### Operations
 
-### Constraints
+#### `Movable.Operations.reposition(ref)`
 
-#### `Movable.Constraints.snap(horizontal, vertical, strength = 1)`
+Use the Movable component given in `ref` as a movable object.
+
+```jsx
+Movable.useMove(useMemo(() => [
+  reposition(ref),
+], []));
+```
+
+#### `Movable.Operations.trackpad(ref)`
+
+Use the Movable component given in `ref` as a trackpad, rather than a movable object.
+This can be used for creating components like sliders, where you have a "track and the movement
+is recorded on that track, but applied to a different element (like a handle).
+
+See [Trackpad](#trackpad) above for additional info.
+
+```jsx
+Movable.useMove(useMemo(() => [
+  trackpad(ref),
+], []));
+```
+
+#### `Movable.Operations.snap(horizontal, vertical, strength = 1)`
 
 Snap the movement to a grid specified by the given `horizontal` & `vertical` sizes
 of the grid steps, optionally specifying the snapping strength in `strength`, as a number between `0` and `1`.
 
-#### `Movable.Constraints.contain(container)`
+```jsx
+Movable.useMove(useMemo(() => [
+  snap(20, 20), // Snap to a 20x20 grid
+], []));
+```
+
+#### `Movable.Operations.contain(movable, container)`
 
 Limit the movement to the bounding rect of the given container.
 
-#### `Movable.createConstraint(...)`
+```jsx
+Movable.useMove(useMemo(() => [
+  contain(movable, container),
+], []));
+```
 
-Create a custom constraint to be passed to the `constraints` argument. See [Custom Constraints](#constraints-custom-constraints) above
+#### `Movable.Operations.transform(...transformers)`
+
+Transform the value in `shared.next` by applying the given `transformers`.
+A transformer is simply a function that takes the current value, and returns a new value based on that.
+You can use one of the built-in transformer in `Movable.Transformers`, or provide your own.
+
+```jsx
+Movable.useMove(useMemo(() => [
+  transform(v => v.top), // Extract the 'top' key from the coordinates (for constraining movement to the y axis)
+], []));
+```
+
+#### `Movable.Operations.update(callback)`
+
+Call the function given in `callback`, passing `shared.next` as an argument.
+
+```jsx
+Movable.useMove(useMemo(() => [
+  update(console.log), // Will log the next coordinates
+], []));
+```
+
+#### `Movable.Operations.createOperation(...)`
+
+Create a custom operation to be passed to the `useMove()` hook. See [Custom Operations](#operations-custom-operations) above
 for additional info.
+
+```jsx
+const myOperation = () => Movable.Operations.createOperation(...);
+Movable.useMove(useMemo(() => [
+  myOperation(...),
+], []));
+```
+
+### Transformers
+
+#### `Movable.Transformers.map(imin, imax, omin, omax)`
+
+#### `Movable.Transformers.decimals(count)`
+
+#### `Movable.Transformers.interval(value)`
+
+#### `Movable.Transformers.clamp(min, max)`
+
+#### `Movable.Transformers.angle(imin, imax, omin, omax)`
