@@ -16,7 +16,7 @@ const Slider = memo(({value, onChange, min, max, step = 1}) => {
         trackpad(track),
         transform(v => v.left, clamp(padding, width - padding), map(padding, width - padding, min, max), interval(step), decimals(2)),
         update(onChange),
-    ], [width, min, max, padding, onChange]));
+    ], [width, min, max, padding, onChange, step]));
 
     return (
         <div className='slider'>

@@ -2,11 +2,12 @@ import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
 import './Mixing.scss';
 
+const {reposition, update, snap, contain} = Movable.Operations;
+
 export default () => {
     const [position, setPosition] = useState({});
     const movable = useRef();
     const container = useRef();
-    const {reposition, update, snap, contain} = Movable.Operations;
     const props = Movable.useMove(useMemo(() => [
         reposition(movable),
         snap(1, 25),

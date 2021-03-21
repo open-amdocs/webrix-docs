@@ -46,7 +46,7 @@ const HueSelector = ({onChange}) => {
         update(next => {
             onChange(ctx.current.getImageData(next, 0, 1, 1).data.slice(0, 3));
             setLeft(next);
-        })
+        }),
     ], [onChange, setLeft, width]));
 
     return (
@@ -78,8 +78,8 @@ const ShadeSelector = ({onChange, hue}) => {
         update(({top, left}) => {
             onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3));
             setPosition({top, left});
-        })
-    ], [onChange, setPosition, width]));
+        }),
+    ], [onChange, setPosition, width, height]));
 
     // Update the shade when the hue changes
     useEffect(() => onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3)), [hue, left, top, onChange])

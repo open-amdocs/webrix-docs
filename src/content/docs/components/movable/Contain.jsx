@@ -2,11 +2,12 @@ import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
 import './Contain.scss';
 
+const {reposition, update, contain} = Movable.Operations;
+
 export default () => {
     const [position, setPosition] = useState({});
     const movable = useRef();
     const container = useRef();
-    const {reposition, update, contain} = Movable.Operations;
     const props = Movable.useMove(useMemo(() => [
         reposition(movable),
         contain(movable, container),

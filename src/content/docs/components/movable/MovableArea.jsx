@@ -2,10 +2,11 @@ import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
 import './MovableArea.scss';
 
+const {trackpad, update} = Movable.Operations;
+
 export default () => {
     const [position, setPosition] = useState({left: 125, top: 125});
     const movable = useRef();
-    const {trackpad, update} = Movable.Operations;
     const props = Movable.useMove(useMemo(() => [
         trackpad(movable),
         update(setPosition),

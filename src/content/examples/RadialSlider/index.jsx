@@ -21,17 +21,17 @@ const Circle = memo(({width, angle, rotate, ...props}) => {
 });
 
 const RadialFiller = memo(({rotate, angle, value, width, lines}) => (
-    <svg className='radial-filler' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <svg className='radial-filler' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
         <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#00bc9b" />
-                <stop offset="100%" stopColor="#5eaefd" />
+            <linearGradient id='gradient' x1='0%' y1='0%' x2='100%' y2='0%'>
+                <stop offset='0%' stopColor='#00bc9b' />
+                <stop offset='100%' stopColor='#5eaefd' />
             </linearGradient>
-            <filter id="inset-shadow">
-                <feFlood floodColor="rgba(0,0,0,0.3)"/>
-                <feComposite operator="out" in2="SourceGraphic"/>
-                <feGaussianBlur stdDeviation="1"/>
-                <feComposite operator="atop" in2="SourceGraphic"/>
+            <filter id='inset-shadow'>
+                <feFlood floodColor='rgba(0,0,0,0.3)'/>
+                <feComposite operator='out' in2='SourceGraphic'/>
+                <feGaussianBlur stdDeviation='1'/>
+                <feComposite operator='atop' in2='SourceGraphic'/>
             </filter>
         </defs>
         <Circle width={width} rotate={rotate} angle={angle} filter='url(#inset-shadow)' stroke='white'/>
@@ -55,10 +55,10 @@ const RadialSlider = memo(({value, onChange, min, max, rotate, angle: _angle, st
             center: {x: width / 2, y: height / 2},
             angle: _angle,
             rotate: rotate,
-            output: {min, max}
+            output: {min, max},
         }), interval(step), decimals(1)),
         update(onChange),
-    ], [width, height, min, max, onChange]));
+    ], [width, height, min, max, onChange, _angle, rotate, step]));
 
     return (
         <div className='slider'>

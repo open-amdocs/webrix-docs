@@ -1,6 +1,9 @@
-import React, {useMemo, useCallback, useState, useRef, useEffect} from 'react';
+import React, {useMemo, useState, useRef, useEffect} from 'react';
 import {Resizable, Movable} from 'webrix/components';
 import './style.scss';
+
+const {contain: mContain, update, reposition} = Movable.Operations;
+const {min, contain: rContain} = Resizable.Constraints;
 
 const Grid = () => (
     <div className='grid'>
@@ -22,14 +25,12 @@ const Crop = ({image}) => {
     const [position, setPosition] = useState({});
     const crop = useRef();
     const movable = useRef();
-    const {contain: mContain, update, reposition} = Movable.Operations;
-    const {min, contain: rContain} = Resizable.Constraints;
 
     const mProps = Movable.useMove(useMemo(() => [
         reposition(movable),
         mContain(movable, image),
         update(({top, left}) => setPosition(p => ({...p, top, left}))),
-    ], [setPosition]));
+    ], [setPosition, image]));
 
     const rProps = Resizable.useResize({ref: crop, onResize: setPosition, constraints: [rContain(image), min(50, 50)]});
 

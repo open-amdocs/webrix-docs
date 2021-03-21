@@ -30,7 +30,7 @@ const Slider = memo(({value, onChange, index}) => {
         trackpad(movable),
         transform(v => v.left, clamp(pad, width - pad), map(pad, width - pad, 0, max)),
         update(v => onChange(v, index)),
-    ], [onChange, width, pad, max]));
+    ], [onChange, width, pad, max, index]));
 
     return (
         <div className='slider'>

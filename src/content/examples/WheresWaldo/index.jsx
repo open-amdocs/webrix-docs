@@ -1,14 +1,15 @@
-import React, {useMemo, useCallback, useState, useRef} from 'react';
+import React, {useMemo, useState, useRef} from 'react';
 import {Scalable, Pannable, Movable} from 'webrix/components';
 import img from './image.jpeg';
 import './style.scss';
+
+const {trackpad, update, transform} = Movable.Operations;
+const {map} = Movable.Transformers;
 
 const MIN = 0.5, MAX = 1.5;
 
 const Slider = ({value, onChange}) => {
     const movable = useRef();
-    const {trackpad, update, transform} = Movable.Operations;
-    const {map} = Movable.Transformers;
     const position = `${map(MIN, MAX, 0, 90)(value)}%`; // 90 so the handle doesn't go beyond the track
     const props = Movable.useMove(useMemo(() => [
         trackpad(movable),
