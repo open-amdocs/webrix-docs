@@ -1,13 +1,18 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
 import './ConstraintAxis.scss';
 
 export default () => {
-    const [position, onMove] = useState({});
+    const [top, setTop] = useState();
     const ref = useRef();
+    const {reposition, update} = Movable.Constraints;
+    const props = Movable.useMove(useMemo(() => [
+        reposition(ref),
+        update(({top}) => setTop(top)),
+    ], []));
 
     return (
-        <Movable {...Movable.useMove({ref, onMove})} style={{top: position.top}}>
+        <Movable {...props} ref={ref} style={{top}}>
             I Move Vertically
         </Movable>
     );

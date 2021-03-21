@@ -1,22 +1,23 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
 import './Mixing.scss';
 
 export default () => {
-    const [position, onMove] = useState({});
+    const [position, setPosition] = useState({});
     const movable = useRef();
     const container = useRef();
-    const {snap, contain} = Movable.Constraints;
-    const props = Movable.useMove({
-        ref: movable,
-        onMove,
-        constraints: [snap(1, 25), contain(container)],
-    });
+    const {reposition, update, snap, contain} = Movable.Constraints;
+    const props = Movable.useMove(useMemo(() => [
+        reposition(movable),
+        snap(1, 25),
+        contain(movable, container),
+        update(setPosition),
+    ], []));
 
     return (
         <>
             <div className='container' ref={container}/>
-            <Movable {...props} style={position}>
+            <Movable {...props} ref={movable} style={position}>
                 I snap to a 1x25 grid
             </Movable>
         </>

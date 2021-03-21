@@ -1,14 +1,18 @@
-import React, {useState, useRef} from 'react';
+import React, {useMemo, useState, useRef} from 'react';
 import {Movable} from 'webrix/components';
 import './BasicExample.scss';
 
 export default () => {
     const ref = useRef();
-    const [position, onMove] = useState({});
-    const props = Movable.useMove({ref, onMove});
+    const [position, setPosition] = useState({});
+    const {reposition, update} = Movable.Constraints;
+    const props = Movable.useMove(useMemo(() => [
+        reposition(ref),
+        update(setPosition),
+    ], []));
 
     return (
-        <Movable {...props} style={position}>
+        <Movable {...props} ref={ref} style={position}>
             Move Me!
         </Movable>
     );

@@ -1,8 +1,8 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
 import './SnappingAdvanced.scss';
 
-// For display purposes only, this part can be ignored
+// For display purposes only, this part can otherwise be ignored
 const getInitialLeft = index => {
     const count = 3, size = 120, space = 40;
     return (
@@ -11,13 +11,17 @@ const getInitialLeft = index => {
 }
 
 const SnappingMovable = ({index, horizontal, vertical, strength = 1}) => {
-    const [position, onMove] = useState({left: getInitialLeft(index)});
+    const [position, setPosition] = useState({left: getInitialLeft(index)});
     const ref = useRef();
-    const {snap} = Movable.Constraints;
-    const props = Movable.useMove({ref, onMove, constraints: [snap(horizontal, vertical, strength)]});
+    const {reposition, update, snap} = Movable.Constraints;
+    const props = Movable.useMove(useMemo(() => [
+        reposition(ref),
+        snap(horizontal, vertical, strength),
+        update(setPosition),
+    ], [horizontal, vertical, strength]));
 
     return (
-        <Movable {...props} style={position}>
+        <Movable {...props} ref={ref} style={position}>
             Grid: {horizontal}x{vertical}<br/>
             Strength: {strength}
         </Movable>
