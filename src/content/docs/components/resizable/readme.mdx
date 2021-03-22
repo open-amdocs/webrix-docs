@@ -5,9 +5,9 @@ The `<Resizable/>` component can be used to create elements that the user can re
 A `<Resizable/>` element can receive up to 8 resizers, which can be used to resize the element in
 all directions - horizontally, vertically, and diagonally.
 
-The `<Resizable/>` comes with a set of hooks for reduced boilerplate and easy constraint application.
-Constraints are used for controlling the way an element is resized.
-You can use one of the pre-defined constraints, or create your own.
+The `<Resizable/>` comes with a custom hook for reduced boilerplate and easy constraint application.
+That hook accepts an array of *Operations*, which are used for controlling the way an element is resized.
+`<Resizable/>` is packaged with a set of built-in *Operations* that you can use, and you can also create your own.
 
 ## Basic Example
 
@@ -17,28 +17,27 @@ In this example we are using the `Resizable.useResize()` hook to control the res
 The `onResize` callback is called when the element moves, passing an object with `top/left/width/height`
 as an argument.
 
-## Constraints
+## Operations
 
-As mentioned before, constraints can be applied to limit the resizing in certain ways.
-The `<Resizable/>` component comes we a set of pre-defined constraints that you can
-access through `Resizable.Constraints`.
-These constraints can be applied through the `constraints` argument in the hook.
+As mentioned before, operations can be used to create custom resizing behaviours.
+The `<Resizable/>` component comes we a set of pre-defined operations that you can
+access through `Resizable.Operations`.
 
 ### Min/Max Sizes
 
 <Example file='docs/components/resizable/MinMax' height={350}/>
 
-In the example above we're using the `min(width, height)` and `max(width, height)` constraint to limit the resizing
+In the example above we're using the `min(width, height)` and `max(width, height)` operation to limit the resizing
 to a certain minimum & maximum dimensions.
 
 ### Snapping
 
 <Example file='docs/components/resizable/Snapping' height={300}/>
 
-In the example above we're using the `Resizable.Constraints.snap(horizontal, vertical, strength)` constraint to
-make the resizable element snap to a 20px by 20px grid.
+In the example above we're using the `Resizable.Operations.snap(horizontal, vertical, strength)` operation to
+make the resizable element snap to a `20px` by `20px` grid.
 
-In the example below we use the same constraint, only here the grid size is 60px by 60px, and the snapping
+In the example below we use the same operation, only here the grid size is `60px` by `60px`, and the snapping
 strength is set to `0.3`. The snapping strength is a number between `0` and `1`, where `1` corresponds to
 full strength and `0` to no strength (and therefore, no snapping).
 
@@ -48,52 +47,51 @@ full strength and `0` to no strength (and therefore, no snapping).
 
 <Example file='docs/components/resizable/Contain' height={300}/>
 
-In this example we're using the `Resizable.Constraints.contain(container)` constraint, to limit the
+In this example we're using the `Resizable.Operations.contain(container)` operation, to limit the
 resizing of the element to not overflow the boundaries of the given container.
 
 ### Ratio
 
 <Example file='docs/components/resizable/Ratio' height={300}/>
 
-In this example we're using the `Resizable.Constraints.ratio(value)` constraint, to
-maintain the given ratio when resizing.
+In this example we're using the `Resizable.Operations.ratio(value)` operations, to
+maintain a given ratio when resizing.
 
-The `ratio` constraint accepts a number representing the ratio that you wish to maintain
+The `ratio` operation accepts a number representing the ratio that you wish to maintain
 between the width and the height of the element. For example, a ratio of `2` will maintain
 an element width that is double the element's height.
 
-### Mixing Constraints
+### Mixing Operations
 
 <Example file='docs/components/resizable/Mixing' height={300}/>
 
-In this example we're combining 4 different constraints to achieve a more complex behavior.
-You can mix as many constraints as you need, but for optimal UX you will need to make sure
-that the constraints make sense when applied together.
+In this example we're combining 4 different operations to achieve a more complex behavior.
+You can mix as many operations as you need, but for optimal UX you will need to make sure
+that the operations make sense when applied together.
 
 For example, applying a `ratio` of `4/3` while having a `snap` of `40, 40` will void the `ratio`
 in certain cases since they are contradictory. Instead, the `snap` should use values that maintain
 the given ratio, like `40, 30`.
 
-### Custom Constraints
+### Custom Operations
 
-<Example file='docs/components/resizable/CustomConstraints' height={300}/>
+<Example file='docs/components/resizable/CustomOperations' height={300}/>
 
-You can create your own custom constraints using the `Resizable.createConstraint()` function.
+You can create your own custom operations using the `Resizable.Operations.createOperation()` function.
 This function takes an object with the Resizable's events (i.e. `onBeginResize`, `onResize` and `onEndResize`).
 
-In this example, we create a custom constraint called `snapClass`, that adds the given CSS class to the element when it
+In this example, we create a custom operation called `snapClass`, that adds the given CSS class to the element when it
 is snapped to the given grid.
 
-Each Resizable event receives 3 arguments:
+Each Resizable event receives 2 arguments:
 
 * The original event object.
-* The set of arguments that were passed to the hook (in the example we extract `ref` from it).
-* An object with the data shared between events/constraints.
+* An object with the data shared between events/operations.
 
-You can pass data between events by mutating the 3rd argument, which is an object that is shared between all
-the events, and across constraints. This argument also contains a `next` key, where you should store
+You can pass data between events by mutating the 2rd argument, which is an object that is shared between all
+the events, and across operations. This argument also contains a `next` key, where you should store
 the next Resizable coordinates (in the above example we extract `next` from it to determine whether it will
-be on the grid after all constraints are applied).
+be on the grid after all operations are applied).
 
 ## Custom Directions
 
@@ -112,7 +110,7 @@ The hook returns an object with `onBeginResize`, `onResize` and `onEndResize` ha
 which should be injected to the `<Resizable/>`.
 
 However, you can create your own handlers, if you need a special behavior that is not covered
-by that hook (and its accompanying set of constraints).
+by that hook (and its accompanying set of operations).
 
 The `onResize` prop can be used to listen to resize changes.
 It passes an object with `width`, `height`, `top` and `left` keys to the handler.
@@ -157,35 +155,35 @@ Name|Type|Default|Description
 
 ### Hooks
 
-#### `Resizable.useResize({ref, onResize, constraints = []})`
+#### `Resizable.useResize(operations)`
 
-Generate the set of props to be injected to a `<Resizable/>` component, applying the given constraints.
+Generate the set of props to be injected to a `<Resizable/>` component, applying the given operations.
 
-### Constraints
+### Operations
 
-#### `Resizable.Constraints.min(width, height)`
+#### `Resizable.Operations.min(width, height)`
 
 Limit the resizing to not go below the given width/height.
 
-#### `Resizable.Constraints.max(width, height)`
+#### `Resizable.Operations.max(width, height)`
 
 Limit the resizing to not go above the given width/height.
 
-#### `Resizable.Constraints.snap(horizontal, vertical, strength = 1)`
+#### `Resizable.Operations.snap(horizontal, vertical, strength = 1)`
 
 Snap the resizing to a grid specified by the given `horizontal` & `vertical` arguments,
 optionally specifying the snapping strength in `strength`, as a number between `0` and `1`.
 
-#### `Resizable.Constraints.contain(ref)`
+#### `Resizable.Operations.contain(ref)`
 
 Limit the resizing to not overflow the bounding rect of the given container.
 
-#### `Resizable.Constraints.ratio(value)`
+#### `Resizable.Operations.ratio(value)`
 
 Maintain the given ratio when resizing. The given value represents the ratio between the width
 and the height. For example, to maintain a `4:3` ratio, use the value `4/3`.
 
-#### `Resizable.createConstraint(...)`
+#### `Resizable.Operations.createOperation(...)`
 
-Create a custom constraint to be passed to the `constraints` argument. See [Custom Constraints](#constraints-custom-constraints) above
+Create a custom operation to be passed to the `useResize()` hook. See [Custom Operations](#operations-custom-operations) above
 for additional info.

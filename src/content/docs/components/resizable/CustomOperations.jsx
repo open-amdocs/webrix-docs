@@ -1,10 +1,10 @@
 import React, {useState, useRef, useMemo} from 'react';
 import {Resizable} from 'webrix/components';
-import './CustomConstraints.scss';
+import './CustomOperations.scss';
 
-const {resize, snap, lock, update} = Resizable.Operations;
+const {resize, snap, lock, update, createOperation} = Resizable.Operations;
 
-const snapClass = (ref, h, v, cls) => Resizable.createConstraint({
+const snapClass = (ref, h, v, cls) => createOperation({
     // The below adds the class given in cls to the movable element
     // Whenever it's on the grid provided by h & v.
     onResize: (e, {next}) => {
