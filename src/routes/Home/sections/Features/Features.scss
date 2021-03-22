@@ -22,5 +22,5 @@ section.features {
   height: 10vh;
   width: 100%;
   fill: white;
-  background-image: linear-gradient(transparent, $color-lighter-gray);
+  background-image: linear-gradient(rgba(white, 0), $color-lighter-gray);
 }
