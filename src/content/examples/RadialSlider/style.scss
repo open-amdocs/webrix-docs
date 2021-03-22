@@ -2,15 +2,23 @@ $width: 250px;
 $height: $width;
 
 #example {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-content: center;
+  grid-template-columns: $width $width $width;
+  grid-template-rows: $height $height;
+  grid-gap: 10px;
 
   .slider {
     width: $width;
     height: $height;
     position: relative;
     user-select: none;
+
+    &:nth-child(1),
+    &:nth-child(3) {
+      grid-row-end: span 2;
+      align-self: center;
+    }
 
     .movable {
       display: flex;
@@ -30,24 +38,6 @@ $height: $width;
       circle {
         transform-origin: center;
       }
-    }
-
-    .min, .max {
-      position: absolute;
-      top: 10px;
-      font-weight: bold;
-      color: $color-gray;
-      font-size: 14px;
-    }
-
-    .min {
-      right: 40px;
-      transform: translateX(100%);
-    }
-
-    .max {
-      left: 40px;
-      transform: translateX(-100%);
     }
 
     .handle {
