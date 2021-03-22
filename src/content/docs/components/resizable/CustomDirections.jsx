@@ -1,6 +1,8 @@
-import React, {useState, useRef} from 'react';
+import React, {useMemo, useState, useRef} from 'react';
 import {Resizable} from 'webrix/components';
 import './CustomDirections.scss';
+
+const {update, lock, resize} = Resizable.Operations;
 
 export default () => {
     const resizable = useRef();
@@ -8,7 +10,7 @@ export default () => {
 
     return (
         <div className='resizable-object' style={position} ref={resizable}>
-            <Resizable {...Resizable.useResize({ref: resizable, onResize: setPosition})}>
+            <Resizable {...Resizable.useResize(useMemo(() => [resize(resizable), lock(), update(setPosition)], []))}>
                 <Resizable.Resizer.Bottom/>
                 <Resizable.Resizer.Right/>
                 <Resizable.Resizer.BottomRight/>

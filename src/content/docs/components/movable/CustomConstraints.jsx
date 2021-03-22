@@ -5,11 +5,6 @@ import './CustomConstraints.scss';
 const {reposition, update, snap} = Movable.Operations;
 
 const snapClass = (ref, h, v, cls) => Movable.Operations.createOperation({
-    // The 'dependencies' array is used internally for recreating the
-    // props when one or more elements in this array has
-    // changed (similar to how React's useCallback() dependencies work)
-    dependencies: [h, v, cls],
-
     // The below adds the class given in cls to the movable element
     // Whenever it's on the grid provided by h & v.
     onMove: (e, {next}) => {

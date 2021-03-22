@@ -53,8 +53,7 @@ const RadialSlider = memo(({value, onChange, min, max, rotate, angle: _angle, st
         trackpad(track),
         transform(angle({
             center: {x: width / 2, y: height / 2},
-            angle: _angle,
-            rotate: rotate,
+            angle: {from: rotate, range: _angle},
             output: {min, max},
         }), interval(step), decimals(1)),
         update(onChange),

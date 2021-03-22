@@ -1,12 +1,19 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import {Resizable} from 'webrix/components';
 import './Snapping.scss';
+
+const {resize, snap, lock, update} = Resizable.Operations;
 
 export default () => {
     const [position, setPosition] = useState({});
     const resizable = useRef();
-    const {snap} = Resizable.Constraints;
-    const props = Resizable.useResize({ref: resizable, onResize: setPosition, constraints: [snap(20, 20)]});
+
+    const props = Resizable.useResize(useMemo(() => [
+        resize(resizable),
+        snap(20, 20),
+        lock(),
+        update(setPosition),
+    ], []));
 
     return (
         <div className='resizable-object' style={position} ref={resizable}>

@@ -1,13 +1,20 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import {Resizable} from 'webrix/components';
 import './Contain.scss';
+
+const {resize, contain, lock, update} = Resizable.Operations;
 
 export default () => {
     const [position, setPosition] = useState({});
     const resizable = useRef();
     const container = useRef();
-    const {contain} = Resizable.Constraints;
-    const props = Resizable.useResize({ref: resizable, onResize: setPosition, constraints: [contain(container)]});
+    const props = Resizable.useResize(useMemo(() => [
+        resize(resizable),
+        contain(container),
+        lock(),
+        update(setPosition),
+    ], []));
+
     return (
         <>
             <div className='container' ref={container}/>

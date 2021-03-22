@@ -1,12 +1,18 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import {Resizable} from 'webrix/components';
 import './Ratio.scss';
 
+const {resize, ratio, lock, update} = Resizable.Operations;
+
 export default () => {
-    const [position, onResize] = useState({});
+    const [position, setPosition] = useState({});
     const resizable = useRef();
-    const {ratio} = Resizable.Constraints;
-    const props = Resizable.useResize({ref: resizable, onResize, constraints: [ratio(4/3)]});
+    const props = Resizable.useResize(useMemo(() => [
+        resize(resizable),
+        ratio(4/3),
+        lock(),
+        update(setPosition),
+    ], []));
 
     return (
         <div className='resizable-object' style={position} ref={resizable}>
