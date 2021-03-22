@@ -1,8 +1,8 @@
 import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
-import './CustomConstraints.scss';
+import './CustomOperations.scss';
 
-const {reposition, update, snap} = Movable.Operations;
+const {move, update, snap} = Movable.Operations;
 
 const snapClass = (ref, h, v, cls) => Movable.Operations.createOperation({
     // The below adds the class given in cls to the movable element
@@ -20,7 +20,7 @@ export default () => {
     const [position, setPosition] = useState({});
     const ref = useRef();
     const props = Movable.useMove(useMemo(() => [
-        reposition(ref),
+        move(ref),
         snap(50, 50, 0.3),
         snapClass(ref, 50, 50, 'snapped'),
         update(setPosition),

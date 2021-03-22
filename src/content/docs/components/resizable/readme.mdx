@@ -159,31 +159,73 @@ Name|Type|Default|Description
 
 Generate the set of props to be injected to a `<Resizable/>` component, applying the given operations.
 
+```jsx
+const props = Resizable.useResize(operations);
+<Resizable {...props}/>
+```
+
 ### Operations
 
 #### `Resizable.Operations.min(width, height)`
 
 Limit the resizing to not go below the given width/height.
 
+```jsx
+Resizable.useResize(useMemo(() => [
+  Resizable.Operations.min(100, 100), // Enforce a minimum width/height of 100/100
+], []));
+```
+
 #### `Resizable.Operations.max(width, height)`
 
 Limit the resizing to not go above the given width/height.
+
+```jsx
+Resizable.useResize(useMemo(() => [
+  Resizable.Operations.max(100, 100), // Enforce a minimum width/height of 100/100
+], []));
+```
 
 #### `Resizable.Operations.snap(horizontal, vertical, strength = 1)`
 
 Snap the resizing to a grid specified by the given `horizontal` & `vertical` arguments,
 optionally specifying the snapping strength in `strength`, as a number between `0` and `1`.
 
+```jsx
+Resizable.useResize(useMemo(() => [
+  Resizable.Operations.snap(20, 20), // Snap to 20x20 grid
+], []));
+```
+
 #### `Resizable.Operations.contain(ref)`
 
 Limit the resizing to not overflow the bounding rect of the given container.
+
+```jsx
+Resizable.useResize(useMemo(() => [
+  Resizable.Operations.contain(ref),
+], []));
+```
 
 #### `Resizable.Operations.ratio(value)`
 
 Maintain the given ratio when resizing. The given value represents the ratio between the width
 and the height. For example, to maintain a `4:3` ratio, use the value `4/3`.
 
+```jsx
+Resizable.useResize(useMemo(() => [
+  Resizable.Operations.ratio(4/3),
+], []));
+```
+
 #### `Resizable.Operations.createOperation(...)`
 
 Create a custom operation to be passed to the `useResize()` hook. See [Custom Operations](#operations-custom-operations) above
 for additional info.
+
+```jsx
+const myOperation = () => Resizable.Operations.createOperation(...);
+Resizable.useResize(useMemo(() => [
+  myOperation(...),
+], []));
+```

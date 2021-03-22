@@ -2,7 +2,7 @@ import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
 import './SnappingAdvanced.scss';
 
-const {reposition, update, snap} = Movable.Operations;
+const {move, update, snap} = Movable.Operations;
 
 // For display purposes only, this part can otherwise be ignored
 const getInitialLeft = index => {
@@ -16,7 +16,7 @@ const SnappingMovable = ({index, horizontal, vertical, strength = 1}) => {
     const [position, setPosition] = useState({left: getInitialLeft(index)});
     const ref = useRef();
     const props = Movable.useMove(useMemo(() => [
-        reposition(ref),
+        move(ref),
         snap(horizontal, vertical, strength),
         update(setPosition),
     ], [horizontal, vertical, strength]));

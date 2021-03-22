@@ -2,13 +2,13 @@ import React, {useMemo, useState, useRef} from 'react';
 import {Movable} from 'webrix/components';
 import './BasicExample.scss';
 
-const {reposition, update} = Movable.Operations;
+const {move, update} = Movable.Operations;
 
 export default () => {
     const ref = useRef();
     const [position, setPosition] = useState({});
     const props = Movable.useMove(useMemo(() => [
-        reposition(ref),
+        move(ref),
         update(setPosition),
     ], []));
 

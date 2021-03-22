@@ -16,7 +16,7 @@ That hook accepts an array of *Operations*, which are used for controlling the w
 In this example we are using the `Movable.useMove()` hook to control the movement.
 The `useMove()` hook accepts an array of **operations**, which are processed in the order in which they are provided.
 
-In this example we use 2 operations: `reposition()` and `update()`.
+In this example we use 2 operations: `move()` and `update()`.
 In the next section we will further discuss what operations are, and how they can be used.
 
 ## Operations
@@ -66,12 +66,12 @@ In this example we're combining 2 different operations to achieve a more complex
 You can mix as many operations as you need, but for optimal UX you will need to make sure
 that the operations make sense when applied together.
 
-For example, using `reposition()` and `trackpad()` together can produce strange results, since it makes no
-sense to use a Movable component as a trackpad, and reposition it at the same time.
+For example, using `move()` and `trackpad()` together can produce strange results, since it makes no
+sense to use a Movable component as a trackpad, and move it at the same time.
 
 ### Custom Operations
 
-<Example file='docs/components/movable/CustomConstraints' height={300}/>
+<Example file='docs/components/movable/CustomOperations' height={300}/>
 
 You can create your own custom operations using the `Movable.Operations.createOperation()` function.
 This function takes an object with one or more of the Movable's events (i.e. `onBeginMove`, `onMove` and `onEndMove`).
@@ -93,7 +93,7 @@ be on the grid after all operations are applied).
 
 <Example file='docs/components/movable/MovableArea' height={300}/>
 
-Until now we've been using the `reposition()` operation to move the element by clicking on it
+Until now we've been using the `move()` operation to move the element by clicking on it
 and dragging it. However, in certain cases you don't want to click on the element, but rather on
 the point you wish the element to move to (for example, in sliders).
 
@@ -160,13 +160,13 @@ const props = Movable.useMove(operations);
 
 ### Operations
 
-#### `Movable.Operations.reposition(ref)`
+#### `Movable.Operations.move(ref)`
 
 Use the Movable component given in `ref` as a movable object.
 
 ```jsx
 Movable.useMove(useMemo(() => [
-  reposition(ref),
+  move(ref),
 ], []));
 ```
 

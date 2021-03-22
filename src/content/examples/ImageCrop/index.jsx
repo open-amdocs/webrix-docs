@@ -27,7 +27,7 @@ const Crop = ({image}) => {
     const movable = useRef();
 
     const mProps = Movable.useMove(useMemo(() => [
-        mo.reposition(movable),
+        mo.move(movable),
         mo.contain(movable, image),
         mo.update(({top, left}) => setPosition(p => ({...p, top, left}))),
     ], [setPosition, image]));
