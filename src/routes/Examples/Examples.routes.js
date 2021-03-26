@@ -54,4 +54,9 @@ export default [
         path: '/examples/Menu',
         tags: ['poppable', 'useVisibilityState', 'useClickOutside', 'useDimensions'],
     },
+    {
+        title: 'DropDown',
+        path: '/examples/DropDown',
+        tags: ['poppable', 'useVisibilityState', 'useClickOutside'],
+    },
 ]
