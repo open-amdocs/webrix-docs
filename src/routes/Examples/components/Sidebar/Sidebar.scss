@@ -1,7 +1,9 @@
 #route-examples nav {
   width: 200px;
+  height: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
+  overflow: auto;
 
   @include media-max('sm') {
     display: none;

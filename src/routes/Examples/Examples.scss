@@ -1,8 +1,9 @@
 #route-examples {
   display: flex;
+  height: 80vh;
 
   .iframe-container {
-    height: 80vh;
+    height: 100%;
     flex: 1;
     overflow: hidden;
     position: relative;
