@@ -1,0 +1,29 @@
+#route-examples .search {
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 -1px 0 $color-lighter-gray, inset 0 -2px 4px $color-lighter-gray;
+  padding: 5px 10px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+
+  svg {
+    fill: $color-light-gray;
+    margin-right: 5px;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0;
+    color: $color-gray;
+
+    &::placeholder {
+      color: $color-light-gray;
+    }
+  }
+}
