@@ -1,0 +1,47 @@
+#route-examples nav {
+  li {
+    box-shadow: inset 0 -1px 0 $color-lighter-gray;
+    position: relative;
+
+    &:hover {
+      background-color: mix($color-lighter-gray, white, 50%);
+    }
+
+    &.active {
+      background-color: $color-lighter-gray;
+      border-right: 5px solid $color-pink;
+
+      a {
+        color: $color-pink;
+      }
+
+      .tags .tag {
+        background-color: $color-gray;
+        color: white;
+      }
+    }
+
+    a {
+      display: block;
+      padding: 10px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      .tag {
+        font-size: 7px;
+        background-color: $color-lighter-gray;
+        color: $color-gray;
+        display: inline;
+        padding: 2px 4px;
+        border-radius: 2px;
+        letter-spacing: 1px;
+        font-weight: bold;
+        margin: 2px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

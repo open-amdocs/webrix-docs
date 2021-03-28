@@ -1,0 +1,14 @@
+.poppable.example-preview {
+  background-color: white;
+  box-shadow:
+    0 5px 25px rgba(black, 0.2),
+    0 2px 3px rgba(black, 0.1);
+  display: flex;
+  border-radius: 5px;
+  --triangle-color: white;
+
+  video {
+    border-radius: 5px;
+    width: 250px;
+  }
+}
