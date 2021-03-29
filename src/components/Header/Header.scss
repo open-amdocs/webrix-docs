@@ -13,7 +13,6 @@
   .logo {
     font-weight: bold;
     font-size: 0;
-    position: absolute;
 
     img {
       width: 140px;
@@ -72,8 +71,7 @@
 
     @include media-max('sm') {
       font-size: 12px;
-      margin-left: 145px;
-      margin-right: auto; // Push the hamburger menu to the right
+      margin-left: auto;
     }
   }
 }
