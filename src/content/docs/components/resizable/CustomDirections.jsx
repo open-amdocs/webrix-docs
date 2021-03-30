@@ -1,24 +1,16 @@
-import React, {useState, useCallback} from 'react';
+import React, {useMemo, useState, useRef} from 'react';
 import {Resizable} from 'webrix/components';
 import './CustomDirections.scss';
 
-export default () => {
-    const SIZE = 200;
-    const INITIAL = {top: (window.innerHeight - SIZE) / 2, left: (window.innerWidth - SIZE) / 2, width: SIZE, height: SIZE};
-    const [position, setPosition] = useState(INITIAL);
+const {update, lock, resize} = Resizable.Operations;
 
-    const handleOnResize = useCallback(({change}) => {
-        setPosition(({top, left, width, height}) => ({
-            top: top + change.top,
-            left: left + change.left,
-            width: width + change.width,
-            height: height + change.height,
-        }));
-    }, [setPosition]);
+export default () => {
+    const resizable = useRef();
+    const [position, setPosition] = useState({});
 
     return (
-        <div className='resizable-object' style={position}>
-            <Resizable onResize={handleOnResize}>
+        <div className='resizable-object' style={position} ref={resizable}>
+            <Resizable {...Resizable.useResize(useMemo(() => [resize(resizable), lock(), update(setPosition)], []))}>
                 <Resizable.Resizer.Bottom/>
                 <Resizable.Resizer.Right/>
                 <Resizable.Resizer.BottomRight/>
@@ -27,4 +19,4 @@ export default () => {
             <div className='arrow'/>
         </div>
     );
-}
+};

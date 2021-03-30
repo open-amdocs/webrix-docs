@@ -1,7 +1,14 @@
 #example {
-  .resizable-object {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .movable {
     user-select: none;
     background-color: $color-pink;
+    width: 100px;
+    height: 100px;
+    cursor: move;
     position: absolute;
     color: $color-white;
     padding: 10px;
@@ -9,6 +16,5 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-sizing: border-box;
   }
 }

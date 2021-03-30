@@ -1,24 +1,21 @@
-import React, {useState, useCallback} from 'react';
+import React, {useMemo, useState, useRef} from 'react';
 import {Resizable} from 'webrix/components';
 import './BasicExample.scss';
 
-export default () => {
-    const SIZE = 100;
-    const INITIAL = {top: (window.innerHeight - SIZE) / 2, left: (window.innerWidth - SIZE) / 2, width: SIZE, height: SIZE};
-    const [position, setPosition] = useState(INITIAL);
+const {resize, update, lock} = Resizable.Operations;
 
-    const handleOnResize = useCallback(({change}) => {
-        setPosition(({top, left, width, height}) => ({
-            top: top + change.top,
-            left: left + change.left,
-            width: width + change.width,
-            height: height + change.height,
-        }));
-    }, [setPosition]);
+export default () => {
+    const [position, setPosition] = useState({});
+    const resizable = useRef();
+    const props = Resizable.useResize(useMemo(() => [
+        resize(resizable),
+        lock(),
+        update(setPosition),
+    ], []));
 
     return (
-        <div className='resizable-object' style={position}>
-            <Resizable onResize={handleOnResize}>
+        <div className='resizable-object' style={position} ref={resizable}>
+            <Resizable {...props}>
                 <Resizable.Resizer.All/>
             </Resizable>
             Resize Me!

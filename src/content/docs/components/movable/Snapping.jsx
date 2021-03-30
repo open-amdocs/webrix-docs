@@ -1,28 +1,20 @@
-import React, {useState, useCallback, useRef} from 'react';
+import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
 import './Snapping.scss';
 
-const snap = num => {
-    const GRID_SIZE = 20;
-    return Math.round(num / GRID_SIZE) * GRID_SIZE;
-};
+const {move, update, snap} = Movable.Operations;
 
 export default () => {
-    const [{top, left}, setPosition] = useState({top: 0, left: 0});
-    const initial = useRef({top, left});
-
-    const handleOnBeginMove = useCallback(() => {
-        initial.current = {top, left};
-    }, [top, left]);
-
-    const handleOnMove = useCallback(({dx, dy}) => {
-        // dx/dy represent the change in x/y since the the beginning of the drag.
-        const {top, left} = initial.current;
-        setPosition({top: snap(top + dy), left: snap(left + dx)});
-    }, [setPosition]);
+    const [position, setPosition] = useState({});
+    const ref = useRef();
+    const props = Movable.useMove(useMemo(() => [
+        move(ref),
+        snap(20, 20),
+        update(setPosition),
+    ], []));
 
     return (
-        <Movable style={{top, left}} onBeginMove={handleOnBeginMove} onMove={handleOnMove}>
+        <Movable {...props} ref={ref} style={position}>
             I snap to a 20x20 grid
         </Movable>
     );

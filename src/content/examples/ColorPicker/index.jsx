@@ -1,19 +1,20 @@
 import React, {useCallback, useState, useEffect, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
+import {useDimensions} from 'webrix/hooks';
 import './style.scss';
 
 const WIDTH = 250;
+const {transform, trackpad, update} = Movable.Operations;
+const {clamp} = Movable.Transformers;
 
 const componentToHex = c => {
     const hex = c.toString(16);
     return hex.length === 1 ? '0' + hex : hex;
-}
+};
 
 const rgbToHex = (r, g, b) => (
     '#' + componentToHex(r) + componentToHex(g) + componentToHex(b)
 );
-
-const clamp = (min, max, value) => Math.min(Math.max(value, min), max);
 
 const GradientCanvas = ({ctx, height, gradients}) => {
 
@@ -36,21 +37,25 @@ const GradientCanvas = ({ctx, height, gradients}) => {
 const HueSelector = ({onChange}) => {
     const movable = useRef();
     const ctx = useRef();
+    const {width} = useDimensions(movable);
     const [left, setLeft] = useState(0);
 
-    const handleOnMove = useCallback(({x}) => {
-        const {left} = movable.current.getBoundingClientRect();
-        onChange(ctx.current.getImageData(x - left, 0, 1, 1).data.slice(0, 3));
-        setLeft(clamp(0, 240, x - left));
-    }, [setLeft, onChange]);
+    const props = Movable.useMove(useMemo(() => [
+        trackpad(movable),
+        transform(v => v.left, clamp(0, width - 1)),
+        update(next => {
+            onChange(ctx.current.getImageData(next, 0, 1, 1).data.slice(0, 3));
+            setLeft(next);
+        }),
+    ], [onChange, setLeft, width]));
 
     return (
-        <Movable className='hue-selector' onBeginMove={handleOnMove} onMove={handleOnMove} ref={movable}>
+        <Movable className='hue-selector' ref={movable} {...props}>
             <div className='pointer' style={{left}}/>
             <GradientCanvas ctx={ctx} height={8} gradients={useMemo(() => [
                 [
                     [0, 0, WIDTH, 0],
-                    [['red', 0], ['#ff0', 0.17], ['lime', 0.33], ['cyan', 0.5], ['blue', 0.66], ['#f0f', 0.83], ['red', 1]],
+                    [['red', 0.01], ['#ff0', 0.166], ['lime', 0.333], ['cyan', 0.5], ['blue', 0.666], ['#f0f', 0.833], ['red', 0.99]],
                 ],
             ], [])}/>
         </Movable>
@@ -60,25 +65,32 @@ const HueSelector = ({onChange}) => {
 const ShadeSelector = ({onChange, hue}) => {
     const movable = useRef();
     const ctx = useRef();
+    const {width, height} = useDimensions(movable);
     const hex = rgbToHex(...hue);
     const [{top, left}, setPosition] = useState({top: 0, left: 0});
 
-    const handleOnMove = useCallback(({x, y}) => {
-        const {top, left, width} = movable.current.getBoundingClientRect();
-        onChange(ctx.current.getImageData(x - left, y - top, 1, 1).data.slice(0, 3));
-        setPosition({
-            top: clamp(0, width - 7, y - top),
-            left: clamp(0, width - 7, x - left),
-        });
-    }, [setPosition, onChange]);
+    const props = Movable.useMove(useMemo(() => [
+        trackpad(movable),
+        transform(({top, left}) => ({
+            top: clamp(0, height)(top),
+            left: clamp(0, width - 1)(left),
+        })),
+        update(({top, left}) => {
+            onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3));
+            setPosition({top, left});
+        }),
+    ], [onChange, setPosition, width, height]));
+
+    // Update the shade when the hue changes
+    useEffect(() => onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3)), [hue, left, top, onChange])
 
     return (
-        <Movable className='shade-selector' onBeginMove={handleOnMove} onMove={handleOnMove} ref={movable}>
+        <Movable className='shade-selector' ref={movable} {...props}>
             <div className='pointer' style={{top, left}}/>
             <GradientCanvas ctx={ctx} height={250} gradients={useMemo(() => [
                 [[0, 0, WIDTH, 0], [[hex, 0], [hex, 1]]],
-                [[0, 0, WIDTH, 0], [['white', 0], ['transparent', 1]]],
-                [[0, 0, 0, WIDTH], [['transparent', 0], ['black', 1]]],
+                [[0, 0, WIDTH, 0], [['white', 0.01], ['rgba(255, 255, 255, 0)', 0.99]]],
+                [[0, 0, 0, WIDTH], [['rgba(0, 0, 0, 0)', 0.01], ['black', 0.99]]],
             ], [hex])}/>
         </Movable>
     );

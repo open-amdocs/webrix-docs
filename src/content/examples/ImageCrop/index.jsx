@@ -1,7 +1,9 @@
-import React, {useCallback, useState} from 'react';
+import React, {useMemo, useState, useRef, useEffect} from 'react';
 import {Resizable, Movable} from 'webrix/components';
-import img from './image.jpg';
 import './style.scss';
+
+const mo = Movable.Operations;
+const ro = Resizable.Operations;
 
 const Grid = () => (
     <div className='grid'>
@@ -19,47 +21,49 @@ const Circles = () => (
     </div>
 );
 
-const Crop = () => {
-    const INITIAL = {top: (window.innerHeight - 280) / 2, left: (window.innerWidth - 440) / 2, width: 440, height: 280};
-    const [position, setPosition] = useState(INITIAL);
+const Crop = ({image}) => {
+    const [position, setPosition] = useState({});
+    const crop = useRef();
+    const movable = useRef();
 
-    const handleOnResize = useCallback(({change}) => {
-        setPosition(({top, left, width, height}) => ({
-            top: top + change.top,
-            left: left + change.left,
-            width: width + change.width,
-            height: height + change.height,
-        }));
-    }, [setPosition]);
+    const mProps = Movable.useMove(useMemo(() => [
+        mo.move(movable),
+        mo.contain(movable, image),
+        mo.update(({top, left}) => setPosition(p => ({...p, top, left}))),
+    ], [setPosition, image]));
 
-    const handleOnMove = useCallback(({cx, cy}) => {
-        setPosition(p => ({...p, left: p.left + cx, top: p.top + cy}));
-    }, [setPosition]);
+    const rProps = Resizable.useResize(useMemo(() => [
+        ro.resize(crop),
+        ro.contain(image),
+        ro.min(50, 50),
+        ro.lock(),
+        ro.update(setPosition),
+    ], [image]));
+
+    useEffect(() => {
+        // Set the crop to the image size initially
+        const {width, height, top, left} = image.current.getBoundingClientRect();
+        setPosition({width, height, top, left});
+    }, [image]);
 
     return (
-        <div className='crop' style={position}>
-            <Movable className='handler' onMove={handleOnMove}/>
-            <Resizable onResize={handleOnResize}>
+        <div className='crop' style={position} ref={crop}>
+            <Movable {...mProps} className='handler' ref={movable}/>
+            <Resizable {...rProps}>
                 <Resizable.Resizer.All/>
             </Resizable>
             <Circles/>
             <Grid/>
         </div>
-
     );
 };
 
-const Image = () => (
-    <div
-        className='image'
-        style={{backgroundImage: `url(${img})`}}/>
-)
-
 export default () => {
+    const ref = useRef();
     return (
-        <div className='image-crop'>
-            <Crop/>
-            <Image/>
+        <div className='image-crop' ref={ref}>
+            <Crop image={ref}/>
+            <div className='image'/>
             <div className='attribution'>
                 Image courtesy of <a target='_blank' rel='noreferrer' href='https://pixabay.com/users/pexels-2286921/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1850116'>Pexels</a> from <a target='_blank' rel='noreferrer' href='https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1850116'>Pixabay</a>
             </div>

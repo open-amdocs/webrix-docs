@@ -1,10 +1,15 @@
 #example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .resizable-object {
-    user-select: none;
     background-color: $color-pink;
+    width: 100px;
+    height: 100px;
     position: absolute;
     color: $color-white;
-    padding: 10px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;

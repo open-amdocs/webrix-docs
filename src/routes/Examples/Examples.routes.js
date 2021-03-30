@@ -2,7 +2,12 @@ export default [
     {
         title: 'Simple Slider',
         path: '/examples/SimpleSlider',
-        tags: ['movable'],
+        tags: ['movable', 'useDimensions'],
+    },
+    {
+        title: 'Radial Slider',
+        path: '/examples/RadialSlider',
+        tags: ['movable', 'useDimensions'],
     },
     {
         title: 'Color Picker',
@@ -12,7 +17,7 @@ export default [
     {
         title: 'Photo Editor',
         path: '/examples/PhotoEditor',
-        tags: ['movable'],
+        tags: ['movable', 'useDimensions'],
     },
     {
         title: 'Image Crop',
@@ -37,7 +42,7 @@ export default [
     {
         title: 'Video Player',
         path: '/examples/VideoPlayer',
-        tags: ['movable', 'useTimeout'],
+        tags: ['movable', 'useTimeout', 'useDimensions'],
     },
     {
         title: 'Collage Maker',
@@ -47,6 +52,11 @@ export default [
     {
         title: 'Menu',
         path: '/examples/Menu',
-        tags: ['poppable', 'useVisibilityState', 'useClickOutside'],
+        tags: ['poppable', 'useVisibilityState', 'useClickOutside', 'useDimensions'],
+    },
+    {
+        title: 'DropDown',
+        path: '/examples/DropDown',
+        tags: ['poppable', 'useVisibilityState', 'useClickOutside', 'useDimensions'],
     },
 ]

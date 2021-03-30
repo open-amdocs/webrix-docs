@@ -1,65 +1,97 @@
 import {Example} from 'components';
 
-The `<Resizable/>` component can be used to create elements that can be resized by the user.
-A `<Resizable/>` element receives up to 8 resizers, that can be used to resize the element in
+The `<Resizable/>` component can be used to create elements that the user can resize.
+
+A `<Resizable/>` element can receive up to 8 resizers, which can be used to resize the element in
 all directions - horizontally, vertically, and diagonally.
+
+The `<Resizable/>` comes with a custom hook for reduced boilerplate and easy constraint application.
+That hook accepts an array of *Operations*, which are used for controlling the way an element is resized.
+`<Resizable/>` is packaged with a set of built-in *Operations* that you can use, and you can also create your own.
 
 ## Basic Example
 
 <Example file='docs/components/resizable/BasicExample' height={300}/>
 
-In this example you can see a fully resizable element.
+In this example we are using the `Resizable.useResize()` hook to control the resizing of the element.
+The `onResize` callback is called when the element moves, passing an object with `top/left/width/height`
+as an argument.
 
-The `onResize` prop can be used to listen to resize changes.
-It passes an object with `width`, `height`, `top` and `left` keys to the handler.
-These corresponding values represent the change (delta) in dimensions/position, rather than
-the actual new dimensions/position.
+## Operations
 
-To get the actual dimensions/position, simply add the deltas to the initial values.
+As mentioned before, operations can be used to create custom resizing behaviours.
+The `<Resizable/>` component comes we a set of pre-defined operations that you can
+access through `Resizable.Operations`.
 
-## Min/Max Sizes
+### Min/Max Sizes
 
-<Example file='docs/components/resizable/MinMaxSizes' height={350}/>
+<Example file='docs/components/resizable/MinMax' height={350}/>
 
-The `<Resizable/>` component gives you complete control over the resizing of the element by only passing information
-through the event without actually manipulating the element itself.
-This way you are free to add your own logic and constraints.
+In the example above we're using the `min(width, height)` and `max(width, height)` operation to limit the resizing
+to a certain minimum & maximum dimensions.
 
-In this example the element has min/max width/height, that we apply by simply using `Math.min()` and `Math.max()`
-together to keep the value within a certain range.
-
-> Note that the same can be achieved using CSS `max-width`/`max-height`/`min-width`/`min-height`, as long as
-> only the bottom/right resizers are being used. The above CSS cannot work for top/left resizers, since the
-> top/left positioning should be limited as well, and that can only be achieved programmatically.
-
-## Snapping
+### Snapping
 
 <Example file='docs/components/resizable/Snapping' height={300}/>
 
-Similarly to the previous example, more complex constraints can be applied, like snapping.
-This can be achieved by applying the following formula to the coordinates of the element:
+In the example above we're using the `Resizable.Operations.snap(horizontal, vertical, strength)` operation to
+make the resizable element snap to a `20px` by `20px` grid.
 
-```jsx
-const GRID_SIZE = 20;
-Math.round(x / GRID_SIZE) * GRID_SIZE;
-```
+In the example below we use the same operation, only here the grid size is `60px` by `60px`, and the snapping
+strength is set to `0.3`. The snapping strength is a number between `0` and `1`, where `1` corresponds to
+full strength and `0` to no strength (and therefore, no snapping).
 
-Note that we're using the `delta` here instead of the `change`. The former represents the
-delta since the beginning of the resize operation (i.e. mousedown), and the latter
-represents the change since the last event (i.e. mousemove).
+<Example file='docs/components/resizable/SnappingAdvanced' height={300}/>
 
-We're using the `delta` because the resize operation in this example is not smooth,
-so if we used the `change` nothing would happen because the increments would be too
-small and they would always be rounded down.
+### Contain
 
-Applying this on the `delta` causes the resizable element to be resized in steps of `GRID_SIZE`, as can
-be seen above.
+<Example file='docs/components/resizable/Contain' height={300}/>
 
-> `Math.round()` rounds number up, so rounding `1.5` gives `2`, while
-> rounding `-1.5` gives `1`. This can cause small glitches when snap-resizing.
-> To avoid that we remove the sign before rounding, and then insert it back,
-> making the rounding consistent regardless of the sign.
-> See the source code for more info.
+In this example we're using the `Resizable.Operations.contain(container)` operation, to limit the
+resizing of the element to not overflow the boundaries of the given container.
+
+### Ratio
+
+<Example file='docs/components/resizable/Ratio' height={300}/>
+
+In this example we're using the `Resizable.Operations.ratio(value)` operations, to
+maintain a given ratio when resizing.
+
+The `ratio` operation accepts a number representing the ratio that you wish to maintain
+between the width and the height of the element. For example, a ratio of `2` will maintain
+an element width that is double the element's height.
+
+### Mixing Operations
+
+<Example file='docs/components/resizable/Mixing' height={300}/>
+
+In this example we're combining 4 different operations to achieve a more complex behavior.
+You can mix as many operations as you need, but for optimal UX you will need to make sure
+that the operations make sense when applied together.
+
+For example, applying a `ratio` of `4/3` while having a `snap` of `40, 40` will void the `ratio`
+in certain cases since they are contradictory. Instead, the `snap` should use values that maintain
+the given ratio, like `40, 30`.
+
+### Custom Operations
+
+<Example file='docs/components/resizable/CustomOperations' height={300}/>
+
+You can create your own custom operations using the `Resizable.Operations.createOperation()` function.
+This function takes an object with the Resizable's events (i.e. `onBeginResize`, `onResize` and `onEndResize`).
+
+In this example, we create a custom operation called `snapClass`, that adds the given CSS class to the element when it
+is snapped to the given grid.
+
+Each Resizable event receives 2 arguments:
+
+* The original event object.
+* An object with the data shared between events/operations.
+
+You can pass data between events by mutating the 2rd argument, which is an object that is shared between all
+the events, and across operations. This argument also contains a `next` key, where you should store
+the next Resizable coordinates (in the above example we extract `next` from it to determine whether it will
+be on the grid after all operations are applied).
 
 ## Custom Directions
 
@@ -68,6 +100,24 @@ be seen above.
 Instead of using `<Resizable.Resizers.All/>`, you can use any combination of resizers to limit
 the resize operation to certain directions. In this example we use `Right`,`Bottom` and `BottomRight`
 resizers to allow the element to be resized only at those edges/coreners.
+
+## Custom Handlers
+
+<Example file='docs/components/resizable/CustomHandlers' height={300}/>
+
+Up to this point we've been using the `Resizable.useResize()` hook.
+The hook returns an object with `onBeginResize`, `onResize` and `onEndResize` handlers,
+which should be injected to the `<Resizable/>`.
+
+However, you can create your own handlers, if you need a special behavior that is not covered
+by that hook (and its accompanying set of operations).
+
+The `onResize` prop can be used to listen to resize changes.
+It passes an object with `width`, `height`, `top` and `left` keys to the handler.
+These values represent the change (delta) in dimensions/position, rather than
+the actual new dimensions/position.
+
+To get the actual dimensions/position, simply add the deltas to the initial values.
 
 ## API
 
@@ -102,3 +152,90 @@ Name|Type|Default|Description
 * `<Resizable.Resizers.TopLeft/>` - Top left corner diagonal resizer.
 * `<Resizable.Resizers.BottomRight/>` - Bottom right corner diagonal resizer.
 * `<Resizable.Resizers.BottomLeft/>` - Bottom left corner diagonal resizer.
+
+### Hooks
+
+#### `Resizable.useResize(operations)`
+
+Generate the set of props to be injected to a `<Resizable/>` component, applying the given operations.
+
+```jsx
+const props = Resizable.useResize(operations);
+<Resizable {...props}/>
+```
+
+### Operations
+
+#### `Resizable.Operations.min(width, height)`
+
+Limit the resizing to not go below the given width/height.
+
+```jsx
+Resizable.useResize(useMemo(() => [
+  Resizable.Operations.min(100, 100), // Enforce a minimum width/height of 100/100
+], []));
+```
+
+#### `Resizable.Operations.max(width, height)`
+
+Limit the resizing to not go above the given width/height.
+
+```jsx
+Resizable.useResize(useMemo(() => [
+  Resizable.Operations.max(100, 100), // Enforce a minimum width/height of 100/100
+], []));
+```
+
+#### `Resizable.Operations.snap(horizontal, vertical, strength = 1)`
+
+Snap the resizing to a grid specified by the given `horizontal` & `vertical` arguments,
+optionally specifying the snapping strength in `strength`, as a number between `0` and `1`.
+
+```jsx
+Resizable.useResize(useMemo(() => [
+  Resizable.Operations.snap(20, 20), // Snap to 20x20 grid
+], []));
+```
+
+#### `Resizable.Operations.contain(container)`
+
+Limit the resizing to not overflow the bounding rect of the given container.
+
+```jsx
+Resizable.useResize(useMemo(() => [
+  Resizable.Operations.contain(ref),
+], []));
+```
+
+#### `Resizable.Operations.ratio(value)`
+
+Maintain the given ratio when resizing. The given value represents the ratio between the width
+and the height. For example, to maintain a `4:3` ratio, use the value `4/3`.
+
+```jsx
+Resizable.useResize(useMemo(() => [
+  Resizable.Operations.ratio(4/3),
+], []));
+```
+
+#### `Resizable.Operations.update(callback)`
+
+Call the function given in `callback`, passing the current coordinates as an argument.
+
+```jsx
+Resizable.useResize(useMemo(() => [
+  update(console.log), // Will log the next coordinates
+], []));
+```
+
+#### `Resizable.Operations.createOperation(...)`
+
+Create a custom operation to be passed to the `useResize()` hook. See [Custom Operations](#operations-custom-operations) above
+for additional info.
+
+```jsx
+const myOperation = () => Resizable.Operations.createOperation(...);
+Resizable.useResize(useMemo(() => [
+  myOperation(...),
+], []));
+```

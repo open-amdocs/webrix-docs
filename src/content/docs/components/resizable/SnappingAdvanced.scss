@@ -1,0 +1,19 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .resizable-object {
+    background-color: $color-pink;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    color: $color-white;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}

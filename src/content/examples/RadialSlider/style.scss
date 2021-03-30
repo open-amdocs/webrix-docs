@@ -1,0 +1,67 @@
+$width: 250px;
+$height: $width;
+
+#example {
+  display: grid;
+  place-content: center;
+  grid-template-columns: $width $width $width;
+  grid-template-rows: $height $height;
+  grid-gap: 10px;
+
+  .slider {
+    width: $width;
+    height: $height;
+    position: relative;
+    user-select: none;
+
+    &:nth-child(1),
+    &:nth-child(3) {
+      grid-row-end: span 2;
+      align-self: center;
+    }
+
+    .movable {
+      display: flex;
+      cursor: pointer;
+    }
+
+    .radial-filler {
+      overflow: visible;
+      fill: none;
+
+      path {
+        stroke: $color-lighter-gray;
+        stroke-width: 0.5px;
+        transform-origin: center;
+      }
+
+      circle {
+        transform-origin: center;
+      }
+    }
+
+    .handle {
+      $offset: 4px; // Half the difference between the stroke width and the handle width
+      $size: 22px;
+      width: $size;
+      height: $size;
+      background-color: white;
+      position: absolute;
+      border-radius: $size;
+      box-shadow: 0 0 3px rgba(black, 0.2), 0 0 15px rgba(black, 0.2);
+      transform-origin: $size/2 $width/2 - $offset;
+      left: ($width - $size) / 2;
+      top: $offset;
+    }
+
+    .value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 38px;
+      font-weight: bold;
+      color: $color-light-blue;
+    }
+  }
+}

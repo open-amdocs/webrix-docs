@@ -1,22 +1,24 @@
-import React, {useCallback, useState, useRef} from 'react';
+import React, {useMemo, useState, useRef} from 'react';
 import {Scalable, Pannable, Movable} from 'webrix/components';
 import img from './image.jpeg';
 import './style.scss';
 
-const MIN = 0.5, MAX = 1.5;
+const {trackpad, update, transform} = Movable.Operations;
+const {map} = Movable.Transformers;
 
-const clamp = (min, max, value) => Math.min(Math.max(value, min), max);
+const MIN = 0.5, MAX = 1.5;
 
 const Slider = ({value, onChange}) => {
     const movable = useRef();
-    const position = `${(value - MIN) / (MAX - MIN) * 90}%`; // 90 so the handle doesn't go beyond the track
-    const handleOnMove = useCallback(({y}) => {
-        const {height, top} = movable.current.getBoundingClientRect();
-        onChange(() => MIN + (clamp(0, height, y - top) / height) * (MAX - MIN));
-    }, [onChange]);
+    const position = `${map(MIN, MAX, 0, 90)(value)}%`; // 90 so the handle doesn't go beyond the track
+    const props = Movable.useMove(useMemo(() => [
+        trackpad(movable),
+        transform(v => v.top, map(0, 100, MIN, MAX)),
+        update(onChange),
+    ], [onChange]));
 
     return (
-        <Movable className='slider' ref={movable} onBeginMove={handleOnMove} onMove={handleOnMove}>
+        <Movable className='slider' ref={movable} {...props}>
             <div className='value'>{Math.round(value * 100)}%</div>
             <div className='handle' style={{top: position}}/>
         </Movable>

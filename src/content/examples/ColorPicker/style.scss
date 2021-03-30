@@ -5,7 +5,6 @@ $spacing: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  user-select: none;
 
   .color-picker {
     background-color: white;
@@ -17,6 +16,8 @@ $spacing: 15px;
       width: $width;
       height: $width;
       margin: $spacing;
+      cursor: pointer;
+      user-select: none;
 
       canvas {
         border-radius: 3px;
@@ -28,6 +29,12 @@ $spacing: 15px;
       width: $width;
       height: 8px;
       margin: $spacing;
+      cursor: pointer;
+      user-select: none;
+
+      .pointer {
+        top: 4px;
+      }
 
       canvas {
         border-radius: 8px;
@@ -41,8 +48,7 @@ $spacing: 15px;
       height: 10px;
       border-radius: 10px;
       border: 5px solid white;
-      cursor: pointer;
-      transform: translate(-6px, -6px);
+      transform: translate(-10px, -10px);
       box-shadow: 0 0 5px rgba(black, 0.2), inset 0 0 5px rgba(black, 0.2);
     }
   }
@@ -62,6 +68,7 @@ $spacing: 15px;
       height: 28px;
       border: 1px solid rgba(black, 0.1);
       border-radius: 6px;
+      user-select: all;
 
       &::before {
         content: attr(title);

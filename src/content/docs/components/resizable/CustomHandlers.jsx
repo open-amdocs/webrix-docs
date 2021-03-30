@@ -1,22 +1,18 @@
 import React, {useState, useCallback} from 'react';
 import {Resizable} from 'webrix/components';
-import './MinMaxSizes.scss';
-
-const clamp = (min, max, value) => (
-    Math.min(max, Math.max(min, value))
-);
+import './CustomHandlers.scss';
 
 export default () => {
-    const MIN = 100, MAX = 200;
-    const INITIAL = {top: (window.innerHeight - MIN) / 2, left: (window.innerWidth - MIN) / 2, width: MIN, height: MIN};
+    const SIZE = 100;
+    const INITIAL = {top: (window.innerHeight - SIZE) / 2, left: (window.innerWidth - SIZE) / 2, width: SIZE, height: SIZE};
     const [position, setPosition] = useState(INITIAL);
 
     const handleOnResize = useCallback(({change}) => {
         setPosition(({top, left, width, height}) => ({
-            top: clamp(top - (MAX - height), top + (height - MIN), top + change.top),
-            left: clamp(left - (MAX - width), left + (width - MIN), left + change.left),
-            width: clamp(MIN, MAX, width + change.width),
-            height: clamp(MIN, MAX, height + change.height),
+            top: top + change.top,
+            left: left + change.left,
+            width: width + change.width,
+            height: height + change.height,
         }));
     }, [setPosition]);
 

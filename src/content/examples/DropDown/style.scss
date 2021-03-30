@@ -1,0 +1,59 @@
+$color-blue: #2160ff;
+$width: 150px;
+
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  .dropdown {
+    background-color: white;
+    padding: 7px 13px;
+    border: 2px solid $color-blue;
+    border-radius: 7px;
+    width: $width;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($color-blue, 0.3);
+    }
+
+    &.open svg {
+      transform: rotate(180deg);
+    }
+
+    svg {
+      margin-left: auto;
+      fill: $color-gray;
+      transition: all 0.2s ease-in;
+    }
+
+    @at-root .dropdown-menu {
+      background-color: white;
+      border: 1px solid #c7cee2;
+      padding: 5px;
+      border-radius: 7px;
+      box-sizing: border-box;
+      box-shadow: 0 3px 1px rgba(black, 0.2);
+
+      .dropdown-item {
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: rgba($color-blue, 0.1);
+          color: $color-blue;
+        }
+
+        &.active {
+          color: $color-blue;
+        }
+      }
+    }
+  }
+}

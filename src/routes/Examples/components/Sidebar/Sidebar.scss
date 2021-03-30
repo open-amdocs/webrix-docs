@@ -1,62 +1,17 @@
 #route-examples nav {
-  width: 200px;
+  width: 250px;
+  height: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
+  overflow: auto;
 
   @include media-max('sm') {
     display: none;
   }
 
-  li {
-    box-shadow: inset 0 -1px 0 $color-lighter-gray;
-    position: relative;
-
-    &.active {
-      background-color: $color-lighter-gray;
-      border-right: 5px solid $color-pink;
-
-      &::after {
-        content: "";
-        position: absolute;
-        border: 8px solid transparent;
-        border-left-color: $color-pink;
-        right: -20px;
-        top: 50%;
-        margin-top: -8px;
-        z-index: 2;
-      }
-
-      a {
-        color: $color-pink;
-      }
-
-      .tags .tag {
-        background-color: $color-gray;
-        color: white;
-      }
-    }
-
-    a {
-      display: block;
-      padding: 10px;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-
-      .tag {
-        font-size: 7px;
-        background-color: $color-lighter-gray;
-        color: $color-gray;
-        display: inline;
-        padding: 2px 4px;
-        border-radius: 2px;
-        letter-spacing: 1px;
-        font-weight: bold;
-        margin: 2px;
-        text-transform: uppercase;
-      }
-    }
+  .no-results {
+    padding: 10px;
+    text-align: center;
+    color: $color-light-gray;
   }
 }

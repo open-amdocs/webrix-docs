@@ -32,6 +32,7 @@
     top: 50%;
     right: -60px;
     transform: translateY(-50%);
+    cursor: pointer;
 
     .value {
       font-size: 10px;
@@ -55,7 +56,6 @@
       background-color: $color-pink;
       left: -6px;
       box-shadow: 0 0 2px rgba(black, 0.5);
-      cursor: pointer;
     }
   }
 }

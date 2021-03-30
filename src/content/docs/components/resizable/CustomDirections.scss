@@ -1,7 +1,12 @@
 #example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .resizable-object {
-    user-select: none;
     background-color: $color-pink;
+    width: 200px;
+    height: 200px;
     position: absolute;
     color: $color-white;
     padding: 10px;
