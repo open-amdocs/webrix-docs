@@ -34,7 +34,7 @@ const Crop = ({image}) => {
 
     const rProps = Resizable.useResize(useMemo(() => [
         ro.resize(crop),
-        ro.contain(movable, image),
+        ro.contain(image),
         ro.min(50, 50),
         ro.lock(),
         ro.update(setPosition),
