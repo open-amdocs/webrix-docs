@@ -218,6 +218,16 @@ Resizable.useResize(useMemo(() => [
 ], []));
 ```
 
+#### `Resizable.Operations.update(callback)`
+
+Call the function given in `callback`, passing the current coordinates as an argument.
+
+```jsx
+Resizable.useResize(useMemo(() => [
+  update(console.log), // Will log the next coordinates
+], []));
+```
+
 #### `Resizable.Operations.createOperation(...)`
 
 Create a custom operation to be passed to the `useResize()` hook. See [Custom Operations](#operations-custom-operations) above
