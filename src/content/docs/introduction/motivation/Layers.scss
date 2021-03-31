@@ -1,0 +1,42 @@
+#route-docs .layers {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 auto;
+
+  g {
+    transition: transform 0.2s ease-out;
+    animation: hover 2s infinite;
+
+    &:nth-of-type(2) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-of-type(3) {
+      animation-delay: 0.4s;
+    }
+  }
+
+  text {
+    font-size: 5px;
+    font-weight: bold;
+    transform: skew(-68deg, 22deg) translate(49px, 7px) scaleY(0.5);
+    fill: rgba(white, 0.7);
+  }
+
+  path:nth-child(2) {
+    fill: rgba(black, 0.3);
+  }
+
+  path:nth-child(3) {
+    fill: rgba(white, 0.3);
+  }
+}
+
+@keyframes hover {
+  0%, 100% {
+    transform: translateY(var(--offset));
+  }
+  50% {
+    transform: translateY(calc(var(--offset) + 3px));
+  }
+}
