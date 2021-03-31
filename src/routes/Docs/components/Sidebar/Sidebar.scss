@@ -75,7 +75,7 @@ $border-color: #d9e6f1;
 
           svg {
             fill: $background-color;
-            background-color: $color-pink;
+            background-image: $gradient-pink;
           }
         }
 
@@ -92,12 +92,12 @@ $border-color: #d9e6f1;
           }
 
           > ul {
-            margin: 0px 0 15px 8px;
+            margin: 0 0 15px 8px;
             color: $color-gray;
             font-size: 0.9em;
             line-height: 1.5em;
             border-left: 3px solid $border-color;
-            padding: 10px 0 0px 7px;
+            padding: 10px 0 0 7px;
           }
         }
       }

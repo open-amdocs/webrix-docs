@@ -13,12 +13,16 @@
   }
 
   &.type-primary {
-    background-color: $color-pink;
+    background-image: $gradient-pink;
     color: $color-white;
   }
 
   &.type-secondary {
-    box-shadow: inset 0 0 0 2px $color-pink;
+    box-shadow:
+      inset 0 2px 0 $color-pink,
+      inset 0 -2px 0 adjust-hue($color-pink, -25),
+      inset 2px 0 0 adjust-hue($color-pink, -25),
+      inset -2px 0 0 $color-pink;
     color: $color-pink;
   }
 }
