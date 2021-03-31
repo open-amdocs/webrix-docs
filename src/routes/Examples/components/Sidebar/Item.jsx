@@ -7,7 +7,7 @@ export default ({title, path, active, tags, onMouseEnter}) => {
     const ref = useRef();
     return (
         <li className={cls({active})} ref={ref} onMouseEnter={() => onMouseEnter(ref.current, path)}>
-            <Link to={path}>
+            <Link to={{pathname: path, search: window.location.search}}>
                 {title}
                 <div className='tags'>
                     {tags.map(tag => (

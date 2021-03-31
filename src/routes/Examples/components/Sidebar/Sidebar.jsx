@@ -9,8 +9,8 @@ import './Sidebar.scss';
 const Sidebar = () => {
     const reference = useRef();
     const [preview, setPreview] = useState();
-    const [query, setQuery] = useState('');
-    const {pathname} = useLocation();
+    const {pathname, search} = useLocation();
+    const [query, setQuery] = useState(new URLSearchParams(search).get('q') || '');
     const items = ITEMS.filter(({title, tags}) => {
         const q = query.trim().toLowerCase();
         return title.toLowerCase().includes(q)
@@ -19,7 +19,7 @@ const Sidebar = () => {
     const onMouseEnter = (ref, path) => {
         reference.current = ref;
         setPreview(path);
-    }
+    };
 
     return (
         <nav>
