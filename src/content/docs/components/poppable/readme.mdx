@@ -1,4 +1,4 @@
-import {Example} from 'components';
+import {Example, PreviewList} from 'components';
 
 The `<Poppable/>` can be used for creating components that are "popping out" of the screen,
 like **tooltips, dropdowns, context menus, popovers, modals** and so on.
@@ -135,7 +135,7 @@ of `<Poppable/>`:
 
 ```jsx
 const MyComponent = () => {
-    const [placement, setPlacement] = useState(); // Don't provide an initial state to allow the popover to use its own defaul state.
+    const [placement, setPlacement] = useState(); // Don't provide an initial state to allow the popover to use its own default state.
 
     return (
         <Poppable.Manual placements={...} placement={placement} onPlacement={setPlacement}>
@@ -144,6 +144,10 @@ const MyComponent = () => {
     );
 }
 ```
+
+## Examples
+
+<PreviewList query='poppable'/>
 
 ## API
 

@@ -1,4 +1,4 @@
-import {Example} from 'components';
+import {Example, PreviewList} from 'components';
 
 The `<Movable/>` component can be used to create elements that the user can move.
 
@@ -125,6 +125,10 @@ You can avoid the issue explained above, and get a more user-friendly movement
 by using the deltas (`dx/dy`) or the mouse position (`x/y`).
 However, using them requires maintaining the initial position of the element as soon as the movement begins.
 This can be done through the `onBeginMove` event, as can be seen in the above example.
+
+## Examples
+
+<PreviewList query='movable'/>
 
 ## API
 

@@ -1,4 +1,4 @@
-import {Example} from 'components';
+import {Example, PreviewList} from 'components';
 
 Execute a callback when clicking outside a given component, based on the React component tree rather than
 the DOM tree in order to support portals.
@@ -87,6 +87,10 @@ log *Outside A*, and clicking anywhere else will log *Outside A & B*.
 However, clicking on **A & B** will not log anything, since it is considered
 by our custom condition as an inside click (despite it being a sibling to them).
 
+## Examples
+
+<PreviewList query={['useclickoutside', 'clickoutside']}/>
+
 ## Syntax
 
 ```js
@@ -94,7 +98,7 @@ by our custom condition as an inside click (despite it being a sibling to them).
 const handleOnMouseDownCapture = useClickOutside(callback);
 
 // As a component
-<ClickOutside onClickOutside{callback}>
+<ClickOutside onClickOutside={callback}>
     // Should wrap a single component with accessible ref
 </ClickOutside>
 ```
