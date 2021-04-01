@@ -2,6 +2,7 @@
   width: 400px;
   max-width: 100%;
   margin: 0 auto;
+  overflow: visible;
 
   g {
     transform: translateX(var(--offset-x)) translateY(var(--offset-y)) translateZ(var(--offset-z));
@@ -24,7 +25,7 @@
   text {
     font-weight: bold;
     transform: skew(-68deg, 22deg) translate(calc(49px * var(--size) / 100), calc(7px * var(--size) / 100)) scaleY(0.5);
-    fill: rgba(white, 0.7);
+    fill: rgba(white, 0.8);
   }
 
   path:nth-child(2) {
