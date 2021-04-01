@@ -1,4 +1,4 @@
-import Layers from './Layers';
+import {Layer, Layers} from './Layers';
 
 Many applications use 3rd-party component banks (like *Bootstrap/Material-UI/Tailwind*) for their UI.
 While this is a good solution for some, in certain cases we want our app to provide a
@@ -15,7 +15,11 @@ about all these technicalities, and just focus on the presentation?
 
 **That's where Webrix comes in.**
 
-<Layers/>
+<Layers>
+    <Layer text='Webrix.js' gradient={['#E42746', '#E42795']} offset={[0, 40, 0]} size={100}/>
+    <Layer text='UI Components' gradient={['#3186ab', '#3153AB']} offset={[0, 20, 0]} size={100}/>
+    <Layer text='App' gradient={['#11eda1', '#11edda']} size={100}/>
+</Layers>
 
 After building numerous UI components, we realized that there are many common challenges
 that can be solved once and reused everywhere.
@@ -27,3 +31,14 @@ We call these components "the bricks of the web" - hence the name **Webrix**.
 
 Component banks can be thought of as the infra-structure of a UI application.
 Webrix is therfore the infra-structure of a component bank.
+
+For example, if you want to build your own **DropDown** component, you can use `<Poppable/>` (for managing the DropDown
+placements and overflow recovery), `<Stackable/>` (for dynamically maintaining the stacking context)
+and `<ClickOutside/>` (for closing the DropDown when clicking outside of it):
+
+<Layers>
+    <Layer text='Stackable' gradient={['#E42746', '#E42795']} offset={[52, 30, 0]}  size={48}/>
+    <Layer text='ClickOutside' gradient={['#E42746', '#E42795']} offset={[0, 30, 0]} size={48}/>
+    <Layer text='Poppable' gradient={['#E42746', '#E42795']} offset={[26, 40, 0]} size={48}/>
+    <Layer text='DropDown' gradient={['#3186ab', '#3153AB']} size={100}/>
+</Layers>
