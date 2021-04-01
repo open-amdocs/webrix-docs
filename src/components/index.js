@@ -7,4 +7,6 @@ export {default as Footer} from './Footer/Footer';
 export {default as Header} from './Header/Header';
 export {default as Highlighter} from './Highlighter/Highlighter';
 export {default as Loader} from './Loader/Loader';
+export {default as Preview} from './Preview/Preview';
+export {default as PreviewList} from './Preview/PreviewList';
 export {default as UnderConstruction} from './UnderConstruction/UnderConstruction';

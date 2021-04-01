@@ -1,0 +1,13 @@
+.preview-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+
+  @include media-max('md') {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include media-max('sm') {
+    grid-template-columns: 1fr;
+  }
+}
