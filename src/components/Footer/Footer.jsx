@@ -44,7 +44,8 @@ const Community = () => (
     <div className='links'>
         <h4>COMMUNITY</h4>
         <ul>
-            <li><FaGithub/><a href='https://github.com/open-amdocs/webrix'>GitHub</a></li>
+            <li><FaGithub/><a href='https://github.com/open-amdocs/webrix'>GitHub (Webrix.js)</a></li>
+            <li><FaGithub/><a href='https://github.com/open-amdocs/webrix-docs'>GitHub (Docs)</a></li>
             <li><FaTag/><a href='https://github.com/open-amdocs/webrix/releases'>Changelog</a></li>
             <li><FaNpm/><a href='https://www.npmjs.com/package/webrix'>NPM</a></li>
             <li><FaCodeBranch/><a href='https://github.com/open-amdocs/webrix/blob/master/CONTRIBUTING.md'>Contributing</a></li>
