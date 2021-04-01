@@ -9,8 +9,8 @@ module.exports = env => ({
     devtool: env.production ? false : 'cheap-module-source-map',
     mode: env.production ? 'production' : 'development',
     output: {
-        filename: '[name].js',
-        chunkFilename: '[name].bundle.js',
+        filename: '[name].[contenthash].js',
+        chunkFilename: '[name].[contenthash].bundle.js',
         path: env.production ? paths.build: paths.src,
         publicPath: '/',
     },
