@@ -6,7 +6,7 @@ import './Motivation.scss';
 
 const components = {
     inlineCode: props => <Highlighter code={props.children.trim()} inline/>,
-}
+};
 
 const Motivation = () => (
     <MDXProvider components={components}>

@@ -15,7 +15,7 @@ const Gradient = ({from, to, id}) => (
     </linearGradient>
 );
 
-export const Layer = ({text, gradient, size, offset = [0, 0, 0]}) => {
+export const Layer = ({text, gradient, size, textSize =  5, offset = [0, 0, 0]}) => {
     const w = size, h = 40 * (size / 100), t = 5;
     const gid = Math.trunc(Math.random() * 10000 + 10000);
     const fid = Math.trunc(Math.random() * 10000 + 10000);
@@ -29,7 +29,7 @@ export const Layer = ({text, gradient, size, offset = [0, 0, 0]}) => {
             <path d={`M0,${h/2+t} v${-t} L${w/2},${0} L${w},${h/2} v${t} L${w/2},${h+t} Z`} fill={`url(#${gid})`} filter={`url(#${fid})`}/>
             <path d={`M0,${h/2+t} v${-t} L${w/2},${h} v${t} Z`}/>
             <path d={`M${w/2},${h+t} v${-t} L${w},${h/2}  v${t} Z`}/>
-            <text x={0} y={0} dominantBaseline='middle' textAnchor='middle' style={{fontSize: 5 * size / 100}}>{text}</text>
+            <text x={0} y={0} dominantBaseline='middle' textAnchor='middle' style={{fontSize: textSize * size / 100}}>{text}</text>
             <defs>
                 <Gradient id={gid} from={gradient[0]} to={gradient[1]}/>
                 <Glow id={fid} color={gradient[0]}/>
