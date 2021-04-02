@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Container, Divider} from 'components';
 import {Link} from 'react-router-dom';
-import {DOCS} from '../../../Router.routes';
+import {DOCS, MOTIVATION} from '../../../Router.routes';
 import './Introduction.scss';
 
 const Introduction = () => (
@@ -13,7 +13,7 @@ const Introduction = () => (
                 It's not a component bank, but rather a set of building blocks for creating your own unique component bank.
                 Webrix does all the technical heavy lifting, so you can focus on the presentation.
                 <div className='actions'>
-                    <Button><Link to='#'>Get Started</Link></Button>
+                    <Button><Link to={MOTIVATION.path}>Motivation</Link></Button>
                     <Button type={Button.Types.SECONDARY}><Link to={DOCS.path}>Documentation</Link></Button>
                 </div>
             </section>

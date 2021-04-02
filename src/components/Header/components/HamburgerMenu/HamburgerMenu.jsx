@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaCode} from 'react-icons/fa';
+import {FaCode, FaCog} from 'react-icons/fa';
 import cls from 'classnames';
 import {Link} from 'react-router-dom';
 import {useVisibilityState} from 'webrix/hooks';
@@ -13,6 +13,7 @@ import './HamburgerMenu.scss';
 
 const Menu = ({visible, onClick}) => (
     <nav className={cls('mobile-menu', {visible})} onClick={onClick}>
+        <h2><Link to='/motivation'>Motivation</Link></h2>
         <h2><Link to='/docs'>Docs</Link></h2>
         <h3>Introduction</h3>
         <ul>
@@ -41,7 +42,7 @@ const Menu = ({visible, onClick}) => (
         <h2><Link to='/examples'>Examples</Link></h2>
         <ul>
             {examples.map(({title, path}) => (
-                <li key={title}><FaCode/><Link to={`${path}`}>{title}</Link></li>
+                <li key={title}><FaCog/><Link to={`${path}`}>{title}</Link></li>
             ))}
         </ul>
     </nav>

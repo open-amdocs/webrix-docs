@@ -3,7 +3,7 @@ import {Link, useLocation} from 'react-router-dom';
 import {FaGithub} from 'react-icons/fa';
 import cls from 'classnames';
 import pkg from '../../../package.json';
-import {HOME, DOCS, TUTORIAL, PLAYGROUND, EXAMPLES} from '../../routes/Router.routes';
+import {HOME, DOCS, MOTIVATION, EXAMPLES} from '../../routes/Router.routes';
 import logo from '../../resources/images/webrix-logo-text-dark.png';
 import HamburgerMenu from './components/HamburgerMenu/HamburgerMenu';
 import './Header.scss';
@@ -17,7 +17,7 @@ const Header = () => {
                 <img src={logo} alt='Webrix logo' loading='lazy'/>
             </Link>
             <nav className='menu'>
-                {[DOCS, TUTORIAL, PLAYGROUND, EXAMPLES].map(({name, path}) => (
+                {[DOCS, MOTIVATION, EXAMPLES].map(({name, path}) => (
                     <Link key={name} to={path} className={cls({active: current === name})}>{name}</Link>
                 ))}
             </nav>

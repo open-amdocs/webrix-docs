@@ -13,16 +13,10 @@ export const DOCS = {
     component: () => <AsyncRoute file={() => import(/* webpackChunkName: "docs" */ './Docs/Docs')}/>,
 };
 
-export const TUTORIAL = {
-    name: 'tutorial',
-    path: '/tutorial',
-    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "tutorial" */ './Tutorial/Tutorial')}/>,
-};
-
-export const PLAYGROUND = {
-    name: 'playground',
-    path: '/playground',
-    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "playground" */ './Playground/Playground')}/>,
+export const MOTIVATION = {
+    name: 'motivation',
+    path: '/motivation',
+    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "motivation" */ './Motivation/Motivation')}/>,
 };
 
 export const EXAMPLES = {
@@ -33,8 +27,7 @@ export const EXAMPLES = {
 
 export default [
     DOCS,
-    TUTORIAL,
-    PLAYGROUND,
+    MOTIVATION,
     EXAMPLES,
     HOME,
 ];

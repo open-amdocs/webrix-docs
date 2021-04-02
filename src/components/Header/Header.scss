@@ -24,6 +24,7 @@
     justify-content: center;
     flex: 1;
     height: 100%;
+    margin-right: 80px; // To center the menu items, since the logo on the left is wider than the stuff on the right
 
     @include media-max('sm') {
       display: none;

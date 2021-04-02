@@ -5,8 +5,7 @@ const ROUTES = [
     '/',
     '/docs',
     '/examples',
-    '/playground',
-    '/tutorial',
+    '/motivation',
 ];
 
 class SitemapGenerator {
