@@ -2,9 +2,9 @@ import React from 'react';
 import './Layers.scss';
 
 const Glow = ({color, id}) => (
-    <filter id={id} filterUnits="userSpaceOnUse" x="-10" y="-10" width="120" height="120">
-        <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor={color} floodOpacity="0.2"/>
-        <feDropShadow dx="0" dy="-1" stdDeviation="2" floodColor={color} floodOpacity="0.2"/>
+    <filter id={id} filterUnits='userSpaceOnUse' x='-10' y='-10' width='120' height='120'>
+        <feDropShadow dx='0' dy='1' stdDeviation='2' floodColor={color} floodOpacity='0.2'/>
+        <feDropShadow dx='0' dy='-1' stdDeviation='2' floodColor={color} floodOpacity='0.2'/>
     </filter>
 );
 
