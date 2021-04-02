@@ -1,23 +1,27 @@
 import React, {Suspense, memo, useEffect} from 'react';
+import {Helmet} from 'react-helmet';
 import {FaExternalLinkAlt} from 'react-icons/fa';
 import {Loader} from 'components';
 import './AsyncPage.scss';
 
-const AsyncPage = ({path, title}) => {
+const AsyncPage = ({path, title, description}) => {
     const Comp = React.lazy(() => import(`content/docs${path}/readme.mdx`));
     const editURL = `https://github.com/open-amdocs/webrix-docs/blob/master/src/content/docs${path}/readme.mdx`;
 
     useEffect(() => {
-        document.title = `Webrix.js - ${title}`;
         // If a hash exists, it indicates an external referral so the H2 will scroll into position
         // Otherwise, no hash indicates navigation between pages, so we scroll back to top.
         if (!window.location.hash) {
             document.getElementById('app').scrollTop = 0;
         }
-    }, [title]);
+    }, []);
 
     return (
         <article>
+            <Helmet>
+                <title>{title} - Webrix.js</title>
+                <meta name='description' content={description}/>
+            </Helmet>
             <h1>
                 {title}
                 <a target='_blank' rel='noreferrer' href={editURL}>Edit This Page <FaExternalLinkAlt/></a>

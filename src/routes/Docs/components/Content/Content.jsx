@@ -28,7 +28,7 @@ const Content = () => {
                         key={page.path}
                         path={match.url + section.path + page.path}
                         title={page.title}>
-                        <AsyncPage path={section.path + page.path} title={page.title}/>
+                        <AsyncPage path={section.path + page.path} title={page.title} description={page.description}/>
                     </Route>
                 )))}
             </Switch>
