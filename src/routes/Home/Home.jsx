@@ -1,4 +1,5 @@
 import React from 'react';
+import {Helmet} from 'react-helmet';
 import logo from '../../resources/images/webrix-logo-light.png';
 import FallingBricks from './components/FallingBricks/FallingBricks';
 import Introduction from './sections/Introduction/Introduction';
@@ -10,6 +11,10 @@ import './Home.scss';
 
 const Home = () => (
     <>
+        <Helmet>
+            <title>Webrix.js</title>
+            <meta name='description' content='Powerful building blocks for React-based web applications'/>
+        </Helmet>
         <div className='title'>
             <img src={logo} alt='Webrix logo' loading='lazy'/>
             <h2>Powerful building blocks for React-based web applications</h2>
