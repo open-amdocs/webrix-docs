@@ -15,8 +15,8 @@ const Gradient = ({from, to, id}) => (
     </linearGradient>
 );
 
-export const Layer = ({text, gradient, size, textSize =  5, offset = [0, 0, 0]}) => {
-    const w = size, h = 40 * (size / 100), t = 5;
+export const Layer = ({text, gradient, size, thickness = 5, textSize =  5, offset = [0, 0, 0]}) => {
+    const w = size, h = 40 * (size / 100), t = thickness;
     const gid = Math.trunc(Math.random() * 10000 + 10000);
     const fid = Math.trunc(Math.random() * 10000 + 10000);
     return (
