@@ -48,7 +48,7 @@
     }
 
     .folder {
-      &.expanded .fa-angle-right {
+      &.expanded > .header .fa-angle-right {
         transform: rotate(90deg);
       }
 
