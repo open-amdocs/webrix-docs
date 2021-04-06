@@ -59,4 +59,9 @@ export default [
         path: '/examples/DropDown',
         tags: ['poppable', 'useVisibilityState', 'useClickOutside', 'useDimensions'],
     },
+    {
+        title: 'Tooltip',
+        path: '/examples/Tooltip',
+        tags: ['poppable', 'useVisibilityState'],
+    },
 ]
