@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaNpm, FaGithub, FaCodeBranch, FaBug, FaCode, FaTag} from 'react-icons/fa';
+import {FaNpm, FaGithub, FaCodeBranch, FaBug, FaCode, FaTag, FaTwitter, FaCodepen} from 'react-icons/fa';
 import components from 'content/docs/components/components.routes';
 import hooks from 'content/docs/hooks/hooks.routes';
 import {Container} from '../';
@@ -44,8 +44,10 @@ const Community = () => (
     <div className='links'>
         <h4>COMMUNITY</h4>
         <ul>
-            <li><FaGithub/><a href='https://github.com/open-amdocs/webrix'>GitHub (Webrix.js)</a></li>
-            <li><FaGithub/><a href='https://github.com/open-amdocs/webrix-docs'>GitHub (Docs)</a></li>
+            <li><FaTwitter/><a href='https://twitter.com/search?q=%23webrixjs'>Tweets</a></li>
+            <li><FaCodepen/><a href='https://codepen.io/tag/webrix'>Pens</a></li>
+            <li><FaGithub/><a href='https://github.com/open-amdocs/webrix'>Source Code (Webrix)</a></li>
+            <li><FaGithub/><a href='https://github.com/open-amdocs/webrix-docs'>Source Code (Docs)</a></li>
             <li><FaTag/><a href='https://github.com/open-amdocs/webrix/releases'>Changelog</a></li>
             <li><FaNpm/><a href='https://www.npmjs.com/package/webrix'>NPM</a></li>
             <li><FaCodeBranch/><a href='https://github.com/open-amdocs/webrix/blob/master/CONTRIBUTING.md'>Contributing</a></li>
