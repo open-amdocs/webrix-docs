@@ -1,13 +1,13 @@
 import React, {useCallback, useState} from 'react';
-import {useDebounce} from 'webrix/hooks';
+import {useThrottle} from 'webrix/hooks';
 import './BasicExample.scss';
 
 export default () => {
     const [raw, setRaw] =  useState(0);
-    const [debounced, setDebounced] =  useState(0);
-    const handler = useDebounce(useCallback(() => {
-        setDebounced(t => t + 1);
-    }, [setDebounced]), 500);
+    const [throttled, setThrottled] =  useState(0);
+    const handler = useThrottle(useCallback(() => {
+        setThrottled(t => t + 1);
+    }, [setThrottled]), 500);
     const handleOnMouseMove = useCallback(() => {
         setRaw(r => r + 1);
         handler();
@@ -16,7 +16,7 @@ export default () => {
         <div>
             <div className='trigger' onMouseMove={handleOnMouseMove}>Trigger Area</div>
             <p>Raw Events: {raw}</p>
-            <p>Debounced Events: {debounced}</p>
+            <p>Throttled Events: {throttled}</p>
         </div>
     );
 };

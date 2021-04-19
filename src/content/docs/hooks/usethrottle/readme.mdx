@@ -1,3 +1,5 @@
+import {Example} from 'components';
+
 Call a function only once in a given period of time, and delay the execution based on
 a given delay after the last invocation. This hook will perform the necessary memory
 cleanup automatically.
@@ -5,14 +7,20 @@ cleanup automatically.
 > See [Debouncing vs. Throttling Explained](https://css-tricks.com/debouncing-throttling-explained-examples/)
 > for the difference between debounce & throttle
 
-## Basic Example
-
 ```js
 const throttled = useThrottle(console.log, 500);
 throttled(1); // Logs 1 immediately
-throttled(2); // Delays this call to 500ms from now
-throttled(3); // Cancels the previous call, and delays this call to 500ms from now
+throttled(2); // Call is ignored, since not enough time has passed since the previous call.
+// ... Wait for 600ms
+throttled(3); // Logs 3 immediately
 ```
+
+## Basic Example
+
+<Example file='docs/hooks/usethrottle/BasicExample' height={200}/>
+
+In the above example, a `mousemove` event is attached to the *Trigger Area*.
+Every time the event is fired, a raw handler and a throttled handler are called, incrementing their respective counters.
 
 ## Syntax
 

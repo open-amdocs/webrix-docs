@@ -7,9 +7,22 @@ cleanup automatically.
 > See [Debouncing vs. Throttling Explained](https://css-tricks.com/debouncing-throttling-explained-examples/)
 > for the difference between debounce & throttle
 
+```js
+const debounced = useDebounce(console.log, 500);
+debounced(1); // Schedules 1 to be logged 500 milliseconds from now
+debounced(2); // Cancels the previously scheduled execution, and schedules 2 to be logged 500 milliseconds from now.
+```
+
 ## Basic Example
 
-<Example file='docs/hooks/usedebounce/BasicExample' height={150}/>
+<Example file='docs/hooks/usedebounce/BasicExample' height={200}/>
+
+In the above example, a `mousemove` event is attached to the *Trigger Area*.
+Every time the event is fired, a raw handler and a debounced handler are called, incrementing their respective counters.
+
+## Autosaving
+
+<Example file='docs/hooks/usedebounce/Autosaving' height={150}/>
 
 In this example we use `useDebounce()` for monitoring user typing. We use a delay time of `500ms`,
 so as long as the time between keystrokes is less than that, it will show a `Typing...` message.
@@ -17,14 +30,6 @@ If the user stops for more than `500ms`, the message will change to `Idle`.
 
 This can be used for implementing things like "autosave" on text inputs, but instead of overloading the server
 with requests per keystroke, we can make requests only when the user stops typing.
-
-Here's a basic code example:
-
-```js
-const debounced = useDebounce(console.log, 500);
-debounced(1); // Schedules 1 to be logged 500 milliseconds from now
-debounced(2); // Cancels the previously scheduled execution, and schedules 2 to be logged 500 milliseconds from now.
-```
 
 ## Syntax
 
