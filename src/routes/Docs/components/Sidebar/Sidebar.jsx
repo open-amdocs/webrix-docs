@@ -34,6 +34,9 @@ const PageItems = () => {
 
 const Page = ({url, title, icon: Icon}) => {
     const location = useLocation();
+    /* eslint-disable */
+    console.log('Inspection', {location, url});
+    /* eslint-enable */
     const active = location.pathname === url;
 
     return (
