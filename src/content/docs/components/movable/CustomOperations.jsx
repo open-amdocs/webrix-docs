@@ -4,15 +4,22 @@ import './CustomOperations.scss';
 
 const {move, update, snap} = Movable.Operations;
 
-const snapClass = (ref, h, v, cls) => Movable.Operations.createOperation({
-    // The below adds the class given in cls to the movable element
-    // Whenever it's on the grid provided by h & v.
-    onMove: (e, {next}) => {
-        const {top, left} = next;
-        ref.current.classList.remove(cls);
-        if (left % h === 0 || top % v === 0) {
-            ref.current.classList.add(cls);
-        }
+// This operation adds a class name when the element is being moved.
+// We use this to apply CSS that makes it look like the element is "lifted" from the screen.
+export const classname = (ref, cls) => Movable.Operations.createOperation({
+    onBeginMove: () => ref.current.classList.add(cls),
+    onEndMove: () => ref.current.classList.remove(cls),
+});
+
+// This operation snaps the element to a 50x50 grid, but only when it is  dropped.
+export const snapOnDrop = setPosition => Movable.Operations.createOperation({
+    onEndMove: (e, shared) => {
+        const {top, left} = shared.next;
+        const GRID = 50;
+        setPosition({
+            top: Math.round(top / GRID) * GRID,
+            left: Math.round(left / GRID) * GRID,
+        })
     },
 });
 
@@ -21,16 +28,16 @@ export default () => {
     const ref = useRef();
     const props = Movable.useMove(useMemo(() => [
         move(ref),
-        snap(50, 50, 0.3),
-        snapClass(ref, 50, 50, 'snapped'),
+        classname(ref, 'moving'),
         update(setPosition),
+        snapOnDrop(setPosition),
     ], []));
 
     return (
         <>
             <div className='grid'/>
             <Movable {...props} ref={ref} style={position}>
-                I snap to a 50x50 grid
+                Pick me up!
             </Movable>
         </>
     );

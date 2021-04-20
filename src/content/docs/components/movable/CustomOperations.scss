@@ -4,6 +4,8 @@
   justify-content: center;
 
   .grid {
+    $size: 50px;
+    $color: $color-light-gray;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -11,29 +13,30 @@
     right: 0;
     pointer-events: none;
     background-image:
-      linear-gradient($color-gray 1%, transparent 1%, transparent 99%, $color-gray 99%),
-      linear-gradient(90deg, $color-gray 1%, transparent 1%, transparent 99%, $color-gray 99%);
-    background-size: 50px 50px;
+      linear-gradient($color 1px, 1px, transparent $size - 1, $color $size - 1),
+      linear-gradient(90deg, $color 1px, 1px, transparent $size - 1, $color $size - 1);
+    background-size: $size $size;
   }
 
   .movable {
     user-select: none;
-    background-color: $color-light-gray;
+    background-image: $gradient-pink;
     width: 100px;
     height: 100px;
     cursor: move;
     position: absolute;
-    color: $color-blue;
+    color: $color-white;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     box-sizing: border-box;
+    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
 
-    &.snapped {
-      background-color: $color-pink;
-      color: $color-white;
+    &.moving {
+      transform: scale(1.1);
+      box-shadow: 0 8px 8px rgba(black, 0.2), 0 3px 3px rgba(black, 0.2);
     }
   }
 }
