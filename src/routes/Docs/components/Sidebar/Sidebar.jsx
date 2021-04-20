@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Link, useRouteMatch, useLocation} from 'react-router-dom';
+import {Scrollable} from 'webrix/components';
 import {FaCode} from 'react-icons/fa';
 import {slugify} from 'utility';
 import {PageSectionContext} from '../../Docs.context';
@@ -24,11 +25,13 @@ const PageItems = () => {
     }, [path, pathname]);
 
     return !items.length ? null : (
-        <ul>
-            {items.map(item => (
-                <li key={item} className={cls({active: section === `#${slugify(item)}`})}><a href={`#${slugify(item)}`}>{item}</a></li>
-            ))}
-        </ul>
+        <Scrollable>
+            <ul>
+                {items.map(item => (
+                    <li key={item} className={cls({active: section === `#${slugify(item)}`})}><a href={`#${slugify(item)}`}>{item}</a></li>
+                ))}
+            </ul>
+        </Scrollable>
     );
 }
 
