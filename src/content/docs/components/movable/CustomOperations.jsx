@@ -2,7 +2,7 @@ import React, {useState, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
 import './CustomOperations.scss';
 
-const {move, update, snap} = Movable.Operations;
+const {move, update} = Movable.Operations;
 
 // This operation adds a class name when the element is being moved.
 // We use this to apply CSS that makes it look like the element is "lifted" from the screen.
