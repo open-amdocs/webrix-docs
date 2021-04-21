@@ -16,7 +16,7 @@
     box-sizing: border-box;
 
     &.snapped {
-      background-color: $color-pink;
+      background-image: $gradient-pink;
       color: $color-white;
     }
   }
