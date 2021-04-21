@@ -34,7 +34,8 @@ const PageItems = () => {
 
 const Page = ({url, title, icon: Icon}) => {
     const location = useLocation();
-    const active = location.pathname === url;
+    // Comparing url without trailing slash in case it's added by user or webserver.
+    const active = location.pathname === url.replace(/\/+$/, '');
 
     return (
         <li>
