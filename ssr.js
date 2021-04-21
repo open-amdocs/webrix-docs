@@ -1,5 +1,5 @@
 const fs = require('fs').promises;
-const puppeteer = require('puppeteer');
+const chromium = require('chrome-aws-lambda');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack/webpack')({production: true});
@@ -31,9 +31,26 @@ const runServer = () => new Promise((resolve, reject) => {
     });
 });
 
+const runBrowser = async () => {
+    let browser;
+    try {
+        browser = await chromium.puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: true,
+            ignoreHTTPSErrors: true,
+        });
+    } catch(e) {
+        console.error(e);
+        process.exit(1);
+    }
+    return browser;
+};
+
 const ssr = async () => {
     const server = await runServer();
-    const browser = await puppeteer.launch({headless: true});
+    const browser = await runBrowser();
     const page = await browser.newPage();
 
     for (const path of PATHS) {
