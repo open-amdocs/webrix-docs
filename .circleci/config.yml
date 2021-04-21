@@ -39,7 +39,7 @@ jobs:
           paths:
             - ./build # Only persist the build files, since persisting large folders (like node_modules) results in long persisting/attaching times
 
-  ssr:
+  build-with-ssr:
     executor:
       name: node/default
     steps:
@@ -74,14 +74,17 @@ workflows:
           requires:
             - checkout
       - build:
+          filters:
+            branches:
+              ignore: master
           requires:
             - lint
-      - ssr:
+      - build-with-ssr:
           filters:
             branches:
               only: master
           requires:
-            - build
+            - lint
       - deploy:
           filters:
             branches:
