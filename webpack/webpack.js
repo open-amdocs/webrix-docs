@@ -10,7 +10,7 @@ module.exports = env => ({
     mode: env.production ? 'production' : 'development',
     output: {
         filename: '[name].[contenthash].js',
-        chunkFilename: '[name].[contenthash].bundle.js',
+        chunkFilename: '[name].[contenthash].js',
         path: env.production ? paths.build: paths.src,
         publicPath: '/',
     },
@@ -37,6 +37,7 @@ module.exports = env => ({
         },
     },
     devServer: {
+        writeToDisk: env.production,
         contentBase: paths.src,
         historyApiFallback: true,
         compress: true,
