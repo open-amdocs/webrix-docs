@@ -50,8 +50,7 @@
     "lint": "eslint --ext=js --ext=jsx src/",
     "deploy": "node ./aws/deploy",
     "invalidate": "node ./aws/invalidate",
-    "ssr": "node ./ssr",
-    "vercel-build": "npm run ssr"
+    "ssr": "node ./ssr"
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",
