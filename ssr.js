@@ -8,6 +8,8 @@ const {paths} = require('./webpack/webpack.constants');
 const PORT = 9000;
 
 const PATHS = [
+    '', // Home page
+    '/motivation',
     ...getDirectories(paths.src + '/content/examples').map(d => '/examples/' + d),
     ...getDirectories(paths.src + '/content/docs/introduction').map(d => '/docs/introduction/' + d),
     ...getDirectories(paths.src + '/content/docs/components').map(d => '/docs/components/' + d),
