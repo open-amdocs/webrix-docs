@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {useLocation} from 'react-router-dom';
+import {Scrollable} from 'webrix/components';
 import Search from '../Search/Search';
 import Item from './Item';
 import Preview from './Preview';
@@ -22,7 +23,7 @@ const Sidebar = () => {
     };
 
     return (
-        <nav>
+        <Scrollable>
             <Search value={query} onChange={setQuery}/>
             <ul onMouseLeave={() => setPreview('')}>
                 {items.length === 0 && <div className='no-results'>No examples found</div>}
@@ -31,7 +32,7 @@ const Sidebar = () => {
                 ))}
             </ul>
             <Preview reference={reference} path={preview}/>
-        </nav>
+        </Scrollable>
     );
 }
 

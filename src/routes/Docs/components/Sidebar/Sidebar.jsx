@@ -25,13 +25,11 @@ const PageItems = () => {
     }, [path, pathname]);
 
     return !items.length ? null : (
-        <Scrollable>
-            <ul>
-                {items.map(item => (
-                    <li key={item} className={cls({active: section === `#${slugify(item)}`})}><a href={`#${slugify(item)}`}>{item}</a></li>
-                ))}
-            </ul>
-        </Scrollable>
+        <ul>
+            {items.map(item => (
+                <li key={item} className={cls({active: section === `#${slugify(item)}`})}><a href={`#${slugify(item)}`}>{item}</a></li>
+            ))}
+        </ul>
     );
 }
 
@@ -63,11 +61,13 @@ const Section = ({title, pages, path}) => {
 
 const Sidebar = () => (
     <nav id='sidebar'>
-        <ul>
-            {ROUTES.map((section, i) => (
-                <Section key={i} title={section.title} pages={section.routes} path={section.path}/>
-            ))}
-        </ul>
+        <Scrollable>
+            <ul>
+                {ROUTES.map((section, i) => (
+                    <Section key={i} title={section.title} pages={section.routes} path={section.path}/>
+                ))}
+            </ul>
+        </Scrollable>
     </nav>
 );
 
