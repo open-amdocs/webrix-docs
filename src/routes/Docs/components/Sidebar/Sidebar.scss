@@ -23,12 +23,16 @@ $border-color: #d9e6f1;
   }
 
   .scrollbar {
+    max-height: calc(100vh - 60px);
     position: sticky;
-    top: 60px; // The header's height
+    top: 0;
+
+    .scrollbar-thumb-inner {
+      background-image: linear-gradient(adjust-hue($color-pink, -25), $color-pink);
+    }
 
     .scrollbar-inner > ul {
       padding-top: 30px;
-      max-height: calc(100vh - 100px);
 
       a {
         display: flex;

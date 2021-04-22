@@ -3,10 +3,19 @@
   height: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
 
   @include media-max('sm') {
     display: none;
+  }
+
+  .scrollbar {
+    overflow: hidden;
+
+    .scrollbar-thumb-inner {
+      background-image: linear-gradient(adjust-hue($color-pink, -25), $color-pink);
+    }
   }
 
   .no-results {

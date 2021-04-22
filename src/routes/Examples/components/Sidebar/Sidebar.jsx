@@ -24,8 +24,8 @@ const Sidebar = () => {
 
     return (
         <nav>
+            <Search value={query} onChange={setQuery}/>
             <Scrollable>
-                <Search value={query} onChange={setQuery}/>
                 <ul onMouseLeave={() => setPreview('')}>
                     {items.length === 0 && <div className='no-results'>No examples found</div>}
                     {items.map(({title, path, tags}) => (
