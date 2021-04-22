@@ -1,10 +1,10 @@
 import React, {useState, useRef} from 'react';
 import {useLocation} from 'react-router-dom';
 import {Scrollable} from 'webrix/components';
+import ITEMS from '../../Examples.routes';
 import Search from '../Search/Search';
 import Item from './Item';
 import Preview from './Preview';
-import ITEMS from '../../Examples.routes';
 import './Sidebar.scss';
 
 const Sidebar = () => {
