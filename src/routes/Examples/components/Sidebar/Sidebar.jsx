@@ -23,16 +23,18 @@ const Sidebar = () => {
     };
 
     return (
-        <Scrollable>
-            <Search value={query} onChange={setQuery}/>
-            <ul onMouseLeave={() => setPreview('')}>
-                {items.length === 0 && <div className='no-results'>No examples found</div>}
-                {items.map(({title, path, tags}) => (
-                    <Item key={title} active={pathname === path} {...{title, path, tags, onMouseEnter}} />
-                ))}
-            </ul>
-            <Preview reference={reference} path={preview}/>
-        </Scrollable>
+        <nav>
+            <Scrollable>
+                <Search value={query} onChange={setQuery}/>
+                <ul onMouseLeave={() => setPreview('')}>
+                    {items.length === 0 && <div className='no-results'>No examples found</div>}
+                    {items.map(({title, path, tags}) => (
+                        <Item key={title} active={pathname === path} {...{title, path, tags, onMouseEnter}} />
+                    ))}
+                </ul>
+                <Preview reference={reference} path={preview}/>
+            </Scrollable>
+        </nav>
     );
 }
 

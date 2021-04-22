@@ -18,13 +18,13 @@ $border-color: #d9e6f1;
     background-color: $background-color;
   }
 
+  @include media-max('sm') {
+    display: none;
+  }
+
   .scrollbar {
     position: sticky;
     top: 60px; // The header's height
-
-    @include media-max('sm') {
-      display: none;
-    }
 
     .scrollbar-inner > ul {
       padding-top: 30px;
