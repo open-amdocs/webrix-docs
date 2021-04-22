@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {useDimensions} from 'webrix/hooks';
 import './BasicExample.scss';
 
@@ -8,7 +8,7 @@ const getcolor = (height) => {
         {bg: '#2a9d8f', color: '#fff'}, 
         {bg: '#e9c46a', color: '#000'},
         {bg: '#f4a261', color: '#000'}, 
-        {bg: '#e76f51', color: '#000'}
+        {bg: '#e76f51', color: '#000'},
     ];
     if (height > 170) {
         return colors[0]
@@ -26,7 +26,7 @@ export default () => {
     const {width, height} = useDimensions(myRef);
     const {bg: bgColor, color} = getcolor(height);
     return (
-            <div ref={myRef} className='resizable-container'>
+            <div ref={myRef} className='container'>
                 <div className='cube' style={{
                         height: height * 0.786,
                         width: width * 0.786,
