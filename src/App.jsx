@@ -1,16 +1,19 @@
 import React from 'react';
-import {Scrollable} from 'webrix/components';
-import Router from './routes/Router';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Frame from './routes/Frame/Frame';
+import {Scrollable} from 'webrix/components';
 import {Header, Footer} from 'components';
+import Router from './routes/Router';
+import Frame from './routes/Frame/Frame';
+import './App.scss';
 
 const Main = () => (
-    <Scrollable>
+    <>
         <Header/>
-        <Router/>
-        <Footer/>
-    </Scrollable>
+        <Scrollable>
+            <Router/>
+            <Footer/>
+        </Scrollable>
+    </>
 )
 
 const App = () => (
