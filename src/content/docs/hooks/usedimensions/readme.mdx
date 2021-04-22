@@ -1,0 +1,37 @@
+import {Example} from 'components';
+
+It listens to size changes on the given element and returns an object of height and width. It uses the browser's 
+ResizeObserver internally and cleans up the memory when necessary.
+
+## Basic Example
+In this simple example I am changing the background color of the child depending on the height of the parent.
+In a real world example it could be managing a complicated layout or hiding/displaying elements per parent size etc.
+
+<Example file='docs/hooks/usedimensions/BasicExample' height={200}/>
+
+## Syntax
+
+```js
+const dimensions = useDimensions(ref);
+```
+
+### Importing
+
+```jsx
+// ESM
+import {useDimensions} from 'webrix/hooks';
+import useDimensions from 'webrix/hooks/useDimensions'; // For better tree shaking
+
+// UMD
+const {useDimensions} = Webrix.hooks;
+```
+
+### Parameters
+
+name|type|description
+---|---|---
+`ref`|elementRef|The element ref to be observed.
+
+### Return Value
+
+Returns an object with height and width.

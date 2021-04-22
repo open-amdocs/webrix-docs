@@ -39,4 +39,9 @@ export default [
         path: '/useobject',
         description: 'Return a memoized object that only changes if one or more of its values have changed.',
     },
+    {
+        title: 'useDimensions()',
+        path: '/usedimensions',
+        description: 'Listens to size changes on the given element and returns an object of height and width.',
+    },
 ];
