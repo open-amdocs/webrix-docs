@@ -21,8 +21,6 @@ $border-color: #d9e6f1;
   .scrollbar {
     position: sticky;
     top: 60px; // The header's height
-    //overflow: auto;
-    //max-height: calc(100vh - 100px);
 
     @include media-max('sm') {
       display: none;
@@ -30,9 +28,6 @@ $border-color: #d9e6f1;
 
     .scrollbar-inner > ul {
       padding-top: 30px;
-      //position: sticky;
-      //top: -60px; // The header's height
-      //overflow: auto;
       max-height: calc(100vh - 100px);
 
       a {
