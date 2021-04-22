@@ -8,16 +8,18 @@
     margin-top: 60px;
     max-height: calc(100% - 60px);
 
+    &.scrolling > .scrollbar-track .scrollbar-thumb-inner,
+    .scrollbar-track:hover .scrollbar-thumb-inner {
+      opacity: 0.8;
+    }
+
     > .scrollbar-track {
       z-index: 1;
 
       .scrollbar-thumb-inner {
+        opacity: 0;
         background-image: linear-gradient(adjust-hue($color-pink, -25), $color-pink);
       }
-    }
-
-    .scrollbar-inner {
-      scroll-behavior: smooth;
     }
   }
 }
