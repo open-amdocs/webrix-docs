@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <header id='header'>
             <Link to={HOME.path} className='logo'>
-                <img src={logo} alt='Webrix logo' loading='lazy'/>
+                <img src={logo} alt='Webrix logo' width='140' height='20' loading='lazy'/>
             </Link>
             <nav className='menu'>
                 {[DOCS, MOTIVATION, EXAMPLES].map(({name, path}) => (

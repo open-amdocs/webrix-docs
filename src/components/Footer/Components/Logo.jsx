@@ -8,7 +8,7 @@ export default () => (
     <div className='logo-container'>
         <div className='graphic'/>
         <Link to={HOME.path}>
-            <img src={webrixLogo} alt='Webrix logo' height='30px' loading='lazy'/>
+            <img src={webrixLogo} alt='Webrix logo' height='30' width='210' loading='lazy'/>
         </Link>
         <Divider/>
     </div>

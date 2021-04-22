@@ -1,5 +1,5 @@
 const fs = require('fs').promises;
-const puppeteer = require('puppeteer');
+const chromium = require('chrome-aws-lambda');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack/webpack')({production: true});
@@ -8,13 +8,15 @@ const {paths} = require('./webpack/webpack.constants');
 const PORT = 9000;
 
 const PATHS = [
+    '/motivation',
+    ...getDirectories(paths.src + '/content/examples').map(d => '/examples/' + d),
+    ...getDirectories(paths.src + '/content/docs/introduction').map(d => '/docs/introduction/' + d),
     ...getDirectories(paths.src + '/content/docs/components').map(d => '/docs/components/' + d),
     ...getDirectories(paths.src + '/content/docs/hooks').map(d => '/docs/hooks/' + d),
     ...getDirectories(paths.src + '/content/docs/tools').map(d => '/docs/tools/' + d),
 ];
 
 const runServer = () => new Promise((resolve, reject) => {
-    config.resolve.alias.webrix = 'webrix';
     const compiler = webpack(config);
     const server = new WebpackDevServer(compiler, config.devServer);
 
@@ -30,19 +32,34 @@ const runServer = () => new Promise((resolve, reject) => {
     });
 });
 
+const runBrowser = async () => {
+    let browser;
+    try {
+        browser = await chromium.puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: true,
+            ignoreHTTPSErrors: true,
+        });
+    } catch(e) {
+        console.error(e);
+        process.exit(1);
+    }
+    return browser;
+};
+
 const ssr = async () => {
-    const template = await fs.readFile('./build/index.html', 'utf8');
     const server = await runServer();
-    const browser = await puppeteer.launch({headless: true});
+    const browser = await runBrowser();
     const page = await browser.newPage();
 
     for (const path of PATHS) {
         console.log(`Rendering http://localhost:${PORT}${path} into build${path}/index.html`);
         await page.goto(`http://localhost:${PORT}${path}`, {waitUntil: 'networkidle0'});
-        const app = await page.$('#app');
-        const html = await page.evaluate(app => app.innerHTML, app);
+        const html = await page.content()
         await fs.mkdir(`build${path}`, {recursive: true});
-        await fs.writeFile(`build${path}/index.html`, template.replace('<div id="app"></div>', `<div id="app">${html}</div>`));
+        await fs.writeFile(`build${path}/index.html`, html);
     }
     await browser.close();
     await server.close();

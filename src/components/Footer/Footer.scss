@@ -102,7 +102,7 @@
 
   .copyright-notice {
     text-align: center;
-    margin: 20px 0;
+    padding: 20px 0;
 
     @include media-max('sm') {
       width: 100%;
@@ -114,7 +114,6 @@
     img {
       filter: grayscale(1);
       opacity: 0.5;
-      width: 160px;
     }
 
     p {
