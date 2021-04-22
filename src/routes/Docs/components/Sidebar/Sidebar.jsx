@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Link, useRouteMatch, useLocation} from 'react-router-dom';
+import {Scrollable} from 'webrix/components';
 import {FaCode} from 'react-icons/fa';
 import {slugify} from 'utility';
 import {PageSectionContext} from '../../Docs.context';
@@ -61,11 +62,13 @@ const Section = ({title, pages, path}) => {
 
 const Sidebar = () => (
     <nav id='sidebar'>
-        <ul>
-            {ROUTES.map((section, i) => (
-                <Section key={i} title={section.title} pages={section.routes} path={section.path}/>
-            ))}
-        </ul>
+        <Scrollable>
+            <ul>
+                {ROUTES.map((section, i) => (
+                    <Section key={i} title={section.title} pages={section.routes} path={section.path}/>
+                ))}
+            </ul>
+        </Scrollable>
     </nav>
 );
 
