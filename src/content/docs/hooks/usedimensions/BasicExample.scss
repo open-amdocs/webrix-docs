@@ -15,11 +15,27 @@
     flex-direction: column;
     justify-content: center;
     padding: 10px;
+    min-height: 20px;
+    min-width: 100px;
 
-    .cube {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    &.s {
+      color: #fff;
+      background-color: #264653;
+    }
+
+    &.m {
+      color: #fff;
+      background-color: #2a9d8f;
+    }
+
+    &.l {
+      color: #000;
+      background-color: #e9c46a;
+    }
+
+    &.xl {
+      color: #000;
+      background-color: #f4a261;
     }
   }
 }

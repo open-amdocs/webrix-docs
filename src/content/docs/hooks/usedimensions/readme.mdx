@@ -1,10 +1,10 @@
 import {Example} from 'components';
 
-It listens to size changes on the given element and returns an object of height and width. It uses the browser's 
-ResizeObserver internally and cleans up the memory when necessary.
+The `useDimensions()` hook listens to size changes on the given element and returns an object of height and width. It uses the browser's 
+`ResizeObserver` internally and cleans up the memory when necessary.
 
 ## Basic Example
-In this simple example I am changing the background color of the child depending on the height of the parent.
+In this simple example, the background color of the element is changing based on its height.
 In a real world example it could be managing a complicated layout or hiding/displaying elements per parent size etc.
 
 <Example file='docs/hooks/usedimensions/BasicExample' height={200}/>
