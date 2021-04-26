@@ -42,6 +42,6 @@ export default [
     {
         title: 'useDimensions()',
         path: '/usedimensions',
-        description: 'Listens to size changes on the given element and returns an object of height and width.',
+        description: 'useObject() is a React hook that listens to size changes on the given element and returns an object with height and width.',
     },
 ];

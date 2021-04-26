@@ -1,9 +1,13 @@
 import {Example} from 'components';
+import {Link} from 'react-router-dom';
 
 The `<ResizeObserver/>` can be used to listen to size changes in the given child component.
 This component uses the browser's `ResizeObserver` internally, and cleans up the memory when necessary.
-While the native `ResizeObserver` API differs between browsers and devices, this component passes
+
+While the native `ResizeObserver` API differs between browsers and devices, this hook provides a unified API by returning
 an object with `width` and `height` consistently across all browsers and devices.
+
+See also: <Link to='/docs/hooks/usedimensions'>useDimensions()</Link>
 
 ## Basic Example
 
