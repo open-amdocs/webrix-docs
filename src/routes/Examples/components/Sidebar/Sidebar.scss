@@ -3,10 +3,25 @@
   height: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
 
   @include media-max('sm') {
     display: none;
+  }
+
+  .scrollbar {
+    overflow: hidden;
+
+    &.scrolling > .scrollbar-track .scrollbar-thumb-inner,
+    .scrollbar-track:hover .scrollbar-thumb-inner {
+      opacity: 0.8;
+    }
+
+    .scrollbar-thumb-inner {
+      opacity: 0;
+      background-image: linear-gradient(adjust-hue($color-pink, -25), $color-pink);
+    }
   }
 
   .no-results {
