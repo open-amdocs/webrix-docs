@@ -10,3 +10,4 @@ export {default as Loader} from './Loader/Loader';
 export {default as Preview} from './Preview/Preview';
 export {default as PreviewList} from './Preview/PreviewList';
 export {default as UnderConstruction} from './UnderConstruction/UnderConstruction';
+export {default as PropsTable} from './PropsTable/PropsTable';
