@@ -38,3 +38,13 @@ Contributing is simple! Simply follow the steps below:
     git push -u
     ```
 Go to [the repository](https://github.com/open-amdocs/webrix-docs) and make a Pull Request.
+
+
+## Settings for Amdocs Employees
+
+Since we use git for our internal projects with a work email/password, you may face issues login into GitHub with your personal username/password.
+The best way to avoid it is to create a personal access token:
+
+1. [Create a personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+2. Clone the repo
+3. When prompted for a username, use the access token you generated in step 1. Leave the password blank.
