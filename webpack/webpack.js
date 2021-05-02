@@ -43,7 +43,8 @@ module.exports = env => ({
         compress: true,
         port: 9000,
         hot: !env.production,
-        inline: true,
+        liveReload: !env.production,
+        inline: !env.production,
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
