@@ -42,7 +42,7 @@ module.exports = env => ({
         historyApiFallback: true,
         compress: true,
         port: 9000,
-        hot: true,
+        hot: !env.production,
         inline: true,
     },
     resolve: {
