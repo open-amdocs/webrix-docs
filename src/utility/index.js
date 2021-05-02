@@ -6,7 +6,7 @@
  * trim('---Hello, world!!---'); // Outputs 'Hello, world!!'
  *
  * @param {string} text The string to trim
- * @param {string[]} characters One or more characters to be removed
+ * @param {...string} characters One or more characters to be removed
  * @returns {*}
  */
 export const trim = (text, ...characters) => (

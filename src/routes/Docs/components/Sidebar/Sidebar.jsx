@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import {Link, useRouteMatch, useLocation} from 'react-router-dom';
 import {Scrollable} from 'webrix/components';
 import {FaCode} from 'react-icons/fa';
-import {slugify} from 'utility';
+import {slugify, trim} from 'utility';
 import {PageSectionContext} from '../../Docs.context';
 import ROUTES from '../../Docs.routes';
 import cls from 'classnames';
@@ -16,7 +16,7 @@ const PageItems = () => {
 
     useEffect(() => {
         (async () => {
-            const text = await import(`!raw-loader!content/docs${pathname.replace(path, '')}/readme.mdx`);
+            const text = await import(`!raw-loader!content/docs/${trim(pathname.replace(path, ''), '/')}/readme.mdx`);
             const match = text.default.match(/^## ([^\r\n]+)/gm);
             if (match) {
                 setItems(match.map(item => item.replace('## ', '')));
