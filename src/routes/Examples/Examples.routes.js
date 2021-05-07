@@ -69,4 +69,9 @@ export default [
         path: '/examples/ImageCrop',
         tags: ['resizable', 'movable'],
     },
+    {
+        title: 'Rush Hour',
+        path: '/examples/RushHour',
+        tags: ['movable'],
+    },
 ]
