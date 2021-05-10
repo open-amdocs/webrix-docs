@@ -10,12 +10,11 @@ const Route = ({file}) => {
     useEffect(() => {
         const unlisten = history.listen(({hash}) => {
             if (!hash) {
-                console.log(hash);
                 document.querySelector('.route').scrollIntoView();
             }
         });
         return () => unlisten();
-    }, []);
+    }, [history]);
 
     return (
         <Suspense fallback={<Loader/>}>
