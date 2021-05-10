@@ -6,8 +6,8 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "prop-types": "latest",
     "react-icons": "latest",
