@@ -1,9 +1,9 @@
-import React, { useState, useRef, useMemo, useCallback, useEffect} from 'react';
+import React, {useState, useRef, useMemo, useCallback, useEffect} from 'react';
 import classNames from 'classnames';
-import { Movable } from 'webrix/components';
+import {Movable} from 'webrix/components';
 import './style.scss';
 
-const { move, update, contain, createOperation } = Movable.Operations;
+const {move, update, contain, snap, createOperation} = Movable.Operations;
 const squareSize = 60;
 const cardGame = [
     {coords: [4, 3], color: '#ff9f1a', vertical: true},
@@ -22,11 +22,10 @@ const cardGame = [
     {coords: [2, 2], color: 'red' },
 ];
 
-const getInitState = (card, board) => {
-    const { top, left} = board.current.getBoundingClientRect();
+const getInitState = card => {
     return card.reduce((acc, { vertical, coords, color }) => ({
             ...acc,
-            [color]: {position: getPosition(coords, {top, left}), vertical},
+            [color]: {position: getPosition(coords), vertical},
         }), {}
     );
 }
@@ -50,9 +49,9 @@ const isBlocked = (position, color, cars, board) => {
     );
 }
 
-const getPosition = ([col, row], board) => ({
-    top: row * squareSize + board.top,
-    left: col * squareSize + board.left,
+const getPosition = ([col, row]) => ({
+    top: row * squareSize,
+    left: col * squareSize,
 });
 
 const getCoords = ({ top, left }, boardPos) => ({
@@ -60,19 +59,21 @@ const getCoords = ({ top, left }, boardPos) => ({
     row: (top - boardPos.top) / squareSize,
 });
 
-const snap = ({top: boardTop, left: boardLeft}) => createOperation({
-    onMove: (e, shared) => {
-        const {top, left} = shared.next;
-        const relativeLeft = left - boardLeft;
-        const relativeTop = top - boardTop;
-        const rl =  Math.round(relativeLeft / squareSize) * squareSize; // Rounded left
-        const rt =  Math.round(relativeTop / squareSize) * squareSize; // Rounded top
-        const hd = Math.abs(relativeLeft - rl); // Distance of left from snap point
-        const vd = Math.abs(relativeTop - rt); // Distance of top from snap point
+// TODO: import this from Webrix 1.3 when available
+const relative = ref => createOperation({
+    onBeginMove: (e, shared) => {
+        const reference = ref.current.getBoundingClientRect();
+        shared.reference = reference;
         shared.next = {
-            // Apply rounded left/top only if distance is within the strength threshold
-            left: hd <= squareSize / 2 ? Math.round(left / squareSize) * squareSize : left,
-            top: vd <= squareSize / 2 ? Math.round(top / squareSize) * squareSize : top,
+            left: shared.next.left - reference.left,
+            top: shared.next.top - reference.top,
+        };
+    },
+    onMove: (e, shared) => {
+        const {reference, next} = shared;
+        shared.next = {
+            left: next.left - reference.left,
+            top: next.top - reference.top,
         };
     },
 });
@@ -88,7 +89,8 @@ const Car = ({ container, color, vertical, position, setPosition }) => {
         useMemo(() => [
             move(movable),
             contain(movable, container),
-            snap({top, left}),
+            relative(container),
+            snap(squareSize, squareSize),
             update(handleOnUpdate),
         ], [container, handleOnUpdate, top, left])
     );
@@ -114,16 +116,17 @@ export default () => {
     );
 
     useEffect(() => {
-        setState(getInitState(cardGame, board));
+        setState(getInitState(cardGame));
     }, [])
 
     return (
         <div className='app'>
-            <div className='board' ref={board} />
-            {Object.entries(state).map(([key, props]) => (
-                <Car key={key} container={board} color={key}
-                     setPosition={setPosition(key)} {...props}/>
-            ))}
+            <div className='board' ref={board}>
+                {Object.entries(state).map(([key, props]) => (
+                    <Car key={key} container={board} color={key}
+                         setPosition={setPosition(key)} {...props}/>
+                ))}
+            </div>
         </div>
     );
 };
