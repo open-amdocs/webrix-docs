@@ -4,18 +4,20 @@
   justify-content: center;
 
   .scrollbars {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    grid-template-rows: repeat(2, minmax(250px, 1fr));
     align-items: center;
+    justify-items: center;
     width: 100%;
     height: 100%;
 
     .scrollbar {
       border: 2px dashed $color-gray;
       border-radius: 4px;
-      width: 200px;
+      width: 150px;
       height: 200px;
+      font-size: 0.8em;
 
       .scrollbar-inner {
         padding: 4px 8px;

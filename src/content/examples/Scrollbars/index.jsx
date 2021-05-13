@@ -108,7 +108,7 @@ const CustomVerticalScrollbar4 = forwardRef(({container}, ref) => {
     )
 });
 
-const ScrollbarExample = ({CustomVerticalScrollbar}) => (
+const ScrollbarExample = ({children}) => (
     <Scrollable>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -116,7 +116,7 @@ const ScrollbarExample = ({CustomVerticalScrollbar}) => (
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         <Scrollable.VerticalScrollbar>
-            <CustomVerticalScrollbar/>
+            {children}
         </Scrollable.VerticalScrollbar>
     </Scrollable>
 )
@@ -125,16 +125,24 @@ export default () =>  {
     return (
         <div className='scrollbars'>
             <div className='example1'>
-                <ScrollbarExample CustomVerticalScrollbar={CustomVerticalScrollbar1}/>
+                <ScrollbarExample>
+                    <CustomVerticalScrollbar1/>
+                </ScrollbarExample>
             </div>
             <div className='example2'>
-                <ScrollbarExample CustomVerticalScrollbar={CustomVerticalScrollbar2}/>
+                <ScrollbarExample>
+                    <CustomVerticalScrollbar2/>
+                </ScrollbarExample>
             </div>
             <div className='example3'>
-                <ScrollbarExample CustomVerticalScrollbar={CustomVerticalScrollbar3}/>
+                <ScrollbarExample>
+                    <CustomVerticalScrollbar3/>
+                </ScrollbarExample>
             </div>
             <div className='example4'>
-                <ScrollbarExample CustomVerticalScrollbar={CustomVerticalScrollbar4}/>
+                <ScrollbarExample>
+                    <CustomVerticalScrollbar4/>
+                </ScrollbarExample>
             </div>
         </div>
     );
