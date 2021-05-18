@@ -37,14 +37,13 @@ const ScrollButtons2 = ({handleOnScrollTop, handleOnScrollBottom}) => (
     </>
 );
 
-const CustomVerticalScrollbar1 = forwardRef(({container}, ref) => {
+const Scrollbar1 = forwardRef(({container}, ref) => {
     const handleOnUpdate = useCallback((track, thumb, container) => {
-        const ICONS_SIZE = 28;
+        const ICONS_SIZE = 14;
         const {scrollHeight, clientHeight, scrollTop} = container;
-        const {height: trackLength} = container.getBoundingClientRect();
-        track.style.height = `${trackLength}px`;
+        const trackLength = container.clientHeight - ICONS_SIZE;
         thumb.style.height = `${Scrollable.getThumbLength(trackLength, clientHeight, scrollHeight)}px`;
-        thumb.style.top = `${Scrollable.getThumbPosition(trackLength - ICONS_SIZE, clientHeight, scrollHeight - ICONS_SIZE, scrollTop + ICONS_SIZE * 2)}px`;
+        thumb.style.top = `${Scrollable.getThumbPosition(trackLength, clientHeight, scrollHeight, scrollTop) + ICONS_SIZE}px`;
     }, []);
     return (
         <Scrollable.VerticalScrollbar.Default onUpdate={handleOnUpdate} container={container} ref={ref}>
@@ -55,7 +54,7 @@ const CustomVerticalScrollbar1 = forwardRef(({container}, ref) => {
     )
 });
 
-const CustomVerticalScrollbar2 = forwardRef(({container}, ref) => {
+const Scrollbar2 = forwardRef(({container}, ref) => {
     const handleOnUpdate = useCallback((track, thumb, container) => {
         const {scrollHeight, clientHeight, scrollTop} = container;
         const {height: trackLength} = container.getBoundingClientRect();
@@ -70,7 +69,7 @@ const CustomVerticalScrollbar2 = forwardRef(({container}, ref) => {
     )
 });
 
-const CustomVerticalScrollbar3 = forwardRef(({container}, ref) => {
+const Scrollbar3 = forwardRef(({container}, ref) => {
     const handleOnUpdate = useCallback((track, thumb, container) => {
         const BORDER_SIZE = 2;
         const MIN_THUMB = 100;
@@ -87,10 +86,10 @@ const CustomVerticalScrollbar3 = forwardRef(({container}, ref) => {
     )
 });
 
-const CustomVerticalScrollbar4 = forwardRef(({container}, ref) => {
+const Scrollbar4 = forwardRef(({container}, ref) => {
     const handleOnUpdate = useCallback((track, thumb, container) => {
         const ICON_SIZE = 20;
-        const MIN_THUMB = 100;
+        const MIN_THUMB = 50;
         const {scrollHeight, clientHeight, scrollTop} = container;
         const {height} = container.getBoundingClientRect();
         const  trackLength = height - ICON_SIZE * 2;
@@ -119,31 +118,29 @@ const ScrollbarExample = ({children}) => (
             {children}
         </Scrollable.VerticalScrollbar>
     </Scrollable>
-)
+);
 
-export default () =>  {
-    return (
-        <div className='scrollbars'>
-            <div className='example1'>
-                <ScrollbarExample>
-                    <CustomVerticalScrollbar1/>
-                </ScrollbarExample>
-            </div>
-            <div className='example2'>
-                <ScrollbarExample>
-                    <CustomVerticalScrollbar2/>
-                </ScrollbarExample>
-            </div>
-            <div className='example3'>
-                <ScrollbarExample>
-                    <CustomVerticalScrollbar3/>
-                </ScrollbarExample>
-            </div>
-            <div className='example4'>
-                <ScrollbarExample>
-                    <CustomVerticalScrollbar4/>
-                </ScrollbarExample>
-            </div>
+export default () => (
+    <div className='scrollbars'>
+        <div className='example1'>
+            <ScrollbarExample>
+                <Scrollbar1/>
+            </ScrollbarExample>
         </div>
-    );
-}
+        <div className='example2'>
+            <ScrollbarExample>
+                <Scrollbar2/>
+            </ScrollbarExample>
+        </div>
+        <div className='example3'>
+            <ScrollbarExample>
+                <Scrollbar3/>
+            </ScrollbarExample>
+        </div>
+        <div className='example4'>
+            <ScrollbarExample>
+                <Scrollbar4/>
+            </ScrollbarExample>
+        </div>
+    </div>
+);

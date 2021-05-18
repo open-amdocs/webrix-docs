@@ -5,18 +5,18 @@
 
   .scrollbars {
     display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-    grid-template-rows: repeat(2, minmax(250px, 1fr));
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     align-items: center;
     justify-items: center;
-    width: 100%;
-    height: 100%;
+    width: 400px;
+    height: 400px;
 
     .scrollbar {
       border: 2px dashed $color-gray;
       border-radius: 4px;
       width: 150px;
-      height: 200px;
+      height: 150px;
       font-size: 0.8em;
 
       .scrollbar-inner {
@@ -26,12 +26,11 @@
 
     .example1 {
       .scrollbar-track {
-        right: -14px;
-        width: 7px;
+        right: -16px;
+        width: 8px;
         background-color: $color-white;
         border: 1px solid black;
         border-radius: 50px;
-        transition: all 0.2s ease-out 0.5s;
 
         .scrollbar-thumb {
           padding: 1px;
@@ -40,24 +39,23 @@
         .scrollbar-thumb-inner {
           box-sizing: border-box;
           background-color: black;
-          border-radius: 50px;
-          width: 5px;
+          border-radius: 6px;
+          width: 6px;
           opacity: 1;
         }
       }
 
       .scroll-buttons {
         background-color: transparent;
-        padding: 2px 1px 4px;
+        padding: 1px;
         cursor: pointer;
         display: flex;
         flex-direction: column;
-        transition: all 0.2s ease-out 0.5s;
 
         svg {
           fill: black;
-          height: 5px;
-          width: 5px;
+          height: 6px;
+          width: 6px;
         }
       }
     }
@@ -65,12 +63,11 @@
     .example2 {
       .scrollbar-track {
         right: -14px;
-        width: 8px;
-        transition: all 0.2s ease-out 0.5s;
-        pointer-events: none;
+        width: 10px;
 
         .scrollbar-thumb {
           padding: 1px;
+          pointer-events: none;
         }
 
         .scrollbar-thumb-inner {
@@ -88,12 +85,11 @@
         background-color: rgba($color-gray, 0.7);
         border-radius: 50px;
         right: -16px;
-        width: 11px;
-        transition: all 0.2s ease-out 0.5s;
+        width: 12px;
 
         .scrollbar-thumb {
           right: -3px;
-          padding: 0 2px;
+          padding: 0 3px;
         }
 
         .scrollbar-thumb-inner {
@@ -141,7 +137,6 @@
         width: 20px;
         background-color: var(--track-color);
         box-shadow: 0 0 6px -2px, inset 0 0 6px -2px;
-        transition: all 0.2s ease-out 0.5s;
 
         .scrollbar-thumb {
           padding: 0;
@@ -164,7 +159,6 @@
         border: 1px solid var(--track-color);
         background: var(--thumb-color);
         cursor: pointer;
-        transition: all 0.2s ease-out 0.5s;
         fill: $color-white;
         padding: 3px;
         box-sizing: border-box;

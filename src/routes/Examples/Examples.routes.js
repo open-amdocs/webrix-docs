@@ -70,8 +70,8 @@ export default [
         tags: ['resizable', 'movable'],
     },
     {
-        title: 'Scrollbars',
-        path: '/examples/Scrollbars',
+        title: 'Custom Scrollbars',
+        path: '/examples/CustomScrollbars',
         tags: ['scrollable'],
     },
 ]
