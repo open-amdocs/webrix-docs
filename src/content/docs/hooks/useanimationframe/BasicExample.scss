@@ -1,0 +1,23 @@
+#example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    padding: 3px 7px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    color: white;
+    background-color: #162447;
+    margin: 0 3px;
+    user-select: none;
+    border: none;
+    outline: none;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+}

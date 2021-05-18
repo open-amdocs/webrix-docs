@@ -35,6 +35,11 @@ export default [
         description: 'useThrottle() is a React hook for calling a function only once in a given period of time, and delay the execution based on a given delay after the last invocation.',
     },
     {
+        title: 'useAnimationFrame()',
+        path: '/useanimationframe',
+        description: 'useAnimationFrame() is a React hook for executing a callback via an animation frame, a single time or recursively, and cleans up memory as necessary.',
+    },
+    {
         title: 'useObject()',
         path: '/useobject',
         description: 'useObject() is a React hook that returns a memoized object that only changes if one or more of its values have changed.',
