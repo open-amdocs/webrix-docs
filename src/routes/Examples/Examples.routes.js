@@ -69,4 +69,9 @@ export default [
         path: '/examples/ImageCrop',
         tags: ['resizable', 'movable'],
     },
+    {
+        title: 'Custom Scrollbars',
+        path: '/examples/CustomScrollbars',
+        tags: ['scrollable'],
+    },
 ]
