@@ -45,13 +45,18 @@ export default [
         description: 'useBoundingRectObserver() is a React hook for observing changes to the bounding rect of one or more elements (size and position).',
     },
     {
+        title: 'useDimensions()',
+        path: '/usedimensions',
+        description: 'useObject() is a React hook that listens to size changes on the given element and returns an object with height and width.',
+    },
+    {
         title: 'useObject()',
         path: '/useobject',
         description: 'useObject() is a React hook that returns a memoized object that only changes if one or more of its values have changed.',
     },
     {
-        title: 'useDimensions()',
-        path: '/usedimensions',
-        description: 'useObject() is a React hook that listens to size changes on the given element and returns an object with height and width.',
+        title: 'useEventListener()',
+        path: '/useeventlistener',
+        description: 'useEventListener() is a React hook that let\'s you attach event listeners (with event options) to elements.',
     },
 ];

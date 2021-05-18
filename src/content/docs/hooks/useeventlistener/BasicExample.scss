@@ -1,0 +1,17 @@
+#example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: $color-white;
+    background-image: $gradient-pink;
+    width: 100px;
+    height: 100px;
+  }
+}
