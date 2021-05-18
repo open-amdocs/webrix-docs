@@ -40,6 +40,11 @@ export default [
         description: 'useAnimationFrame() is a React hook for executing a callback via an animation frame, a single time or recursively, and cleans up memory as necessary.',
     },
     {
+        title: 'useBoundingRectObserver()',
+        path: '/useboundingrectobserver',
+        description: 'useBoundingRectObserver() is a React hook for observing changes to the bounding rect of one or more elements (size and position).',
+    },
+    {
         title: 'useObject()',
         path: '/useobject',
         description: 'useObject() is a React hook that returns a memoized object that only changes if one or more of its values have changed.',
