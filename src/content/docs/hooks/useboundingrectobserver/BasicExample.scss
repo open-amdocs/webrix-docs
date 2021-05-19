@@ -1,0 +1,40 @@
+#example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .rect-info {
+    display: grid;
+    grid-template-columns: 120px 120px;
+    margin-top: 20px;
+
+    p {margin: 0}
+  }
+
+  .moving-resizing-element {
+    position: absolute;
+    background-image: $gradient-pink;
+    animation: move-resize 5s ease-in-out infinite;
+  }
+}
+
+@keyframes move-resize {
+  0%, 100% {
+    width: 100px;
+    height: 100px;
+    top: 100px;
+    left: calc(30% - 50px);
+  }
+  25%, 75% {
+    width: 50px;
+    height: 50px;
+    top: 125px;
+    left: calc(50% - 25px);
+  }
+  50% {
+    width: 100px;
+    height: 100px;
+    top: 100px;
+    left: calc(70% - 50px);
+  }
+}

@@ -1,0 +1,39 @@
+import {Example, PreviewList} from 'components';
+
+Attach an event listener to the given element, optionally passing event options.
+One of the use cases for this hook is for attaching *passive* events, something that is not possible via JSX.
+Another use case is for creating custom hooks to attach multiple events internally.
+
+## Basic Example
+
+<Example file='docs/hooks/useeventlistener/BasicExample' height={150}/>
+
+In the above example, we use two `useEventListener()` and state to simulate a "hover" event.
+Hovering over the element will trigger a `mouseenter` event, which will change the `hover` state to `true`.
+Leaving the element will trigger a `mouseleave` event, which will change the `hover` state to `false`.
+
+## Syntax
+
+```js
+useEventListener(type, callback, ref, options);
+```
+
+### Importing
+
+```jsx
+// ESM
+import {useEventListener} from 'webrix/hooks';
+import useEventListener from 'webrix/hooks/useEventListener'; // For better tree shaking
+
+// UMD
+const {useEventListener} = Webrix.hooks;
+```
+
+### Parameters
+
+Name       |Type    |Default|Description
+-----------|--------|-------|---
+`type`     |string  |   -   |The event type.
+`callback` |function|   -   |The callback to execute.
+`ref`      |ReactRef|   -   |A reference to the element to which the listener should be added.
+`options`  |object  | `{}`  |The event's options. See `options` in [addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#parameters)

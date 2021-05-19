@@ -1,0 +1,52 @@
+import {Link} from 'react-router-dom';
+import {Example, PreviewList} from 'components';
+
+Observe changes to the bounding rect (size & position) of one or more elements.
+The given callback will be executed every time the bounding rect of at least one of the given elements has changed.
+
+This hook is used internally by <Link to='/docs/components/poppable'>&lt;Poppable/&gt;</Link> to calculate the position based on the reference.
+
+> This hook is polling the bounding rects of the given elements via an animation frame, so using it extensively can cause performance issues.
+
+## Basic Example
+
+<Example file='docs/hooks/useboundingrectobserver/BasicExample' height={220}/>
+
+In the above example, we use `useBoundingRectObserver` to observe a single element that
+is constantly animated. The dimensions and position of the elements are displayed above
+and are constantly updated.
+
+## Syntax
+
+```js
+const {start, stop} = useBoundingRectObserver(callback, recurring);
+```
+
+### Importing
+
+```jsx
+// ESM
+import {useBoundingRectObserver} from 'webrix/hooks';
+import useBoundingRectObserver from 'webrix/hooks/useBoundingRectObserver'; // For better tree shaking
+
+// UMD
+const {useBoundingRectObserver} = Webrix.hooks;
+```
+
+### Parameters
+
+Name       |Type                           |Default|Description
+-----------|-------------------------------|-------|---
+`callback` |function                       |   -   |The callback to execute. The callback will receive a list bounding rects, corresponding to the given list of elements.
+`...refs`  |ReactRef/Element/DOMRect/Window|   -   |One or more elements to observe.
+
+### Return Value
+
+Returns an `Object` with the following keys:
+
+Name   |Type    |Description
+-------|--------|---
+`start`|function|A function that, when called, will start observing on the given elements.
+`stop` |function|A function that, when called, will stop observing.
+
+> Note: You don't need to call `stop()` when unmounting. The hook will clean any outstanding calls automatically.
