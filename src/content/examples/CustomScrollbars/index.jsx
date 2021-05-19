@@ -5,9 +5,7 @@ import './style.scss';
 
 const ScrollButtonsWrapper = ({children, scrollbar}) => {
     const scrollTo = useCallback(scrollTop => {
-        scrollbar.current.style.scrollBehavior = 'smooth';
         scrollbar.current.scrollTop = scrollTop;
-        scrollbar.current.style.scrollBehavior = 'auto'; // Remove smooth scrolling as it breaks the thumb dragging behavior
     }, [scrollbar]);
     const handleOnScrollTop = useCallback(e => {
         e.stopPropagation();
