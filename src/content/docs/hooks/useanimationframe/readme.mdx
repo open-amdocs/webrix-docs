@@ -1,0 +1,47 @@
+import {Example, PreviewList} from 'components';
+
+Execute a callback before the next repaint, a single time or recursively.
+This hook performs memory cleanup automatically.
+
+## Basic Example
+
+<Example file='docs/hooks/useanimationframe/BasicExample' height={150}/>
+
+In the above example, we use `useAnimationFrame` with `recurring = true`, to execute the given
+callback recursively on every animation frame. Clicking on `Start` or `Stop` will start/stop the
+execution, incrementing the counter value by 1 every time.
+
+## Syntax
+
+```js
+const {start, stop} = useAnimationFrame(callback, recurring);
+```
+
+### Importing
+
+```jsx
+// ESM
+import {useAnimationFrame} from 'webrix/hooks';
+import useAnimationFrame from 'webrix/hooks/useAnimationFrame'; // For better tree shaking
+
+// UMD
+const {useAnimationFrame} = Webrix.hooks;
+```
+
+### Parameters
+
+Name       |Type    |Default|Description
+-----------|--------|-------|---
+`callback` |function|   -   |The callback to execute
+`recurring`|boolean |`false`|If true, the callback will be executed on every animation frame, until the component is unmounted, or until `stop` is called.
+
+### Return Value
+
+Returns an `Object` with the following keys:
+
+Name   |Type    |Description
+-------|--------|---
+`start`|function|A function that, when called, will execute the callback once or multiple times, based on `recurring`.
+`stop` |function|A function that, when called, will stop the execution.
+
+> Note: You don't need to call `stop()` when unmounting. The hook will clean any outstanding calls automatically.

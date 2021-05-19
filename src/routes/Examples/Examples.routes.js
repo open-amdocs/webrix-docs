@@ -70,6 +70,11 @@ export default [
         tags: ['resizable', 'movable'],
     },
     {
+        title: 'Custom Scrollbars',
+        path: '/examples/CustomScrollbars',
+        tags: ['scrollable'],
+    },
+    {
         title: 'Rush Hour',
         path: '/examples/RushHour',
         tags: ['movable'],

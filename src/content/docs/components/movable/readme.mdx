@@ -221,6 +221,19 @@ Movable.useMove(useMemo(() => [
 ], []));
 ```
 
+#### `Movable.Operations.relative(ref)`
+
+Convert the coordinates to be relative to the position of the given ref.
+
+> Note - this operation should be called after operations that should not work relatively, like `contain()`,
+> but before operations that should work relatively, like `snap()`.
+
+```jsx
+Movable.useMove(useMemo(() => [
+  relative(ref), // Make coordinates relative to ref
+], []));
+```
+
 #### `Movable.Operations.update(callback)`
 
 Call the function given in `callback`, passing the current coordinates as an argument.

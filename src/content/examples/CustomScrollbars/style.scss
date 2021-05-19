@@ -1,0 +1,178 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .scrollbars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 400px;
+    height: 400px;
+
+    .scrollbar {
+      border: 2px dashed $color-gray;
+      border-radius: 4px;
+      width: 150px;
+      height: 150px;
+      font-size: 0.8em;
+
+      .scrollbar-inner {
+        padding: 4px 8px;
+      }
+    }
+
+    .example1 {
+      .scrollbar-track {
+        right: -16px;
+        width: 8px;
+        background-color: $color-white;
+        border: 1px solid black;
+        border-radius: 50px;
+
+        .scrollbar-thumb {
+          padding: 1px;
+        }
+
+        .scrollbar-thumb-inner {
+          box-sizing: border-box;
+          background-color: black;
+          border-radius: 6px;
+          width: 6px;
+          opacity: 1;
+        }
+      }
+
+      .scroll-buttons {
+        background-color: transparent;
+        padding: 1px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+
+        svg {
+          fill: black;
+          height: 6px;
+          width: 6px;
+        }
+      }
+    }
+
+    .example2 {
+      .scrollbar-track {
+        right: -14px;
+        width: 10px;
+
+        .scrollbar-thumb {
+          padding: 1px;
+          pointer-events: none;
+        }
+
+        .scrollbar-thumb-inner {
+          box-sizing: border-box;
+          background: $gradient-pink;
+          border-radius: 50px;
+          width: 8px;
+          opacity: 1;
+        }
+      }
+    }
+
+    .example3 {
+      .scrollbar-track {
+        background-color: rgba($color-gray, 0.7);
+        border-radius: 50px;
+        right: -16px;
+        width: 12px;
+
+        .scrollbar-thumb {
+          right: -3px;
+          padding: 0 3px;
+        }
+
+        .scrollbar-thumb-inner {
+          box-sizing: border-box;
+          background-color: $color-lighter-gray;
+          box-shadow: 0 0 6px -2px;
+          border-radius: 50px;
+          width: 12px;
+          opacity: 1;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            border-top: 1px solid rgba($color-gray, 0.4);
+            border-bottom: 1px solid rgba($color-gray, 0.4);
+            width: 7px;
+            height: 5px;
+            transform: translateY(-50%);
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            border-top: 1px solid rgba($color-gray, 0.4);
+            width: 7px;
+            transform: translateY(-50%);
+          }
+        }
+      }
+    }
+
+    .example4 {
+      --track-color: #272928;
+      --thumb-color: linear-gradient(90deg, rgba(174,174,174,1) 0%, rgba(109,109,109,1) 100%);
+
+      .scrollbar-inner {
+        padding-right: 20px;
+      }
+
+      .scrollbar-track {
+        width: 20px;
+        background-color: var(--track-color);
+        box-shadow: 0 0 6px -2px, inset 0 0 6px -2px;
+
+        .scrollbar-thumb {
+          padding: 0;
+        }
+
+        .scrollbar-thumb-inner {
+          box-sizing: border-box;
+          background: var(--thumb-color);
+          border-left: 1px solid var(--track-color);
+          border-right: 1px solid var(--track-color);
+          border-radius: 0;
+          width: 20px;
+          opacity: 1;
+        }
+      }
+
+      svg.scroll-button {
+        box-shadow: 0 0 6px -2px, inset 1px -2px 15px -8px;;
+        position: absolute;
+        border: 1px solid var(--track-color);
+        background: var(--thumb-color);
+        cursor: pointer;
+        fill: $color-white;
+        padding: 3px;
+        box-sizing: border-box;
+        height: 20px;
+        width: 20px;
+
+        &.direction-up {
+          top: -20px;
+        }
+
+        &.direction-down {
+          bottom: -20px;
+        }
+      }
+    }
+  }
+}
