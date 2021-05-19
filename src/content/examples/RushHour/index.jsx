@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo, useCallback, useEffect} from 'react';
+import React, {useState, useRef, useMemo, useCallback, memo} from 'react';
 import classNames from 'classnames';
 import {Movable} from 'webrix/components';
 import './style.scss';
@@ -12,7 +12,6 @@ const BOARD = [
     {coords: [2, 3], color: '#e056fd', vertical: true},
     {coords: [1, 1], color: '#17c0eb', vertical: true},
     {coords: [0, 2], color: '#67e6dc', vertical: true},
-    {coords: [5, 2], color: '#6a89cc', vertical: true},
     {coords: [3, 3], color: '#6a89cc', vertical: true},
     {coords: [5, 3], color: '#38ada9', vertical: true},
     {coords: [5, 1], color: '#a4b0be', vertical: true},
@@ -22,88 +21,77 @@ const BOARD = [
     {coords: [2, 2], color: 'red'},
 ];
 
-const getInitState = card => {
-    return card.reduce((acc, { vertical, coords, color }) => ({
-            ...acc,
-            [color]: {position: getPosition(coords), vertical},
-        }), {}
-    );
-}
-const getCells = (position, vertical, boardPos) => {
-    const root = getCoords(position, boardPos);
-    return vertical
-        ? [root, { col: root.col, row: root.row + 1 }]
-        : [root, { col: root.col + 1, row: root.row }];
+// Returns true if the given areas overlap
+const overlap = (a, b) => (
+    a.some(([ax, ay]) => b.some(([bx, by]) => ax === bx && ay === by))
+);
+
+// Generate a list of coordinates covering the area given by from/to
+const genCoords = (from, to, vertical) => {
+    const axis = vertical ? 1 : 0;
+    const min = Math.min(from[axis], to[axis]);
+    const max = Math.max(from[axis], to[axis]);
+    return [...new Array(max - min + 2)].map((_, i) => {
+        const c = [];
+        c[axis] = i + min;
+        c[1 ^ axis] = from[1 ^ axis];
+        return c;
+    });
 };
 
-const isCollide = (car1, car2) =>
-    car1.some(loc1 =>
-        car2.some(loc2 => loc2.col === loc1.col && loc2.row === loc1.row)
-    );
+const canMove = (board, index, next) => {
+    const spliced = [...board];
+    // Generate the area covered by moving the car from its original position to the next.
+    const a = genCoords(board[index].coords, next, board[index].vertical);
+    spliced.splice(index, 1);
+    return !spliced.some(b => overlap(a, genCoords(b.coords, b.coords, b.vertical)));
+};
 
-const isBlocked = (position, color, cars, board) => {
-    const {top, left} = board.current.getBoundingClientRect();
-    const currentCarCells = getCells(position, cars[color].vertical, {top, left});
-    return Object.entries(cars).some(([key, c]) =>
-        key !== color && isCollide(currentCarCells, getCells(c.position, c.vertical, {top, left}))
-    );
-}
-
-const getPosition = ([col, row]) => ({
-    top: row * SQUARE_SIZE,
-    left: col * SQUARE_SIZE,
-});
-
-const getCoords = ({ top, left }, boardPos) => ({
-    col: (left - boardPos.left) / SQUARE_SIZE,
-    row: (top - boardPos.top) / SQUARE_SIZE,
-});
-
-const Car = ({ container, color, vertical, position, setPosition }) => {
+const Car = memo(({index, container, color: backgroundColor, vertical, coords, setPosition}) => {
     const movable = useRef();
-    const handleOnUpdate = useCallback(({ top, left }) =>
-            setPosition(color, vertical ? { ...position, top } : { ...position, left })
-        ,[vertical, position, setPosition]
-    );
-    const {top, left} = container.current.getBoundingClientRect();
+    const top = coords[1] * SQUARE_SIZE, left = coords[0] * SQUARE_SIZE;
     const props = Movable.useMove(
         useMemo(() => [
             move(movable),
             contain(movable, container),
             relative(container),
             snap(SQUARE_SIZE, SQUARE_SIZE),
-            update(handleOnUpdate),
-        ], [container, handleOnUpdate, top, left])
+            update(({top, left}) => {
+                const x = !vertical ? Math.floor(left / SQUARE_SIZE) : coords[0];
+                const y = vertical ? Math.floor(top / SQUARE_SIZE) : coords[1];
+                setPosition(index, [x, y]);
+            }),
+        ], [index, container, setPosition, coords])
     );
     return (
         <Movable
-            className={classNames('car', { vertical })}
+            className={classNames('car', {vertical})}
             ref={movable}
-            style={{ ...position, backgroundColor: color }}
+            style={{top, left, backgroundColor}}
             {...props}
         />
     );
-};
+});
 
 export default () => {
     const board = useRef();
-    const [state, setState] = useState({});
-    const setPosition = useCallback((color, position) => (
-            setState(lastState => !isBlocked(position, color, lastState, board)
-                ? ({...lastState, [color]: {...lastState[color], position}})
-                : lastState)
-        ),[board]
-    );
-
-    useEffect(() => {
-        setState(getInitState(BOARD));
-    }, [])
+    const [state, setState] = useState(BOARD);
+    const setPosition = useCallback((index, coords) => {
+        setState(b => {
+            if (canMove(b, index, coords)) {
+                const next = [...b];
+                next[index] = {...next[index]};
+                next[index].coords = coords;
+                return next;
+            }
+            return b;
+        })
+    },[setState]);
 
     return (
         <div className='board' ref={board}>
-            {Object.entries(state).map(([key, props]) => (
-                <Car key={key} container={board} color={key}
-                     setPosition={setPosition} {...props}/>
+            {state.map((car, index) => (
+                <Car key={index} index={index} container={board} setPosition={setPosition} {...car}/>
             ))}
         </div>
     );
