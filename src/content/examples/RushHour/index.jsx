@@ -34,7 +34,7 @@ const genCoords = (from, to, vertical) => {
     return [...new Array(max - min + 2)].map((_, i) => {
         const c = [];
         c[axis] = i + min;
-        c[1 ^ axis] = from[1 ^ axis];
+        c[1 ^ axis] = from[1 ^ axis]; // This bitwise operation converts 1 to 0 and 0 to 1, in order to get the other axis
         return c;
     });
 };
