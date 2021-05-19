@@ -74,4 +74,9 @@ export default [
         path: '/examples/CustomScrollbars',
         tags: ['scrollable'],
     },
+    {
+        title: 'Rush Hour',
+        path: '/examples/RushHour',
+        tags: ['movable'],
+    },
 ]
