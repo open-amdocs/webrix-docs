@@ -10,7 +10,7 @@ import './Blog.scss';
 const Blog = () => (
     <>
         <Helmet>
-            <title>Blog</title>
+            <title>Blog - Webrix.js</title>
             <meta name='description' content='webrix blog posts'/>
         </Helmet>
         <Container>

@@ -47,11 +47,7 @@ const Menu = ({visible, onClick}) => (
             ))}
         </ul>
         <h2><Link to='/blog'>Blog</Link></h2>
-        <ul>
-            {posts.map(({title, path}) => (
-                <li key={title}><Link to={{pathname: path}}>{title}</Link></li>
-            ))}
-        </ul>
+        <ul>{posts.map(({title, path}) => <li key={title}><Link to={{pathname: path}}>{title}</Link></li>)}</ul>
     </nav>
 );
 
