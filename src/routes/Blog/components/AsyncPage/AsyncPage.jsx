@@ -9,7 +9,7 @@ const components = {
 };
 
 const AsyncPage = ({title, description, fileName, date}) => {
-    const Comp = React.lazy(() => import(`content/posts/${fileName}.mdx`));
+    const Comp = React.lazy(() => import(`content/posts/${fileName}/readme.mdx`));
     return (
         <Article components={components}>
             <Helmet>
