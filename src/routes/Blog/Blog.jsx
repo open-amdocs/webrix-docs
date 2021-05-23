@@ -14,8 +14,8 @@ const Blog = () => (
             <meta name='description' content='webrix blog posts'/>
         </Helmet>
         <Container>
-            <Content/>
             <Sidebar/>
+            <Content/>
         </Container>
         <Route>
             <Redirect to={routes[0].path}/>
