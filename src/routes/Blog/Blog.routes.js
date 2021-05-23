@@ -15,6 +15,6 @@ export default [
         title: 'Webrix 1.1',
         fileName: 'webrix-1-1',
         description: 'Webrix 1.1 release notes',
-        date: '2021-01-20'
+        date: '2021-01-20',
     },
 ];

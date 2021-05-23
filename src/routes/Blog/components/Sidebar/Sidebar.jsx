@@ -6,7 +6,6 @@ import './Sidebar.scss';
 
 const Sidebar = () => {
     const {pathname} = useLocation();
-    console.log(pathname);
     return (
         <nav className='blog-sidebar'>
             <div className='blog-title'>Recent Posts:</div>
