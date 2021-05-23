@@ -13,6 +13,10 @@ $border-color: #d9e6f1;
   border-right: 1px solid $border-color;
   position: relative;
 
+  @include media-max('sm') {
+    display: none;
+  }
+
   .blog-title {
     text-transform: uppercase;
     font-weight: bold;
