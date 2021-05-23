@@ -1,12 +1,14 @@
 import React, {Suspense, memo} from 'react';
 import {Helmet} from 'react-helmet';
-import {FaExternalLinkAlt} from 'react-icons/fa';
+import {FaEdit, FaCode} from 'react-icons/fa';
 import {Loader} from 'components';
+import {getPathToSource} from './AsyncPage.utils';
 import './AsyncPage.scss';
 
 const AsyncPage = ({path, title, description}) => {
     const Comp = React.lazy(() => import(`content/docs${path}/readme.mdx`));
     const editURL = `https://github.com/open-amdocs/webrix-docs/blob/master/src/content/docs${path}/readme.mdx`;
+    const sourceCodeURL = getPathToSource({path, title});
 
     return (
         <article>
@@ -16,7 +18,10 @@ const AsyncPage = ({path, title, description}) => {
             </Helmet>
             <h1>
                 {title}
-                <a target='_blank' rel='noreferrer' href={editURL}>Edit This Page <FaExternalLinkAlt/></a>
+                <div className='docs-links'>
+                    <a className='docs-link' target='_blank' rel='noreferrer' href={editURL}>Edit This Page <FaEdit/></a>
+                    {sourceCodeURL && <a className='docs-link' target='_blank' rel='noreferrer' href={sourceCodeURL}>Source<FaCode/></a>}
+                </div>
             </h1>
             <Suspense fallback={<Loader/>}>
                 <Comp/>
