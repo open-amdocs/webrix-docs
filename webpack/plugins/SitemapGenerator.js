@@ -6,6 +6,7 @@ const ROUTES = [
     '/docs',
     '/examples',
     '/motivation',
+    '/blog',
 ];
 
 class SitemapGenerator {
@@ -21,6 +22,7 @@ class SitemapGenerator {
                     ...getDirectories(paths.src + '/content/docs/hooks').map(d => '/docs/hooks/' + d),
                     ...getDirectories(paths.src + '/content/docs/tools').map(d => '/docs/tools/' + d),
                     ...getDirectories(paths.src + '/content/examples').map(d => '/examples/' + d),
+                    ...getDirectories(paths.src + '/content/posts').map(d => '/blog/posts/' + d),
                 );
                 const content = ROUTES.reduce((acc, path) => acc + `https://webrix.amdocs.com${path}\n`, '');
                 compilation.assets['sitemap.txt'] = {
