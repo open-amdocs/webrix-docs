@@ -19,8 +19,14 @@ const AsyncPage = ({path, title, description}) => {
             <h1>
                 {title}
                 <div className='docs-links'>
-                    <a className='docs-link' target='_blank' rel='noreferrer' href={editURL}>Edit This Page <FaEdit/></a>
-                    {sourceCodeURL && <a className='docs-link' target='_blank' rel='noreferrer' href={sourceCodeURL}>Source<FaCode/></a>}
+                    <a className='docs-link' target='_blank' rel='noreferrer' href={editURL}>
+                        <span className='link-text'>Edit This Page</span>
+                        <FaEdit/>
+                    </a>
+                    {sourceCodeURL && <a className='docs-link' target='_blank' rel='noreferrer' href={sourceCodeURL}>
+                        <span className='link-text'>Source</span>
+                        <FaCode/>
+                    </a>}
                 </div>
             </h1>
             <Suspense fallback={<Loader/>}>
