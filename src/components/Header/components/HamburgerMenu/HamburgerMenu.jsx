@@ -8,6 +8,7 @@ import components from 'content/docs/components/components.routes';
 import hooks from 'content/docs/hooks/hooks.routes';
 import tools from 'content/docs/tools/tools.routes';
 import examples from 'routes/Examples/Examples.routes';
+import posts from 'routes/Blog/Blog.routes';
 import Button from './Button';
 import './HamburgerMenu.scss';
 
@@ -45,6 +46,8 @@ const Menu = ({visible, onClick}) => (
                 <li key={title}><FaCog/><Link to={`${path}`}>{title}</Link></li>
             ))}
         </ul>
+        <h2><Link to='/blog'>Blog</Link></h2>
+        <ul>{posts.map(({title, path}) => <li key={title}><Link to={{pathname: path}}>{title}</Link></li>)}</ul>
     </nav>
 );
 
