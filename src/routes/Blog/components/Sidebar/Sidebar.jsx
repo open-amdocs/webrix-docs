@@ -6,11 +6,12 @@ import './Sidebar.scss';
 
 const Sidebar = () => {
     const {pathname} = useLocation();
+    console.log(pathname);
     return (
         <nav className='blog-sidebar'>
             <div className='blog-title'>Recent Posts:</div>
-            {ROUTES.map(({path, title}, i) => (
-                <Link key={i} to={{pathname: path}} className={cls('blog-link', pathname === path && 'active')}>{title}</Link>
+            {ROUTES.map(({fileName, title}, i) => (
+                <Link key={i} to={{pathname: `/blog/post/${fileName}`}} className={cls('blog-link', pathname === `/blog/post/${fileName}` && 'active')}>{title}</Link>
             ))}
         </nav>
     );

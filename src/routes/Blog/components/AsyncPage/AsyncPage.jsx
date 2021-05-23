@@ -1,19 +1,27 @@
 import React, {Suspense, memo} from 'react';
 import {Helmet} from 'react-helmet';
-import {Loader} from 'components';
+import {Article, Highlighter, Loader} from 'components';
+import './AsyncPage.scss';
 
-const AsyncPage = ({title, description, fileName}) => {
+const components = {
+    pre: props => <React.Fragment {...props}/>,
+    inlineCode: props => <Highlighter code={props.children.trim()} inline/>,
+};
+
+const AsyncPage = ({title, description, fileName, date}) => {
     const Comp = React.lazy(() => import(`content/posts/${fileName}.mdx`));
     return (
-        <article className='blog-page'>
+        <Article components={components}>
             <Helmet>
                 <title>{title} - Webrix.js Blog</title>
                 <meta name='description' content={description}/>
             </Helmet>
             <Suspense fallback={<Loader/>}>
+                <h1>{title}</h1>
+                <time dateTime={date}>{new Date(date).toLocaleDateString('en',{year: 'numeric', month: 'long', day: 'numeric' })}</time>
                 <Comp/>
             </Suspense>
-        </article>
+        </Article>
     )
 }
 

@@ -1,15 +1,26 @@
 import React, {Suspense, memo} from 'react';
 import {Helmet} from 'react-helmet';
 import {FaExternalLinkAlt} from 'react-icons/fa';
-import {Loader} from 'components';
+import {Loader, Article, Highlighter} from 'components';
+import Code from './components/Code/Code';
+import H2 from './components/H2/H2';
+import H3 from './components/H3/H3';
 import './AsyncPage.scss';
+
+const components = {
+    pre: props => <React.Fragment {...props}/>,
+    code: Code,
+    h2: H2,
+    h3: H3,
+    inlineCode: props => <Highlighter code={props.children.trim()} inline/>,
+}
 
 const AsyncPage = ({path, title, description}) => {
     const Comp = React.lazy(() => import(`content/docs${path}/readme.mdx`));
     const editURL = `https://github.com/open-amdocs/webrix-docs/blob/master/src/content/docs${path}/readme.mdx`;
 
     return (
-        <article>
+        <Article components={components}>
             <Helmet>
                 <title>{title} - Webrix.js</title>
                 <meta name='description' content={description}/>
@@ -27,7 +38,7 @@ const AsyncPage = ({path, title, description}) => {
                 please <a target='_blank' rel='noreferrer' href='https://github.com/open-amdocs/webrix-docs/issues/'>file an issue </a>
                 or <a target='_blank' rel='noreferrer' href={editURL}>edit this page</a>.
             </div>
-        </article>
+        </Article>
     );
 };
 

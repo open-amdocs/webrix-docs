@@ -17,8 +17,8 @@ const Blog = () => (
             <Sidebar/>
             <Content/>
         </Container>
-        <Route>
-            <Redirect to={routes[0].path}/>
+        <Route exact path='/blog'>
+            <Redirect to={`/blog/post/${routes[0].fileName}`} />
         </Route>
     </>
 );
