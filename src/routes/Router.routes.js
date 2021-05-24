@@ -25,8 +25,15 @@ export const EXAMPLES = {
     component: () => <AsyncRoute file={() => import(/* webpackChunkName: "examples" */ './Examples/Examples')}/>,
 };
 
+export const BLOG = {
+    name: 'blog',
+    path: '/blog',
+    component: () => <AsyncRoute file={() => import(/* webpackChunkName: "blog" */ './Blog/Blog')}/>,
+};
+
 export default [
     DOCS,
+    BLOG,
     MOTIVATION,
     EXAMPLES,
     HOME,

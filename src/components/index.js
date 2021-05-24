@@ -1,3 +1,4 @@
+export {default as Article} from './Article/Article';
 export {default as Button} from './Button';
 export {default as Container} from './Container/Container';
 export {default as Divider} from './Divider/Divider';
@@ -10,3 +11,4 @@ export {default as Loader} from './Loader/Loader';
 export {default as Preview} from './Preview/Preview';
 export {default as PreviewList} from './Preview/PreviewList';
 export {default as UnderConstruction} from './UnderConstruction/UnderConstruction';
+export {default as PropsTable} from './PropsTable/PropsTable';

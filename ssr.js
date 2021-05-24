@@ -9,6 +9,7 @@ const PORT = 9000;
 
 const PATHS = [
     '/motivation',
+    ...getDirectories(paths.src + '/content/posts').map(d => '/blog/post/' + d),
     ...getDirectories(paths.src + '/content/examples').map(d => '/examples/' + d),
     ...getDirectories(paths.src + '/content/docs/introduction').map(d => '/docs/introduction/' + d),
     ...getDirectories(paths.src + '/content/docs/components').map(d => '/docs/components/' + d),
