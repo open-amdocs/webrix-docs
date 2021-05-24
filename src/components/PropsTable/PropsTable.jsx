@@ -1,5 +1,4 @@
 import React from 'react';
-import props from '!../../../docgen-loader!../../../../webrix/src/components/Collapsible/Collapsible.props.js';
 import './PropsTable.scss'
 
 const PropsTable = () => {
