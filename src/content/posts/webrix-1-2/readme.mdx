@@ -1,0 +1,22 @@
+This version comes with an updated API for reduced boilerplate (non-breaking!).
+
+The new API (currently available for `<Movable/>` and `<Resizable/>`), lets you apply constraints and special
+behaviors using a custom hook that generates the required props for injecting into the component.
+
+This allows us to maintain 2 levels of APIs - the lower-level API via the component's props, and the higher-level API using the custom hook.
+
+That way, if you need some very unique behavior that the higher-level API does not support, you can always use the lower-level API.
+
+## Features
+
+- New hook - `useDimensions()`
+- New hook - `Movable.useMove()` - for better control and easy constraint application to `Movable`.
+- New hook - `Resizable.useResize()` - for better control and easy constraint application to `Resizable`.
+- Resizable - new operations and constraints.
+- Movable - new operations and constraints.
+
+## Bug Fixes
+
+* Added memoization to resizers
+* Prevent user selection when resizing
+* Using `borderBoxSize` instead of `contentRect` in `ResizeObserver`
