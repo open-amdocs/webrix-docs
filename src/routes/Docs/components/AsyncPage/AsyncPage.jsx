@@ -1,7 +1,6 @@
 import React, {Suspense, memo} from 'react';
 import {Helmet} from 'react-helmet';
 import {FaEdit, FaCode} from 'react-icons/fa';
-import {Loader} from 'components';
 import {getPathToSource} from './AsyncPage.utils';
 import {Loader, Article, Highlighter} from 'components';
 import Code from './components/Code/Code';
