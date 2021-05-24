@@ -2,16 +2,24 @@
   h1 {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    a {
+    .docs-link {
       margin-left: auto;
       font-size: 16px;
       font-weight: normal;
       border: 1px solid;
       padding: 2px 8px;
-      border-radius: 3px;
+      border-radius: 3px 0 0 3px;
       display: flex;
       align-items: center;
+      overflow: hidden;
+
+      .link-text {
+        @include media-max('sm') {
+          display: none;
+        }
+      }
 
       &:hover {
         box-shadow: 0 2px 15px rgba($color-dark-blue, 0.1);
@@ -28,7 +36,26 @@
         margin-left: 15px;
         width: 14px;
         margin-bottom: 1px;
+
+        @include media-max('sm') {
+          margin-right: 0;
+          margin-left: 0;
+        }
       }
+    }
+  }
+
+  .docs-links {
+    display: flex;
+
+    .docs-link:last-child {
+      border-left: none;
+      border-radius: 0 3px 3px 0;
+    }
+
+    .docs-link:only-child {
+      border-left: 1px solid $color-pink;
+      border-radius: 3px;
     }
   }
 

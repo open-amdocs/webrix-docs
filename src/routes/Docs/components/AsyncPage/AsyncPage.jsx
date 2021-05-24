@@ -1,6 +1,7 @@
 import React, {Suspense, memo} from 'react';
 import {Helmet} from 'react-helmet';
-import {FaExternalLinkAlt} from 'react-icons/fa';
+import {FaEdit, FaCode} from 'react-icons/fa';
+import {getPathToSource} from './AsyncPage.utils';
 import {Loader, Article, Highlighter} from 'components';
 import Code from './components/Code/Code';
 import H2 from './components/H2/H2';
@@ -18,6 +19,7 @@ const components = {
 const AsyncPage = ({path, title, description}) => {
     const Comp = React.lazy(() => import(`content/docs${path}/readme.mdx`));
     const editURL = `https://github.com/open-amdocs/webrix-docs/blob/master/src/content/docs${path}/readme.mdx`;
+    const sourceCodeURL = getPathToSource({path, title});
 
     return (
         <Article components={components}>
@@ -27,7 +29,16 @@ const AsyncPage = ({path, title, description}) => {
             </Helmet>
             <h1>
                 {title}
-                <a target='_blank' rel='noreferrer' href={editURL}>Edit This Page <FaExternalLinkAlt/></a>
+                <div className='docs-links'>
+                    <a className='docs-link' target='_blank' rel='noreferrer' href={editURL}>
+                        <span className='link-text'>Edit This Page</span>
+                        <FaEdit/>
+                    </a>
+                    {sourceCodeURL && <a className='docs-link' target='_blank' rel='noreferrer' href={sourceCodeURL}>
+                        <span className='link-text'>Source</span>
+                        <FaCode/>
+                    </a>}
+                </div>
             </h1>
             <Suspense fallback={<Loader/>}>
                 <Comp/>
