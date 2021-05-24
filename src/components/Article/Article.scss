@@ -1,0 +1,97 @@
+article {
+  flex: 1;
+  padding: 25px 0 25px 30px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  @include media-max('sm') {
+    padding: 0;
+  }
+
+  table {
+    border-spacing: 0 1px;
+    background-color: rgba($color-light-gray, 0.5);
+    border-right: 1px solid rgba($color-light-gray, 0.5);
+    border-left: 1px solid rgba($color-light-gray, 0.5);
+
+    tr:hover td {
+      background-color: lighten($color-light-gray, 14%);
+    }
+
+    th {
+      background-color: lighten($color-light-gray, 14%);
+      font-weight: normal;
+      padding: 10px;
+      color: $color-gray;
+      text-align: left;
+    }
+
+    td {
+      background-color: $color-white;
+      padding: 5px 15px;
+    }
+  }
+
+  a {
+    color: $color-pink;
+
+    &:hover {
+      box-shadow: inset 0 -0.1em 0 0px, 0 0.03em 0 0;
+      text-shadow: 0 0.1em 0 white, 1px 0.1em 0 white, -1px 0.1em 0 white, 2px 0.1em 0 white, -2px 0.1em 0 white;
+    }
+  }
+
+  blockquote {
+    border-left: 5px solid $color-gray;
+    margin: 10px 0;
+    padding-left: 1em;
+    color: $color-gray;
+    font-style: italic;
+  }
+
+  ul {
+    padding-left: 30px;
+
+    li {
+      position: relative;
+      margin: 5px 0;
+
+      &::before {
+        content: "";
+        background-color: $color-pink;
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        position: absolute;
+        left: -19px;
+        top: 8px;
+      }
+    }
+  }
+
+  ol {
+    list-style: none;
+    counter-reset: item-number;
+    padding-left: 30px;
+
+    li {
+      counter-increment: item-number;
+      position: relative;
+
+      &::before {
+        content: counter(item-number) ". ";
+        color: $color-pink;
+        font-weight: bold;
+        position: absolute;
+        left: -10px;
+        top: 0;
+        transform: translateX(-100%);
+      }
+    }
+  }
+
+  .prism-code {
+    max-height: 50vh;
+  }
+}

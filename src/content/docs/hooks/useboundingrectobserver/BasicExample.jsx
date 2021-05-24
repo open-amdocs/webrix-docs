@@ -8,7 +8,7 @@ export default () => {
     const {start} = useBoundingRectObserver(rect => {
         setRect(rect);
     }, ref);
-    useEffect(() => {start()}, []);
+    useEffect(() => {start()}, [start]);
 
     return (
         <>
