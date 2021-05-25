@@ -1,12 +1,28 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import getProps from 'utility/docgen-loader';
 import './PropsTable.scss'
 
-const PropsTable = () => {
+const getDefaultValue = value => {
+    const defaultValue = value.defaultValue ? value.defaultValue.value : null;
+    return defaultValue === 'noop' ? '() => null' : defaultValue;
+}
 
-    const getDefaultValue = value => {
-        const defaultValue = value.defaultValue ? value.defaultValue.value : null;
-        return defaultValue === 'noop' ? '() => null' : defaultValue;
-    }
+const PropsTable = ({filePath}) => {
+    const [props, setProps] = useState();
+
+    useEffect(() => {
+        setProps(undefined);
+
+        (async () => {
+            const text = await import('!raw-loader!../../../../webrix/src/' + filePath);
+
+            if (text && text.default)
+                setProps(getProps(text.default))
+        })();
+    }, [filePath]);
+
+    if( !props )
+        return null
 
     return (
         <table className='props-table'>
@@ -28,7 +44,6 @@ const PropsTable = () => {
                 </tr>)
             }
             )}
-
             </tbody>
         </table>
     )

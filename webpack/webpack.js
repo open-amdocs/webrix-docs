@@ -56,7 +56,16 @@ module.exports = env => ({
             utility: paths.src + '/utility/',
             react: paths.node_modules + '/react/',
             webrix: env.production ? paths.node_modules + '/webrix/' : paths.webrix,
-        }
+        },
+        fallback: {
+            assert: require.resolve('assert/'),
+            buffer: require.resolve('buffer/'),
+            fs: false,
+            module: false,
+            net: false,
+            path: require.resolve('path-browserify'),
+            process: require.resolve('process/browser'),
+        },
     },
     module: {
         rules: [
@@ -64,26 +73,26 @@ module.exports = env => ({
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader"
-                }
+                    loader: 'babel-loader',
+                },
             },
             {
                 test: /\.s?css$/,
                 use: [
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader",
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
                     {
-                        loader: "sass-resources-loader",
+                        loader: 'sass-resources-loader',
                         options: {
                             resources: [
                                 paths.resources + '/styles/variables.scss',
                                 paths.resources + '/styles/colors.scss',
                                 paths.resources + '/styles/mixins.scss',
-                            ]
-                        }
-                    }
-                ]
+                            ],
+                        },
+                    },
+                ],
             },
             {
                 test: /\.mdx?$/,
@@ -92,8 +101,8 @@ module.exports = env => ({
             {
                 test: /\.(png|jpe?g|gif|obj|mp4)$/i,
                 use: [{loader: 'file-loader'}],
-            }
-        ]
+            },
+        ],
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -107,5 +116,9 @@ module.exports = env => ({
         }),
         new SitmapGeneratorPlugin(env),
         new webpack.ProgressPlugin(),
-    ]
+        new webpack.ProvidePlugin({
+            process: 'process',
+            Buffer: ['buffer', 'Buffer'],
+        }),
+    ],
 });
