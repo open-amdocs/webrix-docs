@@ -4,6 +4,7 @@ const SitmapGeneratorPlugin = require('./plugins/SitemapGenerator');
 const {paths} = require('./webpack.constants');
 const {getFileSize} = require('./webpack.utility');
 
+/* eslint-disable max-lines-per-function */
 module.exports = env => ({
     entry: paths.src + '/index.js',
     devtool: env.production ? false : 'cheap-module-source-map',
@@ -57,14 +58,10 @@ module.exports = env => ({
             react: paths.node_modules + '/react/',
             webrix: env.production ? paths.node_modules + '/webrix/' : paths.webrix,
         },
-        fallback: {
-            assert: require.resolve('assert/'),
-            buffer: require.resolve('buffer/'),
-            fs: false,
-            module: false,
-            net: false,
-            path: require.resolve('path-browserify'),
-            process: require.resolve('process/browser'),
+    },
+    resolveLoader: {
+        alias: {
+            'docgen-loader': paths.root + '/docgen-loader',
         },
     },
     module: {
@@ -116,9 +113,5 @@ module.exports = env => ({
         }),
         new SitmapGeneratorPlugin(env),
         new webpack.ProgressPlugin(),
-        new webpack.ProvidePlugin({
-            process: 'process',
-            Buffer: ['buffer', 'Buffer'],
-        }),
     ],
 });

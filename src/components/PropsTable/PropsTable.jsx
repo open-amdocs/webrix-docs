@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import getProps from 'utility/docgen-loader';
+// import getProps from 'utility/docgen-loader';
 import './PropsTable.scss'
 
 const getDefaultValue = value => {
@@ -7,19 +7,17 @@ const getDefaultValue = value => {
     return defaultValue === 'noop' ? '() => null' : defaultValue;
 }
 
-const PropsTable = ({filePath}) => {
+const PropsTable = ({name}) => {
     const [props, setProps] = useState();
 
     useEffect(() => {
         setProps(undefined);
 
         (async () => {
-            const text = await import('!raw-loader!../../../../webrix/src/' + filePath);
-
-            if (text && text.default)
-                setProps(getProps(text.default))
+            const props = await import(`!docgen-loader!../../../../webrix/src/components/${name + '/' + name}.props.js`);
+            setProps(props.default)
         })();
-    }, [filePath]);
+    }, [name]);
 
     if( !props )
         return null
