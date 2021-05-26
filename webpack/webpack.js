@@ -4,6 +4,7 @@ const SitmapGeneratorPlugin = require('./plugins/SitemapGenerator');
 const {paths} = require('./webpack.constants');
 const {getFileSize} = require('./webpack.utility');
 
+/* eslint-disable max-lines-per-function */
 module.exports = env => ({
     entry: paths.src + '/index.js',
     devtool: env.production ? false : 'cheap-module-source-map',
@@ -56,7 +57,12 @@ module.exports = env => ({
             utility: paths.src + '/utility/',
             react: paths.node_modules + '/react/',
             webrix: env.production ? paths.node_modules + '/webrix/' : paths.webrix,
-        }
+        },
+    },
+    resolveLoader: {
+        alias: {
+            'docgen-loader': paths.root + '/docgen-loader',
+        },
     },
     module: {
         rules: [
@@ -64,26 +70,26 @@ module.exports = env => ({
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader"
-                }
+                    loader: 'babel-loader',
+                },
             },
             {
                 test: /\.s?css$/,
                 use: [
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader",
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
                     {
-                        loader: "sass-resources-loader",
+                        loader: 'sass-resources-loader',
                         options: {
                             resources: [
                                 paths.resources + '/styles/variables.scss',
                                 paths.resources + '/styles/colors.scss',
                                 paths.resources + '/styles/mixins.scss',
-                            ]
-                        }
-                    }
-                ]
+                            ],
+                        },
+                    },
+                ],
             },
             {
                 test: /\.mdx?$/,
@@ -92,8 +98,8 @@ module.exports = env => ({
             {
                 test: /\.(png|jpe?g|gif|obj|mp4)$/i,
                 use: [{loader: 'file-loader'}],
-            }
-        ]
+            },
+        ],
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -107,5 +113,5 @@ module.exports = env => ({
         }),
         new SitmapGeneratorPlugin(env),
         new webpack.ProgressPlugin(),
-    ]
+    ],
 });

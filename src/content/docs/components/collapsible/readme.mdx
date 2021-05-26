@@ -1,4 +1,4 @@
-import {Example, PreviewList} from 'components';
+import {Example, PreviewList, PropsTable} from 'components';
 
 The `<Collapsible/>` component allows you to collapse/expand an element with arbitrary content height
 and apply a nice transition to it. This is a challenge to achieve with CSS only, since it's impossible
@@ -46,9 +46,4 @@ const {Collapsible} = Webrix.components;
 
 ### Props
 
-Name|Type|Default|Description
----|---|---|---
-`children`|node|required|Specifies the content to be shown.
-`expanded`|boolean|`false`|Specifies whether the content should be shown or not.
-`onTransitionEnd`|func|`() => null`|Specifies a function to be called when the *height* transition ends, when expanding or collapsing. Receives the event object as an argument.
-`duration`|number|`300`|Specifies the transition duration.
+<PropsTable name="Collapsible" />
