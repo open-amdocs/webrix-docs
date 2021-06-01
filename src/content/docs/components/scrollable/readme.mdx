@@ -77,6 +77,23 @@ as our base scrollbar.
 </Scrollbar>
 ```
 
+## Custom Element
+
+<Example file='docs/components/scrollable/CustomElement' height={300}/>
+
+You can use `<Scrollable/>` to add custom scrollbars to any type of element, like a `<textarea/>` for example.
+By default, `<Scrollable/>` uses a `div` for the container element, but you can change that via the `element` prop.
+
+In the example above we use a `<textarea/>` as the container element.
+You can edit the content of the textarea, and the scrollbars will update automatically.
+
+Similarly, you can pass a `div` with a `contenteditable` attribute:
+
+```jsx
+<Scrollable element={<textarea/>}>...</Scrollable>
+<Scrollable element={<div contentEditable/>}>...</Scrollable>
+```
+
 ## API
 
 ### Importing
