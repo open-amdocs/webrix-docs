@@ -11,7 +11,7 @@ $g: #cdccc8;
   .board {
     height: 360px;
     width: 360px;
-    border: 1px solid black;
+    box-shadow: 0 0 0 1px $color-dark-blue;
     background-color: $g;
     background-image: linear-gradient(90deg, $g 5%, transparent 5%, transparent 95%, $g 95%),
     linear-gradient($g 5%, transparent 5%, transparent 95%, $g 95%),
