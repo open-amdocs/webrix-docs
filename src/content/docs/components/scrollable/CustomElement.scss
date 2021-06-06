@@ -1,0 +1,23 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .scrollbar {
+    border: 2px dashed $color-gray;
+    border-radius: 4px;
+    width: 300px;
+    height: 150px;
+    resize: both;
+    overflow: hidden;
+  }
+
+  .scrollbar-inner {
+    padding: 4px 8px;
+    font: inherit;
+    outline: none;
+    background: none;
+    border: none;
+    resize: none;
+  }
+}

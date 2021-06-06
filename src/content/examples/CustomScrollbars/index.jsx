@@ -5,7 +5,9 @@ import './style.scss';
 
 const ScrollButtonsWrapper = ({children, scrollbar}) => {
     const scrollTo = useCallback(scrollTop => {
+        scrollbar.current.style.scrollBehavior = 'smooth';
         scrollbar.current.scrollTop = scrollTop;
+        scrollbar.current.style.scrollBehavior = '';
     }, [scrollbar]);
     const handleOnScrollTop = useCallback(e => {
         e.stopPropagation();
