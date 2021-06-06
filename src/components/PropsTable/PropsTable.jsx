@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+//import getProps from '../../../docgen-loader';
 // import getProps from 'utility/docgen-loader';
 import './PropsTable.scss'
 
@@ -14,8 +15,15 @@ const PropsTable = ({name}) => {
         setProps(undefined);
 
         (async () => {
+            const file = await fetch('https://raw.githubusercontent.com/open-amdocs/webrix/master/src/components/Movable/Movable.props.js');
+            const rawFile = await file.text();
+            const blob = URL.createObjectURL(rawFile)
+            console.log(  blob  )
             const props = await import(`!docgen-loader!../../../../webrix/src/components/${name + '/' + name}.props.js`);
-            setProps(props.default)
+            return;
+
+           // const props = await import(`!docgen-loader!../../../../webrix/src/components/${name + '/' + name}.props.js`);
+        //    setProps(props.default)
         })();
     }, [name]);
 
