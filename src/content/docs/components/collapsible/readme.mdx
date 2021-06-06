@@ -5,21 +5,12 @@ and apply a nice transition to it. This is a challenge to achieve with CSS only,
 to transition the `height` property from `0` to `auto` and vice versa.
 
 This challenge is overcome by applying a *height* value based on the `clientHeight` of the content
-and then set it to `auto` as soon as the transition is complete so that further changes
+and then setting it to `auto` as soon as the transition is completed so that further changes
 in *height* are automatically applied. This essentially creates a transition between `0` and `auto`.
 
 This means that a `<Collapsible/>` is able to expand/collapse from a height of `0` to the height
 of its content, regardless of what the content is, and without any complex calculations.
 You can even nest collapsibles!
-
-The transition *duration* default value is `300ms` and is controlled by the
-[CSS custom property](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) `--duration` for the `.collapsible` selector.
-This allows setting the *duration* value globally for all *Collapsible* components or for a specific one,
-if it has its own `className`, or by inline `style`:
-
-```jsx
-<Collapsible style={{'--duration':'1s'}}>
-```
 
 ## Basic Example
 
@@ -60,3 +51,12 @@ Name|Type|Default|Description
 `children`|node|required|Specifies the content to be shown.
 `expanded`|boolean|`false`|Specifies whether the content should be shown or not.
 `onTransitionEnd`|func|`() => null`|Specifies a callback function after the `transform` property transition is finished *expanding* or *collapsing*. Receives the event object as an argument.
+
+### CSS Custom Properties
+
+`--duration: <time>` - (default `300ms`) allows setting the transition *duration* value globally for all *Collapsible* components or for a specific one,
+if it has its own `className`, or by inline `style`:
+
+```jsx
+<Collapsible style={{'--duration':'1s'}}>
+```
