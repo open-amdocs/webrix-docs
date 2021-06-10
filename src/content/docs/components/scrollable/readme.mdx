@@ -115,11 +115,12 @@ const {Scrollable} = Webrix.components;
 
 Name               |Type    |Default     |Description
 -------------------|--------|------------|---
-`children`         |node    |`null`      |Specifies the scrollable content.
-`element`          |node    |`<div/>`    |Specifies the scrollable element.
-`style`            |object  |`{}`        |Specifies a style object to be used for styling the scrollbar. NOTE: This should only be used for values that are computed in runtime using JavaScript. Static values should be applied using CSS.
+`children`         |node    |`null`      |The scrollable content.
+`element`          |node    |`<div/>`    |The scrollable element. Can be used for defining a different element (like `<textarea/>`), or for applying attributes to the default `<div/>`.
+`style`            |object  |`{}`        |A style object to be used for styling the scrollbar. NOTE: This should only be used for values that are computed in runtime using JavaScript. Static values should be applied using CSS.
 `scrollOnDOMChange`|boolean |`true`      |Specifies whether the scroll position should update when there's a change in the internal DOM structure. When set to `true`, adding an element above the visible area will update the scroll position so that the previously visible area is still visible.
-`onScroll`         |function|`() => null`|Specifies function to be called when a scroll event occurs. Receives an object with the following properties: `top`, `left`, `scrollTop`, `scrollLeft`, `scrollHeight`, `scrollWidth`, `clientWidth`, `clientHeight`,
+`onScroll`         |function|`() => null`|A function to be called when a scroll event occurs. Receives an object with the following properties: `top`, `left`, `scrollTop`, `scrollLeft`, `scrollHeight`, `scrollWidth`, `clientWidth`, `clientHeight`,
+`onUpdate`         |function|`() => null`|A function to be called when the scrollbars update. As opposed to `onScroll`, this is called every time the scrollbars change, including when the container resizes or when the content changed. Receives an object with the following properties: `top`, `left`, `scrollTop`, `scrollLeft`, `scrollHeight`, `scrollWidth`, `clientWidth`, `clientHeight`,
 
 ### CSS Custom Properties
 
