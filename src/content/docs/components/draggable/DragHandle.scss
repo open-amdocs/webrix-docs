@@ -1,0 +1,34 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.draggable.drag-source {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  background-image: $gradient-pink;
+  margin: 10px;
+  color: white;
+
+  &.dragging {
+    opacity: 0.5;
+  }
+
+  &.clone {
+    box-shadow: 0 5px 10px rgba(black, 0.2);
+    margin: 0; // Fixes the clone's position
+  }
+
+  .handle {
+    width: 15px;
+    height: 27px;
+    background: conic-gradient(black 25%, transparent 25%) 3px 0 / 6px 6px repeat repeat;
+    margin-left: 7px;
+    margin-right: 13px;
+    cursor: grab;
+  }
+}

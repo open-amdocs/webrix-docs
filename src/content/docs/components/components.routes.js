@@ -1,4 +1,4 @@
-import {FaArrowsAlt, FaLayerGroup, FaHandPaper, FaArrowsAltV, FaArrowsAltH, FaWindowRestore, FaSearchPlus, FaCompressAlt} from 'react-icons/fa';
+import {FaArrowsAlt, FaLayerGroup, FaHandPaper, FaArrowsAltV, FaArrowsAltH, FaWindowRestore, FaSearchPlus, FaCompressAlt, FaExchangeAlt} from 'react-icons/fa';
 
 export default [
     {
@@ -48,5 +48,11 @@ export default [
         path: '/poppable',
         icon: FaWindowRestore,
         description: '&lt;Poppable/&gt; is a React component that can be used for creating components that are "popping out" of the screen, like **tooltips, dropdowns, context menus, popovers, modals** and so on.',
+    },
+    {
+        title: 'Draggable',
+        path: '/draggable',
+        icon: FaExchangeAlt,
+        description: '&lt;Draggable/&gt; is a React component that can be used for creating drag and drop interfaces.',
     },
 ];
