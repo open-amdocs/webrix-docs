@@ -1,0 +1,48 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.draggable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.draggable.drop-target {
+  min-height: 50px;
+  // Generated with https://kovart.github.io/dashed-border-generator/
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='black' stroke-width='3' stroke-dasharray='4%2c8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  padding: 15px 40px 40px;
+  background-color: white;
+
+  &.hovering {
+    background-color: rgba($color-green, 0.3);
+  }
+
+  .draggable.drop-target {
+    margin-top: 15px;
+    padding: 30px;
+  }
+}
+
+.draggable.drag-source {
+  width: 70px;
+  height: 70px;
+  background-image: $gradient-pink;
+  margin: 10px;
+  cursor: grab;
+  color: white;
+
+  &.dragging {
+    opacity: 0.5;
+  }
+
+  &.clone {
+    box-shadow: 0 5px 10px rgba(black, 0.2);
+    margin: 0; // Fixes the clone's position
+  }
+}

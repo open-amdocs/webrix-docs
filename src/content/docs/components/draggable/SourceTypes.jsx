@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Draggable} from 'webrix/components';
-import './SourceTargetTypes.scss';
+import './SourceTypes.scss';
 
 const DragSource = ({children, valid}) => {
     const source = Draggable.useSource({
@@ -12,17 +12,17 @@ const DragSource = ({children, valid}) => {
 const DropTarget = () => {
     const [className, setClassName] = useState('');
     const target = Draggable.useTarget({
-        onBeginHover: data => {
-            setClassName(data.valid ? 'valid' : 'invalid');
+        onBeginHover: source => {
+            setClassName(source.data.valid ? 'valid' : 'invalid');
         },
-        onEndHover: data => {
+        onEndHover: () => {
             setClassName('');
         },
-        onDrop: data => {
-            if (data.valid) {
-                alert(`A valid item was dropped!`)
+        onDrop: source => {
+            if (source.data.valid) {
+                alert(`Valid item!`)
             } else {
-                alert(`You cannot drop this item here!`)
+                alert(`Invalid item!`)
             }
         },
     });

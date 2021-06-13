@@ -4,8 +4,13 @@ import './DragHandle.scss';
 
 const DragSource = ({children}) => {
     const handle = useRef();
+    const monitor = Draggable.useMonitor();
     const source = Draggable.useSource({
-        canDrag: e => handle.current?.contains(e.target), // Only allow dragging when the target is the handle
+        canDrag: () => {
+            const event = monitor.getEvent();
+            // Only allow dragging when the target is the handle (or an element contained within)
+            return handle.current?.contains(event.target);
+        },
         data: {content: children},
     });
     return (

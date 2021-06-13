@@ -1,22 +1,86 @@
 import {Example} from 'components';
 
+The `<Draggable/>` offers a set of tools for creating drag and drop interfaces.
+
+The `<Draggable/>` component is used for creating both drag sources and drop targets.
+You can specify whether a given `<Draggable/>` is a source or a target by using one of the provided hooks: `Draggable.useSource()` and `Draggable.useTarget()`.
+Both hooks return the necessary set of props to be injected to the `<Draggable/>` instance.
+
+As an item is dragged over a target, both the target and the source gain access to the configuration of each other.
+This can be used for bi-directional communication as we will illustrate in the following examples.
 
 ## Basic Example
 
 <Example file='docs/components/draggable/BasicExample' height={350}/>
 
-## Source/Target Types
+In this example we have 3 draggable items and a single target.
+The draggable item passes its content via the `data` argument, and the target alerts this `data` once an item is dropped.
 
-<Example file='docs/components/draggable/SourceTargetTypes' height={300}/>
+> Sources and targets rely on context for communication, so you must render them inside a `<Draggable.Context/>`.
 
-# Custom Drag Image
+## Data Communication
+
+### Source Types
+
+<Example file='docs/components/draggable/SourceTypes' height={300}/>
+
+Sources and targets communicate with each other by passing across their configs (as they were given in the hooks).
+In this example, we use this to create 2 different source types.
+By default, any item can be dropped on any target.
+To create different types, you simply pass something that uniquely identifies a source/target via the `data` argument.
+
+In this example we are passing a boolean `valid` argument, which is set to `true` for one item, and `false` for the other.
+The target accesses this information, and based on the value of `valid` it sets the background and alerts.
+
+### Target Types
+
+<Example file='docs/components/draggable/TargetTypes' height={300}/>
+
+As opposed to the previous example, in this example the communication is done from the target to the source.
+That target passes a boolean `valid` argument, which is set to `true` for one target, and `false` for the other.
+When that item is dropped, it checks the value of `target.data.valid`, and alerts based on that.
+
+## Custom Drag Image
 
 <Example file='docs/components/draggable/CustomDragImage' height={350}/>
+
+In this example, we provide a custom component via the `dragImage` prop to be used when the item is dragged.
+Drag the item to see a different component being rendered.
 
 ## Drag Handle
 
 <Example file='docs/components/draggable/DragHandle' height={250}/>
 
-# Scrollable list
+You can use the `canDrag` argument to block dragging unless the drag originated from a certain element.
+You can gain access to the drag event through `Draggable.useMonitor()`.
+The event contains information regarding the current drag event, including the target element and the position.
 
-(check that dragging to the bottom triggers a scroll)
+In this example we check if the `target` matches our handle. If so, we return `true`.
+One caveat here is that when dragging, the element is rendered twice, and from that point on the `ref` will point
+to the element's clone instead of the original. To avoid that, use the `dragImage` to provide a copy
+of your element without the `ref`.
+
+## Nesting
+
+### Nesting Sources
+
+<Example file='docs/components/draggable/NestingSources' height={350}/>
+
+You can nest sources within other sources, and `<Draggable/>` will take care of dragging the correct item.
+To nest sources, simply render source inside a source, like so:
+
+```jsx
+<Draggable {...source}>
+  <Draggable {...source}/>
+</Draggable>
+```
+
+### Nesting Targets
+
+<Example file='docs/components/draggable/NestingTargets' height={350}/>
+
+Similarly you can nest targets within targets as seen above.
+
+## Scrollable list
+
+(check that dragging to the top/bottom edges triggers a scroll)
