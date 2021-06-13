@@ -20,9 +20,9 @@ const DropTarget = () => {
         },
         onDrop: source => {
             if (source.data.valid) {
-                alert(`Valid item!`)
+                alert('Valid item!')
             } else {
-                alert(`Invalid item!`)
+                alert('Invalid item!')
             }
         },
     });
