@@ -15,8 +15,14 @@ const DropTarget = ({children, name}) => {
     const [hovering, setHovering] = useState(false);
     const target = Draggable.useTarget({
         data: {name},
-        onBeginHover: () => setHovering(true),
-        onEndHover: () => setHovering(false),
+        onBeginHover: source => {
+            console.log('begin', name);
+            setHovering(true)
+        },
+        onEndHover: source => {
+            console.log('end', name);
+            setHovering(false)
+        },
     });
     return <Draggable {...target} className={`drop-target ${hovering ? 'hovering' : ''}`}>{children}</Draggable>;
 };
@@ -25,7 +31,7 @@ export default () => (
     <Draggable.Context>
         <DropTarget name='parent'>
             Parent Target
-            <DropTarget name='child'>Child Target</DropTarget>
+            <DropTarget name='child'>Child <div className='test'>Target</div></DropTarget>
         </DropTarget>
         <DragSource/>
     </Draggable.Context>

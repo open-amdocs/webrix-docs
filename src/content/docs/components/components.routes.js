@@ -1,4 +1,4 @@
-import {FaArrowsAlt, FaLayerGroup, FaHandPaper, FaArrowsAltV, FaArrowsAltH, FaWindowRestore, FaSearchPlus, FaCompressAlt, FaExchangeAlt} from 'react-icons/fa';
+import {FaArrowsAlt, FaLayerGroup, FaHandPaper, FaArrowsAltV, FaArrowsAltH, FaWindowRestore, FaSearchPlus, FaCompressAlt, FaExchangeAlt, FaSortAmountUp} from 'react-icons/fa';
 
 export default [
     {
@@ -54,5 +54,11 @@ export default [
         path: '/draggable',
         icon: FaExchangeAlt,
         description: '&lt;Draggable/&gt; is a React component that can be used for creating drag and drop interfaces.',
+    },
+    {
+        title: 'Sortable',
+        path: '/sortable',
+        icon: FaSortAmountUp,
+        description: '&lt;Sortable/&gt; is a React component that can be used for creating drag and drop sortable lists.',
     },
 ];

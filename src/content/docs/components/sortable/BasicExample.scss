@@ -1,0 +1,27 @@
+#example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.sortable-item {
+  & > div {
+    text-align: center;
+    background-image: $gradient-pink;
+    padding: 10px 20px;
+    width: 100px;
+    margin: 5px;
+    font-size: 0.8em;
+    color: $color-white;
+    cursor: grab;
+  }
+
+  &.dragging {
+    opacity: 0;
+  }
+
+  &.clone > div {
+    box-shadow: 0 5px 10px rgba(black, 0.2);
+  }
+}
