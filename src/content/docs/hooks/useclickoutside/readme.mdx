@@ -7,9 +7,6 @@ This hook adds a `mousedown` and `mouseup` event listeners to the document that 
 the target is determined to be outside the component to which the returned `onMouseDownCapture` handler
 is attached.
 
-> NOTE: The callback must be wrapped in useCallback with the proper list of dependencies in order
-> to reattach document events when they change, otherwise this hook will not work properly.
-
 #### How Does It Work?
 
 This solution is based on a similar solution taken from [React Data Grid](https://github.com/adazzle/react-data-grid/pull/1417/files#diff-fdcbe490b776c1eed24c88d4b5f27d66R4)
@@ -24,6 +21,47 @@ allowing us to cover cases where the mouse is clicked inside the element, but re
 element (for example, when dragging or resizing). In such cases the click is still considered as
 an inside click, since it originated inside the element.
 
+#### Caveats
+
+Since `useClickOutside()` attaches events to the document as soon as it is called, you should use it sparingly.
+Detecting outside clicks is usually needed for popover-type components.
+In such cases, since the popover is only rendered when it is opened, you should only call the hook when the corresponding popover
+is rendered, rather than calling it initially.
+
+For example, this is preferable:
+
+```jsx
+const Popover = () => {
+    // The events will only be attached when the popover is visible
+    const handleOnMouseDownCapture = useClickOutside(...);
+    return <Poppable onMouseDownCapture={handleOnMouseDownCapture}/>
+}
+
+const App = () => (
+    <div>
+        {visible && <Popover/>}
+    </div>
+);
+```
+
+To this:
+
+```jsx
+const Popover = ({onMouseDownCapture}) => (
+    <Poppable onMouseDownCapture={onMouseDownCapture}/>
+);
+
+const App = () => {
+    // The events will be attached regardless to the visibility of the popover, which is redundant
+    const handleOnMouseDownCapture = useClickOutside(...);
+    return (
+        <div>
+            {visible && <Popover onMouseDownCapture={handleOnMouseDownCapture}/>}
+        </div>
+    );
+};
+```
+
 ## Basic Example
 
 <Example file='docs/hooks/useclickoutside/BasicExample' height={250}/>
@@ -36,9 +74,9 @@ Pass the returned handler as `onMouseDownCapture` prop to the target component.
 ```js
 import {useClickOutside} from 'webrix/hooks';
 
-const handleOnMouseDownCapture = useClickOutside(useCallback(() => {
+const handleOnMouseDownCapture = useClickOutside(() => {
     // Do something when clicking outside the target element
-}, []));
+});
 
 <SomeComponent onMouseDownCapture={handleOnMouseDownCapture}/>
 ```
