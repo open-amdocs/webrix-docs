@@ -52,7 +52,7 @@ const Popover = ({onMouseDownCapture}) => (
 );
 
 const App = () => {
-    // The events will be attached regardless to the visibility of the popover, which is redundant
+    // The events will be (redundantly) attached regardless of the visibility of the popover
     const handleOnMouseDownCapture = useClickOutside(...);
     return (
         <div>
