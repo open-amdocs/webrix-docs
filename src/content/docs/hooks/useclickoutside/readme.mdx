@@ -81,7 +81,8 @@ const handleOnMouseDownCapture = useClickOutside(() => {
 <SomeComponent onMouseDownCapture={handleOnMouseDownCapture}/>
 ```
 
-If you have a class component and cannot use hooks, you can use `<ClickOutside/>` instead:
+If you have a class component and cannot use hooks, you can use `<ClickOutside/>` instead.
+The `<ClickOutside/>` must have a single child, and that child must support the `ref` prop (i.e. a native element like `div` or a custom component wrapped in `forwardRef`).
 
 ```jsx
 import {ClickOutside} from 'webrix/hooks';
