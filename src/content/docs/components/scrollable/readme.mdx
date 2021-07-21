@@ -27,7 +27,7 @@ Same as the previous story, only here the content overflows horizontally.
 <Example file='docs/components/scrollable/MinimalThumbSize' height={300}/>
 
 The thumb size is affected by the content's length - the longer the content is, the smaller
-the thumb is - down to a minimum size of `30px`.
+the thumb is - down to a minimum size given by `----scrollable-min-thumb-length`, which defaults to `30px`.
 
 In other words, there's a limit to how small a scrollbar thumb can be. The purpose of that
 limit is to avoid having a thumb too small for the user to click on.
@@ -127,6 +127,7 @@ Name               |Type    |Default     |Description
 #### `--scrollable-vertical-ratio: <number>`
 
 The ratio between the client height and the scroll height. You can consume this variable in a custom scrollbar.
+> Note: This is a consumable property. Its value is automatically updated by `Scrollable`.
 
 **Example:**
 
@@ -139,6 +140,9 @@ The ratio between the client height and the scroll height. You can consume this 
 #### `--scrollable-horizontal-ratio: <number>`
 
 The ratio between the client width and the scroll width. You can consume this variable in a custom scrollbar.
+> Note: This is a consumable property. Its value is automatically updated by `Scrollable`.
+
+**Example:**
 
 ```css
 .scrollbar-thumb {
@@ -149,6 +153,9 @@ The ratio between the client width and the scroll width. You can consume this va
 #### `--scrollable-scroll-top: <number>`
 
 The scroll top position, represented as a number between `0` and `1`. You can consume this variable in a custom scrollbar.
+> Note: This is a consumable property. Its value is automatically updated by `Scrollable`.
+
+**Example:**
 
 ```css
 .scrollbar-thumb {
@@ -159,10 +166,25 @@ The scroll top position, represented as a number between `0` and `1`. You can co
 #### `--scrollable-scroll-left: <number>`
 
 The scroll left position, represented as a number between `0` and `1`. You can consume this variable in a custom scrollbar.
+> Note: This is a consumable property. Its value is automatically updated by `Scrollable`.
+
+**Example:**
 
 ```css
 .scrollbar-thumb {
   left: calc(var(--scrollable-scroll-left, 0) * 100%);
+}
+```
+
+#### `--scrollable-min-thumb-length: <number>`
+
+The minimum scrollbar thumb size, defaults to `30px`.
+
+**Example:**
+
+```css
+.scrollbar-thumb {
+  --scrollable-min-thumb-length: 40px;
 }
 ```
 
