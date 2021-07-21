@@ -94,6 +94,10 @@ Similarly, you can pass a `div` with a `contenteditable` attribute:
 <Scrollable element={<div contentEditable/>}>...</Scrollable>
 ```
 
+## Examples
+
+<PreviewList query='scrollable'/>
+
 ## API
 
 ### Importing
@@ -106,10 +110,6 @@ import Scrollable from 'webrix/components/Scrollable'; // For better tree shakin
 // UMD
 const {Scrollable} = Webrix.components;
 ```
-
-## Examples
-
-<PreviewList query='scrollable'/>
 
 ### Props
 
@@ -124,7 +124,51 @@ Name               |Type    |Default     |Description
 
 ### CSS Custom Properties
 
-`--shadow-color: <color>` - Set the shadow's color. Applicable when using `<Scrollable.Shadow/>`
+#### `--scrollable-vertical-ratio: <number>`
+
+The ratio between the client height and the scroll height. You can consume this variable in a custom scrollbar.
+
+**Example:**
+
+```css
+.scrollbar-thumb {
+  height: calc(var(--scrollable-vertical-ratio, 1) * 100%);
+}
+```
+
+#### `--scrollable-horizontal-ratio: <number>`
+
+The ratio between the client width and the scroll width. You can consume this variable in a custom scrollbar.
+
+```css
+.scrollbar-thumb {
+  width: calc(var(--scrollable-horizontal-ratio, 1) * 100%);
+}
+```
+
+#### `--scrollable-scroll-top: <number>`
+
+The scroll top position, represented as a number between `0` and `1`. You can consume this variable in a custom scrollbar.
+
+```css
+.scrollbar-thumb {
+  top: calc(var(--scrollable-scroll-top, 0) * 100%);
+}
+```
+
+#### `--scrollable-scroll-left: <number>`
+
+The scroll left position, represented as a number between `0` and `1`. You can consume this variable in a custom scrollbar.
+
+```css
+.scrollbar-thumb {
+  left: calc(var(--scrollable-scroll-left, 0) * 100%);
+}
+```
+
+#### `--shadow-color: <color>`
+
+Set the shadow's color. Applicable when using `<Scrollable.Shadow/>`
 
 **Example:**
 

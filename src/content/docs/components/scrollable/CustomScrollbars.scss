@@ -18,7 +18,9 @@
     }
 
     .scrollbar-thumb-inner {
-      background-image: linear-gradient($color-light-blue, $color-pink);
+      background-image: linear-gradient($color-light-blue, $color-pink, $color-light-blue);
+      background-attachment: fixed;
+      background-size: 1px 100px;
       border-radius: 4px;
       width: 10px;
       opacity: 1;

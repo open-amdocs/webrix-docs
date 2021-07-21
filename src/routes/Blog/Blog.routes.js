@@ -1,5 +1,17 @@
 export default [
     {
+        title: 'Webrix 1.5',
+        fileName: 'webrix-1-5',
+        description: 'Webrix 1.5 release notes',
+        date: '2021-07-21',
+    },
+    {
+        title: 'Webrix 1.4',
+        fileName: 'webrix-1-4',
+        description: 'Webrix 1.4 release notes',
+        date: '2021-06-10',
+    },
+    {
         title: 'Webrix 1.3',
         fileName: 'webrix-1-3',
         description: 'Webrix 1.3 release notes',

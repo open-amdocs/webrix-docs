@@ -1,0 +1,16 @@
+import {Link} from 'react-router-dom';
+
+## Features
+
+* `Scrollable` - Changed scrollbars architecture, removed instance access, converted scrollbars to functional components and improved overall performance.
+* `Scrollable` - Added `Scrollable.Context` through which the `container` ref is available.
+* `Scrollable` - Added CSS API. See <Link to='/docs/components/scrollable#api-css-custom-properties'>Scrollable CSS API</Link>.
+
+## Bug Fixes
+
+* `Scrollable` - Migrated to CSS-based scrollbar calculations. This provides a more performant and robust way of updating the scrollbars.
+
+## Breaking Changes
+
+* `Scrollable` - Consuming the `container` through context rather than props in `Scrollable.VerticalScrollbar` and `Scrollable.VerticalScrollbar`.
+                 If you have custom scrollbars, you no longer need to provide `ref` access via `forwardRef`, and the `container` will no longer be provider through the props.

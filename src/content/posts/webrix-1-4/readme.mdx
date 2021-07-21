@@ -1,0 +1,10 @@
+## Features
+
+* `Scrollable` - Added a new prop: `onUpdate`
+* `Scrollable` - Changed the `onScroll` prop to only trigger when the user scrolls, as opposed to calling it on every scrollbar update as it did until now.
+                 This is done in order to better match the native `onScroll` event.
+
+## Bug Fixes
+
+* `Scrollable` - Reduced reflow/repaint
+* `Collapsible` - Fixed ``--expanded` variable inheritance messing with the `onTransitionEnd` listener
