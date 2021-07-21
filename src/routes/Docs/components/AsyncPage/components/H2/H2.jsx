@@ -26,7 +26,7 @@ export default ({children}) => {
         // sidebar will do that automatically.
         if (window.location.hash === `#${id}`) {
             setSection(window.location.hash);
-            ref.current.scrollIntoView();
+            ref.current.scrollIntoView({behavior: 'smooth'});
         }
         return () => observer.disconnect();
     }, [id, setSection]);
