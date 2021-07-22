@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaNpm, FaGithub, FaCodeBranch, FaBug, FaCode, FaTag, FaTwitter, FaCodepen} from 'react-icons/fa';
+import {FaNpm, FaGithub, FaCodeBranch, FaBug, FaCode, FaTag, FaTwitter, FaCodepen, FaBalanceScale} from 'react-icons/fa';
 import components from 'content/docs/components/components.routes';
 import hooks from 'content/docs/hooks/hooks.routes';
 import {Container} from '../';
@@ -52,6 +52,7 @@ const Community = () => (
             <li><FaNpm/><a href='https://www.npmjs.com/package/webrix'>NPM</a></li>
             <li><FaCodeBranch/><a href='https://github.com/open-amdocs/webrix/blob/master/CONTRIBUTING.md'>Contributing</a></li>
             <li><FaBug/><a href='https://github.com/open-amdocs/webrix/issues'>Bugs</a></li>
+            <li><FaBalanceScale/><a href='https://github.com/open-amdocs/webrix/blob/master/LICENSE'>License</a></li>
         </ul>
     </div>
 );

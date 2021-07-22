@@ -19,7 +19,7 @@ const Features = () => (
                             in Webrix each component (brick) has a single, dedicated responsibility.</p>
                     </Feature>
                     <Feature title='Unbranded' icon={<FaCopyright/>}>
-                        <p>Each brick come with little to no CSS, so you won't have to override anything
+                        <p>Each brick has little to no CSS, so you won't have to override anything
                             to make it look the way you want to.</p>
                     </Feature>
                     <Feature title='Matured' icon={<FaTree/>}>
