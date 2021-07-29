@@ -103,7 +103,7 @@ module.exports = env => ({
             favicon: paths.resources + '/images/favicon.png',
         }),
         new webpack.DefinePlugin({
-            LIBRARY_SIZE: JSON.stringify(getFileSize(paths.node_modules + '/webrix/umd/webrix.umd.min.js')),
+            LIBRARY_SIZE: JSON.stringify(getFileSize(paths.node_modules + '/webrix/webrix.umd.min.js')),
         }),
         new SitmapGeneratorPlugin(env),
         new webpack.ProgressPlugin(),

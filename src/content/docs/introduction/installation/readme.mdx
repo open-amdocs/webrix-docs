@@ -35,15 +35,16 @@ import Movable from 'webrix/components/Movable';
 Alternatively you can add a `<script/>` tag to your document's `<head/>` and get Webrix through a CDN:
 
 ```html
-<script src="https://unpkg.com/webrix@latest/umd/webrix.umd.min.js" crossorigin></script>
+<script src="https://unpkg.com/webrix@latest/webrix.umd.min.js" crossorigin></script>
 ```
 
-Webrix does not work without `react`, `react-dom` and `prop-types`, so be sure to include those as well:
+Webrix does not work without `react`, `react-dom`, `prop-types` and `classnames`, so be sure to include those as well:
 
 ```html
-<script src="https://unpkg.com/react@16.14.0/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16.14.0/umd/react-dom.development.js" crossorigin></script>
-<script type="module" src="https://unpkg.com/prop-types@15.7.2/prop-types.min.js" crossorigin></script>
+<script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+<script type="module" src="https://unpkg.com/prop-types/prop-types.min.js" crossorigin></script>
+<script type="module" src="https://unpkg.com/classnames" crossorigin></script>
 ```
 
 You can now access everything through the global `Webrix` variable:
