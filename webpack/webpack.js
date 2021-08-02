@@ -90,7 +90,7 @@ module.exports = env => ({
                 use: ['babel-loader', '@mdx-js/loader'],
             },
             {
-                test: /\.(png|jpe?g|gif|obj|mp4)$/i,
+                test: /\.(png|jpe?g|gif|obj|mp4|svg)$/i,
                 use: [{loader: 'file-loader'}],
             }
         ]
@@ -100,7 +100,7 @@ module.exports = env => ({
             template: paths.src + '/index.html',
             scriptLoading: 'defer',
             filename: 'index.html',
-            favicon: paths.resources + '/images/favicon.png',
+            favicon: paths.resources + '/svg/logo-icon.svg',
         }),
         new webpack.DefinePlugin({
             LIBRARY_SIZE: JSON.stringify(getFileSize(paths.node_modules + '/webrix/webrix.umd.min.js')),

@@ -6,8 +6,8 @@ import {Mesh} from '@babylonjs/core/Meshes/mesh';
 
 const Material = scene => {
     const material = new StandardMaterial('groundMat', scene);
-    material.diffuseColor = new Color3.FromHexString('#162447');
-    material.emissiveColor = new Color3.FromHexString('#162447');
+    material.diffuseColor = new Color3.FromHexString('#1F2937');
+    material.emissiveColor = new Color3.FromHexString('#1F2937');
     material.backFaceCulling = false;
     return material;
 };

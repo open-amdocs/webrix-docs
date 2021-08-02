@@ -5,7 +5,7 @@ import {PhysicsImpostor} from '@babylonjs/core/Physics/physicsImpostor';
 
 const Material = scene => {
     const material = new StandardMaterial('brick', scene);
-    const color = new Color3.FromHexString(['#e43f5a', '#162447'][Math.floor(Math.random() * 2)])
+    const color = new Color3.FromHexString(['#1F2937', '#1F2937'][Math.floor(Math.random() * 2)])
     material.diffuseColor = color;
     material.specularColor = color;
     material.backFaceCulling = false;

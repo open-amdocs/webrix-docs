@@ -2,9 +2,9 @@ import React from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import {FaGithub} from 'react-icons/fa';
 import cls from 'classnames';
+import Logo from '../Logo/Logo';
 import pkg from '../../../package.json';
 import {HOME, DOCS, MOTIVATION, EXAMPLES, BLOG} from '../../routes/Router.routes';
-import logo from '../../resources/images/webrix-logo-text-dark.png';
 import HamburgerMenu from './components/HamburgerMenu/HamburgerMenu';
 import './Header.scss';
 
@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <header id='header'>
             <Link to={HOME.path} className='logo'>
-                <img src={logo} alt='Webrix logo' width='140' height='20' loading='lazy'/>
+                <Logo.Text/>
             </Link>
             <nav className='menu'>
                 {[DOCS, MOTIVATION, EXAMPLES, BLOG].map(({name, path}) => (
