@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link, useLocation} from 'react-router-dom';
-import {FaGithub} from 'react-icons/fa';
 import cls from 'classnames';
 import Logo from '../Logo/Logo';
 import pkg from '../../../package.json';
 import {HOME, DOCS, MOTIVATION, EXAMPLES, BLOG} from '../../routes/Router.routes';
 import HamburgerMenu from './components/HamburgerMenu/HamburgerMenu';
+import GithubCounter from './components/GithubCounter/GithubCounter';
 import './Header.scss';
 
 const Header = () => {
@@ -22,7 +22,7 @@ const Header = () => {
                 ))}
             </nav>
             <a href='https://github.com/open-amdocs/webrix/releases' className='version'>v{pkg.dependencies.webrix}</a>
-            <a href='https://github.com/open-amdocs/webrix/' className='github-link'><FaGithub/></a>
+            <GithubCounter/>
             <HamburgerMenu/>
         </header>
     );

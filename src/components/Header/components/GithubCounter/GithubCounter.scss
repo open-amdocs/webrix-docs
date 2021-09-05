@@ -1,0 +1,43 @@
+#header .github-counter {
+  margin-left: 10px;
+  display: flex;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .stargazers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 4px;
+    position: relative;
+    border: 1px solid $color-gray;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    text-decoration: none;
+    margin-left: 6px;
+
+    &::after {
+      background-color: white;
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-top: 1px solid $color-gray;
+      border-left: 1px solid $color-gray;
+      transform: rotate(-45deg);
+      left: -4px;
+    }
+  }
+
+  @include media-max('sm') {
+    margin-right: 10px;
+
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}

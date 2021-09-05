@@ -46,25 +46,6 @@
     }
   }
 
-  .github-link {
-    margin-left: 10px;
-    display: flex;
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    @include media-max('sm') {
-      margin-right: 10px;
-
-      svg {
-        width: 25px;
-        height: 25px;
-      }
-    }
-  }
-
   .version {
     color: $color-dark-blue;
     font-size: 14px;
