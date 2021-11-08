@@ -59,22 +59,22 @@ The further away you scroll from the beginning/end, the deeper the shadow will b
 <Example file='docs/components/scrollable/CustomScrollbars' height={300}/>
 
 If you want to have some custom scrollbars, you can do so by providing your own scrollbar component.
-This can be done by passing `<Scrollbar.VerticalScrollbar>` and/or `<Scrollbar.HorizontalScrollbar>`
+This can be done by passing `<Scrollable.VerticalScrollbar>` and/or `<Scrollable.HorizontalScrollbar>`
 as children, and passing your custom scrollbar as a child to them.
 
 In this example you can see a custom vertical scrollbar, positioned outside the container, featuring
 a vivid gradient.
 
-To simplify the implementation, we are using the default scrollbar `<Scrollbar.VerticalScrollbar.Default>`
+To simplify the implementation, we are using the default scrollbar `<Scrollable.VerticalScrollbar.Default>`
 as our base scrollbar.
 
 ```jsx
-<Scrollbar>
+<Scrollable>
     {...}
-    <Scrollbar.VerticalScrollbar>
+    <Scrollable.VerticalScrollbar>
         <MyCustomScrollbar/>
-    </Scrollbar.VerticalScrollbar>
-</Scrollbar>
+    </Scrollable.VerticalScrollbar>
+</Scrollable>
 ```
 
 ## Custom Element
@@ -121,8 +121,11 @@ Name               |Type    |Default     |Description
 `scrollOnDOMChange`|boolean |`true`      |Specifies whether the scroll position should update when there's a change in the internal DOM structure. When set to `true`, adding an element above the visible area will update the scroll position so that the previously visible area is still visible.
 `onScroll`         |function|`() => null`|A function to be called when a scroll event occurs. Receives an object with the following properties: `top`, `left`, `scrollTop`, `scrollLeft`, `scrollHeight`, `scrollWidth`, `clientWidth`, `clientHeight`,
 `onUpdate`         |function|`() => null`|A function to be called when the scrollbars update. As opposed to `onScroll`, this is called every time the scrollbars change, including when the container resizes or when the content changed. Receives an object with the following properties: `top`, `left`, `scrollTop`, `scrollLeft`, `scrollHeight`, `scrollWidth`, `clientWidth`, `clientHeight`,
+`cssVarsOnTracks`  |boolean |`false`     |Should be used if the scrollable DOM content consists of a large amount of DOM nodes, for perfromance reasons. [See *Chromium* bug report](https://bugs.chromium.org/p/chromium/issues/detail?id=1266517).
 
 ### CSS Custom Properties
+
+The below CSS custom properties are applied at the component's top-level.
 
 #### `--scrollable-vertical-ratio: <number>`
 
@@ -152,8 +155,11 @@ The ratio between the client width and the scroll width. You can consume this va
 
 #### `--scrollable-scroll-top: <number>`
 
-The scroll top position, represented as a number between `0` and `1`. You can consume this variable in a custom scrollbar.
+The *scroll top* position, represented as a number between `0` and `1`. You can consume this variable in a custom scrollbar.
 > Note: This is a consumable property. Its value is automatically updated by `Scrollable`.
+
+If `cssVarsOnTracks` prop is set to `true`, this property will not be applied at the component's top-level but on the *vertical* track itself,
+due to perfromance reasons described in the above *props* table.
 
 **Example:**
 
@@ -165,8 +171,11 @@ The scroll top position, represented as a number between `0` and `1`. You can co
 
 #### `--scrollable-scroll-left: <number>`
 
-The scroll left position, represented as a number between `0` and `1`. You can consume this variable in a custom scrollbar.
+The *scroll left* position, represented as a number between `0` and `1`. You can consume this variable in a custom scrollbar.
 > Note: This is a consumable property. Its value is automatically updated by `Scrollable`.
+
+If `cssVarsOnTracks` prop is set to `true`, this property will not be applied at the component's top-level but on the *horizontal* track itself,
+due to perfromance reasons described in the above *props* table.
 
 **Example:**
 

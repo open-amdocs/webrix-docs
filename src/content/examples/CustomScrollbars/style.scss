@@ -3,6 +3,19 @@
   align-items: center;
   justify-content: center;
 
+  .scrollbar {
+    border: 2px dashed $color-gray;
+    border-radius: 4px;
+    width: 200px;
+    height: 200px;
+
+    table {
+      border: 2px solid red;
+      margin: 10px;
+      line-height: .7;
+    }
+  }
+
   .scrollbars {
     display: grid;
     grid-template-columns: 1fr 1fr;
