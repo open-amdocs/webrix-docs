@@ -125,7 +125,9 @@ Name               |Type    |Default     |Description
 
 ### CSS Custom Properties
 
-The below CSS custom properties are applied at the component's top-level.
+The below CSS custom properties are applied at the component's top-level (See possible exceptions per-property)
+
+CSS variables names are also available in the Object `Scrollable.constants.CSS_VARS`.
 
 #### `--scrollable-vertical-ratio: <number>`
 
@@ -158,7 +160,7 @@ The ratio between the client width and the scroll width. You can consume this va
 The *scroll top* position, represented as a number between `0` and `1`. You can consume this variable in a custom scrollbar.
 > Note: This is a consumable property. Its value is automatically updated by `Scrollable`.
 
-If `cssVarsOnTracks` prop is set to `true`, this property will not be applied at the component's top-level but on the *vertical* track itself,
+⚠️ If `cssVarsOnTracks` prop is set to `true`, this property will not be applied at the component's top-level but on the *vertical* track itself,
 due to perfromance reasons described in the above *props* table.
 
 **Example:**
@@ -174,7 +176,7 @@ due to perfromance reasons described in the above *props* table.
 The *scroll left* position, represented as a number between `0` and `1`. You can consume this variable in a custom scrollbar.
 > Note: This is a consumable property. Its value is automatically updated by `Scrollable`.
 
-If `cssVarsOnTracks` prop is set to `true`, this property will not be applied at the component's top-level but on the *horizontal* track itself,
+⚠️ If `cssVarsOnTracks` prop is set to `true`, this property will not be applied at the component's top-level but on the *horizontal* track itself,
 due to perfromance reasons described in the above *props* table.
 
 **Example:**
@@ -206,5 +208,47 @@ Set the shadow's color. Applicable when using `<Scrollable.Shadow/>`
 ```css
 .scroll-shadow {
   --shadow-color: blue;
+}
+```
+
+#### `--scrollable-track-thickness: <length>`
+
+Set the tracks's thickness.
+
+Defaults to `12px`.
+
+**Example:**
+
+```css
+.scrollbar {
+  --scrollable-track-thickness: 12px;
+}
+```
+
+#### `--scrollable-thumb-thickness: <length>`
+
+Set the tracks's thumb thickness.
+
+Defaults to half of `--scrollable-track-thickness`
+
+**Example:**
+
+```css
+.scrollbar {
+  --scrollable-thumb-thickness: 6px;
+}
+```
+
+#### `--scrollable-thumb-offset: <length>`
+
+Set the tracks's thumb offset from all sides.
+
+Defaults to `3px`
+
+**Example:**
+
+```css
+.scrollbar {
+  --scrollable-thumb-thickness: 3px;
 }
 ```

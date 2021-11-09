@@ -37,6 +37,7 @@ const Scrollbar3 = () => (
 
 const Scrollbar4 = () => {
     const {container} = useContext(Scrollable.Context);
+    // in this example the
     return (
         <div className='scrollbar4'>
             <FaCaretUp className='scroll-button direction-up' onClick={() => scrollToTop(container)}/>
@@ -46,8 +47,8 @@ const Scrollbar4 = () => {
     );
 };
 
-const Scrollbars = ({children}) => (
-    <Scrollable>
+const Scrollbars = ({children, ...props}) => (
+    <Scrollable {...props}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -60,7 +61,7 @@ const Scrollbars = ({children}) => (
 );
 
 export default () => (
-    <div className='scrollbars'>
+    <>
         <Scrollbars>
             <Scrollbar1/>
         </Scrollbars>
@@ -73,5 +74,5 @@ export default () => (
         <Scrollbars>
             <Scrollbar4/>
         </Scrollbars>
-    </div>
+    </>
 );
