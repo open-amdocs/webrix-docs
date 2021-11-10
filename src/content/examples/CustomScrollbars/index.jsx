@@ -47,8 +47,8 @@ const Scrollbar4 = () => {
     );
 };
 
-const Scrollbars = ({children, ...props}) => (
-    <Scrollable {...props}>
+const Scrollbars = ({children}) => (
+    <Scrollable>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
