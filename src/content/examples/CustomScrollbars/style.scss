@@ -1,32 +1,39 @@
 #example {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  box-sizing: border-box;
+  padding: 20vh 30%;
 
-  .scrollbars {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    align-items: center;
-    justify-items: center;
-    width: 400px;
-    height: 400px;
+  @include media-max('md') {
+    padding: 5%;
+  }
 
-    .scrollbar {
-      border: 2px dashed $color-gray;
-      border-radius: 4px;
-      width: 150px;
-      height: 150px;
-      font-size: 0.8em;
+  .scrollbar {
+    border: 2px dashed $color-gray;
+    border-radius: 4px;
+    width: 150px;
+    height: 150px;
+    font-size: 0.8em;
 
-      .scrollbar-inner {
-        padding: 4px 8px;
-      }
+    .scrollbar-inner {
+      padding: 4px 8px;
+    }
+
+    table {
+      border: 2px solid red;
+      margin: 10px;
+      line-height: .7;
     }
   }
+
 }
 
 #example .scrollbar1 {
+  --scrollable-track-thickness: 8px;
+  --scrollable-thumb-thickness: 6px;
+
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -39,7 +46,6 @@
 
   .vertical-scrollbar-track {
     position: relative;
-    width: 8px;
 
     .scrollbar-thumb {
       padding: 1px;
@@ -49,7 +55,6 @@
       box-sizing: border-box;
       background-color: black;
       border-radius: 6px;
-      width: 6px;
       opacity: 1;
     }
   }
@@ -64,9 +69,11 @@
 }
 
 #example .scrollbar2 {
+  --scrollable-track-thickness: 10px;
+  --scrollable-thumb-thickness: 8px;
+
   .scrollbar-track {
     right: -14px;
-    width: 10px;
 
     .scrollbar-thumb {
       padding: 1px;
@@ -80,23 +87,23 @@
       box-sizing: border-box;
       background: $gradient-pink;
       border-radius: 50px;
-      width: 8px;
       opacity: 1;
     }
   }
 }
 
 #example .scrollbar3 {
+  --scrollable-track-thickness: 12px;
+  --scrollable-thumb-thickness: 100%;
+  --scrollable-thumb-offset: 0;
+
   .scrollbar-track {
     background-color: rgba($color-gray, 0.7);
     border-radius: 50px;
     right: -16px;
-    width: 12px;
 
     .scrollbar-thumb {
       --scrollable-min-thumb-length: 80px;
-      right: -3px;
-      padding: 0 3px;
     }
 
     .scrollbar-thumb-inner {
@@ -107,7 +114,6 @@
         $color-lighter-gray;
       box-shadow: 0 0 6px -2px;
       border-radius: 50px;
-      width: 12px;
       opacity: 1;
     }
   }
@@ -116,6 +122,9 @@
 #example .scrollbar4 {
   --track-color: #272928;
   --thumb-color: linear-gradient(90deg, rgba(174,174,174,1) 0%, rgba(109,109,109,1) 100%);
+  --scrollable-thumb-thickness: 20px;
+  --scrollable-thumb-offset: 0;
+
   width: 20px;
   position: relative;
   display: flex;
@@ -141,7 +150,6 @@
       border-left: 1px solid var(--track-color);
       border-right: 1px solid var(--track-color);
       border-radius: 0;
-      width: 20px;
       opacity: 1;
     }
   }
