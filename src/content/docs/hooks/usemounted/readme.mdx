@@ -20,7 +20,6 @@ In this example we have a condition based on whether `MyComponent` has been moun
 
 ```js
 const mounted = useMounted();
-const unmounted = useUnmounted();
 ```
 
 ### Importing
@@ -28,15 +27,12 @@ const unmounted = useUnmounted();
 ```jsx
 // ESM
 import {useMounted} from 'webrix/hooks';
-import {useUnmounted} from 'webrix/hooks';
 
 // For better tree shaking
 import {useMounted} from 'webrix/hooks/useMounted';
-import {useUnmounted} from 'webrix/hooks/useMounted';
 
 // UMD
 const {useMounted} = Webrix.hooks;
-const {useUnmounted} = Webrix.hooks;
 ```
 
 ### Parameters
@@ -49,13 +45,8 @@ None
 the initial render, or if the component has been unmounted, it will be `false`, otherwise it
 will be `true`.
 
-`useUnmounted()` - Returns a boolean for whether the component has been unmounted or not.
-If this is the initial render, or if the component has been mounted, it will be `false`,
-otherwise it will be `true`.
-
 This is illustrated in the table below:
 
 Hook|Initial Render|Mounted|Unmounted
 ---|---|---|---
 `useMounted()`|`false`|`true`|`false`
-`useUnmunted()`|`false`|`false`|`true`
