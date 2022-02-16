@@ -1,4 +1,5 @@
 import {Example, PreviewList} from 'components';
+import {Link} from 'react-router-dom';
 
 Execute a callback when clicking outside a given component, based on the React component tree rather than
 the DOM tree in order to support portals.
@@ -6,6 +7,8 @@ the DOM tree in order to support portals.
 This hook adds a `mousedown` and `mouseup` event listeners to the document that will trigger the given function if
 the target is determined to be outside the component to which the returned `onMouseDownCapture` handler
 is attached.
+
+See also: <Link to='/docs/tools/clickoutside'>&lt;ClickOutside/&gt;</Link>
 
 #### How Does It Work?
 
@@ -81,24 +84,6 @@ const handleOnMouseDownCapture = useClickOutside(() => {
 <SomeComponent onMouseDownCapture={handleOnMouseDownCapture}/>
 ```
 
-If you have a class component and cannot use hooks, you can use `<ClickOutside/>` instead.
-The `<ClickOutside/>` must have a single child, and that child must support the `ref` prop (i.e. a native element like `div` or a custom component wrapped in `forwardRef`).
-
-```jsx
-import {ClickOutside} from 'webrix/hooks';
-
-class MyClass extends React.PureComponent {
-
-    render() {
-        return (
-            <ClickOutside onClickOutside={...}>
-                {/* Place a single child here */}
-            </ClickOutside>
-        );
-    }
-}
-```
-
 ## Portals
 
 <Example file='docs/hooks/useclickoutside/Portals' height={250}/>
@@ -112,19 +97,8 @@ considered as a click "inside".
 
 ## Condition Overriding
 
-<Example file='docs/hooks/useclickoutside/Override' height={250}/>
-
-It is sometimes necessary to override the condition of one or more `ClickOutside` components.
-For example, when you want to treat external elements as "inside" elements.
-
-To achieve that you can wrap an element with a `<ClickOutsideOverride/>` and give it a `condition`
-that receives a boolean `isClickedInside` and the original event, and should return `true` for outside clicks
-(and `false` otherwise).
-
-In the above example, clicking on **A** will log *Outside B*, clicking on **B** will
-log *Outside A*, and clicking anywhere else will log *Outside A & B*.
-However, clicking on **A & B** will not log anything, since it is considered
-by our custom condition as an inside click (despite it being a sibling to them).
+It is sometimes necessary to override the condition of one or more `ClickOutside` components. To achieve that you can wrap an element with `<ClickOutsideOverride/>`.
+See also: <Link to='/docs/tools/clickoutside#condition-overriding'>&lt;ClickOutsideOverride/&gt;</Link>
 
 ## Examples
 
@@ -136,10 +110,6 @@ by our custom condition as an inside click (despite it being a sibling to them).
 // As a hook
 const handleOnMouseDownCapture = useClickOutside(callback);
 
-// As a component
-<ClickOutside onClickOutside={callback}>
-    // Should wrap a single component with accessible ref
-</ClickOutside>
 ```
 
 ### Importing
@@ -147,17 +117,12 @@ const handleOnMouseDownCapture = useClickOutside(callback);
 ```jsx
 // ESM
 import {useClickOutside} from 'webrix/hooks';
-import {ClickOutside} from 'webrix/hooks';
-import {ClickOutsideOverride} from 'webrix/hooks';
 
 import {useClickOutside} from 'webrix/hooks/useClickOutside'; // For better tree shaking
-import {ClickOutside} from 'webrix/hooks/useClickOutside'; // For better tree shaking
-import {ClickOutsideOverride} from 'webrix/hooks/useClickOutside'; // For better tree shaking
+
 
 // UMD
 const {useClickOutside} = Webrix.hooks;
-const {ClickOutside} = Webrix.hooks;
-const {ClickOutsideOverride} = Webrix.hooks;
 ```
 
 ### Parameters
@@ -167,20 +132,6 @@ const {ClickOutsideOverride} = Webrix.hooks;
 name|type|description
 ---|---|---
 `callback`|function|A function to be executed when clicking outside the DOM Element to which the returned click capture handler is attached
-
-#### `<ClickOutside/>`
-
-name|type|description
----|---|---
-`onClickOutside`|function|A function to be executed when clicking outside the given child component
-`children`|node|A single child
-
-#### `<ClickOutsideOverride/>`
-
-name|type|description
----|---|---
-`condition`|function|A function that receives a boolean (representing whether this is considered to be a click inside) and the original event. Should return a boolean value indicating whether the event should be treated as a click outside (true for click outside, false otherwise).
-`children`|node|Any React node (string, number, DOM element, React component etc)
 
 ### Return Value
 

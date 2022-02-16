@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import cls from 'classnames';
-import {useVisibilityState, useClickOutside, useDimensions} from 'webrix/hooks';
+import {useVisibilityState, useClickOutside, useResizeObserver} from 'webrix/hooks';
 import {Poppable} from 'webrix/components';
 import {FaCut, FaCopy, FaEdit, FaFileImport, FaSave, FaTrashAlt, FaTrashRestore, FaCaretRight} from 'react-icons/fa';
 import './style.scss';
@@ -26,7 +26,7 @@ const Divider = () => <div className='menu-item-divider'/>;
 
 const Menu = ({children, reference}) => {
     const menu = useRef();
-    const {width, height} = useDimensions(menu);
+    const {width, height} = useResizeObserver(menu);
     const {vafter, hafter} = Poppable.Placements;
     const ref = reference ? reference : new DOMRect((window.innerWidth - width) / 2 ,(window.innerHeight - height) / 2, 0 , 0);
 

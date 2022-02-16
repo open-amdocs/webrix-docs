@@ -1,6 +1,6 @@
 import React, {useMemo, useCallback, useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
-import {useDimensions} from 'webrix/hooks';
+import {useResizeObserver} from 'webrix/hooks';
 import './style.scss';
 
 const {transform, trackpad, update} = Movable.Operations;
@@ -23,7 +23,7 @@ const Slider = memo(({value, onChange, index}) => {
     const {max, name} = CONTROLS[index];
     const pad = 8;
     const movable = useRef();
-    const {width} = useDimensions(movable);
+    const {width} = useResizeObserver(movable);
     const left = map(0, max, pad, width - pad)(value);
 
     const props = Movable.useMove(useMemo(() => [

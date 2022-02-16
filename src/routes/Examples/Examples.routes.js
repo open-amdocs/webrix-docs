@@ -2,12 +2,12 @@ export default [
     {
         title: 'Simple Slider',
         path: '/examples/SimpleSlider',
-        tags: ['movable', 'useDimensions'],
+        tags: ['movable', 'useResizeObserver'],
     },
     {
         title: 'Radial Slider',
         path: '/examples/RadialSlider',
-        tags: ['movable', 'useDimensions'],
+        tags: ['movable', 'useResizeObserver'],
     },
     {
         title: 'Color Picker',
@@ -27,12 +27,12 @@ export default [
     {
         title: 'Menu',
         path: '/examples/Menu',
-        tags: ['poppable', 'useVisibilityState', 'useClickOutside', 'useDimensions'],
+        tags: ['poppable', 'useVisibilityState', 'useClickOutside', 'useResizeObserver'],
     },
     {
         title: 'DropDown',
         path: '/examples/DropDown',
-        tags: ['poppable', 'useVisibilityState', 'useClickOutside', 'useDimensions'],
+        tags: ['poppable', 'useVisibilityState', 'useClickOutside', 'useResizeObserver'],
     },
     {
         title: 'Tooltip',
@@ -47,7 +47,7 @@ export default [
     {
         title: 'Video Player',
         path: '/examples/VideoPlayer',
-        tags: ['movable', 'useTimeout', 'useDimensions'],
+        tags: ['movable', 'useTimeout', 'useResizeObserver'],
     },
     {
         title: 'Collage Maker',
@@ -62,7 +62,7 @@ export default [
     {
         title: 'Photo Editor',
         path: '/examples/PhotoEditor',
-        tags: ['movable', 'useDimensions'],
+        tags: ['movable', 'useResizeObserver'],
     },
     {
         title: 'Image Crop',

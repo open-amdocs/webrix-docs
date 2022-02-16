@@ -1,6 +1,6 @@
 import React, {useMemo, useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
-import {useDimensions} from 'webrix/hooks';
+import {useResizeObserver} from 'webrix/hooks';
 import './style.scss';
 
 const {update, trackpad, transform} = Movable.Operations;
@@ -41,7 +41,7 @@ const RadialFiller = memo(({rotate, angle, value, width}) => (
 
 const RadialSlider = memo(({value, onChange, min, max, rotate, angle: _angle, step = 0.1}) => {
     const track = useRef({});
-    const {width, height} = useDimensions(track);
+    const {width, height} = useResizeObserver(track);
     const _value = map(min, max, 0, _angle)(value);
 
     const props = Movable.useMove(useMemo(() => [
