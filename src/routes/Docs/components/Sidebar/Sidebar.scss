@@ -22,7 +22,7 @@ $border-color: #d9e6f1;
     display: none;
   }
 
-  .scrollbar {
+  .scrollable {
     max-height: calc(100vh - 60px);
     position: sticky;
     top: 0;
@@ -44,7 +44,7 @@ $border-color: #d9e6f1;
       transition: opacity 0.2s ease-out 0.5s; // The transition delay is used to keep the thumb visible for a short time when the cursor leaves. (see `Scrollable.constants.js`)
     }
 
-    .scrollbar-inner > ul {
+    .scrollable-inner > ul {
       padding-top: 30px;
 
       a {

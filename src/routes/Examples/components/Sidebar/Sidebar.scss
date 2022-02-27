@@ -10,7 +10,7 @@
     display: none;
   }
 
-  .scrollbar {
+  .scrollable {
     overflow: hidden;
 
     &.scrolling > .scrollbar-track .scrollbar-thumb-inner,

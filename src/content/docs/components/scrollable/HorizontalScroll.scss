@@ -3,14 +3,14 @@
   align-items: center;
   justify-content: center;
 
-  .scrollbar {
+  .scrollable {
     border: 2px dashed $color-gray;
     border-radius: 4px;
     width: 300px;
     white-space: nowrap;
   }
 
-  .scrollbar-inner {
+  .scrollable-inner {
     padding: 4px 8px;
   }
 }
