@@ -1,4 +1,4 @@
-import React, {useMemo, useState, useRef, memo} from 'react';
+import React, {useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
 import {useDimensions} from 'webrix/hooks';
 import './style.scss';
@@ -44,7 +44,7 @@ const RadialSlider = memo(({value, onChange, min, max, rotate, angle: _angle, st
     const {width, height} = useDimensions(track);
     const _value = map(min, max, 0, _angle)(value);
 
-    const props = Movable.useMove(useMemo(() => [
+    const props = Movable.useMove([
         trackpad(track),
         transform(
             angle({ // Convert coordinates to an angle
@@ -55,7 +55,7 @@ const RadialSlider = memo(({value, onChange, min, max, rotate, angle: _angle, st
             interval(step), // Round to the given 'step'
             decimals(1)), // Limit decimal places
         update(onChange),
-    ], [width, height, min, max, onChange, _angle, rotate, step]));
+    ]);
 
     return (
         <div className='slider'>

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo} from 'react';
+import React, {useState, useRef} from 'react';
 import {Resizable} from 'webrix/components';
 import './Contain.scss';
 
@@ -8,12 +8,12 @@ export default () => {
     const [position, setPosition] = useState({});
     const resizable = useRef();
     const container = useRef();
-    const props = Resizable.useResize(useMemo(() => [
+    const props = Resizable.useResize([
         resize(resizable),
         contain(container),
         lock(),
         update(setPosition),
-    ], []));
+    ]);
 
     return (
         <>

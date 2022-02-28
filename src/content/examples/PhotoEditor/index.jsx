@@ -1,4 +1,4 @@
-import React, {useMemo, useCallback, useState, useRef, memo} from 'react';
+import React, {useCallback, useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
 import {useDimensions} from 'webrix/hooks';
 import './style.scss';
@@ -26,11 +26,11 @@ const Slider = memo(({value, onChange, index}) => {
     const {width} = useDimensions(movable);
     const left = map(0, max, pad, width - pad)(value);
 
-    const props = Movable.useMove(useMemo(() => [
+    const props = Movable.useMove([
         trackpad(movable),
         transform(v => v.left, clamp(pad, width - pad), map(pad, width - pad, 0, max)),
         update(v => onChange(v, index)),
-    ], [onChange, width, pad, max, index]));
+    ]);
 
     return (
         <div className='slider'>

@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useMemo, useRef} from 'react';
+import React, {useCallback, useState, useRef} from 'react';
 import {FaTimes, FaMinus, FaCaretDown, FaCaretUp} from 'react-icons/fa';
 import {Poppable, Resizable, Movable} from 'webrix/components';
 import {useVisibilityState} from 'webrix/hooks';
@@ -12,17 +12,17 @@ const Modal = ({children, title, onClose}) => {
     const modal = useRef();
     const [placement, setPlacement] = useState({width: 300});
     const [manual, setManual] = useState();
-    const mProps = Movable.useMove(useMemo(() => [
+    const mProps = Movable.useMove([
         move(modal),
         mUpdate(p => setManual(c => ({...c, ...p}))),
-    ], []));
-    const rProps = Resizable.useResize(useMemo(() => [
+    ]);
+    const rProps = Resizable.useResize([
         resize(modal),
         min(180, 180),
         max(300, 300),
         lock(),
         rUpdate(setManual),
-    ], []));
+    ]);
     const getPlacements = useCallback((rbr, tbr) => [
         {...vcenter(rbr, tbr), ...hcenter(rbr, tbr)}, // Screen center
     ], []);
