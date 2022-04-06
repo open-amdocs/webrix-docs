@@ -16,11 +16,14 @@
     &.scrolling > .scrollbar-track .scrollbar-thumb-inner,
     .scrollbar-track:hover .scrollbar-thumb-inner {
       opacity: 0.8;
+      transition-delay: 0s;
     }
 
     .scrollbar-thumb-inner {
       opacity: 0;
       background-image: linear-gradient(adjust-hue($color-pink, -25), $color-pink);
+      border-radius: 4px;
+      transition: opacity 0.2s ease-out 0.5s; // The transition delay is used to keep the thumb visible for a short time when the cursor leaves. (see `Scrollable.constants.js`)
     }
   }
 
