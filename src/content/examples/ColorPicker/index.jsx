@@ -40,14 +40,14 @@ const HueSelector = ({onChange}) => {
     const {width} = useResizeObserver(movable);
     const [left, setLeft] = useState(0);
 
-    const props = Movable.useMove(useMemo(() => [
+    const props = Movable.useMove([
         trackpad(movable),
         transform(v => v.left, clamp(0, width - 1)),
         update(next => {
             onChange(ctx.current.getImageData(next, 0, 1, 1).data.slice(0, 3));
             setLeft(next);
         }),
-    ], [onChange, setLeft, width]));
+    ]);
 
     return (
         <Movable className='hue-selector' ref={movable} {...props}>
@@ -69,7 +69,7 @@ const ShadeSelector = ({onChange, hue}) => {
     const hex = rgbToHex(...hue);
     const [{top, left}, setPosition] = useState({top: 0, left: 0});
 
-    const props = Movable.useMove(useMemo(() => [
+    const props = Movable.useMove([
         trackpad(movable),
         transform(({top, left}) => ({
             top: clamp(0, height)(top),
@@ -79,7 +79,7 @@ const ShadeSelector = ({onChange, hue}) => {
             onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3));
             setPosition({top, left});
         }),
-    ], [onChange, setPosition, width, height]));
+    ]);
 
     // Update the shade when the hue changes
     useEffect(() => onChange(ctx.current.getImageData(left, top, 1, 1).data.slice(0, 3)), [hue, left, top, onChange])

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo} from 'react';
+import React, {useState, useRef} from 'react';
 import {Resizable} from 'webrix/components';
 import './CustomOperations.scss';
 
@@ -19,13 +19,13 @@ const snapClass = (ref, h, v, cls) => createOperation({
 export default () => {
     const [position, setPosition] = useState({});
     const resizable = useRef();
-    const props = Resizable.useResize(useMemo(() => [
+    const props = Resizable.useResize([
         resize(resizable),
         snap(50, 50, 0.3),
         snapClass(resizable, 50, 50, 'snapped'),
         lock(),
         update(setPosition),
-    ], []));
+    ]);
 
     return (
         <div className='resizable-object' style={position} ref={resizable}>

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo} from 'react';
+import React, {useState, useRef} from 'react';
 import {Movable} from 'webrix/components';
 import './CustomOperations.scss';
 
@@ -26,12 +26,12 @@ export const snapOnDrop = setPosition => Movable.Operations.createOperation({
 export default () => {
     const [position, setPosition] = useState({});
     const ref = useRef();
-    const props = Movable.useMove(useMemo(() => [
+    const props = Movable.useMove([
         move(ref),
         classname(ref, 'moving'),
         update(setPosition),
         snapOnDrop(setPosition),
-    ], []));
+    ]);
 
     return (
         <>
