@@ -13,4 +13,10 @@ export default [
         icon: FaWrench,
         description: '&lt;Puppeteer/&gt; and it\'s accompanying components/HOCs allow you to override the props of descendants\n that are decorated with the `puppet()` HOC.',
     },
+    {
+        title: 'ClickOutside',
+        path: '/clickoutside',
+        icon: FaWrench,
+        description: '&lt;ClickOutside/&gt; is a React component that enables to use the hook useClickOutside in class components.',
+    },
 ];

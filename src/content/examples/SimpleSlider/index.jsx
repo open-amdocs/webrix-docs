@@ -1,6 +1,6 @@
 import React, {useMemo, useState, useRef, memo} from 'react';
 import {Movable} from 'webrix/components';
-import {useDimensions} from 'webrix/hooks';
+import {useResizeObserver} from 'webrix/hooks';
 import './style.scss';
 
 const {transform, trackpad, update} = Movable.Operations;
@@ -8,7 +8,7 @@ const {map, clamp, interval, decimals} = Movable.Transformers;
 
 const Slider = memo(({value, onChange, min, max, step = 1}) => {
     const track = useRef({});
-    const {width} = useDimensions(track);
+    const {width} = useResizeObserver(track);
     const padding = 10; // Half the size of the handle, to limit the handle movement from going beyond the track
     const position = map(min, max, padding, width - padding)(value);
 

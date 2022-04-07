@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {useDimensions} from 'webrix/hooks';
+import {useResizeObserver} from 'webrix/hooks';
 import './BasicExample.scss';
 
 const getSize = height => Object.entries({
@@ -11,7 +11,7 @@ const getSize = height => Object.entries({
 
 export default () => {
     const myRef = useRef();
-    const {width, height} = useDimensions(myRef);
+    const {width, height} = useResizeObserver(myRef);
     const size = getSize(height);
     return (
         <div ref={myRef} className={`container ${size}`}>

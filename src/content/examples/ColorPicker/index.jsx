@@ -1,6 +1,6 @@
 import React, {useCallback, useState, useEffect, useRef, useMemo} from 'react';
 import {Movable} from 'webrix/components';
-import {useDimensions} from 'webrix/hooks';
+import {useResizeObserver} from 'webrix/hooks';
 import './style.scss';
 
 const WIDTH = 250;
@@ -37,7 +37,7 @@ const GradientCanvas = ({ctx, height, gradients}) => {
 const HueSelector = ({onChange}) => {
     const movable = useRef();
     const ctx = useRef();
-    const {width} = useDimensions(movable);
+    const {width} = useResizeObserver(movable);
     const [left, setLeft] = useState(0);
 
     const props = Movable.useMove(useMemo(() => [
@@ -65,7 +65,7 @@ const HueSelector = ({onChange}) => {
 const ShadeSelector = ({onChange, hue}) => {
     const movable = useRef();
     const ctx = useRef();
-    const {width, height} = useDimensions(movable);
+    const {width, height} = useResizeObserver(movable);
     const hex = rgbToHex(...hue);
     const [{top, left}, setPosition] = useState({top: 0, left: 0});
 

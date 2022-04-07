@@ -1,6 +1,6 @@
 import React, {useRef, useState, useCallback} from 'react';
 import {Movable} from 'webrix/components';
-import {useTimeout, useDimensions} from 'webrix/hooks';
+import {useTimeout, useResizeObserver} from 'webrix/hooks';
 import {FaPlay, FaPause} from 'react-icons/fa';
 import video from './video.mp4';
 import './style.scss';
@@ -40,7 +40,7 @@ const VideoPlayer = ({src}) => {
     const line = useRef();
     const [left, setLeft] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-    const lineWidth = useDimensions(line).width - HANDLE_WIDTH;
+    const lineWidth = useResizeObserver(line).width - HANDLE_WIDTH;
     const {play, pause} = useVideoControl(video, setLeft, lineWidth, setIsPlaying);
 
     const handleOnMove = useCallback(({dx}) => {

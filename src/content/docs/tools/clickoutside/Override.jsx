@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {ClickOutside, ClickOutsideOverride} from 'webrix/hooks';
+import {ClickOutside, ClickOutsideOverride} from 'webrix/tools';
 import './Override.scss';
 
 export default () => {

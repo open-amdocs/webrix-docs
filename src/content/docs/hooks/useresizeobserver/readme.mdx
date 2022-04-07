@@ -1,7 +1,7 @@
 import {Example} from 'components';
 import {Link} from 'react-router-dom';
 
-The `useDimensions()` hook listens to size changes on the given element and returns an object with `height` and `width`.
+The `useResizeObserver()` hook listens to size changes on the given element and returns an object with `height` and `width`.
 It uses the browser's `ResizeObserver` internally and cleans up the memory when necessary.
 
 While the native `ResizeObserver` API differs between browsers and devices, this component provides a unified API by passing
@@ -11,7 +11,7 @@ See also: <Link to='/docs/tools/resizeobserver'>&lt;ResizeObserver/&gt;</Link>
 
 ## Basic Example
 
-<Example file='docs/hooks/usedimensions/BasicExample' height={200}/>
+<Example file='docs/hooks/useresizeobserver/BasicExample' height={200}/>
 
 In this simple example, the background color of the element is changing based on the element's height.
 Drag the bottom-right corner of the element to see the colors and values update.
@@ -19,18 +19,18 @@ Drag the bottom-right corner of the element to see the colors and values update.
 ## Syntax
 
 ```js
-const {width, height} = useDimensions(ref);
+const {width, height} = useResizeObserver(ref);
 ```
 
 ### Importing
 
 ```jsx
 // ESM
-import {useDimensions} from 'webrix/hooks';
-import useDimensions from 'webrix/hooks/useDimensions'; // For better tree shaking
+import {useResizeObserver} from 'webrix/hooks';
+import useResizeObserver from 'webrix/hooks/useResizeObserver'; // For better tree shaking
 
 // UMD
-const {useDimensions} = Webrix.hooks;
+const {useResizeObserver} = Webrix.hooks;
 ```
 
 ### Parameters

@@ -2,7 +2,8 @@ import React, {useCallback, useState, useRef} from 'react';
 import {FaCaretDown} from 'react-icons/fa';
 import cls from 'classnames';
 import {Poppable} from 'webrix/components';
-import {useVisibilityState, useDimensions, ClickOutside} from 'webrix/hooks';
+import {useVisibilityState, useResizeObserver} from 'webrix/hooks';
+import {ClickOutside} from 'webrix/tools';
 import './style.scss';
 
 const {vafter, hcenter, vbefore} = Poppable.Placements;
@@ -10,7 +11,7 @@ const GAP = 8;
 
 const DropDown = ({value, onChange, placeholder, children}) => {
     const ref = useRef();
-    const {width} = useDimensions(ref);
+    const {width} = useResizeObserver(ref);
     const {visible, toggle, hide} = useVisibilityState();
     const placements = useCallback((rbr, tbr) => [
         {...hcenter(rbr, tbr), ...vafter(rbr, tbr, GAP)}, // Bottom
