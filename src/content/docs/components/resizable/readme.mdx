@@ -175,9 +175,9 @@ const props = Resizable.useResize(operations);
 Limit the resizing to not go below the given width/height.
 
 ```jsx
-Resizable.useResize(useMemo(() => [
+Resizable.useResize([
   Resizable.Operations.min(100, 100), // Enforce a minimum width/height of 100/100
-], []));
+]);
 ```
 
 #### `Resizable.Operations.max(width, height)`
@@ -185,9 +185,9 @@ Resizable.useResize(useMemo(() => [
 Limit the resizing to not go above the given width/height.
 
 ```jsx
-Resizable.useResize(useMemo(() => [
+Resizable.useResize([
   Resizable.Operations.max(100, 100), // Enforce a minimum width/height of 100/100
-], []));
+]);
 ```
 
 #### `Resizable.Operations.snap(horizontal, vertical, strength = 1)`
@@ -196,9 +196,9 @@ Snap the resizing to a grid specified by the given `horizontal` & `vertical` arg
 optionally specifying the snapping strength in `strength`, as a number between `0` and `1`.
 
 ```jsx
-Resizable.useResize(useMemo(() => [
+Resizable.useResize([
   Resizable.Operations.snap(20, 20), // Snap to 20x20 grid
-], []));
+]);
 ```
 
 #### `Resizable.Operations.contain(container)`
@@ -206,9 +206,9 @@ Resizable.useResize(useMemo(() => [
 Limit the resizing to not overflow the bounding rect of the given container.
 
 ```jsx
-Resizable.useResize(useMemo(() => [
+Resizable.useResize([
   Resizable.Operations.contain(ref),
-], []));
+]);
 ```
 
 #### `Resizable.Operations.ratio(value)`
@@ -217,9 +217,9 @@ Maintain the given ratio when resizing. The given value represents the ratio bet
 and the height. For example, to maintain a `4:3` ratio, use the value `4/3`.
 
 ```jsx
-Resizable.useResize(useMemo(() => [
+Resizable.useResize([
   Resizable.Operations.ratio(4/3),
-], []));
+]);
 ```
 
 #### `Resizable.Operations.relative(ref)`
@@ -230,9 +230,9 @@ Convert the coordinates to be relative to the position of the given ref.
 > but before operations that should work relatively, like `snap()`.
 
 ```jsx
-Resizable.useMove(useMemo(() => [
+Resizable.useMove([
   relative(ref), // Make coordinates relative to ref
-], []));
+]);
 ```
 
 #### `Resizable.Operations.update(callback)`
@@ -240,9 +240,9 @@ Resizable.useMove(useMemo(() => [
 Call the function given in `callback`, passing the current coordinates as an argument.
 
 ```jsx
-Resizable.useResize(useMemo(() => [
+Resizable.useResize([
   update(console.log), // Will log the next coordinates
-], []));
+]);
 ```
 
 #### `Resizable.Operations.createOperation(...)`
@@ -252,7 +252,7 @@ for additional info.
 
 ```jsx
 const myOperation = () => Resizable.Operations.createOperation(...);
-Resizable.useResize(useMemo(() => [
+Resizable.useResize([
   myOperation(...),
-], []));
+]);
 ```

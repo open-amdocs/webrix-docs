@@ -169,9 +169,9 @@ const props = Movable.useMove(operations);
 Use the Movable component given in `ref` as a movable object.
 
 ```jsx
-Movable.useMove(useMemo(() => [
+Movable.useMove([
   move(ref),
-], []));
+]);
 ```
 
 #### `Movable.Operations.trackpad(ref)`
@@ -183,9 +183,9 @@ is recorded on that track, but applied to a different element (like a handle).
 See [Trackpad](#trackpad) above for additional info.
 
 ```jsx
-Movable.useMove(useMemo(() => [
+Movable.useMove([
   trackpad(ref),
-], []));
+]);
 ```
 
 #### `Movable.Operations.snap(horizontal, vertical, strength = 1)`
@@ -194,9 +194,9 @@ Snap the movement to a grid specified by the given `horizontal` & `vertical` siz
 of the grid steps, optionally specifying the snapping strength in `strength`, as a number between `0` and `1`.
 
 ```jsx
-Movable.useMove(useMemo(() => [
+Movable.useMove([
   snap(20, 20), // Snap to a 20x20 grid
-], []));
+]);
 ```
 
 #### `Movable.Operations.contain(movable, container)`
@@ -204,9 +204,9 @@ Movable.useMove(useMemo(() => [
 Limit the movement to the bounding rect of the given container.
 
 ```jsx
-Movable.useMove(useMemo(() => [
+Movable.useMove([
   contain(movable, container),
-], []));
+]);
 ```
 
 #### `Movable.Operations.transform(...transformers)`
@@ -216,9 +216,9 @@ A transformer is simply a function that takes the current value, and returns a n
 You can use one of the built-in transformer in `Movable.Transformers`, or provide your own.
 
 ```jsx
-Movable.useMove(useMemo(() => [
+Movable.useMove([
   transform(v => v.top), // Extract the 'top' key from the coordinates (for constraining movement to the y axis)
-], []));
+]);
 ```
 
 #### `Movable.Operations.relative(ref)`
@@ -229,9 +229,9 @@ Convert the coordinates to be relative to the position of the given ref.
 > but before operations that should work relatively, like `snap()`.
 
 ```jsx
-Movable.useMove(useMemo(() => [
+Movable.useMove([
   relative(ref), // Make coordinates relative to ref
-], []));
+]);
 ```
 
 #### `Movable.Operations.update(callback)`
@@ -239,9 +239,9 @@ Movable.useMove(useMemo(() => [
 Call the function given in `callback`, passing the current coordinates as an argument.
 
 ```jsx
-Movable.useMove(useMemo(() => [
+Movable.useMove([
   update(console.log), // Will log the next coordinates
-], []));
+]);
 ```
 
 #### `Movable.Operations.createOperation(...)`
@@ -251,9 +251,9 @@ for additional info.
 
 ```jsx
 const myOperation = () => Movable.Operations.createOperation(...);
-Movable.useMove(useMemo(() => [
+Movable.useMove([
   myOperation(...),
-], []));
+]);
 ```
 
 ### Transformers

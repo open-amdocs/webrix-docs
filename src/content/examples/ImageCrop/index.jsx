@@ -1,4 +1,4 @@
-import React, {useMemo, useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {Resizable, Movable} from 'webrix/components';
 import './style.scss';
 
@@ -26,19 +26,19 @@ const Crop = ({image}) => {
     const crop = useRef();
     const movable = useRef();
 
-    const mProps = Movable.useMove(useMemo(() => [
+    const mProps = Movable.useMove([
         mo.move(movable),
         mo.contain(movable, image),
         mo.update(({top, left}) => setPosition(p => ({...p, top, left}))),
-    ], [setPosition, image]));
+    ]);
 
-    const rProps = Resizable.useResize(useMemo(() => [
+    const rProps = Resizable.useResize([
         ro.resize(crop),
         ro.contain(image),
         ro.min(50, 50),
         ro.lock(),
         ro.update(setPosition),
-    ], [image]));
+    ]);
 
     useEffect(() => {
         // Set the crop to the image size initially
