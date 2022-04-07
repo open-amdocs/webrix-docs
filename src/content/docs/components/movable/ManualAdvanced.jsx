@@ -11,7 +11,7 @@ export default () => {
     }, [top, left]);
 
     const handleOnMove = useCallback(({dx, dy}) => {
-        // dx/dy represent the change in x/y since the the beginning of the drag.
+        // dx/dy represent the change in x/y since the beginning of the drag.
         const {top, left} = initial.current;
         setPosition({top: top + dy, left: left + dx});
     }, [setPosition]);
