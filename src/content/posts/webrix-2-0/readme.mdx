@@ -1,0 +1,21 @@
+import {Link} from 'react-router-dom';
+
+## Features
+
+* `Scrollable` - Changed class name from `scrollbar` to `scrollable`
+* `Scrollable` - Added CSS custom property `--scrollable-thumb-color` . See <Link to='/docs/components/scrollable#api-css-custom-properties'>Scrollable CSS API</Link>.
+* `Scrollable` - Added `Scrollable.Context` through which the `container` ref is available.
+* `Scrollable` - Removed branding styles to have it as "white-label" as possible. See <a href='https://github.com/open-amdocs/webrix/pull/83'>PR #83</a>
+* `Scrollable` - The component now utilizes any prop applied to it. (`<div {...this.props} ...`).
+* `Movable` - `useMemo` is no longer needed inside a `useMove`:
+              `Movable.useMove(useMemo(() => [...], [...]))` → `Movable.useMove([...])`
+* `Resizable` - Same change as above: `Resizable.useResize(useMemo(() => [...], []))` → `Resizable.useResize([...])`
+
+## Bug Fixes
+
+
+## Breaking Changes
+
+* `useDimensions` - Renamed to `useResizeObserver`
+* `useUnmounted` - Removed (from `webrix/hooks`). See <a href='https://github.com/open-amdocs/webrix/issues/77'>issue #77</a> &amp; <a href='https://github.com/open-amdocs/webrix/pull/80'>PR #80</a>
+* `<ClickOutside/>` - Moved from *hooks* to *tools* (Ex. `import {ClickOutside} from 'webrix/tools'`)
