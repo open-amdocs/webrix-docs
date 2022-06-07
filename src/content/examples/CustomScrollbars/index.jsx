@@ -15,7 +15,7 @@ const scrollToBottom = scrollbar => scrollTo(scrollbar, scrollbar.current.scroll
 const Scrollbar1 = () => {
     const {container} = useContext(Scrollable.Context);
     return (
-        <div className='scrollbar1'>
+        <div className='scrollbar scrollbar1'>
             <FaChevronUp onClick={() => scrollToTop(container)}/>
             <FaChevronDown onClick={() => scrollToBottom(container)}/>
             <Scrollable.VerticalScrollbar.Default container={container}/>
@@ -24,13 +24,13 @@ const Scrollbar1 = () => {
 };
 
 const Scrollbar2 = () => (
-    <div className='scrollbar2'>
+    <div className='scrollbar scrollbar2'>
         <Scrollable.VerticalScrollbar.Default/>
     </div>
 );
 
 const Scrollbar3 = () => (
-    <div className='scrollbar3'>
+    <div className='scrollbar scrollbar3'>
         <Scrollable.VerticalScrollbar.Default/>
     </div>
 );
@@ -39,7 +39,7 @@ const Scrollbar4 = () => {
     const {container} = useContext(Scrollable.Context);
     // in this example the
     return (
-        <div className='scrollbar4'>
+        <div className='scrollbar scrollbar4'>
             <FaCaretUp className='scroll-button direction-up' onClick={() => scrollToTop(container)}/>
             <Scrollable.VerticalScrollbar.Default container={container}/>
             <FaCaretDown className='scroll-button direction-down' onClick={() => scrollToBottom(container)}/>
@@ -49,11 +49,13 @@ const Scrollbar4 = () => {
 
 const Scrollbars = ({children}) => (
     <Scrollable>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <div contentEditable spellCheck='false'>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
         <Scrollable.VerticalScrollbar>
             {children}
         </Scrollable.VerticalScrollbar>
