@@ -17,6 +17,17 @@
     height: 150px;
     font-size: 0.8em;
 
+    .scrollbar {
+      transition: 0.1s ease;
+    }
+
+    &:not(.vertically-scrollable) {
+      .scrollbar {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
     .scrollable-inner {
       padding: 4px 8px;
     }
