@@ -1,17 +1,25 @@
 import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
-import cls from 'classnames';
+import ReactDOM, {createPortal} from 'react-dom';
+import cx from 'classnames';
 import {useClickOutside} from 'webrix/hooks';
 import './Portals.scss';
 
+const Box = ({children, inside, ...props}) => createPortal(
+    <div {...props} className={cx('box', {inside})}>{children}</div>
+, document.body);
+
 export default () => {
     const [inside, setInside] = useState(null);
-    const handleOnMouseDownCapture = useClickOutside(() => setInside(false))
+    const handleOnMouseDownCapture = useClickOutside(() => setInside(false));
+
     return (
-        ReactDOM.createPortal(<div className={cls('depth-0', {inside})} onMouseDownCapture={handleOnMouseDownCapture} onClick={() => setInside(true)}>
-            {ReactDOM.createPortal(<div className={cls('depth-1', {inside})}>
-                {ReactDOM.createPortal(<div className={cls('depth-2', {inside})}/>, document.body)}
-            </div>, document.body)}
-        </div>, document.body)
+        <Box
+            onMouseDownCapture={handleOnMouseDownCapture}
+            onClick={() => setInside(true)}
+            inside={inside}>
+            <Box inside={inside}>
+                <Box inside={inside}/>
+            </Box>
+        </Box>
     );
 };
