@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import ReactDOM, {createPortal} from 'react-dom';
+import {createPortal} from 'react-dom';
 import cx from 'classnames';
 import {useClickOutside} from 'webrix/hooks';
 import './Portals.scss';
