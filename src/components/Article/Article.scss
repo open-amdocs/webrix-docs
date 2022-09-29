@@ -33,7 +33,7 @@ article {
     }
   }
 
-  a {
+  a:not(.link) {
     color: $color-pink;
 
     &:hover {
