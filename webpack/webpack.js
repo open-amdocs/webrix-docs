@@ -37,14 +37,15 @@ module.exports = env => ({
         },
     },
     devServer: {
-        writeToDisk: env.production,
-        contentBase: paths.src,
+        static: paths.src,
         historyApiFallback: true,
         compress: true,
         port: 9000,
         hot: !env.production,
         liveReload: !env.production,
-        inline: !env.production,
+        devMiddleware: {
+            writeToDisk: env.production,
+        },
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
@@ -56,7 +57,7 @@ module.exports = env => ({
             utility: paths.src + '/utility/',
             react: paths.node_modules + '/react/',
             webrix: env.production ? paths.node_modules + '/webrix/' : paths.webrix,
-        }
+        },
     },
     module: {
         rules: [
@@ -64,26 +65,26 @@ module.exports = env => ({
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader"
-                }
+                    loader: 'babel-loader',
+                },
             },
             {
                 test: /\.s?css$/,
                 use: [
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader",
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
                     {
-                        loader: "sass-resources-loader",
+                        loader: 'sass-resources-loader',
                         options: {
                             resources: [
                                 paths.resources + '/styles/variables.scss',
                                 paths.resources + '/styles/colors.scss',
                                 paths.resources + '/styles/mixins.scss',
-                            ]
-                        }
-                    }
-                ]
+                            ],
+                        },
+                    },
+                ],
             },
             {
                 test: /\.mdx?$/,
@@ -92,8 +93,8 @@ module.exports = env => ({
             {
                 test: /\.(png|jpe?g|gif|obj|mp4|svg)$/i,
                 use: [{loader: 'file-loader'}],
-            }
-        ]
+            },
+        ],
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -107,5 +108,5 @@ module.exports = env => ({
         }),
         new SitmapGeneratorPlugin(env),
         new webpack.ProgressPlugin(),
-    ]
+    ],
 });
