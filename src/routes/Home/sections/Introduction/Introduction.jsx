@@ -9,6 +9,7 @@ const Introduction = () => (
         <Container>
             <section className='introduction'>
                 <h2>What is Webrix?</h2>
+                <h2>What is Refael?</h2>
                 Webrix is a set of small, single-purpose React components, each aimed at overcoming a specific UI challenge.
                 It's not a component bank, but rather a set of building blocks for creating your own unique component bank.
                 Webrix does all the technical heavy lifting, so you can focus on the presentation.
