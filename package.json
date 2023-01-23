@@ -24,7 +24,7 @@
     "@mdx-js/loader": "1.6.22",
     "@mdx-js/react": "1.6.22",
     "aws-sdk": "2.896.0",
-    "babel-loader": "9.1.2",
+    "babel-loader": "8.2.2",
     "chrome-aws-lambda": "8.0.2",
     "css-loader": "5.2.4",
     "eslint": "7.25.0",
