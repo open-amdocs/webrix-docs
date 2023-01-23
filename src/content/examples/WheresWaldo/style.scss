@@ -5,57 +5,98 @@
   user-select: none;
 
   .image-container {
-    width: 80vmin;
-    height: 80vmin;
-    border: 10px solid white;
-    box-shadow: 0 0 15px rgba(black, 0.3);
     position: relative;
+    width: 75vmin;
+  }
+
+  header {
+    padding: 1em;
+    text-align: center;
+    font-size: 1.2em;
+  }
+
+  .pannable-image {
+    --border-size: 12px;
+
+    height: 75vmin;
+    border: var(--border-size) solid white;
+    box-shadow: 0 0 15px rgba(black, 0.3);
+
+    .scrollable {
+      --scrollable-thumb-color: #{$color-pink};
+
+      .vertical-scrollbar-track {
+        right: calc(var(--border-size) * -1);
+      }
+
+      .horizontal-scrollbar-track {
+        bottom: calc(var(--border-size) * -1);
+      }
+    }
   }
 
   .scalable {
     pointer-events: none;
 
-    .scalable-inner {
+    &-inner {
       display: flex;
     }
   }
 
   .slider {
-    z-index: 1;
-    margin: 20px;
-    width: 8px;
-    box-shadow: 0 0 10px rgba(black, 0.4);
-    border-radius: 4px;
-    height: 100px;
-    background-color: white;
+    --w: 8px;
     position: absolute;
-    top: 50%;
-    right: -60px;
-    transform: translateY(-50%);
+    z-index: 1;
+    inset: 0 auto;
+    margin: auto;
+    right: -40px;
+    width: var(--w);
+    height: 200px;
+    border-radius: 10px;
+    background: #CCC;
     cursor: pointer;
 
-    .value {
-      font-size: 10px;
-      color: white;
-      position: absolute;
-      top: -30px;
-      background-color: $color-pink;
-      padding: 4px 8px;
-      left: 50%;
-      border-radius: 5px;
-      box-sizing: border-box;
-      transform: translateX(-50%);
-      box-shadow: 0 0 10px rgba(black, 0.4);
-    }
-
     .handle {
-      border-radius: 4px;
+      font-size: 12px;
+      color: white;
+      border-radius: inherit;
       position: absolute;
-      width: 20px;
-      height: 10px;
-      background-color: $color-pink;
-      left: -6px;
-      box-shadow: 0 0 2px rgba(black, 0.5);
+      padding: 3px 8px;
+      background: $color-pink;
+      left: 50%;
+      top: calc(var(--posY) * 1%);
+      transform: translateY(calc(-1% * var(--posY))) translateX(-50%);
+
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 var(--w) var(--w) var(--w);
+        border-color: transparent transparent $color-pink transparent;
+        inset: calc(var(--w) * -1) 0 auto;
+        transform: scale(calc((var(--posY)) * 1.5%));
+        transform-origin: bottom center;
+        //transform: translateY(clamp(-100%, calc(var(--posY) * -3%), 0%));
+        margin: auto;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: var(--w) var(--w) 0 var(--w);
+        border-color: $color-pink transparent transparent transparent;
+        inset: auto 0 calc(var(--w) * -1);
+        transform: scale(calc((100 - var(--posY)) * 1.5%));
+        transform-origin: top center;
+        //transform: translateY(clamp(0%, calc((100 - var(--posY)) * 3%), 100%));
+        margin: auto;
+      }
     }
   }
 }
