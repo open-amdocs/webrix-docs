@@ -6,7 +6,6 @@
 
   .image-container {
     position: relative;
-    width: 75vmin;
   }
 
   header {
@@ -18,12 +17,19 @@
   .pannable-image {
     --border-size: 12px;
 
-    height: 75vmin;
+    display: flex;
+    width: 75vmin;
+    height: fit-content;
+    max-height: 75vmin;
+    position: relative;
     border: var(--border-size) solid white;
     box-shadow: 0 0 15px rgba(black, 0.3);
 
     .scrollable {
-      --scrollable-thumb-color: #{$color-pink};
+      --scrollable-thumb-color: black;
+
+      position: static;
+      height: auto;
 
       .vertical-scrollbar-track {
         right: calc(var(--border-size) * -1);
