@@ -29,6 +29,9 @@ export default () => {
             <CollapsibleItem title='Child 3'>
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
                 mollit anim id est laborum.
+                <CollapsibleItem title='Grandchild'>
+                    Deepest collapsible
+                </CollapsibleItem>
             </CollapsibleItem>
         </CollapsibleItem>
     );
